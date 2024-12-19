@@ -1,0 +1,459 @@
+%!Adobe-FontList 1.24
+%Locale:0x411
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-Thin
+FamilyName:M PLUS 1
+StyleName:Thin
+FullName:M PLUS 1 Thin
+MenuName:M PLUS 1 Thin
+FamilyPrefix:MPLUS1
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:Thin
+FullNameNative:M PLUS 1 Thin
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\MPLUS1-VariableFont_wght.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:TrueTypeVariableFont
+FileLength:4119312
+FileModTime:1720344374
+WeightClass:100
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1 Thin
+NameArray:0,Win,16,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-Black
+FamilyName:M PLUS 1
+StyleName:Black
+FullName:M PLUS 1 Black
+MenuName:M PLUS 1 Black
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:Black
+FullNameNative:M PLUS 1 Black
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-Black.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1777212
+FileModTime:1720344374
+WeightClass:900
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1 Black
+NameArray:0,Win,16,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-Bold
+FamilyName:M PLUS 1
+StyleName:Bold
+FullName:M PLUS 1 Bold
+MenuName:M PLUS 1
+StyleBits:2
+FamilyNameNative:M PLUS 1
+StyleNameNative:Bold
+FullNameNative:M PLUS 1 Bold
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-Bold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1783896
+FileModTime:1720344374
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-ExtraBold
+FamilyName:M PLUS 1
+StyleName:ExtraBold
+FullName:M PLUS 1 ExtraBold
+MenuName:M PLUS 1 ExtraBold
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:ExtraBold
+FullNameNative:M PLUS 1 ExtraBold
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-ExtraBold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1783688
+FileModTime:1720344374
+WeightClass:800
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1 ExtraBold
+NameArray:0,Win,16,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-ExtraLight
+FamilyName:M PLUS 1
+StyleName:ExtraLight
+FullName:M PLUS 1 ExtraLight
+MenuName:M PLUS 1 ExtraLight
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:ExtraLight
+FullNameNative:M PLUS 1 ExtraLight
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-ExtraLight.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1776808
+FileModTime:1720344374
+WeightClass:250
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1 ExtraLight
+NameArray:0,Win,16,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-Light
+FamilyName:M PLUS 1
+StyleName:Light
+FullName:M PLUS 1 Light
+MenuName:M PLUS 1 Light
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:Light
+FullNameNative:M PLUS 1 Light
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-Light.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1776008
+FileModTime:1720344374
+WeightClass:300
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1 Light
+NameArray:0,Win,16,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-Medium
+FamilyName:M PLUS 1
+StyleName:Medium
+FullName:M PLUS 1 Medium
+MenuName:M PLUS 1 Medium
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:Medium
+FullNameNative:M PLUS 1 Medium
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-Medium.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1782724
+FileModTime:1720344374
+WeightClass:500
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1 Medium
+NameArray:0,Win,16,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-Regular
+FamilyName:M PLUS 1
+StyleName:Regular
+FullName:M PLUS 1 Regular
+MenuName:M PLUS 1
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:Regular
+FullNameNative:M PLUS 1 Regular
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-Regular.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1777336
+FileModTime:1720344374
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-SemiBold
+FamilyName:M PLUS 1
+StyleName:SemiBold
+FullName:M PLUS 1 SemiBold
+MenuName:M PLUS 1 SemiBold
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:SemiBold
+FullNameNative:M PLUS 1 SemiBold
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-SemiBold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1781844
+FileModTime:1720344374
+WeightClass:600
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1 SemiBold
+NameArray:0,Win,16,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:MPLUS1-Thin
+FamilyName:M PLUS 1
+StyleName:Thin
+FullName:M PLUS 1 Thin
+MenuName:M PLUS 1 Thin
+StyleBits:0
+FamilyNameNative:M PLUS 1
+StyleNameNative:Thin
+FullNameNative:M PLUS 1 Thin
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_1\static\MPLUS1-Thin.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:1764640
+FileModTime:1720344374
+WeightClass:250
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,M PLUS 1 Thin
+NameArray:0,Win,16,M PLUS 1
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:RoundedMplus1c-Black
+FamilyName:Rounded Mplus 1c
+StyleName:Black
+FullName:Rounded Mplus 1c Black
+MenuName:Rounded Mplus 1c Black
+StyleBits:0
+FamilyNameNative:Rounded Mplus 1c
+StyleNameNative:Black
+FullNameNative:Rounded Mplus 1c Black
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_Rounded_1c\MPLUSRounded1c-Black.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:3625868
+FileModTime:1729478352
+WeightClass:900
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,Rounded Mplus 1c Black
+NameArray:0,Win,16,Rounded Mplus 1c
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:RoundedMplus1c-Bold
+FamilyName:Rounded Mplus 1c Bold
+StyleName:Bold
+FullName:Rounded Mplus 1c Bold
+MenuName:Rounded Mplus 1c Bold
+StyleBits:2
+FamilyNameNative:Rounded Mplus 1c Bold
+StyleNameNative:Bold
+FullNameNative:Rounded Mplus 1c Bold Bold
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_Rounded_1c\MPLUSRounded1c-Bold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:3533308
+FileModTime:1729478354
+WeightClass:700
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,Rounded Mplus 1c Bold
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:RoundedMplus1c-ExtraBold
+FamilyName:Rounded Mplus 1c
+StyleName:ExtraBold
+FullName:Rounded Mplus 1c ExtraBold
+MenuName:Rounded Mplus 1c ExtraBold
+StyleBits:0
+FamilyNameNative:Rounded Mplus 1c
+StyleNameNative:ExtraBold
+FullNameNative:Rounded Mplus 1c ExtraBold
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_Rounded_1c\MPLUSRounded1c-ExtraBold.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:3619000
+FileModTime:1729478354
+WeightClass:800
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,Rounded Mplus 1c ExtraBold
+NameArray:0,Win,16,Rounded Mplus 1c
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:RoundedMplus1c-Light
+FamilyName:Rounded Mplus 1c
+StyleName:Light
+FullName:Rounded Mplus 1c Light
+MenuName:Rounded Mplus 1c Light
+StyleBits:0
+FamilyNameNative:Rounded Mplus 1c
+StyleNameNative:Light
+FullNameNative:Rounded Mplus 1c Light
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_Rounded_1c\MPLUSRounded1c-Light.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:3285880
+FileModTime:1729478352
+WeightClass:300
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,Rounded Mplus 1c Light
+NameArray:0,Win,16,Rounded Mplus 1c
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:RoundedMplus1c-Medium
+FamilyName:Rounded Mplus 1c
+StyleName:Medium
+FullName:Rounded Mplus 1c Medium
+MenuName:Rounded Mplus 1c Medium
+StyleBits:0
+FamilyNameNative:Rounded Mplus 1c
+StyleNameNative:Medium
+FullNameNative:Rounded Mplus 1c Medium
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_Rounded_1c\MPLUSRounded1c-Medium.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:3423528
+FileModTime:1729478354
+WeightClass:500
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,Rounded Mplus 1c Medium
+NameArray:0,Win,16,Rounded Mplus 1c
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:RoundedMplus1c-Regular
+FamilyName:Rounded Mplus 1c
+StyleName:Regular
+FullName:Rounded Mplus 1c
+MenuName:Rounded Mplus 1c
+StyleBits:0
+FamilyNameNative:Rounded Mplus 1c
+StyleNameNative:Regular
+FullNameNative:Rounded Mplus 1c Regular
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_Rounded_1c\MPLUSRounded1c-Regular.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:3380812
+FileModTime:1729478352
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,Rounded Mplus 1c
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:RoundedMplus1c-Thin
+FamilyName:Rounded Mplus 1c
+StyleName:Thin
+FullName:Rounded Mplus 1c Thin
+MenuName:Rounded Mplus 1c Thin
+StyleBits:0
+FamilyNameNative:Rounded Mplus 1c
+StyleNameNative:Thin
+FullNameNative:Rounded Mplus 1c Thin
+WritingScript:Japanese
+OutlineFileName:F:\ちか★なつみ★はるか★こなつ\Font\M_PLUS_Rounded_1c\MPLUSRounded1c-Thin.ttf
+DataFormat:sfntData
+hasSVG:no
+hasCOLR:no
+VariableFontType:NonVariableFont
+FileLength:2900340
+FileModTime:1729478350
+WeightClass:250
+WidthClass:5
+AngleClass:0
+NameArray:0,Win,1,Rounded Mplus 1c Thin
+NameArray:0,Win,16,Rounded Mplus 1c
+%EndFont
+
