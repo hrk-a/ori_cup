@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>お問い合わせ内容の確認</title>
+</head>
+<body>
+    <h1>お問い合わせ内容の確認</h1>
+    <p>以下の内容でお間違いがないかご確認ください。</p>
+    <ul>
+        <li>お問い合わせ項目: <span id="kindsSelect_check"></span></li>
+        <li>お名前: <span id="name_check"></span></li>
+        <li>フリガナ: <span id="furigana_check"></span></li>
+        <li>メールアドレス: <span id="mail_check"></span></li>
+        <li>電話番号: <span id="phone1_check"></span>-<span id="phone2_check"></span>-<span id="phone3_check"></span></li>
+        <li>お問い合わせ内容: <span id="message_check"></span></li>
+    </ul>
+    <button onclick="window.history.back()">戻る</button>
+    <button onclick="submitForm()">送信</button>
+
+    <script>
+        const get_kindsSelect = sessionStorage.getItem('kindsSelect');
+        const get_name  = sessionStorage.getItem('name');
+        const get_furigana  = sessionStorage.getItem('furigana');
+        const get_mail  = sessionStorage.getItem('mail');
+        const get_phone1  = sessionStorage.getItem('phone1');
+        const get_phone2  = sessionStorage.getItem('phone2');
+        const get_phone3 = sessionStorage.getItem('phone3');
+        const get_message = sessionStorage.getItem('message');
+        
+        // innerHTMLを使って表示内容を設定する
+        document.getElementById('kindsSelect_check').innerHTML = get_kindsSelect;
+        document.getElementById('name_check').innerHTML = get_name;
+        document.getElementById('furigana_check').innerHTML = get_furigana;
+        document.getElementById('mail_check').innerHTML = get_mail;
+        document.getElementById('phone1_check').innerHTML = get_phone1;
+        document.getElementById('phone2_check').innerHTML = get_phone2;
+        document.getElementById('phone3_check').innerHTML = get_phone3;
+        document.getElementById('message_check').innerHTML = get_message;
+        
+        function submitForm() {
+            alert("お問い合わせが送信されました。");
+            // サーバーにデータを送信する場合はここで実装
+        }
+    </script>
+</body>
+</html>

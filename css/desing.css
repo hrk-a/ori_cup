@@ -1,0 +1,24 @@
+@charset 'utf-8';
+
+/*デザイン例*/
+#about {
+    background-image: url(../img/about_stripe.jpg); /* 背景画像を設定 */
+    position: relative; /* 相対位置を指定 */
+    background-size: 100%;
+}
+
+/*PC*/
+@media (max-width: 2000px) and (min-width: 834px) {
+    
+}
+
+
+/*狭いブラウザとタブレット*/
+@media (max-width: 832px) and (min-width: 521px) {
+
+}
+
+/*スマホ*/
+@media (max-width: 520px){
+
+}

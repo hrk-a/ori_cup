@@ -1,0 +1,149 @@
+@charset 'utf-8';
+
+/* 作り方 */
+#howto {
+    background-image: url(../img/howto_stripe.jpg);
+    position: relative;
+    background-size: 100%;
+}
+
+/* 初期設定で全て非表示 */
+.pc-img, .sp-img {
+    display: none;
+}
+
+.howto_step {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.howto_step img {
+    width: 20%;
+    margin: 0 20px;
+    opacity: 0;
+    transform: scale(0.5); /* 小さくする */
+    transition: opacity 0.35s ease, transform 0.35s ease; /* アニメーション */
+    transform-origin: center; /* 拡大の基準点を中央に設定 */
+}
+
+/* スクロールで表示 */
+.howto_step img.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.button {
+    text-align: center;
+}
+
+.howto_button {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 1;
+    letter-spacing: 2px;
+    color: #fff;
+    background-color: #89c45c;
+    border: 3px solid #fff;
+    border-radius: 50px;
+    width: 280px;
+    box-shadow: 2px 6px #89c45c;
+    padding: 13px 0 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+
+.button span {
+    font-size: 15px;
+}
+
+button:hover {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* 右向きの矢印 */
+button::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid #fff;
+}
+
+@media (max-width: 2000px) and (min-width: 834px) {
+    /* PC用画像 */
+    .pc-img {
+        display: inline;
+    }
+}
+
+/* 狭いブラウザとタブレット */
+@media (max-width: 832px) and (min-width: 521px) {
+    /* PC用画像 */
+    .pc-img {
+        display: inline;
+    }
+
+    .howto_button {
+        width: 200px;
+        padding: 15px 0 6px;
+        font-size: 1rem;
+    }
+    .howto_step img{
+        width: 30%;
+        margin: 0 10px;    
+    }
+
+    .button span {
+        font-size: 12px;
+    }
+
+    button::after {
+        right: 18px;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 9px solid #fff;
+    }
+}
+
+/* スマホ */
+@media (max-width: 520px) {
+    /* SP用画像 */
+    .sp-img {
+        display: inline;
+    }
+    .howto_step {
+        display: block;
+        width: 70%;
+        margin: 0 auto 50px;
+    }
+
+    .howto_step img {
+        width: 100%;
+        margin: 0;
+    }
+
+    .howto_button {
+        width: 165px;
+        padding: 9px 0 5px;
+        font-size: 0.8rem;
+        border: 2px solid #fff;
+    }
+
+    .button span {
+        font-size: 8.5px;
+    }
+
+    button::after {
+        right: 18px;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 7px solid #fff;
+    }
+}

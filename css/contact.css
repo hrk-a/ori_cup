@@ -1,0 +1,401 @@
+@charset 'utf-8';
+
+/* お問合せ */
+#contact {
+    background-image: url(../img/contact_stripe.jpg);
+    /* 背景画像を設定 */
+    position: relative;
+    /* 相対位置を指定 */
+    background-size: 100%;
+}
+
+.button {
+    clear: both;
+}
+
+/* 送信ボタン */
+.contact_button {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 1;
+    letter-spacing: 2px;
+    /* スキーニング（文字間の調整） */
+
+    color: #fff;
+    background-color: #2fc1ed;
+    border: 3px solid #fff;
+    border-radius: 50px;
+    width: 280px;
+    box-shadow: 2px 6px #2fc1ed;
+    padding: 22px 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* アニメーションのスムーズさを追加 */
+    position: relative;
+    /* 疑似要素を位置させるために相対位置に設定 */
+}
+
+/* 背景 */
+.contact_bg {
+    background: #fff;
+    border: 3px solid #2fc1ed;
+    border-radius: 20px;
+    padding: 3% 6%;
+    box-shadow: 0 0 0 7px #fff;
+    /* 白い縁取り */
+}
+
+/*平素より...*/
+.contact_p {
+    margin: 20px auto 80px;
+    width: 60%;
+}
+
+/*テーブルエリア*/
+.contact_table {
+    width: 75%;
+    margin: 0 auto;
+}
+
+/* 各入力要素のスタイル */
+/*.name, .mail, .phone, .kinds, .number_cont, .kinds_text {
+    margin-bottom: 10px;
+}
+*/
+td {
+    padding-bottom: 20px;
+}
+
+label {
+    padding-right: 18px;
+}
+
+select {
+    width: auto;
+    /* 親要素の幅を自動にする */
+    height: 40px;
+    padding: 2px 20px 2px 10px;
+    background: #ddeefe;
+    border: none;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    border-radius: 3px;
+}
+
+input {
+    padding: 2px 10px;
+    box-sizing: border-box;
+    width: 70%;
+    background: #ddeefe;
+    border: none;
+    height: 40px;
+    border-radius: 3px;
+}
+
+/*電話番号*/
+.number_cont {
+    display: flex;
+    width: 70%;
+    align-items: center;
+}
+
+.kinds_text td {
+    vertical-align: top;
+}
+
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    background: #ddeefe;
+    border: none;
+    border-radius: 3px;
+}
+
+/*必須*/
+.required {
+    font-size: 0.76rem;
+    padding: 3.5px 8px 5px;
+    border-radius: 2px;
+    margin-right: 6px;
+    background-color: #2fc1ed;
+    color: #f0f7fd;
+    box-sizing: border-box;
+}
+
+/*送信注意文*/
+.check {
+    text-align: center;
+}
+
+.check a {
+    color: #000;
+    text-underline-offset: 5px;
+}
+
+/*エラーメッセージ*/
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: -18px;
+}
+
+/* モーダルのスタイル */
+/* モーダルのオーバーレイ背景 */
+.modal_overlay {
+    display: none; /* 初めは非表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* 画面全体の幅 */
+    height: 100%; /* 画面全体の高さ */
+    background-color: rgba(0, 0, 0, 0.4); /* 薄いグレーのオーバーレイ背景 */
+    z-index: 99; /* モーダルコンテンツより下に配置 */
+}
+.modal {
+    display: none; /* 初めは非表示 */
+    position: absolute;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);/* 左右と上下の中央に配置 */
+    width: 60vw;/* 固定の幅を指定 */
+    height: 73vh;/* 固定の高さを指定 */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* モーダルコンテンツ */
+.modal-content {
+    background: #fff;
+    border: 3px solid #2fc1ed;
+    border-radius: 20px;
+    padding: 3% 6%;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 7px #fff;
+    height: 100%;/* モーダルの高さに合わせて全体の高さを埋める */
+    overflow-y: auto;/* コンテンツが溢れた場合にスクロール */
+}
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+.modal_left {
+    width: 170px;
+    display: inline-block;
+}
+
+/*入力項目*/
+.modal_text {
+    width: 100%;
+}
+body.modal-open {
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden; /* スクロールを無効化 */
+}
+
+table {
+    border-collapse: collapse;
+}
+
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* お問い合わせ内容エリア */
+.naiyou {
+    max-height: 30vh;
+    /* 最大高さを指定 */
+    overflow-y: auto;
+    /* コンテンツが溢れた場合にスクロール */
+    padding-right: 10px;
+    /* スクロールバーのために右側に余白を追加 */
+}
+
+#modal table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#modal td {
+    padding: 15px 8px;
+    border: 1px solid #333;
+    word-break: break-word;
+}
+
+.modal_left {
+    background-color: #ddeefe;
+    width: 200px;
+}
+
+.otoiawasenaiou {
+    vertical-align: top;
+}
+
+
+/* 狭いブラウザとタブレット */
+@media (max-width: 832px) and (min-width: 521px) {
+    .contact_button {
+        width: 200px;
+        box-shadow: 2px 5px #2fc1ed;
+        padding: 15.5px;
+        font-size: 1rem;
+    }
+
+    .button span {
+        font-size: 12px;
+    }
+
+    /* 右向きの矢印を追加 */
+    button::after {
+        right: 18px;
+        /* ボタンの右端からの距離 */
+        border-top: 6px solid transparent;
+        /* 上側を透明にして */
+        border-bottom: 6px solid transparent;
+        /* 下側を透明にして */
+        border-left: 9px solid #fff;
+        /* 左側を白にして三角形を作成 */
+    }
+
+    .contact_table tr {
+        display: flex;
+        /* 行をフレックスコンテナに */
+        flex-direction: column;
+        /* 縦に並べる */
+    }
+
+    .contact_table td {
+        width: 100%;
+        /* 各セルの幅を100%に設定 */
+        margin: 0;
+        /* マージンをリセット */
+    }
+
+    td {
+        padding-bottom: 0px;
+    }
+
+    .form_cont::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+        /* スクロールバーのトラックの色 */
+    }
+
+    #modal .button {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+
+    /*エラーメッセージ*/
+    .error-message {
+        margin-top: 0;
+        font-size: 0.7rem;
+    }
+
+    /* モーダルメッセージ部分 */
+    #modal-message {
+        max-height: 100%;
+        overflow-y: auto;
+        word-wrap: break-word;
+        /* 長い単語が改行されるようにする */
+    }
+
+    /* 内容確認テーブルエリア */
+    .form_cont {
+        max-height: 50vh;
+        /* 最大高さを指定 */
+        overflow-y: auto;
+        /* 内容が溢れた場合にスクロール */
+    }
+
+}
+
+/* スマホ */
+@media (max-width: 520px) {
+    .contact_button {
+        width: 165px;
+        box-shadow: 2px 5px #2fc1ed;
+        padding: 13.5px;
+        font-size: 0.8rem;
+        border: 2px solid #fff;
+    }
+
+    .button span {
+        font-size: 8.5px;
+    }
+
+    .contact_p {
+        margin: 20px auto 30px;
+        width: 100%;
+    }
+
+    /* 右向きの矢印を追加 */
+    button::after {
+        right: 18px;
+        /* ボタンの右端からの距離 */
+        border-top: 4px solid transparent;
+        /* 上側を透明にして */
+        border-bottom: 4px solid transparent;
+        /* 下側を透明にして */
+        border-left: 7px solid #fff;
+        /* 左側を白にして三角形を作成 */
+    }
+
+    /*テーブル*/
+    .contact_table {
+        width: 100%;
+        display: block;
+        /* テーブルをブロック要素に */
+    }
+
+    .contact_table tr {
+        display: flex;
+        /* 行をフレックスコンテナに */
+        flex-direction: column;
+        /* 縦に並べる */
+    }
+
+    .contact_table td {
+        width: 100%;
+        /* 各セルの幅を100%に設定 */
+        margin: 0;
+        /* マージンをリセット */
+    }
+
+    td {
+        padding-bottom: 6px;
+    }
+
+    select {
+        font-size: 0.65rem;
+        height: 30px;
+    }
+
+    input {
+        height: 30px;
+    }
+
+    .error-message {
+        margin-top: 0;
+        font-size: 0.6rem;
+    }
+
+    /*必須*/
+    .required {
+        background-color: #2fc1ed;
+        color: #fff;
+        font-size: 0.6rem;
+        padding: 3px 6px;
+        border-radius: 2px;
+        font-weight: 400;
+        margin-right: 3px;
+    }
+}

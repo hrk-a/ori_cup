@@ -1,0 +1,461 @@
+@charset 'utf-8';
+/*作成ページ*/
+
+/* 全体設定 */
+body {
+    background-attachment: fixed;/*背景小固定*/
+    overflow: hidden; /* 全体のスクロールを無効化 */
+    margin: 0;
+    padding: 0;
+    height: 100%; /* 高さを100%に設定 */
+}
+
+#main {
+    display: flex;
+    height: 100vh; /* 画面全体の高さを占める */
+}
+.logo{
+    position: fixed;
+    top: 20px;
+    left: 25px;
+    width: 160px;
+    z-index: 100;
+}
+/* 左エリア (画像表示エリア) */
+#picture_cont {
+    position: relative; /* 親要素に対して相対位置を設定 */
+    text-align: center;
+    width: 100%; /* 左右半分の幅 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #fff 10%, #d4d4d4); /* 背景グラデーション */
+    height: 100%; /* 親要素に合わせた高さ */
+    padding: 0; /* 隙間をなくす */
+}
+/* 右エリア (選択肢エリア) */
+#choice_cont {
+    width: 100vh; /* 左右半分の幅 */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    min-height: 100%; /* 親要素に合わせた高さ */
+    margin: 0; /* 隙間をなくす */
+    padding: 0; /* 隙間をなくす */
+}
+/* 親要素にflexboxを使用して、左右中央に配置 */
+#picture_cont02 {
+    position: relative; /* 親要素を相対的に配置 */
+    width: 100%; /* 必要に応じて幅を調整 */
+    height: 100%; /* 必要に応じて高さを調整 */
+    display: flex; /* フレックスボックスで並べる */
+    justify-content: center; /* 水平方向に中央配置 */
+    align-items: center; /* 垂直方向に中央配置 */
+}
+
+/* 左のコップの写真 */
+#display_image {
+    position: absolute; /* 絶対配置 */
+    top: 50%; /* 親要素の中央に配置 */
+    left: 50%; /* 親要素の中心に配置 */
+    transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
+    width: 50%; /* 画像の幅を親要素に合わせる */
+    height: auto; /* 高さは自動調整 */
+}
+
+/* コップの写真のエリア（キャンバス部分） */
+#mugCanvas {
+    position: absolute; /* 絶対配置 */
+    top: 50%; /* 親要素の中央に配置 */
+    left: 50%; /* 親要素の中心に配置 */
+    transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
+    width: 50%; /* キャンバスの幅を親要素に合わせる */
+    height: auto; /* 高さは自動調整 */
+    background-color: #f357a0; /* 背景色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*挿入する画像エリア*/
+#picture_cont img{
+    width: 500px;
+}
+
+/* ふわっと表示アニメーション */
+.fade-in {
+    animation: zoomIn 0.3s ease-out;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.85);  /* 最初は半分のサイズ */
+        opacity: 0;             /* 最初は透明 */
+    }
+    100% {
+        transform: scale(1);    /* 最終的に元のサイズ */
+        opacity: 1;             /* 完全に不透明 */
+    }
+}
+
+/* ----- ナビ ----- */
+#create_nav {
+    display: flex; /* 横並びにする */
+    flex-direction: column; /* 縦並び */
+    align-items: flex-end; /* 中央揃え */
+    justify-content: space-between; /* 上下の間隔を均等に */
+    box-sizing: border-box;
+    background: none;
+    background: linear-gradient(to bottom, #fff 10%, #d4d4d4); /* 背景グラデーション */
+    width: 60%; /* 幅を100%に設定 */
+    padding: 0; /* パディングなし */
+    margin-right: -1px;
+}
+
+#create_nav a {
+    display: flex;
+    justify-content: right;
+    width: 0; /* 幅を親要素に合わせる */
+    height: 25%; /* 各リンクの高さを画面の25%に設定 */
+}
+
+#create_nav img {
+    height: 100%; /* 高さは自動調整 */
+    object-fit: contain; /* 比率を保ちながら画像を縮小 */
+    object-position: center; /* 画像を中央に配置 */
+    transition: transform 0.3s ease, top 0.3s ease, opacity 0.3s ease; /* アニメーション効果 */
+    filter: drop-shadow(-3px 0 7px rgba(180, 180, 180, 0.5));
+}
+
+.nav-image{
+    margin: 0;
+}
+
+/*ご注文カート*/
+.create_cart_al a{
+    text-decoration: none;
+}
+
+.create_cart {
+    padding: 13px 20px 13px 15px;
+    border-radius: 0px 30px 30px 0px;
+    font-size: 16px;
+    background-color: #89c45c;
+    border: 3px solid #fff;
+    color: #fff;
+    position: fixed;
+    bottom: 50px;   /* 左下に配置する */
+    left: 10px;     /* 左側にくっつける */
+    z-index: 1000;  /* 必要なら最前面に表示する */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: none;
+    box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
+    margin-bottom: 15px;
+    width: auto;     /* 横書きで内容に合わせて幅を調整 */
+    text-align: center;
+    letter-spacing: 0.05em;
+    transform-origin: center left; /* 右中心を基準に拡大 */
+}
+.create_cart:hover {
+    transform: scale(1.06); /* 要素を1.5倍に拡大 */
+    transition: transform 0.2s ease;
+}
+
+
+.create_cart img {
+    margin-right: 3px;
+    width: 28px !important;
+}
+            
+
+/* コンテンツ表示設定 */
+.content {
+    display: none; /* デフォルトで非表示 */
+    box-sizing: border-box;
+}
+
+.content.active {
+    display: block; /* アクティブ状態のとき表示 */
+}
+
+/* 各共通コンテンツ */
+.allcont {
+    width: 100%;
+    background-color: #fff;
+    /*
+    background-image: url(../img/allcont_bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    */
+    padding: 5% 7%; /* コンテンツの余白 */
+    z-index: 10;
+}
+#sntaku{
+    width: 100%;
+    overflow-y: auto; /* 縦スクロールを許可 */
+    z-index: 50;
+}
+
+/*----- コップ選択 -----*/
+.cup {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cup img {
+    width: 40%;
+    background-color: #f0f0f0;
+    border: 3px solid #fff;
+    filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.7));
+    border-radius: 10px;
+    padding: 4px;
+    margin: 13px 0;
+}
+
+/*----- 色選択 -----*/
+.color{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.color_img{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.color1, .color2{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.color_img img{
+    border: 3px solid #fff;
+    border-radius: 14px;
+    filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.7));
+    box-sizing: border-box;
+    margin: 13px 0;
+    width: 100%;
+}
+
+/*----- 文字選択 -----*/
+#input_value_box {
+    position: absolute;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+}
+
+input {
+    padding: 5px;
+    margin-top: 10px;
+}
+/*基本スタイル*/
+.text-display {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    white-space: nowrap;
+}
+
+.font-size-control, .slider-container, .text_design, #form_test{
+    text-align: center;
+}
+/* フォントサイズ調整のスタイル */
+.fontsize, .henkei, .text-design {
+    margin-top: 20px;
+}
+
+/* フォントサイズコントロール（+と-ボタン） */
+.font-size-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+/* スライダーとその値を横並びに */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+input[type="range"] {
+    width: 200px;
+}
+input[type="number"] {
+    width: 60px;
+    font-size: 16px;
+    padding: 5px;
+}
+/*フォントサイズのボタン*/
+button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+/* スライダーとその値を横並びに */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+#current_values {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.text_heading {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.text-content {
+    transition: all 0.3s ease-in-out;
+  }
+/* 縦書き・アーチ用のスタイル */
+.vertical-write {
+    writing-mode: vertical-rl; /* 縦書き */
+    text-orientation: upright; /* 文字を縦方向に回転させずに正立 */
+}
+
+span {
+    font-size: 16px;
+}
+
+/* 現在のフォントサイズと角度を表示 */
+#current_values {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.text_heading {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 入力フォームのスタイル */
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+/* カラーパレットと白黒グラデーションを並べる親要素 */
+#color_palette_container {
+    display: flex; /* フレックスボックスで横並びにする */
+    justify-content: center;
+    margin-top: 10px;
+    overflow: hidden; /* ボーダーが隠れないようにする */
+}
+
+#color_palette {
+    display: grid;
+    grid-template-columns: repeat(22, 11px); /* 22列 */
+}
+
+.color_option {
+    width: 11px;
+    height: 11px;
+    cursor: pointer;
+    box-sizing: border-box; /* ボーダーを含めたサイズ指定 */
+    margin: 0; /* 余分なマージンを排除 */
+    padding: 0; /* 余分なパディングを排除 */
+}
+
+/* 選択した色にボーダーと白い縁取りを追加 */
+.color_option.selected {
+    border: 2px solid #f357a0; /* 黒いボーダー */
+    outline: none; /* フォーカス時のアウトラインを消す（ボーダーを優先） */
+}
+/* 白黒グラデーション用のカラム */
+.grayscale_column {
+    display: grid;
+    grid-template-rows: repeat(10, 20px); /* 縦方向に10行 */
+}
+
+
+/*タイトル*/
+.text_heading{
+    margin-bottom: 0;
+}
+.text{
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    border-radius: 3px;
+    background-color: #ffddea;
+    border: none;
+    font-size: 120%;
+    padding: 5px; /* 内側の余白を調整 */
+    box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
+    width: 100%; /* 横幅を調整（必要に応じて） */
+}
+/*----- 写真選択 -----*/
+
+@media (max-width: 2000px) and (min-width: 834px) {
+    /* PCサイズ */
+}
+
+@media (max-width: 832px) and (min-width: 521px) {
+    /* タブレットサイズ */
+    
+    /*----- コップ選択 -----*/
+    .cup {
+        flex-direction: column;
+        height: 100%;
+    }
+    .cup img {
+        width: 70%;
+    }
+    .color_img{
+        flex-wrap: nowrap;
+    }
+    .color_img img{
+        width: 75%;
+    }
+    /*左のコップの写真*/
+    #picture_cont img{
+        width: 100%;
+    }
+
+
+}
+
+@media (max-width: 520px) {
+    /* スマホサイズ */
+    #main,#choice_cont{
+        flex-direction: column;
+        width: 100vw;
+
+    }
+    #create_nav{
+        flex-direction: row;
+        width: 100vw;
+    }
+    #sntaku{
+        width: 100vw;
+    }
+    #picture_cont01{
+        position: static;
+    }
+    canvas{
+        width: 100vh;
+        width: 30vh;
+    }
+    
+}

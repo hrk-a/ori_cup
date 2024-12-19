@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オリコップ | デザインツール</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/create.css">
+    <link rel="icon" href="img/fav.png">
+</head>
+
+<body>
+    <div class="border"></div>
+
+    <div id="svg">
+        <!-- 四隅にSVGを配置 -->
+        <svg class="corner" id="top-left" width="50" height="50" viewBox="0 0 10 10"
+             xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M10,0H0v10S.05,0,10,0Z" />
+        </svg>
+
+        <svg class="corner" id="top-right" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M0,.02l10-.02.02,10S9.95,0,0,.02Z" />
+        </svg>
+
+        <svg class="corner" id="bottom-left" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M10.02,9.98l-10,.02-.02-10s.07,10,10.02,9.98Z" />
+        </svg>
+
+        <svg class="corner" id="bottom-right" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M0,9.98l10,.02.02-10s-.07,10-10.02,9.98Z" />
+        </svg>
+    </div>
+
+    <div id="main">
+        <div class="logo">
+            <a href="index.html"><img src="img/logo_only.png" alt="ロゴ" class="logo"></a>
+        </div>
+
+        <div id="picture_cont">
+
+            <!--コップの写真-->
+            <div id="picture_cont02">
+                <img id="display_image" class="fade-in" src="img/cup/mug.png" alt="マグカップ">
+            
+                <!--挿入する画像-->
+                <div id="picture_cont01">
+                    <canvas id="mugCanvas"></canvas>                    
+                </div>
+                <!-- ここに文字が入る場所 -->
+                <div id="input_value_box" class="text-display"></div>
+            </div>
+
+            <!-----完成ボタン---->
+            <div class="create_cart_al">
+                <a href="cart.html" id="create_cart">
+                    <span class="create_cart"><img src="img/icon/cart.png" alt="カート">ご注文カートへ</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="choice_cont">
+
+
+            <!----- ナビ ------>
+            <nav id="create_nav">
+                <a href="#" class="active" data-target="cup">
+                    <img class="nav-image" src="img/pc_cup_nav.png" alt="コップ選択" data-pc="img/pc_cup_nav.png"
+                        data-sp="img/sp_cup_nav.png" data-hover="img/pc_cup_nav_over.png">
+                </a>
+                <a href="#" data-target="color">
+                    <img class="nav-image" src="img/pc_color_nav.png" alt="色選択" data-pc="img/pc_color_nav.png"
+                        data-sp="img/sp_color_nav.png" data-hover="img/pc_color_nav_over.png">
+                </a>
+                <a href="#" data-target="text">
+                    <img class="nav-image" src="img/pc_text_nav.png" alt="文字選択" data-pc="img/pc_text_nav.png"
+                        data-sp="img/sp_text_nav.png" data-hover="img/pc_text_nav_over.png">
+                </a>
+                <a href="#" data-target="picture">
+                    <img class="nav-image" src="img/pc_picture_nav.png" alt="写真選択" data-pc="img/pc_picture_nav.png"
+                        data-sp="img/sp_picture_nav.png" data-hover="img/pc_picture_nav_over.png">
+                </a>
+            </nav>
+
+            <div id="sntaku">
+                <!----- コップ選択 ------>
+                <div id="cup" class="content active allcont">
+                    <div class="cup">
+                        <img src="img/cup/mug.png" alt="マグカップ" onclick="changeImage('mug')">
+                        <img src="img/cup/tumbler.png" alt="タンブラー" onclick="changeImage('tumbler')">
+                        <img src="img/cup/glass.png" alt="グラス" onclick="changeImage('glass')">
+                        <img src="img/cup/jug.png" alt="ジョッキ" onclick="changeImage('jug')">
+                        <img src="img/cup/wine.png" alt="ワイン" onclick="changeImage('wine')">
+                    </div>
+                </div>
+
+                <!----- 色選択 ------>
+                <div id="color" class="content allcont">
+                    <div class="color">
+                        <div class="color_img">
+                            <div class="color1">
+                                <img src="img/cup/white.png" alt="ホワイト"
+                                    onclick="changeColor('white', getSelectedCupType())">
+                                <img src="img/cup/lime.png" alt="ライム"
+                                    onclick="changeColor('lime', getSelectedCupType())">
+                                <img src="img/cup/mandarin.png" alt="マンダリン"
+                                    onclick="changeColor('mandarin', getSelectedCupType())">
+                                <img src="img/cup/carrot.png" alt="キャロット"
+                                    onclick="changeColor('carrot', getSelectedCupType())">
+                                <img src="img/cup/pink.png" alt="ピンク"
+                                    onclick="changeColor('pink', getSelectedCupType())">
+                                <img src="img/cup/red.png" alt="レッド" onclick="changeColor('red', getSelectedCupType())">
+                            </div>
+                            <div class="color2">
+                                <img src="img/cup/purple.png" alt="パープル"
+                                    onclick="changeColor('purple', getSelectedCupType())">
+                                <img src="img/cup/turquoise.png" alt="ターコイズ"
+                                    onclick="changeColor('turquoise', getSelectedCupType())">
+                                <img src="img/cup/blue.png" alt="ブルー"
+                                    onclick="changeColor('blue', getSelectedCupType())">
+                                <img src="img/cup/green.png" alt="グリーン"
+                                    onclick="changeColor('green', getSelectedCupType())">
+                                <img src="img/cup/gray.png" alt="グレー"
+                                    onclick="changeColor('gray', getSelectedCupType())">
+                                <img src="img/cup/black.png" alt="ブラック"
+                                    onclick="changeColor('black', getSelectedCupType())">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!----- 文字入力 ------>
+                <div id="text" class="content allcont">
+                    <div class="text_cont">
+
+                        <!-- 入力フォーム -->
+                        <div class="nyuuryoku">
+                            <label for="input_value">
+                                <p class="text_heading">入力フォーム</p>
+                            </label>
+                            <textarea placeholder="文字入力" class="text" id="input_value" name="input_value" rows="3"
+                                contenteditable="true"></textarea>
+                        </div>
+
+                        <!-- フォント選択 -->
+                        <div class="fontosentaku">
+                            <p class="text_heading">フォント選択</p>
+                            <select id="fontSelector">
+                                <option value="Roboto">Roboto</option>
+                                <option value="Open Sans">Open Sans</option>
+                                <option value="Playfair Display">Playfair Display</option>
+                            </select>
+                        </div>
+
+                        <!-- フォントサイズ -->
+                        <div class="fontsize">
+                            <label for="font_size">
+                                <p class="text_heading">フォントサイズ</p>
+                            </label>
+                            <div class="font-size-control">
+                                <button id="decrease_font_size">-</button>
+                                <input type="number" id="font_size_input" value="18" min="0" max="200">
+                                <button id="increase_font_size">+</button>
+                                <span>px</span>
+                            </div>
+                        </div>
+
+                        <!-- テキスト変形 -->
+                        <div class="henkei">
+                            <!-- 角度調整のスライダー -->
+                            <label for="rotation">
+                                <p class="text_heading">テキスト変形</p>
+                            </label>
+                            <div class="slider-container">
+                                <input type="range" id="rotation" min="0" max="360" value="0">
+                                <span id="rotation_value">0</span>°
+                            </div>
+
+                            <!-- 文字デザイン変更（プルダウンメニュー） -->
+                            <div class="text-design">
+                                <p class="text_heading">文字デザイン</p>
+                                <div class="text_design">
+                                    <button id="normalButton">横書き</button>
+                                    <button id="verticalButton">縦書き</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- カラー選択 -->
+                        <div class="font_color">
+                            <p class="text_heading">色選択</p>
+                            <form id="form_test">
+                                <!-- カラーパレットと白黒グラデーションを並べる親要素 -->
+                                <div id="color_palette_container">
+                                    <!-- カラーパレットを表示するdiv -->
+                                    <div id="color_palette"></div>
+                                    <!-- 白黒グラデーションを表示するdiv -->
+                                    <div id="grayscale_column"></div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!----- 写真選択 ------>
+                <div id="picture" class="content allcont">
+                    <div class="picture">
+                        写真選択
+                    </div>
+
+                    <input type="file" id="upload" accept="image/*" multiple>
+
+                    <!-- サイズ変更ボタン -->
+                    <div class="resize-buttons">
+                        <button id="increaseSize">+</button>
+                        <button id="decreaseSize">-</button>
+                    </div>
+
+                    <!-- ダウンロードボタン -->
+                    <br>
+                    <button id="download">デザインをダウンロード</button>
+
+                    <!-- 画像削除ボタン -->
+                    <br>
+                    <button id="delete">選択した画像を削除</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="js/create.js"></script>
+</body>
+
+</html>

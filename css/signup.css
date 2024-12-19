@@ -1,0 +1,273 @@
+@charset 'utf-8';
+/*背景*/
+body{
+    background-image: url(../img/signpu.jpg);
+    position: relative;
+    background-size: 100%;    
+}
+
+#ori_logo{
+    margin: 25px 0 0 20px;
+}
+#ori_logo img{
+    height: 55px;
+}
+
+.signup_bg{
+    background: #fff;
+    border: 3px solid #7e99d4;
+    border-radius: 20px;
+    padding: 3% 6%;
+    box-shadow: 0 0 0 7px #fff; /* 白い縁取り */
+}
+
+.container{
+    padding: 4% 4.5%;
+    box-sizing: border-box;
+}
+
+.container p{
+    text-align: center;
+}
+
+/*ロゴ*/
+#title{
+    text-align: center;
+}
+
+.signup_log{
+    margin: 20px 0;
+    text-align: center;
+}
+
+.signup_log img{
+    height: 70px;
+}
+
+
+/*テーブル*/
+.contact_table{
+    width: 75%;
+    margin: 0 auto;
+}
+
+/* 下に表示 */
+caption {
+    caption-side: bottom;
+}
+
+/* 送信・ログアウトボタンボタン */
+.contact_button, #deleteAccountButton {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 1;
+    letter-spacing: 2px; /* スキーニング（文字間の調整） */
+    
+    color: #fff;
+    background-color: #7e99d4;
+    border: 3px solid #fff;
+    border-radius: 50px;
+    width: 280px;
+    box-shadow: 2px 6px #7e99d4;
+    padding: 20px 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* アニメーションのスムーズさを追加 */
+    position: relative; /* 疑似要素を位置させるために相対位置に設定 */
+    margin: 20px auto 0;
+}
+button:hover {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+.button{
+    text-align: center;
+}
+
+
+/* 右向きの矢印 */
+button::after {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid #fff;
+}
+
+
+/* 各入力要素のスタイル */
+/*.name, .mail, .phone, .kinds, .number_cont, .kinds_text {
+    margin-bottom: 10px;
+}
+*/
+td{
+    padding-bottom: 20px;
+}
+
+label{
+    display: inline-block;
+}
+.td_name{
+    width: 30%;
+}
+input {
+    padding: 2px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    background: #d8e0f2;
+    border: none;
+    height: 40px;
+    border-radius: 3px;
+}
+
+
+/*必須*/
+.required{
+    background-color: #7e99d4;
+    color: #fff;
+    border-radius: 2px;
+    font-size: 0.76rem;
+    padding: 3.5px 8px 5px;
+    margin-right: 6px;
+}
+
+/*送信注意文*/
+.check{
+    text-align: center;
+}
+.check a{
+    color: #000;
+    text-underline-offset: 5px;
+}
+
+/*エラーメッセージ*/
+.error-message{
+    color: red;
+    font-size: 0.8rem;
+    margin-top: -18px;
+}
+
+.top_button{
+    text-align: center;
+}
+/* 狭いブラウザとタブレット */
+@media (max-width: 832px) and (min-width: 521px) {
+
+    .signup_log img{
+        height: 60px;
+    }    
+
+    .contact_button {
+        width: 200px;
+        box-shadow: 2px 5px #7e99d4;
+        padding: 15.5px;
+        font-size: 1rem;
+    }
+
+    .button span {
+        font-size: 12px;
+    }
+
+    /* 右向きの矢印を追加 */
+    button::after {
+        right: 18px; /* ボタンの右端からの距離 */
+        border-top: 6px solid transparent; /* 上側を透明にして */
+        border-bottom: 6px solid transparent; /* 下側を透明にして */
+        border-left: 9px solid #fff; /* 左側を白にして三角形を作成 */
+    }
+
+    .button{
+        width: 200px;
+        margin: auto auto;
+    }
+    
+    .contact_table tr {
+        display: flex; /* 行をフレックスコンテナに */
+        flex-direction: column; /* 縦に並べる */
+    }
+
+    .contact_table td {
+        width: 100%; /* 各セルの幅を100%に設定 */
+        margin: 0; /* マージンをリセット */
+    }
+    td{
+        padding-bottom: 6px;
+    }
+    /*エラーメッセージ*/
+    .error-message{
+        margin-top: 0;
+        font-size: 0.7rem;
+    }
+
+}
+
+/* スマホ */
+@media (max-width: 520px) {
+
+    .signup_log img{
+        height: 30px;
+    }    
+
+    .contact_button {
+        width: 165px;
+        box-shadow: 2px 5px #7e99d4;
+        padding: 13.5px;
+        font-size: 0.8rem;
+        border: 2px solid #fff;
+    }
+
+    .button span {
+        font-size: 8.5px;
+    }
+
+    .button{
+        width: 165px;
+        margin: auto auto;
+    }
+    
+    /* 右向きの矢印を追加 */
+    button::after {
+        right: 18px; /* ボタンの右端からの距離 */
+        border-top: 4px solid transparent; /* 上側を透明にして */
+        border-bottom: 4px solid transparent; /* 下側を透明にして */
+        border-left: 7px solid #fff; /* 左側を白にして三角形を作成 */
+    }
+
+    /*テーブル*/
+    .contact_table tr {
+        display: flex; /* 行をフレックスコンテナに */
+        flex-direction: column; /* 縦に並べる */
+    }
+
+    .contact_table td {
+        width: 100%; /* 各セルの幅を100%に設定 */
+        margin: 0; /* マージンをリセット */
+    }
+    td{
+        padding-bottom: 6px;
+    }
+    select{
+        font-size: 0.65rem;
+        height: 30px;
+    }
+    input{
+        height: 30px;
+    }
+    .error-message{
+        margin-top: 0;
+        font-size: 0.6rem;
+    }
+    /*必須*/
+.required{
+    background-color: #7e99d4;
+    color: #fff;
+    font-size: 0.6rem;
+    padding: 3px 6px;
+    border-radius: 2px;
+    font-weight: 400;
+    margin-right: 3px;
+}
+}

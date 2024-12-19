@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オリコップ | 詳細画面</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Details Screen.css">
+    <link rel="icon" href="img/fav.png">
+</head>
+
+<body>
+    <div class="border"></div>
+
+    <div id="svg">
+        <!-- 四隅にSVGを配置 -->
+        <svg class="corner" id="top-left" width="50" height="50" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M10,0H0v10S.05,0,10,0Z" />
+        </svg>
+
+        <svg class="corner" id="top-right" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M0,.02l10-.02.02,10S9.95,0,0,.02Z" />
+        </svg>
+
+        <svg class="corner" id="bottom-left" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M10.02,9.98l-10,.02-.02-10s.07,10,10.02,9.98Z" />
+        </svg>
+
+        <svg class="corner" id="bottom-right" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M0,9.98l10,.02.02-10s-.07,10-10.02,9.98Z" />
+        </svg>
+    </div>
+
+    <div id="main">
+        <a href="index.html">
+            <div id="ori_logo">
+                <img src="img/logo_only.png" alt="">
+            </div>
+        </a>
+
+        <div class="container">
+            <div class="Details_bg">
+                <div class="Details_log">
+                    <img src="./img/Details_title.png" id="title">
+                </div>
+
+                <div class="Details_log_">
+                    <img src="./img/Details_progress.png" id="title">
+                </div>
+
+                <div class="Details_main">
+
+                    <!----グループ１---->
+                    <table>
+                        <tr>
+                            <th>
+                                <p>プリント</p>
+                            </th>
+                            <th colspan="2">
+                                <p>アイテム</p>
+                            </th>
+                            <th class="Details_main_top_title">
+                                <p>単価</p>
+                            </th>
+                            <th class="Details_main_top_title">
+                                <p>数量</p>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">
+                                <img src="img/Details_progressiiiiii.png" class="Details_main_img">
+                            </td>
+                            <td>
+                                <p>コップの種類</p>
+                            </td>
+                            <td>
+                                <p>マグカップ</p>
+                            </td>
+                            <td rowspan="3">
+                                <p>９００円</p>
+                            </td>
+                            <td rowspan="3">
+                                <p>１</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>カラー</p>
+                            </td>
+                            <td>
+                                <p>ピンク</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>ラッピング</p>
+                            </td>
+                            <td>
+                                <p id="nameDisplay"></p>
+                            </td>
+                        </tr>
+
+
+                        <!----グループ２---->
+                        <tr>
+                            <th>
+                                <p class="Details_main_top_title">アイテム＆加工代</p>
+                            </th>
+                            <td colspan="4">
+                                <p>９００円</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p class="Details_main_top_title">消費税</p>
+                            </th>
+                            <td colspan="4">
+                                <p>９００円</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p class="Details_main_top_title">合計金額</p>
+                            </th>
+                            <td colspan="4">
+                                <p>９００円</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <p class="Details_main_top_title">お届け日</p>
+                            </th>
+                            <td colspan="4">
+                                <p>９００円</p>
+                            </td>
+                        </tr>
+                        </tr>
+
+                    </table>
+
+                    <!----ラッピング---->
+                    <div class="Details_log">
+                        <img src="./img/wrapping.png" id="title">
+                    </div>
+
+
+                    <form class="Details_main_wrapping">
+                        <table>
+                            <tr>
+                                <th>
+                                    <p class="Details_main_top_title">カラーボックス</p>
+                                </th>
+                                <th>
+                                    <p class="Details_main_top_title">クリアケース</p>
+                                </th>
+                                <th>
+                                    <p class="Details_main_top_title">ラッピング袋＆リボン</p>
+                                </th>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス" onclick="showName('カラーボックス')" style="cursor: pointer;">
+                                    <input type="radio" name="name" value="カラーボックス" onclick="showName()" > 
+                                </td>
+                                <td>
+                                    <img src="img/inose_.webp" class="Details_main_img" alt="クリアケース" onclick="showName('クリアケース')" style="cursor: pointer;">
+                                    <input type="radio" name="name" value="クリアケース" onclick="showName()"> 
+                                </td>
+                                <td>
+                                    <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン" onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;">                               
+                                    <input type="radio" name="name" value="ラッピング袋＆リボン" onclick="showName()"> 
+                                </td>
+                            </tr>
+                        </table>
+
+                    </form>
+
+                </div>
+
+                <script>
+                    function showName() {
+            // 選択されているラジオボタンを取得
+            const selectedRadio = document.querySelector('input[name="name"]:checked');
+            // 選ばれている場合、その値を表示
+            if (selectedRadio) {
+                document.getElementById("nameDisplay").innerHTML = selectedRadio.value;
+            }
+        }
+
+                </script>
+            
+                <div class="button">
+                    <a href="DetailsScreen2.html">
+                        <button class="contact_button" type="submit">ご注文手続きへ進む</button>
+                    </a>
+                </div>
+
+
+            </div>
+        </div>
+        <!----- フッター ----->
+        <div id="footer">
+            <img src="img/footer.svg" class="footer_bg">
+            <div id="footer_content">
+                <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
+                <ul>
+                    <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
+                    <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
+                    <li><a href="asct.html" target="_blank">特定商取引法</a></li>
+                </ul>
+                <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
+            </div>
+        </div>
+    </div>
+    <script src="./js/signup.js"></script>
+</body>
+
+</html>

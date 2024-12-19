@@ -1,0 +1,214 @@
+@charset 'utf-8';
+
+/* よくある質問 */
+#question {
+    background-image: url(../img/question_stripe.jpg);
+    /* 背景画像を設定 */
+    position: relative;
+    background-size: 100%;
+}
+
+#question_bg {
+    background: #fff;
+    border: 3px solid #d196ed;
+    border-radius: 20px;
+    padding: 3% 6%;
+    box-shadow: 0 0 0 7px #fff; /* 白い縁取り */
+}
+
+.accordion {
+    width: 70%;
+    margin: auto;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #ddd; /* 初期状態の細い下線 */
+}
+
+.accordion-header {
+    letter-spacing: 0.5px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    padding: 23px 0;
+    cursor: pointer;
+    justify-content: space-between;
+}
+/* activeクラスが付いたときに背景色を変更 */
+.accordion-item.active-content .accordion-header {
+    background-color: #f9eaff; /* Aと同じ背景色 */
+    /*border-radius: 10px 10px 0 0;*/
+}
+
+.accordion-header:hover {
+    background-color: #eeeeee;
+}
+
+.accordion-title {
+    margin-left: 30px;
+    flex: 1; /* タイトルを左に寄せる */
+}
+
+/* activeクラスが付いた場合の背景色 */
+.accordion-item.active .accordion-header {
+    background-color: #faedff; /* Aと同じ背景色を設定 */
+}
+
+/*AとQのアイコン*/
+.accordion-icon {
+    margin-left: 20px; /* アイコンとタイトルの間隔 */
+    width: 39px;
+}
+
+.accordion-content {
+    overflow: hidden;
+    max-height: 0; /* 初期状態では閉じている */
+    transition: max-height 0.4s ease-out; /* 高さのアニメーションを設定 */
+}
+
+/*A*/
+.adon {
+    display: flex; /* 横並びにする */
+    cursor: pointer;
+    padding: 20px 0 20px;
+    background-color: #f9eaff;
+    /*border-radius: 0 0 10px 10px;*/
+}
+
+/*Aのテキスト*/
+.adon p {
+    margin: 5px 35px 5px 30px;
+}
+.a_text{
+    display: block;
+}
+.accordion-content img {
+    width: 39px; /* アイコン画像の幅 */
+    height: 39px; /* アイコン画像の高さ */
+}
+
+/*+-のアイコンサイズ*/
+.toggle-icon {
+    margin-right: 20px;
+    width: 15px; /* アイコンの幅 */
+    margin-left: 10px; /* タイトルとの間隔 */
+}
+
+/*よくある質問のコンテンツと色の切り替え*/
+/* コンテンツの表示・非表示のスタイル */
+.content_question {
+    display: none;
+}
+.active-content {
+    display: block; /* active-contentクラスがついた場合、表示される */
+}
+
+#question_nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 100%;
+    margin: 0 auto 50px;
+}
+/*カテゴリー分けのデザイン*/
+.question_design {
+    padding: 4px 20px;
+    text-decoration: none;
+    background-color: white; /* デフォルトは白 */
+    color: black; /* テキストの色は黒 */
+    border-radius: 20px;
+    border: 1px solid #aaaaaa;
+    margin: 5px 5px;
+    cursor: pointer; /* マウスポインタをポインタに変更 */
+}
+.question_design:hover{
+    background-color: #eeeeee;
+}
+/* アクティブなカテゴリーリンクのスタイル */
+.question_design.active-link {
+    background-color: #ffe365;
+}
+
+/*PC*/
+@media (max-width: 2000px) and (min-width: 834px) {
+    
+}
+
+
+/*狭いブラウザとタブレット*/
+@media (max-width: 832px) and (min-width: 521px) {
+    .accordion, #question_nav {
+        width: 80%;
+        margin: auto;
+    }
+
+    /*AとQのアイコン*/
+    .accordion-icon, .accordion-content img {
+        margin-left: 20px; /* アイコンとタイトルの間隔 */
+        width: 35px;
+        height: 35px;
+    }
+
+    /*A*/
+    .adon {
+        padding: 23px 0;
+    }
+}
+
+/*スマホ*/
+@media (max-width: 520px) {
+    .accordion, #question_nav {
+        width: 100%;
+    }
+
+    /*背景*/
+    #question_bg {
+        background: #fff;
+        border: 3px solid #d196ed;
+        border-radius: 20px;
+        padding: 4% 6% 5%;
+        box-shadow: 0 0 0 7px #fff; /* 白い縁取り */
+    }
+    /*カテゴリー分けのデザイン*/
+    .question_design {
+        padding: 1px 13px;
+        text-decoration: none;
+        margin: 2px 5px;
+    }
+
+
+    /*AとQのアイコン*/
+    .accordion-icon, .accordion-content img {
+        width: 26px;
+        height: 26px;
+    }
+
+    .adon img {
+        margin-top: 4px;
+    }
+
+    /*Q&Aのテキストとアイコンの距離*/
+    .accordion-title, .adon p {
+        margin-left: 15px;
+    }
+    /*A*/
+    .adon {
+        padding: 15px 0;
+    }
+
+    .accordion-title, .adon p {
+        margin-left: 12px;
+    }
+    
+    /*+*/
+    .toggle-icon {
+        width: 10px;
+        height: 10px;
+    }
+
+    .accordion-icon {
+        margin-left: 12px;
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オリコップ | 詳細画面</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Details Screen.css">
+    <link rel="icon" href="img/fav.png">
+</head>
+
+<body>
+    <div class="border"></div>
+
+    <div id="svg">
+        <!-- 四隅にSVGを配置 -->
+        <svg class="corner" id="top-left" width="50" height="50" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M10,0H0v10S.05,0,10,0Z" />
+        </svg>
+
+        <svg class="corner" id="top-right" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M0,.02l10-.02.02,10S9.95,0,0,.02Z" />
+        </svg>
+
+        <svg class="corner" id="bottom-left" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M10.02,9.98l-10,.02-.02-10s.07,10,10.02,9.98Z" />
+        </svg>
+
+        <svg class="corner" id="bottom-right" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M0,9.98l10,.02.02-10s-.07,10-10.02,9.98Z" />
+        </svg>
+    </div>
+    <div id="main">
+        <a href="index.html">
+            <div id="ori_logo">
+                <img src="img/logo_only.png" alt="">
+            </div>
+        </a>
+
+        <div class="container">
+            <div class="Details_bg">
+                <div class="Details_log">
+                    <img src="./img/Details_title.png" id="title">
+                </div>
+
+                <div class="Details_log_">
+                    <img src="./img/Details_progress4.png" id="title">
+                </div>
+
+                <div class="Details_main">
+                    <h2 class="Details3_text">ご注文ありがとうございました♪</h2>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <!----- フッター ----->
+        <div id="footer">
+            <img src="img/footer.svg" class="footer_bg">
+            <div id="footer_content">
+                <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
+                <ul>
+                    <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
+                    <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
+                    <li><a href="asct.html" target="_blank">特定商取引法</a></li>
+                </ul>
+                <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
+            </div>
+        </div>
+    </div>
+    <script src="./js/signup.js"></script>
+</body>
+
+</html>
