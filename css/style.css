@@ -124,13 +124,13 @@ body {
     box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
     text-orientation: upright; /* 文字を直立させる（日本語に適した表示） */
     margin-bottom: 15px;
-    padding: 25px 0;
-    width: 56px;
+    padding: 25px 10px;
     text-align: center;
     border-radius: 13px 0 0 13px;
     color: black;
     letter-spacing: 0.05em;
     transform-origin: center right; /* 右中心を基準に拡大 */
+    letter-spacing: 1.5px;
 }
 
 .make_but:hover {
@@ -166,13 +166,13 @@ body {
     box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
     text-orientation: upright; /* 文字を直立させる（日本語に適した表示） */
     margin-bottom: 15px;
-    width: 56px;
-    padding: 13px 0;
+    padding: 13px 12px;
     text-align: center;
     border-radius: 13px 0 0 13px;
     color: #fff;
     letter-spacing: 0.05em;
     transform-origin: center right; /* 右中心を基準に拡大 */
+    letter-spacing: 1.6px;
 }
 #cart:hover, #user:hover{
     transform: scale(1.06); /* 要素を1.5倍に拡大 */
@@ -363,12 +363,21 @@ mainvisual h3 {
         height: 52px;
     }
     /*右側のボタン*/
-    #cart, #user,.make_but{
-        width: 37px;
-        font-size: 0.8rem;
+    #cart, #user{
+        font-size: 0.75rem;
+        padding: 13px 7px;
+    }
+    .make_but{
+        font-size: 0.75rem;
+        padding: 27px 4px;
     }
     #make_but span{
         font-size: 0.6rem;
+    }
+
+    /*各コンテンツの内側の余白*/
+    #question_bg, #contact_bg{
+        padding: 3% 5%
     }
     .footer_logo {
         top: -10px;
@@ -390,12 +399,9 @@ mainvisual h3 {
         font-size: 0.8rem;
     }
     /*右側のボタン*/
-    #cart, #user,.make_but{
-        width: 37px;
-    }
     /*デザインしてみよう*/
     #make_but span{
-        font-size: 0.5rem;
+        font-size: 0.55rem;
     }
     /*nav*/
     #top_nav a{

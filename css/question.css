@@ -140,7 +140,7 @@
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
     .accordion, #question_nav {
-        width: 80%;
+        width: 100%;
         margin: auto;
     }
 

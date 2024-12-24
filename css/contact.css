@@ -242,6 +242,13 @@ table {
 
 /* 狭いブラウザとタブレット */
 @media (max-width: 832px) and (min-width: 521px) {
+    .contact_table {
+        width: 100%;
+    }
+    
+    .contact_p {
+        width: 100%;
+    }
     .contact_button {
         width: 200px;
         box-shadow: 2px 5px #2fc1ed;
@@ -280,7 +287,10 @@ table {
     }
 
     td {
-        padding-bottom: 0px;
+        padding-bottom: 5px;
+    }
+    tr{
+        margin-bottom: 13px;
     }
 
     .form_cont::-webkit-scrollbar-track {
