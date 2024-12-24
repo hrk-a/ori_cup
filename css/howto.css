@@ -54,6 +54,9 @@
     text-decoration: none;
     color: #fff;
 }
+button a{
+    display: inline-block;
+}
 
 .button span {
     font-size: 15px;

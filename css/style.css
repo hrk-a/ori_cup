@@ -413,6 +413,7 @@ mainvisual h3 {
     background-color: rgb(198, 225, 247);
 
     font-size: 0.67rem;
+    font-weight: 400;
     }
     #cart, #user{
         padding: 13px 6px;

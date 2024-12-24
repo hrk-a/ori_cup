@@ -308,10 +308,9 @@ table {
         text-align: center;
     }
 
-
     /*エラーメッセージ*/
     .error-message {
-        margin-top: 0;
+        margin-top: -25px;
         font-size: 0.7rem;
     }
 
@@ -405,10 +404,11 @@ table {
     }
 
     .error-message {
-        margin-top: 0;
-        font-size: 0.6rem;
+        margin-top: -15px;
+        font-size: 0.55rem;
+        margin-bottom: 7px;
     }
-
+    
     /*必須*/
     .required {
         background-color: #2fc1ed;
