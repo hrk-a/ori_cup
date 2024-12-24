@@ -1,5 +1,9 @@
 @charset 'utf-8';
+html{
+    font-size: 100%;
+}
 
+/*共通*/
 body {
     margin: 0;
     /* デフォルトのマージンをリセット */
@@ -15,6 +19,13 @@ body {
 /* Webkitブラウザ（Chrome, Safariなど）でスクロールバーを非表示にする */
 ::-webkit-scrollbar {
     display: none;
+}
+.button{
+    display: block;
+    text-align: center;
+}
+button{
+    cursor: pointer;
 }
 
 /* Firefoxでスクロールバーを非表示にする */
@@ -105,7 +116,7 @@ body {
     align-items: center; /* ここで上下中央にする */
     font-size: 0.79rem;
     text-align: center;
-    margin-right: 2px;
+    margin-right: -7px;
     position: relative; /* 吹き出し用 */
     border-radius: 12px; /* 吹き出しの角を丸く */
 }
@@ -146,6 +157,7 @@ body {
     right: 10px;
     top: 15%;
 }
+/*カート・会員登録のアイコン*/
 #cart_user_id img{
     width: 28px;
     margin-bottom: 8px;
@@ -367,6 +379,10 @@ mainvisual h3 {
         font-size: 0.75rem;
         padding: 13px 7px;
     }
+    /*カート・会員登録のアイコン*/
+    #cart_user_id img{
+        width: 21px;
+    }    
     .make_but{
         font-size: 0.75rem;
         padding: 27px 4px;
@@ -393,15 +409,27 @@ mainvisual h3 {
 /*スマホ*/
 @media (max-width: 520px){
     body{
-        /*後で消すから！！！！！*/
-        background-color: rgb(198, 225, 247);
+    /*後で消すから！！！！！*/
+    background-color: rgb(198, 225, 247);
 
-        font-size: 0.8rem;
+    font-size: 0.67rem;
+    }
+    #cart, #user{
+        padding: 13px 6px;
+        letter-spacing: 1px;
+    }
+    .make_but {
+        padding: 25px 5px;
+        letter-spacing: 1.5px;
+    }      
+    /*カート・会員登録のアイコン*/
+    #cart_user_id img{
+        width: 19px;
     }
     /*右側のボタン*/
     /*デザインしてみよう*/
     #make_but span{
-        font-size: 0.55rem;
+        display: none;
     }
     /*nav*/
     #top_nav a{
@@ -414,7 +442,6 @@ mainvisual h3 {
     .content_logo img{
         height: 30px;
     }
-    
     .footer_logo {
         top: 0px;
         /* 数値を調整してロゴを上に移動 */

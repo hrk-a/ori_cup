@@ -34,10 +34,6 @@
     transform: translateY(0);
 }
 
-.button {
-    text-align: center;
-}
-
 .howto_button {
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-weight: 600;
@@ -53,6 +49,10 @@
     padding: 13px 0 8px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
+}
+.howto_button a{
+    text-decoration: none;
+    color: #fff;
 }
 
 .button span {
@@ -120,7 +120,7 @@ button::after {
     }
     .howto_step {
         display: block;
-        width: 70%;
+        width: 90%;
         margin: 0 auto 50px;
     }
 

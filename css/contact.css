@@ -9,9 +9,6 @@
     background-size: 100%;
 }
 
-.button {
-    clear: both;
-}
 
 /* 送信ボタン */
 .contact_button {
@@ -183,11 +180,6 @@ textarea {
 }
 
 
-.modal_left {
-    width: 170px;
-    display: inline-block;
-}
-
 /*入力項目*/
 .modal_text {
     width: 100%;
@@ -200,7 +192,6 @@ body.modal-open {
 table {
     border-collapse: collapse;
 }
-
 
 .close:hover,
 .close:focus {
@@ -232,13 +223,23 @@ table {
 
 .modal_left {
     background-color: #ddeefe;
-    width: 200px;
+    width: 140px;
+    display: inline-block;
 }
 
 .otoiawasenaiou {
     vertical-align: top;
 }
-
+/*お問い合わせありがとうございます*/
+.thanks{
+    margin-top: 50px;
+    text-align: center;
+}
+/*お問い合わせコメコメント*/
+.thanks_comment{
+    text-align: left;
+    color: #aaa;
+}
 
 /* 狭いブラウザとタブレット */
 @media (max-width: 832px) and (min-width: 521px) {
@@ -297,7 +298,11 @@ table {
         background-color: #f1f1f1;
         /* スクロールバーのトラックの色 */
     }
-
+    .modal {
+        width: 75vw;/* 固定の幅を指定 */
+        height: 73vh;/* 固定の高さを指定 */
+    }
+    
     #modal .button {
         margin-top: 15px;
         text-align: center;
@@ -311,6 +316,9 @@ table {
     }
 
     /* モーダルメッセージ部分 */
+    .modal_h2{
+        margin: 10px 0 20px;
+    }
     #modal-message {
         max-height: 100%;
         overflow-y: auto;
@@ -330,6 +338,9 @@ table {
 
 /* スマホ */
 @media (max-width: 520px) {
+    .contact_bg{
+        padding: 3%;
+    }
     .contact_button {
         width: 165px;
         box-shadow: 2px 5px #2fc1ed;
@@ -408,4 +419,15 @@ table {
         font-weight: 400;
         margin-right: 3px;
     }
+    .modal {
+        width: 80vw;/* 固定の幅を指定 */
+        height: 70vh;/* 固定の高さを指定 */
+    }    
+    /*モーダルの左側*/
+    .modal_left {
+        background-color: #ddeefe;
+        width: 50px;
+        display: inline-block;
+    }
+    
 }

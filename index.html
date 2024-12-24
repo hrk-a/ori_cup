@@ -116,8 +116,8 @@
                 <img src="img/STEP3_SP.png" alt="STEP3" class="sp-img">
             </div>
             <div class="button">
-                <a href="create.html" target="_blank"><button
-                        class="howto_button">はじめる<br><span>START</span></button></a>
+                <button class="howto_button"><a href="create.html" target="_blank">
+                        はじめる<br><span>START</span></a></button>
             </div>
         </div>
 
@@ -623,231 +623,226 @@
             </div>
         </div>
 
-            <!----- ４.お問い合わせ ----->
-            <div id="contact" class="content">
-                <div class="contact_bg">
-                    <div class="content_logo">
-                        <img src="img/contact_logo.png" alt="お問い合わせ">
-                    </div>
-                    <p class="contact_p">
-                        平素よりご利用いただき誠にありがとうございます。<br>
-                        オンラインショップや商品、会社について、ご不明な点がございましたら、お気軽にお問合せ下さい。<br>
-                        【TEL】028-635-3211<br>
-                        【営業時間】平日10:00~17:00　※土日祝は対応しておりません
-                    </p>
-                    <form action="" id="contact-form">
-                        <table class="contact_table">
-                            <!-- お問い合わせ項目 -->
-                            <tr class="kinds">
-                                <td>
-                                    <span class="required">必須</span>お問い合わせ項目
-                                </td>
-                                <td class="select">
-                                    <select id="kindsSelect" name="kinds">
-                                        <option value="nomal">選択してください</option>
-                                        <option value="商品の詳細">商品の詳細</option>
-                                        <option value="配送について">配送について</option>
-                                        <option value="お支払いについて">お支払いについて</option>
-                                        <option value="ご注文内容変更">ご注文内容変更</option>
-                                        <option value="注文キャンセル">注文キャンセル</option>
-                                        <option value="その他">その他</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <span id="kindsSelect-error" class="error-message"></span>
-                                </td>
-                            </tr>
-
-                            <!-- お名前 -->
-                            <tr class="name">
-                                <td>
-                                    <span class="required">必須</span>お名前
-                                </td>
-                                <td>
-                                    <input type="text" name="name" id="name" placeholder="菊池　なつみ">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <span id="name-error" class="error-message"></span>
-                                </td>
-                            </tr>
-
-                            <!-- フリガナ -->
-                            <tr class="name">
-                                <td>
-                                    <span class="required">必須</span>フリガナ
-                                </td>
-                                <td>
-                                    <input type="text" name="furigana" id="furigana" placeholder="キクチ　ナツミ">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <span id="furigana-error" class="error-message"></span>
-                                </td>
-                            </tr>
-
-                            <!-- メールアドレス -->
-                            <tr class="mail">
-                                <td>
-                                    <span class="required">必須</span>メールアドレス
-                                </td>
-                                <td>
-                                    <input type="text" name="mail" id="mail" placeholder="k-natumi@ac.com">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <span id="mail-error" class="error-message"></span>
-                                </td>
-                            </tr>
-
-                            <!-- 電話番号 -->
-                            <tr class="phone">
-                                <td>
-                                    <span class="required">必須</span>電話番号
-                                </td>
-                                <td>
-                                    <span class="number_cont">
-                                        <input type="text" name="phone" class="number" id="phone1">-
-                                        <input type="text" name="phone" class="number" id="phone2">-
-                                        <input type="text" name="phone" class="number" id="phone3">
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <span id="phone-error" class="error-message"></span>
-                                </td>
-                            </tr>
-
-                            <!-- お問い合わせ内容 -->
-                            <tr class="kinds_text">
-                                <td>
-                                    <span class="required">必須</span>お問い合わせ内容
-                                </td>
-                                <td>
-                                    <textarea name="kinds_text" rows="10" id="kinds_text"></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <span id="kinds_text-error" class="error-message"></span>
-                                </td>
-                            </tr>
-
-                            <!-- 利用規約 -->
-                            <tr class="check">
-                                <td colspan="2">
-                                    <p><a href="termsofuse.html" target="_blank">利用規約 </a>および <a
-                                            href="privacypolicy.html" target="_blank">プライバシーポリシー </a>をご確認の上、送信してください。
-                                    </p>
-                                </td>
-                            </tr>
-
-                            <!-- 送信ボタン -->
-                            <tr>
-                                <td colspan="2">
-                                    <div class="button">
-                                        <button class="contact_button" id="check_button" class="btn">送信</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
+        <!----- ４.お問い合わせ ----->
+        <div id="contact" class="content">
+            <div class="contact_bg">
+                <div class="content_logo">
+                    <img src="img/contact_logo.png" alt="お問い合わせ">
                 </div>
+                <p class="contact_p">
+                    平素よりご利用いただき誠にありがとうございます。<br>
+                    オンラインショップや商品、会社について、ご不明な点がございましたら、お気軽にお問合せ下さい。<br>
+                    【TEL】028-635-3211<br>
+                    【営業時間】平日10:00~17:00　※土日祝は対応しておりません
+                </p>
+                <form action="" id="contact-form">
+                    <table class="contact_table">
+                        <!-- お問い合わせ項目 -->
+                        <tr class="kinds">
+                            <td>
+                                <span class="required">必須</span>お問い合わせ項目
+                            </td>
+                            <td class="select">
+                                <select id="kindsSelect" name="kinds">
+                                    <option value="nomal">選択してください</option>
+                                    <option value="商品の詳細">商品の詳細</option>
+                                    <option value="配送について">配送について</option>
+                                    <option value="お支払いについて">お支払いについて</option>
+                                    <option value="ご注文内容変更">ご注文内容変更</option>
+                                    <option value="注文キャンセル">注文キャンセル</option>
+                                    <option value="その他">その他</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span id="kindsSelect-error" class="error-message"></span>
+                            </td>
+                        </tr>
 
-                <!-- モーダルウィンドウ -->
-                <div class="modal_overlay">
-                    <div id="modal" class="modal">
-                        <div class="modal-content">
-                            <span id="close-modal" class="close">&times;</span>
-                            <h2>内容確認</h2>
-                            <form id="check_contents">
-                                <div class="form_cont">
-                                    <table>
-                                        <tr>
-                                            <td class="modal_left">お問い合わせ項目</td>
-                                            <td id="modal-kindsSelect" class="modal_text"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="modal_left">お名前</td>
-                                            <td id="modal-name" class="modal_text"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="modal_left">フリガナ</td>
-                                            <td id="modal-furigana" class="modal_text"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="modal_left">メールアドレス</td>
-                                            <td id="modal-email" class="modal_text"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="modal_left">電話番号</td>
-                                            <td id="modal-phone" class="modal_text"></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="modal_left">お問い合わせ内容</td>
-                                            <td id="modal-message" class="modal_text"></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="naiyou">
-                                    <div id="modal-message"></div>
-                                </div>
-                                <br>
+                        <!-- お名前 -->
+                        <tr class="name">
+                            <td>
+                                <span class="required">必須</span>お名前
+                            </td>
+                            <td>
+                                <input type="text" name="name" id="name" placeholder="菊池　なつみ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span id="name-error" class="error-message"></span>
+                            </td>
+                        </tr>
+
+                        <!-- フリガナ -->
+                        <tr class="name">
+                            <td>
+                                <span class="required">必須</span>フリガナ
+                            </td>
+                            <td>
+                                <input type="text" name="furigana" id="furigana" placeholder="キクチ　ナツミ">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span id="furigana-error" class="error-message"></span>
+                            </td>
+                        </tr>
+
+                        <!-- メールアドレス -->
+                        <tr class="mail">
+                            <td>
+                                <span class="required">必須</span>メールアドレス
+                            </td>
+                            <td>
+                                <input type="text" name="mail" id="mail" placeholder="k-natumi@ac.com">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span id="mail-error" class="error-message"></span>
+                            </td>
+                        </tr>
+
+                        <!-- 電話番号 -->
+                        <tr class="phone">
+                            <td>
+                                <span class="required">必須</span>電話番号
+                            </td>
+                            <td>
+                                <span class="number_cont">
+                                    <input type="text" name="phone" class="number" id="phone1">-
+                                    <input type="text" name="phone" class="number" id="phone2">-
+                                    <input type="text" name="phone" class="number" id="phone3">
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span id="phone-error" class="error-message"></span>
+                            </td>
+                        </tr>
+
+                        <!-- お問い合わせ内容 -->
+                        <tr class="kinds_text">
+                            <td>
+                                <span class="required">必須</span>お問い合わせ内容
+                            </td>
+                            <td>
+                                <textarea name="kinds_text" rows="10" id="kinds_text"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <span id="kinds_text-error" class="error-message"></span>
+                            </td>
+                        </tr>
+
+                        <!-- 利用規約 -->
+                        <tr class="check">
+                            <td colspan="2">
+                                <p><a href="termsofuse.html" target="_blank">利用規約 </a>および <a href="privacypolicy.html"
+                                        target="_blank">プライバシーポリシー </a>をご確認の上、送信してください。
+                                </p>
+                            </td>
+                        </tr>
+
+                        <!-- 送信ボタン -->
+                        <tr>
+                            <td colspan="2">
                                 <div class="button">
-                                    <button class="contact_button" type="submit" class="btn">送信</button>
+                                    <button class="contact_button" id="check_button" class="btn">送信</button>
                                 </div>
-                            </form>
-                        </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
+            <!-- モーダルウィンドウ -->
+            <div class="modal_overlay">
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <span id="close-modal" class="close">&times;</span>
+                        <form id="check_contents">
+                            <h2 class="modal_h2">内容確認</h2>
+                            <div class="form_cont">
+                                <table>
+                                    <tr>
+                                        <td class="modal_left">お問い合わせ項目</td>
+                                        <td id="modal-kindsSelect" class="modal_text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="modal_left">お名前</td>
+                                        <td id="modal-name" class="modal_text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="modal_left">フリガナ</td>
+                                        <td id="modal-furigana" class="modal_text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="modal_left">メールアドレス</td>
+                                        <td id="modal-email" class="modal_text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="modal_left">電話番号</td>
+                                        <td id="modal-phone" class="modal_text"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="modal_left">お問い合わせ内容</td>
+                                        <td id="modal-message" class="modal_text"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="naiyou">
+                                <div id="modal-message"></div>
+                            </div>
+                            <br>
+                            <div class="button">
+                                <button class="contact_button" type="submit" class="btn">送信</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!----- ５.メンバー紹介 ----->
-            <div id="member" class="content">
-                <div class="member_bg">
-                    <div class="content_logo">
-                        <img src="img/member_logo.png" alt="メンバー紹介">
-                    </div>
-
-                    <div id="all_member">
-                        <div id="profile">
-                            <img id="profile-img" src="img/profile/natsumi.jpg" alt="画像1">
-                        </div>
-                        <div id="click_btn">
-                            <img src="img/icon/click.png" style="width: 8vw;" class="p1" onclick="changeImage()">
-                        </div>
-                    </div>
-
-
+        <!----- ５.メンバー紹介 ----->
+        <div id="member" class="content">
+            <div class="content_logo">
+                <img src="img/member_logo.png" alt="メンバー紹介">
+            </div>
+            <div id="all_member">
+                <div id="profile">
+                    <img id="profile-img" src="img/profile/natsumi.jpg" alt="画像1">
+                </div>
+                <div id="click_btn">
+                    <img src="img/icon/click.png" class="p1" onclick="changeImage()">
                 </div>
             </div>
+        </div>
 
-            <!----- フッター ----->
-            <div id="footer">
-                <img src="img/footer.svg" class="footer_bg">
-                <div id="footer_content">
-                    <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
-                    <ul>
-                        <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
-                        <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
-                        <li><a href="asct.html" target="_blank">特定商取引法</a></li>
-                    </ul>
-                    <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
-                </div>
+        <!----- フッター ----->
+        <div id="footer">
+            <img src="img/footer.svg" class="footer_bg">
+            <div id="footer_content">
+                <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
+                <ul>
+                    <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
+                    <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
+                    <li><a href="asct.html" target="_blank">特定商取引法</a></li>
+                </ul>
+                <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
             </div>
-        
+        </div>
+
 
         <!-- 外部ファイルのJavaScript -->
         <script src="js/script.js"></script>
