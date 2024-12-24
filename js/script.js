@@ -177,3 +177,4 @@ document.querySelectorAll('.accordion-header').forEach(header => {
         const mainImage = document.getElementById("profile-img");
         mainImage.src = images[currentIndex]; // 新しい画像に切り替え
     }
+    

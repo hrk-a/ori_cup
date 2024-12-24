@@ -81,7 +81,7 @@ document.getElementById('check_button').addEventListener('click', function (even
         const modal = document.getElementById('modal');
         
         // モーダルとオーバーレイを表示
-        modalOverlay.style.display = "block";
+        modalOverlay.style.display = "block"; //表示
         modal.style.display = "block"; // モーダルを表示する
 
         // モーダル内に入力された値を表示
@@ -95,7 +95,8 @@ document.getElementById('check_button').addEventListener('click', function (even
         // モーダル送信ボタンのイベント
         document.getElementById('check_contents').addEventListener('submit', function (event) {
             event.preventDefault();
-            document.getElementById('check_contents').innerHTML = '<p>お問い合わせありがとうございます。</p></td></tr></table>';
+            document.getElementById('check_contents').innerHTML =
+            '<h2>お問い合わせ完了画面</h2><br><h3 class="thanks">お問い合わせありがとうございました。</h3><br><br><p class="thanks_comment">※メールアドレスが間違っている場合は「自動確認メール」が届きません。<br>お手数ですが再度ご入力ください</p></td></tr></table>';
         });
 
         // モーダルを閉じる処理
