@@ -66,21 +66,18 @@ body {
 /* コップの写真のエリア（キャンバス部分） */
 #mugCanvas {
     position: absolute; /* 絶対配置 */
-    top: 50%; /* 親要素の中央に配置 */
-    left: 50%; /* 親要素の中心に配置 */
+    top: 53%; /* 親要素の中央に配置 */
+    left: 45.5%; /* 親要素の中心に配置 */
     transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
-    width: 50%; /* キャンバスの幅を親要素に合わせる */
-    height: auto; /* 高さは自動調整 */
-    background-color: #f357a0; /* 背景色 */
+    width: 31%; /* キャンバスの幅を親要素に合わせる */
+    height: 40%; /* 高さは自動調整 */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-/*挿入する画像エリア*/
-#picture_cont img{
-    width: 500px;
+canvas{
+    border: 1px solid #333;
 }
 
 /* ふわっと表示アニメーション */
@@ -328,7 +325,7 @@ button:disabled {
 
 .text-content {
     transition: all 0.3s ease-in-out;
-  }
+}
 /* 縦書き・アーチ用のスタイル */
 .vertical-write {
     writing-mode: vertical-rl; /* 縦書き */
@@ -432,16 +429,36 @@ textarea {
     #picture_cont img{
         width: 100%;
     }
-
-
 }
 
 @media (max-width: 520px) {
+    .logo{
+        width: 90px;
+    }
+    #picture_cont, #create_nav{
+        background: none;
+    }
+    body{
+        background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
+    }
     /* スマホサイズ */
     #main,#choice_cont{
         flex-direction: column;
         width: 100vw;
-
+    }
+    #main{
+        padding: 0;
+    }
+    /*マグカップの写真*/
+    #display_image {
+        position: relative; /* 絶対配置 */
+        transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
+        width: 70%; /* 画像の幅を親要素に合わせる */
+        height: auto; /* 高さは自動調整 */
+    }    
+    #choice_cont {
+        display: flex;
+        justify-content: flex-start;
     }
     #create_nav{
         flex-direction: row;
@@ -450,6 +467,7 @@ textarea {
     #sntaku{
         width: 100vw;
     }
+    /*挿入する画像*/
     #picture_cont01{
         position: static;
     }

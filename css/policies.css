@@ -6,12 +6,13 @@ body{
 }
 /*メイン*/
 #mainsub{
-    padding: 0 4.5%;
+    padding: 0 4%;
     margin: 0 10%;
 }
 /*タイトル*/
 .pagetitle{
     font-weight: 400;
+    margin: 40px 0 70px;
 }
 
 .TU_content{
@@ -24,7 +25,7 @@ body{
 }
 /*liの丸のサイズ*/
 ::marker{
-    font-size: 90%;
+    font-size: 70%;
 }
 /*liの丸の位置*/
 li>span{
@@ -40,9 +41,10 @@ li>span{
 }
 /*サブタイトル*/
 .subtitle{
-    padding: 0 0 0 10px;
+    padding: 0 0 10px 0;
     margin-bottom: 0;
-    border-bottom: 2px solid gainsboro;
+    border-bottom: 1px solid rgb(198, 198, 198);
+    font-size: 1.3rem;
 }
 
 /* ----- プライバシーポリシー　利用規約 ----- */
@@ -52,7 +54,8 @@ li>span{
 
 /*はじめに・個人情報の取扱について*/
 .span{
-    font-size: large;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
 }
 .asct_p{
     margin: 0;
@@ -60,7 +63,7 @@ li>span{
 
 /* ----- 特定商取引法 ----- */
 table {
-    width: 85%;
+    width: 90%;
     margin: 0 auto;
     border-collapse: collapse;
     margin-top: 20px;
@@ -78,7 +81,6 @@ th, td {
     box-sizing: border-box; /* 内側の余白を含めて幅計算 */
 }
 
-
 /*PC*/
 @media (max-width: 2000px) and (min-width: 834px) {
     
@@ -87,21 +89,39 @@ th, td {
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
     #mainsub{
-        width: 80%;
+        width: 90%;
         margin:0 auto;
-    }    
+    }
+    /* ----- 特定商取引法 ----- */
+    table {
+        width: 90%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background-color: #fff;
+    }
+    .left{
+        width: 150px;
+        text-align: center;
+        background-color: #eeeeee;
+    }
+    
+
 }
 
 /*スマホサイズ*/
 @media (max-width: 520px){
     #mainsub{
-        padding: 5% 4.5%;
+        padding: 0% 2% 5%;
         margin: 0;
     }
     /*サブタイトル*/
-    .subtitle{
-        font-size: large;
-        padding: 0 0 0 10px;
+    .subtitle, .span{
+        font-size: 1.1rem;
+        padding: 0 0 10px 0;
+    }
+    .termsofuse p {
+        padding-left: 10px;
     }
     table{
         width: 95%;

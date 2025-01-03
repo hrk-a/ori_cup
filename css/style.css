@@ -160,6 +160,7 @@ button{
 /*カート・会員登録のアイコン*/
 #cart_user_id img{
     width: 28px;
+    height: auto;
     margin-bottom: 8px;
     margin-right: -4px;
 }
@@ -382,6 +383,7 @@ mainvisual h3 {
     /*カート・会員登録のアイコン*/
     #cart_user_id img{
         width: 21px;
+        height: auto;
     }    
     .make_but{
         font-size: 0.75rem;
@@ -412,7 +414,7 @@ mainvisual h3 {
     /*後で消すから！！！！！*/
     background-color: rgb(198, 225, 247);
 
-    font-size: 0.67rem;
+    font-size: 0.8rem;
     font-weight: 400;
     }
     #cart, #user{
@@ -426,6 +428,7 @@ mainvisual h3 {
     /*カート・会員登録のアイコン*/
     #cart_user_id img{
         width: 19px;
+        height: auto;
     }
     /*右側のボタン*/
     /*デザインしてみよう*/
