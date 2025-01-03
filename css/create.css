@@ -455,10 +455,11 @@ textarea {
         transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
         width: 70%; /* 画像の幅を親要素に合わせる */
         height: auto; /* 高さは自動調整 */
-    }    
+    }
     #choice_cont {
         display: flex;
         justify-content: flex-start;
+        min-height: 45%;
     }
     #create_nav{
         flex-direction: row;
@@ -466,6 +467,15 @@ textarea {
     }
     #sntaku{
         width: 100vw;
+    }
+    /*コップ部分*/
+    .cup{
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .cup img{
+        margin: 0 10px;
+        width: 25%;
     }
     /*挿入する画像*/
     #picture_cont01{
