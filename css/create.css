@@ -44,6 +44,7 @@ body {
     padding: 0; /* 隙間をなくす */
 }
 /* 親要素にflexboxを使用して、左右中央に配置 */
+/*コップの写真*/
 #picture_cont02 {
     position: relative; /* 親要素を相対的に配置 */
     width: 100%; /* 必要に応じて幅を調整 */
@@ -172,24 +173,19 @@ canvas{
 .content {
     display: none; /* デフォルトで非表示 */
     box-sizing: border-box;
+    width: 100%;
+    background-color: #fff;
+    padding: 5% 7%; /* コンテンツの余白 */
+    z-index: 10;
+    box-sizing: border-box;
 }
+/* 各共通コンテンツ */
 
 .content.active {
     display: block; /* アクティブ状態のとき表示 */
+    height: 100%;
 }
 
-/* 各共通コンテンツ */
-.allcont {
-    width: 100%;
-    background-color: #fff;
-    /*
-    background-image: url(../img/allcont_bg.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    */
-    padding: 5% 7%; /* コンテンツの余白 */
-    z-index: 10;
-}
 #sntaku{
     width: 100%;
     overflow-y: auto; /* 縦スクロールを許可 */
@@ -218,27 +214,24 @@ canvas{
 /*----- 色選択 -----*/
 .color{
     height: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
 }
 .color_img{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    height: 100%;
 }
 .color1, .color2{
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
 }
 .color_img img{
     border: 3px solid #fff;
     border-radius: 14px;
     filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.7));
     box-sizing: border-box;
-    margin: 13px 0;
     width: 100%;
 }
 
@@ -278,6 +271,24 @@ input {
     align-items: center;
     justify-content: center;
     gap: 10px;
+}
+/*フォント選択*/
+    /* プルダウンそれぞれのフォントを適用 */
+    option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
+    option[value*="Dela Gothic One"] { font-family: 'Dela Gothic One', sans-serif; }
+    option[value*="DotGothic16"] { font-family: 'DotGothic16', sans-serif; }
+    option[value*="Kaisei Opti"] { font-family: 'Kaisei Opti', serif; }
+    option[value*="Kiwi Maru"] { font-family: 'Kiwi Maru', serif; }
+    option[value*="M PLUS Rounded 1c"] { font-family: 'M PLUS Rounded 1c', sans-serif; }
+    option[value*="Noto Serif JP"] { font-family: 'Noto Serif JP', serif; }
+    option[value*="Sawarabi Gothic"] { font-family: 'Sawarabi Gothic', sans-serif; }
+    option[value*="Shippori Mincho B1"] { font-family: 'Shippori Mincho B1', serif; }
+    option[value*="Yuji Syuku"] { font-family: 'Yuji Syuku', serif; }
+    option[value*="Yusei Magic"] { font-family: 'Yusei Magic', sans-serif; }
+    option[value*="Bungee Inline"] { font-family: 'Bungee Inline', cursive; }
+    
+#fontSelector{
+    padding: 3px 5px;
 }
 /* スライダーとその値を横並びに */
 .slider-container {
@@ -330,6 +341,18 @@ button:disabled {
 .vertical-write {
     writing-mode: vertical-rl; /* 縦書き */
     text-orientation: upright; /* 文字を縦方向に回転させずに正立 */
+}
+/*縦書き・横書きボタン*/
+#normalButton,#verticalButton{
+    background-color: #fff;
+    border: none;
+}
+#normalButton:hover,#verticalButton:hover{
+    background-color: #ececec;
+    border-radius: 3px;
+}
+#normalButton:active,#verticalButton:active{
+    background-color: #dadada;
 }
 
 span {
@@ -427,7 +450,7 @@ textarea {
     }
     /*左のコップの写真*/
     #picture_cont img{
-        width: 100%;
+        width: 60%;
     }
 }
 
@@ -449,6 +472,9 @@ textarea {
     #main{
         padding: 0;
     }
+    #picture_cont02{
+        display: block;
+    }
     /*マグカップの写真*/
     #display_image {
         position: relative; /* 絶対配置 */
@@ -466,12 +492,12 @@ textarea {
         width: 100vw;
     }
     #sntaku{
-        width: 100vw;
+        width: 100%;
+        height: 100%;
     }
     /*コップ部分*/
     .cup{
-        flex-wrap: nowrap;
-        justify-content: flex-start;
+        justify-content: space-between;
     }
     .cup img{
         margin: 0 10px;
