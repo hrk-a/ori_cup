@@ -18,11 +18,6 @@ function changeImage(cupType) {
     // 画像パスを設定
     const imagePath = `img/cup/${cupType}.png`;
 
-    // ふわっと表示
-    displayImage.classList.remove("fade-in");  // クラスをリセット
-    void displayImage.offsetWidth;  // DOMの再描画を強制
-    displayImage.classList.add("fade-in");  // クラスを追加してアニメーションをトリガー
-
     displayImage.src = imagePath; // カップ画像を変更
     console.log("画像が変更されました: " + imagePath);
 
@@ -45,10 +40,20 @@ function changeImage(cupType) {
 }
 
  // フォントを変更する関数
- document.getElementById('fontSelector').addEventListener('change', function() {
-    var selectedFont = this.value; // プルダウンで選ばれたフォント
-    document.getElementById('text').style.fontFamily = selectedFont; // テキストのフォントを変更
-});
+ const inputValue = document.getElementById('input_value');
+ const inputValueBox = document.getElementById('input_value_box');
+ const fontSelector = document.getElementById('fontSelector');
+
+ // 入力内容の反映
+ inputValue.addEventListener('input', () => {
+     inputValueBox.textContent = inputValue.value;
+ });
+
+ // フォントを変更する
+ fontSelector.addEventListener('change', function() {
+     const selectedFont = this.value;
+     inputValueBox.style.fontFamily = selectedFont;
+ });
 
 // 色を変更する関数
 function changeColor(color) {
@@ -69,11 +74,6 @@ function changeColor(color) {
         console.warn("色変更はサポートされていないカップタイプです:", selectedCupType);
         return; // 色変更を無効化
     }
-
-    // ふわっと表示
-    displayImage.classList.remove("fade-in");
-    void displayImage.offsetWidth;
-    displayImage.classList.add("fade-in");
 
     displayImage.src = colorImage; // 色変更後の画像を反映
     console.log("画像が変更されました: " + colorImage);
