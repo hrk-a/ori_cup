@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Details Screen.css">
+    <link rel="stylesheet" href="css/DetailsScreen.css">
     <link rel="icon" href="img/fav.png">
 </head>
 
@@ -75,20 +75,20 @@
                             </th>
                         </tr>
                         <tr>
-                            <td rowspan="3">
+                            <td rowspan="3" class="deta_img">
                                 <img src="img/Details_progressiiiiii.png" class="Details_main_img">
                             </td>
                             <td>
                                 <p>コップの種類</p>
                             </td>
                             <td>
-                                <p>マグカップ</p>
+                                <p id="selectedCupName"></p>
                             </td>
                             <td rowspan="3">
-                                <p>９００円</p>
+                                <p id="price"></p>
                             </td>
                             <td rowspan="3">
-                                <p>１</p>
+                                <p></p>
                             </td>
                         </tr>
                         <tr>
@@ -96,7 +96,7 @@
                                 <p>カラー</p>
                             </td>
                             <td>
-                                <p>ピンク</p>
+                                <p id="selectedColor"></p>
                             </td>
                         </tr>
                         <tr>
@@ -112,10 +112,10 @@
                         <!----グループ２---->
                         <tr>
                             <th>
-                                <p class="Details_main_top_title">アイテム＆加工代</p>
+                                <p class="Details_main_top_title">送料</p>
                             </th>
                             <td colspan="4">
-                                <p>９００円</p>
+                                <p>450円</p>
                             </td>
                         </tr>
                         <tr>
@@ -123,7 +123,7 @@
                                 <p class="Details_main_top_title">消費税</p>
                             </th>
                             <td colspan="4">
-                                <p>９００円</p>
+                                <p></p>
                             </td>
                         </tr>
                         <tr>
@@ -131,7 +131,7 @@
                                 <p class="Details_main_top_title">合計金額</p>
                             </th>
                             <td colspan="4">
-                                <p>９００円</p>
+                                <p></p>
                             </td>
                         </tr>
                         <tr>
@@ -139,7 +139,7 @@
                                 <p class="Details_main_top_title">お届け日</p>
                             </th>
                             <td colspan="4">
-                                <p>９００円</p>
+                                <p></p>
                             </td>
                         </tr>
                         </tr>
@@ -168,16 +168,25 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス" onclick="showName('カラーボックス')" style="cursor: pointer;">
-                                    <input type="radio" name="name" value="カラーボックス" onclick="showName()" > 
+                                    <label>
+                                        <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
+                                            onclick="showName('カラーボックス')" style="cursor: pointer;">
+                                        <input type="radio" name="name" value="カラーボックス" onclick="showName()">
+                                    </label>
                                 </td>
                                 <td>
-                                    <img src="img/inose_.webp" class="Details_main_img" alt="クリアケース" onclick="showName('クリアケース')" style="cursor: pointer;">
-                                    <input type="radio" name="name" value="クリアケース" onclick="showName()"> 
+                                    <label>
+                                        <img src="img/inose_.webp" class="Details_main_img" alt="クリアケース"
+                                            onclick="showName('クリアケース')" style="cursor: pointer;">
+                                        <input type="radio" name="name" value="クリアケース" onclick="showName()">
+                                    </label>
                                 </td>
                                 <td>
-                                    <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン" onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;">                               
-                                    <input type="radio" name="name" value="ラッピング袋＆リボン" onclick="showName()"> 
+                                    <label>
+                                        <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
+                                            onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;">
+                                        <input type="radio" name="name" value="ラッピング袋＆リボン" onclick="showName()">
+                                    </label>
                                 </td>
                             </tr>
                         </table>
@@ -188,16 +197,16 @@
 
                 <script>
                     function showName() {
-            // 選択されているラジオボタンを取得
-            const selectedRadio = document.querySelector('input[name="name"]:checked');
-            // 選ばれている場合、その値を表示
-            if (selectedRadio) {
-                document.getElementById("nameDisplay").innerHTML = selectedRadio.value;
-            }
-        }
+                        // 選択されているラジオボタンを取得
+                        const selectedRadio = document.querySelector('input[name="name"]:checked');
+                        // 選ばれている場合、その値を表示
+                        if (selectedRadio) {
+                            document.getElementById("nameDisplay").innerHTML = selectedRadio.value;
+                        }
+                    }
 
                 </script>
-            
+
                 <div class="button">
                     <a href="DetailsScreen2.html">
                         <button class="contact_button" type="submit">ご注文手続きへ進む</button>
@@ -222,6 +231,7 @@
         </div>
     </div>
     <script src="./js/signup.js"></script>
+    <script src="./js/DetailsScreen.js"></script>
 </body>
 
 </html>

@@ -52,11 +52,27 @@
             <p class="no_cart">現在カートに商品はありません。</p>
         </div>
 
-        <div id="cart_but">
-            <div>
-                <a href="index.html"><button class="top">トップに戻る</button></a>
-                <a href="DetailsScreen.html"><button class="buy">購入する</button></a>
-            </div>
+        <div id="cart_box">
+                <div id="merchandise_img"><img src="img/cup/carrot_cup.png" alt=""></div>
+                <div id="merchandise_cont">
+                    <p><span class="left">商品名</span><span id="selectedCupName"></span></p>
+                    <p><span class="left">色</span><span id="selectedColor"></span></p>
+                    <p><span class="left">値段</span><span id="price"></span></p>
+                </div>
+                <div id="number_cont">
+                    <label for="quantity">個数</label><br>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">                </div>
+                <div id="price_cont">
+                    <p>合計</p>
+                    <p id="merchandise_price">￥</p>
+                </div>
+                </div>
+                <div id="cart_but">
+                <div>
+                    <a href="index.html"><button class="top">トップに戻る</button></a>
+                    <a href="DetailsScreen.html"><button class="buy">購入する</button></a>
+                </div>
+
         </div>
 
         <!----- フッター ----->
@@ -72,7 +88,10 @@
                 <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
             </div>
         </div>
-</div>
+    </div>
+
+    <script src="js/create.js"></script>
+    <script src="js/cart.js"></script>
 
 </body>
 

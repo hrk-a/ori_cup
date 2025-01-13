@@ -7,7 +7,9 @@
     <title>オリコップ | デザインツール</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Dela+Gothic+One&family=DotGothic16&family=Kaisei+Opti&family=Kiwi+Maru&family=M+PLUS+Rounded+1c&family=Noto+Serif+JP:wght@200..900&family=Sawarabi+Gothic&family=Shippori+Mincho+B1&family=Yuji+Syuku&family=Yusei+Magic&display=swap&family=Bungee+Inline&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Dela+Gothic+One&family=DotGothic16&family=Kaisei+Opti&family=Kiwi+Maru&family=M+PLUS+Rounded+1c&family=Noto+Serif+JP:wght@200..900&family=Sawarabi+Gothic&family=Shippori+Mincho+B1&family=Yuji+Syuku&family=Yusei+Magic&display=swap&family=Bungee+Inline&display=swap"
+        rel="stylesheet">
 
 
     <link rel="stylesheet" href="css/style.css">
@@ -20,8 +22,7 @@
 
     <div id="svg">
         <!-- 四隅にSVGを配置 -->
-        <svg class="corner" id="top-left" width="50" height="50" viewBox="0 0 10 10"
-            xmlns="http://www.w3.org/2000/svg">
+        <svg class="corner" id="top-left" width="50" height="50" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
             <path class="corner-path" d="M10,0H0v10S.05,0,10,0Z" />
         </svg>
 
@@ -42,22 +43,21 @@
     </div>
 
     <div id="main">
-        <div class="logo">
+        <div id="logo">
             <a href="index.html"><img src="img/logo_only.png" alt="ロゴ" class="logo"></a>
         </div>
 
         <div id="picture_cont">
-
             <!--コップの写真-->
             <div id="picture_cont02">
                 <img id="display_image" class="fade-in" src="img/cup/mug.png" alt="マグカップ">
-            
+
                 <!--挿入する画像-->
                 <div id="picture_cont01">
-                    <canvas id="myCanvas" class="upper-canvas" width="700" height="346"></canvas>
+                    <canvas id="myCanvas" class="upper-canvas">
+                        <div id="textimg"></div>
+                    </canvas>
                 </div>
-                <!-- ここに文字が入る場所 -->
-                <div id="input_value_box" class="text-display"></div>
             </div>
 
             <!-----完成ボタン---->
@@ -89,16 +89,16 @@
                         data-sp="img/sp_picture_nav.png" data-hover="img/pc_picture_nav_over.png">
                 </a>
             </nav>
-
+            
             <div id="sntaku">
                 <!----- コップ選択 ------>
                 <div id="cup" class="content active allcont">
                     <div class="cup">
-                        <img src="img/cup/mug.png" alt="マグカップ" onclick="changeImage('mug')">
-                        <img src="img/cup/tumbler.png" alt="タンブラー" onclick="changeImage('tumbler')">
-                        <img src="img/cup/glass.png" alt="グラス" onclick="changeImage('glass')">
-                        <img src="img/cup/jug.png" alt="ジョッキ" onclick="changeImage('jug')">
-                        <img src="img/cup/wine.png" alt="ワイン" onclick="changeImage('wine')">
+                        <img class="cup-option" src="img/cup/mug.png" alt="マグカップ" onclick="changeImage('mug')" data-type="マグカップ">
+                        <img class="cup-option" src="img/cup/tumbler.png" alt="タンブラー" onclick="changeImage('tumbler')" data-type="タンブラー">
+                        <img class="cup-option" src="img/cup/glass.png" alt="グラス" onclick="changeImage('glass')" data-type="グラス">
+                        <img class="cup-option" src="img/cup/jug.png" alt="ジョッキ" onclick="changeImage('jug')" data-type="ジョッキ">
+                        <img class="cup-option" src="img/cup/wine.png" alt="ワイングラス" onclick="changeImage('wine')" data-type="ワイングラス">
                     </div>
                 </div>
 
@@ -108,30 +108,31 @@
                         <div class="color_img">
                             <div class="color1">
                                 <img src="img/cup/white.png" alt="ホワイト"
-                                    onclick="changeColor('white', getSelectedCupType())">
+                                    onclick="changeColor('white', getSelectedCupType())" data-color="ホワイト">
                                 <img src="img/cup/lime.png" alt="ライム"
-                                    onclick="changeColor('lime', getSelectedCupType())">
+                                    onclick="changeColor('lime', getSelectedCupType())" data-color="ライム">
                                 <img src="img/cup/mandarin.png" alt="マンダリン"
-                                    onclick="changeColor('mandarin', getSelectedCupType())">
+                                    onclick="changeColor('mandarin', getSelectedCupType())" data-color="マンダリン">
                                 <img src="img/cup/carrot.png" alt="キャロット"
-                                    onclick="changeColor('carrot', getSelectedCupType())">
+                                    onclick="changeColor('carrot', getSelectedCupType())" data-color="キャロット">
                                 <img src="img/cup/pink.png" alt="ピンク"
-                                    onclick="changeColor('pink', getSelectedCupType())">
-                                <img src="img/cup/red.png" alt="レッド" onclick="changeColor('red', getSelectedCupType())">
+                                    onclick="changeColor('pink', getSelectedCupType())" data-color="ピンク">
+                                <img src="img/cup/red.png" alt="レッド" onclick="changeColor('red', getSelectedCupType())"
+                                    data-color="レッド">
                             </div>
                             <div class="color2">
                                 <img src="img/cup/purple.png" alt="パープル"
-                                    onclick="changeColor('purple', getSelectedCupType())">
+                                    onclick="changeColor('purple', getSelectedCupType())" data-color="パープル">
                                 <img src="img/cup/turquoise.png" alt="ターコイズ"
-                                    onclick="changeColor('turquoise', getSelectedCupType())">
+                                    onclick="changeColor('turquoise', getSelectedCupType())" data-color="ブルー">
                                 <img src="img/cup/blue.png" alt="ブルー"
-                                    onclick="changeColor('blue', getSelectedCupType())">
+                                    onclick="changeColor('blue', getSelectedCupType())" data-color="ブルー">
                                 <img src="img/cup/green.png" alt="グリーン"
-                                    onclick="changeColor('green', getSelectedCupType())">
+                                    onclick="changeColor('green', getSelectedCupType())" data-color="グリーン">
                                 <img src="img/cup/gray.png" alt="グレー"
-                                    onclick="changeColor('gray', getSelectedCupType())">
+                                    onclick="changeColor('gray', getSelectedCupType())" data-color="グレー">
                                 <img src="img/cup/black.png" alt="ブラック"
-                                    onclick="changeColor('black', getSelectedCupType())">
+                                    onclick="changeColor('black', getSelectedCupType())" data-color="ブラック">
                             </div>
                         </div>
                     </div>
@@ -147,7 +148,7 @@
                                 <p class="text_heading">入力フォーム</p>
                             </label>
                             <textarea class="text" id="input_value" placeholder="文字入力" name="input_value" rows="3"
-                            contenteditable="true"></textarea>
+                                contenteditable="true"></textarea>
                         </div>
 
                         <!-- フォント選択 -->
@@ -224,9 +225,8 @@
                 <div id="picture" class="content allcont">
                     <div class="picture">
                         写真選択
+                        <input type="file" id="imageInput" accept="image/*" multiple>
                     </div>
-
-                    <input type="file" id="upload" accept="image/*" multiple>
 
                     <!-- サイズ変更ボタン -->
                     <div class="resize-buttons">
@@ -234,15 +234,12 @@
                         <button id="decreaseSize">-</button>
                     </div>
 
-                    <!-- ダウンロードボタン -->
-                    <br>
-                    <button id="download">デザインをダウンロード</button>
-
-                    <!-- 画像削除ボタン -->
-                    <br>
-                    <button id="delete">選択した画像を削除</button>
-
-
+                    <div id="dw_dt_btn">
+                        <!-- 画像削除ボタン -->
+                        <button id="delete"><img src="img/icon/delete.png" alt="削除ボタン"></button>
+                        <!-- ダウンロードボタン -->
+                        <button id="download"><img src="img/icon/download.png" alt="ダウンロードボタン"></button>
+                    </div>
                 </div>
             </div>
         </div>

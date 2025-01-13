@@ -44,32 +44,26 @@
     </div>
 
     <!-- ハンバーガー -->
-    <!-- いったんハンバーガーコメントにしとくね～
-    <div id="hum">
-        <input id="test" type="checkbox" />
-        <label for="test">
-            <svg class="burger" width="86" height="60" viewbox="0 0 150 150">
-                <g stroke-width="12">
-                    <line x1="6" y1="6" x2="80" y2="6"></line>
-                    <line x1="6" y1="28" x2="80" y2="28"></line>
-                    <line x1="6" y1="50" x2="80" y2="50"> </line>
-                </g>
-            </svg>
-            <svg class="close" width="86" height="60" viewbox="0 0 150 150">
-                <g stroke-width="12">
-                    <line x1="42" y1="6" x2="42" y2="80"></line>
-                    <line x1="6" y1="42" x2="80" y2="42"></line>
-                </g>
-            </svg>
-        </label>
-        <div class="menu">
-            <div><a href="#" class="active-nav" data-target="howto">作り方</a></div>
-            <div>About</div>
-            <div>Hello</div>
-            <div>Contact</div>
-        </div>
+    <!-- ハンバーガーメニューアイコン -->
+    <div class="hamburger" id="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
     </div>
-    -->
+
+    <!-- ナビゲーションメニュー（divに変更） -->
+    <div class="nav-menu" id="navMenu">
+        <!-- ×ボタン -->
+        <span class="close-btn" id="closeBtn">×</span>
+        <ul>
+            <li><a href="#howto"><img src="img/icon/howto_icon.png" class="hamburger_img"> 作り方</a></li>
+            <li><a href="#about"><img src="img/icon/design_icon.png" class="hamburger_img"> デザイン例</a></li>
+            <li><a href="#question"><img src="img/icon/question_icon.png" class="hamburger_img">よくある質問</a></li>
+            <li><a href="#contact"><img src="img/icon/contact_icon.png" class="hamburger_img"> お問い合わせ</a></li>
+            <li><a href="#member"><img src="img/icon/member_icon.png" class="hamburger_img"> メンバー紹介</a></li>
+        </ul>
+    </div>
+
     <!----- カート・会員登録 ----->
     <div id="cart_user_id">
         <a href="cart.html">
@@ -95,12 +89,15 @@
     <div id="main">
 
         <div id="mainvisual">
-            <div id="logo">
+            <div id="top_logo">
                 <img src="img/logo.png" alt="ロゴ">
             </div>
-
             <h3 class="top_h3">好きな文字や写真を入れて<br>
-                自分だけのオリジナルコップを自由に作ろう！</h3>
+                自分だけのオリジナルコップを自由に作ろう！
+            </h3>
+
+            <!--スライドショー-->
+            
         </div>
 
         <nav id="top_nav">
@@ -123,7 +120,7 @@
                 <img src="img/member_bg.png" alt="メンバー紹介" />
             </a>
         </nav>
-
+        
         <!-- コンテンツ -->
 
         <!----- １.作り方 ----->
@@ -153,7 +150,57 @@
             <div class="content_logo">
                 <img src="img/design_logo.png" alt="デザイン例">
             </div>
-            <p>このセクションではデザインの例を紹介します。</p>
+            
+            <!--マグカップ-->
+            <div id="mug_design" class="design_cont">
+                <div class="mug_design_img">
+                    <img src="img/cup/pink_cup.png" alt="">
+                    <img src="img/cup/mandarin_cup.png" alt="">
+                    <img src="img/cup/turquoise_cup.png" alt="">
+                    <img src="img/cup/lime_cup.png" alt="">
+                </div>
+                <p class="cup_name">① マグカップ<span>1,100円</span></p>
+            </div>
+
+            <div id="mug_design" class="design_cont">
+                <div class="mug_design_img">
+                    <img src="img/cup/black_tumbler.png" alt="">
+                    <img src="img/cup/purple_tumbler.png" alt="">
+                    <img src="img/cup/gray_tumbler.png" alt="">
+                    <img src="img/cup/red_tumbler.png" alt="">
+                </div>
+                <p class="cup_name">② タンブラー<span>1,500円</span></p>
+            </div>
+
+            <div id="mug_design" class="design_cont">
+                <div class="mug_design_img">
+                    <img src="img/cup/glass.png" alt="">
+                    <img src="img/cup/glass.png" alt="">
+                    <img src="img/cup/glass.png" alt="">
+                    <img src="img/cup/glass.png" alt="">
+                </div>
+                <p class="cup_name">③ グラス<span>800円</span></p>
+            </div>
+
+            <div id="mug_design" class="design_cont">
+                <div class="mug_design_img">
+                    <img src="img/cup/jug.png" alt="">
+                    <img src="img/cup/jug.png" alt="">
+                    <img src="img/cup/jug.png" alt="">
+                    <img src="img/cup/jug.png" alt="">
+                </div>
+                <p class="cup_name">④ ジョッキ<span>1,100円</span></p>
+            </div>
+
+            <div id="mug_design" class="design_cont">
+                <div class="mug_design_img">
+                    <img src="img/cup/wine.png" alt="">
+                    <img src="img/cup/wine.png" alt="">
+                    <img src="img/cup/wine.png" alt="">
+                    <img src="img/cup/wine.png" alt="">
+                </div>
+                <p class="cup_name">⑤ ワイングラス<span>2,000円</span></p>
+            </div>
         </div>
 
 
