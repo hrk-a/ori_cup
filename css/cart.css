@@ -82,6 +82,9 @@ button a{
 }
 
 /*マグカップの画像*/
+#merchandise_img{
+    display: block;
+}
 #merchandise_img img{
     width: 200px;
     border: 1px solid #dadada;
@@ -118,6 +121,17 @@ input{
 
 /*スマホ*/
 @media (max-width: 520px){
+    #cart_box{
+        width: 100%;
+        flex-direction: column;
+    }    
+    #merchandise_img{
+        width: 70%;
+        margin: 0 auto;
+    }
+    #merchandise_img img{
+        width: 100%;
+    }
     button{
         width: 110px;
         font-size: 0.55rem;
