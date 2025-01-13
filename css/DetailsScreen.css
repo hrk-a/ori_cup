@@ -6,25 +6,25 @@ body{
     background-size: 100%;    
 }
 
+/*ロゴ*/
 #ori_logo{
     position: absolute;
 }
 #ori_logo img{
+    position: relative;
+    top: 13px;
+    left: 13px;
+    z-index: 100;
     height: 50px;
 }
-.ori_logo{
-    position: relative;
-    top:10px;
-    left: 10px;
-}
 
-.signup_bg{
+.Details_bg{
+    margin-top: 20px;
     background: #fff;
     border: 3px solid #7e99d4;
     border-radius: 20px;
     padding: 3% 6%;
     box-shadow: 0 0 0 7px #fff; /* 白い縁取り */
-    margin-top: 50px;
 }
 
 .container{
@@ -32,40 +32,112 @@ body{
     box-sizing: border-box;
 }
 
-.container p{
-    text-align: center;
-}
 
-/*ロゴ*/
+/*詳細画面のロゴ*/
 #title{
     text-align: center;
 }
 
-.signup_log{
+.Details_log,.Details_log_{
     margin: 20px 0;
     text-align: center;
 }
 
-.signup_log img{
+/*商品画像*/
+.Details_log img{
     height: 70px;
 }
 
-/*テーブル*/
-.contact_table{
+.Details_main{
     width: 75%;
-    margin: 0 auto;
+    margin: 10px auto ;
+    margin-bottom: 50px;
 }
 
-/* 下に表示 */
-caption {
-    caption-side: bottom;
+/*Details1*/
+/*グループ１*/
+table {
+    border-collapse: collapse;
+    width: 100%;
 }
 
-/* 送信・ログアウトボタンボタン */
-.contact_button, #deleteAccountButton {
+table th{
+background-color: #d8e0f2;
+}
+table th, table td {
+    border: solid 1px black;
+ }
+
+ .deta_img{
+    text-align: center;
+ }
+.Details_main_img{
+    width: 70%;
+}
+
+/*Details2*/
+.Details_main_p{
+    margin: 20px auto 80px;
+    width: 60%;
+    text-align: left;
+}
+
+td{
+    padding: 11px 15px;
+}
+
+
+.Details2_tr_th{
+    width: 30%;
+    height: 50px;
+    text-align: left;
+    padding: 11px 15px;
+}
+
+.red-text {
+    color: red;
+}
+
+select{
+    width: 70%;
+}
+
+/*Details3*/
+.Details3_Information{
+    text-align: left;
+    margin-bottom: 0px;
+}
+
+.Details3_text{
+    color: red;
+}
+
+.Details3_tr_th{
+    width: 30%;
+    height: 50px;
+}
+
+.Details3_button{
+    justify-content:flex-end;
+    display: flex;
+}
+.Details_contact_button{
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-weight: 600;
-    font-size: 23px;
+    font-size: 15px;
+    line-height: 0;
+    letter-spacing: 2px; /* スキーニング（文字間の調整） */
+    border-radius: 50px;
+    padding: 22px 0;
+    margin-bottom: 20px;
+}
+  
+
+/* 送信ボタン */
+.contact_button {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
     line-height: 1;
     letter-spacing: 2px; /* スキーニング（文字間の調整） */
     
@@ -75,10 +147,10 @@ caption {
     border-radius: 50px;
     width: 280px;
     box-shadow: 2px 6px #7e99d4;
-    padding: 20px 0;
+    padding: 22px 0;
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* アニメーションのスムーズさを追加 */
     position: relative; /* 疑似要素を位置させるために相対位置に設定 */
-    margin: 20px auto 0;
+    margin-top: 20px;
 }
 button:hover {
     transform: translateY(4px);
@@ -88,7 +160,6 @@ button:hover {
 .button{
     text-align: center;
 }
-
 
 /* 右向きの矢印 */
 button::after {
@@ -103,76 +174,17 @@ button::after {
 }
 
 
-/* 各入力要素のスタイル */
-/*.name, .mail, .phone, .kinds, .number_cont, .kinds_text {
-    margin-bottom: 10px;
-}
-*/
-td{
-    padding-bottom: 20px;
-}
-
-label{
-    display: inline-block;
-}
-.td_name{
-    width: 30%;
-}
-input {
-    padding: 2px 10px;
-    box-sizing: border-box;
-    width: 100%;
-    background: #d8e0f2;
-    border: none;
-    height: 40px;
-    border-radius: 3px;
-}
-
-
-/*必須*/
-.required{
-    background-color: #7e99d4;
-    color: #fff;
-    border-radius: 2px;
-    font-size: 0.76rem;
-    padding: 3.5px 8px 5px;
-    margin-right: 6px;
-}
-
-/*送信注意文*/
-.check{
-    text-align: center;
-}
-.check a{
-    color: #000;
-    text-underline-offset: 5px;
-}
-
-/*エラーメッセージ*/
-.error-message{
-    color: red;
-    font-size: 0.8rem;
-    margin-top: -18px;
-}
-
-.top_button{
-    text-align: center;
-}
 /* 狭いブラウザとタブレット */
 @media (max-width: 832px) and (min-width: 521px) {
 
-    .signup_log img{
+    .Details_log img{
         height: 60px;
     }    
-    #ori_logo img{
-        height: 40px;
+
+    .Details_log_ img{
+        height: 50px;
     }
-    .ori_logo{
-        position: relative;
-        top:10px;
-        left: 10px;
-    }
-    
+
     .contact_button {
         width: 200px;
         box-shadow: 2px 5px #7e99d4;
@@ -192,45 +204,25 @@ input {
         border-left: 9px solid #fff; /* 左側を白にして三角形を作成 */
     }
 
+
     .button{
         width: 200px;
         margin: auto auto;
     }
     
-    .contact_table tr {
-        display: flex; /* 行をフレックスコンテナに */
-        flex-direction: column; /* 縦に並べる */
-    }
-
-    .contact_table td {
-        width: 100%; /* 各セルの幅を100%に設定 */
-        margin: 0; /* マージンをリセット */
-    }
-    td{
-        padding-bottom: 6px;
-    }
-    /*エラーメッセージ*/
-    .error-message{
-        margin-top: 0;
-        font-size: 0.7rem;
-    }
-
 }
 
 /* スマホ */
 @media (max-width: 520px) {
 
-    .signup_log img{
+    .Details_log img{
+        height: 50px;
+    }    
+
+    .Details_log_ img{
         height: 30px;
-    }    
-    #ori_logo img{
-        height: 25px;
     }
-    .ori_logo{
-        position: relative;
-        top:10px;
-        left: 10px;
-    }    
+
     .contact_button {
         width: 165px;
         box-shadow: 2px 5px #7e99d4;
@@ -248,6 +240,7 @@ input {
         margin: auto auto;
     }
     
+    
     /* 右向きの矢印を追加 */
     button::after {
         right: 18px; /* ボタンの右端からの距離 */
@@ -256,46 +249,40 @@ input {
         border-left: 7px solid #fff; /* 左側を白にして三角形を作成 */
     }
 
-    /*テーブル*/
-    .contact_table tr {
-        display: flex; /* 行をフレックスコンテナに */
-        flex-direction: column; /* 縦に並べる */
-    }
-    /*テーブル*/
-    .contact_table{
-        width: 100%;
-        margin: 0 auto;
-    }
 
-    .contact_table td {
-        width: 100%; /* 各セルの幅を100%に設定 */
-        margin: 0; /* マージンをリセット */
-    }
-    td{
-        padding-bottom: 6px;
-    }
-    select{
-        font-size: 0.65rem;
-        height: 30px;
-    }
-    input{
-        height: 30px;
-    }
-    .error-message{
-        margin-top: 0;
-        font-size: 0.6rem;
-    }
-    /*必須*/
-.required{
-    background-color: #7e99d4;
-    color: #fff;
-    font-size: 0.6rem;
-    padding: 3px 6px;
-    border-radius: 2px;
-    font-weight: 400;
-    margin-right: 3px;
+    /*Details1*/
+.Details_main_top_title{
+    display: flex;
+    flex-direction:column;
 }
-.contact_button, #deleteAccountButton{
-    margin: 20px auto;
+
+/*Details2*/
+
+.Details_main_p{
+    white-space: normal; /* 自動的に改行する */
+    word-wrap: break-word; /* 長い単語が折り返される */
+    margin: 10px auto;
+    width: 100%;
 }
+
+.Details2_tr_th{
+    height: 30px;
+}
+
+.Details_main{
+    margin: 0 auto;
+    width: 100%;
+}
+
+/*Details3*/
+.Details_contact_button{
+    width: 165px;
+    padding: 13.5px;
+    font-size: 10px;
+    margin-top: 10px;
+
+}
+
+
+
 }

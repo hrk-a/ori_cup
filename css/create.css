@@ -1,7 +1,7 @@
 @charset 'utf-8';
 /*作成ページ*/
 
-/* 全体設定 */
+/* ---------- 全体設定 ---------- */
 body {
     background-attachment: fixed;/*背景小固定*/
     overflow: hidden; /* 全体のスクロールを無効化 */
@@ -14,12 +14,15 @@ body {
     display: flex;
     height: 100vh; /* 画面全体の高さを占める */
 }
+#logo{
+    position: absolute;
+}
 .logo{
-    position: fixed;
-    top: 20px;
-    left: 25px;
-    width: 160px;
+    position: relative;
+    top: 13px;
+    left: 13px;
     z-index: 100;
+    height: 50px;
 }
 /* 左エリア (画像表示エリア) */
 #picture_cont {
@@ -52,19 +55,20 @@ body {
     display: flex; /* フレックスボックスで並べる */
     justify-content: center; /* 水平方向に中央配置 */
     align-items: center; /* 垂直方向に中央配置 */
+
 }
 
 /* 左のコップの写真 */
 #display_image {
     position: absolute; /* 絶対配置 */
     top: 50%; /* 親要素の中央に配置 */
-    left: 50%; /* 親要素の中心に配置 */
-    transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
+    left: 100%; /* 親要素の右端に配置 */
+    transform: translate(-100%, -50%); /* 水平方向: 右端から中央へ, 垂直方向: 中央揃え */
     width: 50%; /* 画像の幅を親要素に合わせる */
     height: auto; /* 高さは自動調整 */
 }
 
-/* コップの写真のエリア（キャンバス部分） */
+/* コップの写真のエリア（キャンバス部分） 古*/
 #mugCanvas {
     position: absolute; /* 絶対配置 */
     top: 53%; /* 親要素の中央に配置 */
@@ -96,7 +100,15 @@ canvas{
         opacity: 1;             /* 完全に不透明 */
     }
 }
+/*キャンバス*/
+canvas{
+    width: 50rem;
+    height:18rem;
+    position: absolute; /* 絶対配置 */
+    top: 33%; /* 親要素の中央に配置 */
+    left: 8%; /* 親要素の中心に配置 */
 
+}
 /* ----- ナビ ----- */
 #create_nav {
     display: flex; /* 横並びにする */
@@ -114,7 +126,6 @@ canvas{
 #create_nav a {
     display: flex;
     justify-content: right;
-    width: 0; /* 幅を親要素に合わせる */
     height: 25%; /* 各リンクの高さを画面の25%に設定 */
 }
 
@@ -192,7 +203,7 @@ canvas{
     z-index: 50;
 }
 
-/*----- コップ選択 -----*/
+/* ---------- コップ選択 ---------- */
 .cup {
     height: 100%;
     display: flex;
@@ -204,14 +215,20 @@ canvas{
 .cup img {
     width: 40%;
     background-color: #f0f0f0;
-    border: 3px solid #fff;
+    border: 3px solid #fff; /* 内側の白線 */
     filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.7));
     border-radius: 10px;
     padding: 4px;
     margin: 13px 0;
+    box-sizing: border-box;
 }
 
-/*----- 色選択 -----*/
+.cup img.selected {
+    border-color: #fff;              /* 内側の白線を維持 */
+    box-shadow: 0 0 0 3px #f889a9;  /* 外側にピンク線を追加 */
+}
+
+/* ---------- 色選択 ---------- */
 .color{
     height: 100%;
 }
@@ -227,15 +244,20 @@ canvas{
     flex-direction: column;
     justify-content: space-evenly;
 }
-.color_img img{
-    border: 3px solid #fff;
+.color_img img {
+    border: 3px solid #fff; /* 内側の白線 */
     border-radius: 14px;
     filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.7));
     box-sizing: border-box;
     width: 100%;
 }
 
-/*----- 文字選択 -----*/
+.color_img img.selected {
+    border-color: #fff;              /* 内側の白線を維持 */
+    box-shadow: 0 0 0 3px #f889a9;  /* 外側にピンク線を追加 */
+}
+
+/* ---------- 文字選択 ---------- */
 #input_value_box {
     position: absolute;
     padding: 0 10px;
@@ -272,7 +294,7 @@ input {
     justify-content: center;
     gap: 10px;
 }
-/*フォント選択*/
+/* ---------- フォント選択 ---------- */
     /* プルダウンそれぞれのフォントを適用 */
     option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
     option[value*="Dela Gothic One"] { font-family: 'Dela Gothic One', sans-serif; }
@@ -370,7 +392,7 @@ span {
     font-weight: bold;
 }
 
-/* 入力フォームのスタイル */
+/* ---------- 入力フォームのスタイル ---------- */
 textarea {
     width: 100%;
     padding: 10px;
@@ -425,38 +447,41 @@ textarea {
     box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
     width: 100%; /* 横幅を調整（必要に応じて） */
 }
-/*----- 写真選択 -----*/
 
-@media (max-width: 2000px) and (min-width: 834px) {
-    /* PCサイズ */
+/* ---------- 写真選択 ---------- */
+#dw_dt_btn{
+    width: 80%;
+    margin: 0 auto;
 }
-
+#dw_dt_btn button{
+    border: none;
+    background: none;
+    padding: 0;
+    width: 100%;
+}
+#dw_dt_btn button img{
+    width: 100%;
+}
+/*ダウンロードボタン*/
+#download{
+    filter: drop-shadow(0 5px 0 #ebd41f);
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+/*削除ボタン*/
+#delete{
+    filter: drop-shadow(0 5px 0 #7c89a3);
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+#download:hover, #delete:hover{
+    transform: translateY(4px);
+    filter: none;
+}
+/* タブレットサイズ */
 @media (max-width: 832px) and (min-width: 521px) {
-    /* タブレットサイズ */
-    
-    /*----- コップ選択 -----*/
-    .cup {
-        flex-direction: column;
-        height: 100%;
-    }
-    .cup img {
-        width: 70%;
-    }
-    .color_img{
-        flex-wrap: nowrap;
-    }
-    .color_img img{
-        width: 75%;
-    }
-    /*左のコップの写真*/
-    #picture_cont img{
-        width: 60%;
-    }
-}
-
-@media (max-width: 520px) {
     .logo{
-        width: 90px;
+        top: 15;
+        left: 15px;
+        height: 30px;
     }
     #picture_cont, #create_nav{
         background: none;
@@ -477,19 +502,106 @@ textarea {
     }
     /*マグカップの写真*/
     #display_image {
-        position: relative; /* 絶対配置 */
         transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
-        width: 70%; /* 画像の幅を親要素に合わせる */
+        left: 50%;    
+        width: 80%; /* 画像の幅を親要素に合わせる */
         height: auto; /* 高さは自動調整 */
     }
     #choice_cont {
         display: flex;
         justify-content: flex-start;
         min-height: 45%;
+        padding: 10px;
+        padding-top: 0;
+        box-sizing: border-box;
     }
     #create_nav{
         flex-direction: row;
+        width: 100%;
+        box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
+
+    }
+    #create_nav a{
+        height: auto;
+        width: 25%;
+    }
+    #create_nav img{
+        width: 100%;
+        height: auto;
+    }
+    #sntaku{
+        width: 100%;
+        height: 100%;
+    }
+    /*コップ部分*/
+    .cup{
+        justify-content: space-between;
+    }
+    .cup img{
+        margin: 0 10px;
+        width: 25%;
+    }
+    /*挿入する画像*/
+    #picture_cont01{
+        position: static;
+    }
+    canvas{
+        width: 100vh;
+        width: 30vh;
+    }
+}
+
+@media (max-width: 520px) {
+    .logo{
+        top: 15;
+        left: 15px;
+        height: 30px;
+    }
+    #picture_cont, #create_nav{
+        background: none;
+    }
+    body{
+        background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
+    }
+    /* スマホサイズ */
+    #main,#choice_cont{
+        flex-direction: column;
         width: 100vw;
+    }
+    #main{
+        padding: 0;
+    }
+    #picture_cont02{
+        display: block;
+    }
+    /*マグカップの写真*/
+    #display_image {
+        transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
+        left: 50%;    
+        width: 80%; /* 画像の幅を親要素に合わせる */
+        height: auto; /* 高さは自動調整 */
+    }
+    #choice_cont {
+        display: flex;
+        justify-content: flex-start;
+        min-height: 45%;
+        padding: 10px;
+        padding-top: 0;
+        box-sizing: border-box;
+    }
+    #create_nav{
+        flex-direction: row;
+        width: 100%;
+        box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
+
+    }
+    #create_nav a{
+        height: auto;
+        width: 25%;
+    }
+    #create_nav img{
+        width: 100%;
+        height: auto;
     }
     #sntaku{
         width: 100%;

@@ -31,6 +31,9 @@ body{
 li>span{
     vertical-align: middle;
 }
+ul{
+    margin-left: 40px;
+}
 /*パンくずリスト*/
 .pankuzu{
     margin-left: 10px;
@@ -81,10 +84,6 @@ th, td {
     box-sizing: border-box; /* 内側の余白を含めて幅計算 */
 }
 
-/*PC*/
-@media (max-width: 2000px) and (min-width: 834px) {
-    
-}
 
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {

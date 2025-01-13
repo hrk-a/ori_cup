@@ -1,4 +1,5 @@
 @charset 'utf-8';
+
 html {
     font-size: 100%;
 }
@@ -183,11 +184,11 @@ button {
     z-index: 0;
 }
 
-#logo {
+#top_logo {
     text-align: center;
 }
 
-#logo img {
+#top_logo img {
     width: 100%;
     opacity: 0;
     transform: scale(0.4);
@@ -195,10 +196,11 @@ button {
     transform-origin: center;
 }
 
-#logo img.visible {
+#top_logo img.visible {
     opacity: 1;
     transform: translateY(0);
 }
+
 
 .top_h3 {
     margin-top: 50px;
@@ -327,10 +329,100 @@ h2 {
     padding-top: 30px;
 }
 
+span{
+    font-family: "M PLUS Rounded 1c", sans-serif !important;
+}
+/* ハンバーガー */
+.hamburger_img {
+    width: 7%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ハンバーガーメニューのスタイル */
+.hamburger {
+    position: fixed;
+    /*上部に固定*/
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 25px;
+    cursor: pointer;
+    display: none;
+    /* デフォルトでは非表示 */
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+    /* 最前面に表示 */
+}
+
+.line {
+    width: 100%;
+    height: 5px;
+    background-color: #675;
+}
+
+/* ナビゲーションメニューのスタイル */
+.nav-menu {
+    background-color: #fff;
+    /* 背景色を暗く */
+    position: fixed;
+    bottom: 0;
+    /* 初期位置は下に配置 */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: 100px;
+    z-index: 999;
+    /* ハンバーガーアイコンより下に表示 */
+    transform: translateY(100%);
+    /* メニューは画面外（下）に配置 */
+    transition: transform 0.5s ease-in-out;
+    /* 下から上へスライドイン */
+}
+
+.nav-menu.active {
+    transform: translateY(0);
+    /* メニューを画面内にスライドイン */
+}
+
+.nav-menu ul {
+    list-style: none;
+    text-align: center;
+}
+
+.nav-menu ul li {
+    margin: 20px 0;
+}
+
+.nav-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+}
+
+/* ×ボタンのスタイル */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #333;
+    cursor: pointer;
+}
+
+
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
     body {
-        background-color: rgb(170, 255, 203);
         font-size: 1rem;
     }
 
@@ -376,7 +468,6 @@ h2 {
 /*スマホ*/
 @media (max-width: 520px) {
     body {
-        background-color: rgb(198, 225, 247);
         font-size: 0.8rem;
         font-weight: 400;
     }
@@ -421,158 +512,34 @@ h2 {
     .small {
         font-size: 0.65rem;
     }
-}
 
-/* ハンバーガー */
-#hum{
-    padding: 10px;
-    box-sizing: border-box;
-    overflow: hidden; /* 全体のスクロールを無効化 */
-}
-#hum label {
-    position: absolute;
-    z-index: 1;
-}
-#hum input {
-    display: none;
-}
-#hum input:checked ~ label {
-    right: 0;
-    z-index: 15;
-}
-.burger {
-    position: relative;
-    top: 24px;
-    cursor: pointer;
-    position: fixed
-}
-.burger g {
-    stroke: #ffffff;
-    transition: stroke 0.25s ease-in-out;
-}
-.burger g:hover {
-    stroke: darken(#ffffff, 20%);
-}
-input:checked ~ label .burger {
-    opacity: 0;
-}
-.close {
-    position: relative;
-    top: 24px;
-    right: 10px;
-    cursor: pointer;
-    opacity: 0;
-    position: fixed; /* fixedに変更して画面に固定 */
-    z-index: 13; /* メニューを最前面に表示 */
-
-}
-.close g:hover {
-    stroke: darken(#ffffff, 20%);
-}
-.close g {
-    stroke: #333;
-    transition: stroke 0.25s ease-in-out;
-
-}
-.close line {
-    transform-origin: 0%;
-}
-.close g {
-    transform: rotateZ(45deg);
-    transform-origin: 50%;
-}
-input:checked ~ label .close {
-    opacity: 1;
-}
-#hum .menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    position: absolute;
-    opacity: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #fff;
-    transition: opacity 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    color: #333;
-    text-transform: uppercase;
-    font-size: 24px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-    position: fixed; /* fixedに変更して画面に固定 */
-}
-
-#hum input:checked ~ .menu {
-    opacity: 1;
-    z-index: 12; /* メニューを最前面に表示 */
-
-}
-#hum .menu div {
-    margin-top: 50px;
-    transition: margin 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-#hum input:checked ~ .menu div {
-    margin-top: 0px;
-}
-#hum .main {
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-}
-#hum .main span {
-    margin: auto;
-    font-size: 40px;
-    color: #ffffff;
-    font-family: 'Pacifico', cursive;
-}
-/* メニューが開いている状態でbodyのスクロールを無効化 */
-#hum input:checked ~ body {
-    overflow: hidden; /* メニューが開いている間、スクロール無効 */
-}
-
-/* メディアクエリ - 画面幅が768px以下のとき */
-@media (max-width: 768px) {
-    .menu {
+    /* スマホサイズ以下（最大600px）でハンバーガーメニューを表示 */
+    #top_nav {
         display: none;
     }
 
-    .burger {
+    .hamburger {
+        display: flex;
+        /* スマホサイズではハンバーガーメニューを表示 */
+    }
+
+    .nav-menu {
         display: block;
+        /* 初期状態ではナビゲーションメニューを非表示 */
     }
 
-    input:checked ~ .menu {
-        display: flex;
-    }
-
-    input:checked ~ label .burger {
-        display: none;
-    }
-
-    input:checked ~ label .close {
-        opacity: 1;
-    }
-
-    .menu div {
-        margin-top: 0;
-    }
 }
 
-/* メディアクエリ - 画面幅が768px以上のとき */
-@media (min-width: 769px) {
-    .burger {
+
+/* スマホサイズ以上ではハンバーガーメニューを非表示 */
+@media (min-width: 521px) {
+    .hamburger {
         display: none;
+        /* デスクトップやタブレットではハンバーガーメニューを非表示 */
     }
 
-    .menu {
-        display: none;
-    }
-
-    .main {
-        display: flex;
-        width: 100vw;
-        height: 100vh;
-        justify-content: center;
-        align-items: center;
+    .nav-menu {
+        display: block;
+        /* デスクトップやタブレットではナビゲーションメニューを表示 */
     }
 }

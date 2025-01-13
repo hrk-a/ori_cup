@@ -2,17 +2,21 @@
 
 /*ロゴ*/
 #ori_logo{
-    margin: 25px 0 0 20px;
+    position: absolute;
 }
 #ori_logo img{
-    height: 55px;
+    position: relative;
+    top: 13px;
+    left: 13px;
+    z-index: 100;
+    height: 50px;
 }
 /*ショッピングカート テキスト*/
 .syop_text{
     text-align: center;
+    margin-top: 50px;
     margin-bottom: 70px;
 }
-
 /*ボタン*/
 #cart_but{
     margin: 90px 0 100px;
@@ -65,6 +69,48 @@ button a{
     text-align: center;
 }
 
+#cart_box{
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    padding: 15px 10px;
+    border-top: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
+    box-sizing: border-box;
+}
+
+/*マグカップの画像*/
+#merchandise_img img{
+    width: 200px;
+    border: 1px solid #dadada;
+    box-sizing: border-box;
+    padding: 15px;
+}
+#merchandise_cont{
+    display: flex;
+    flex-direction: column;
+}
+#merchandise_cont p {
+    display: flex;
+    align-items: center; /* 各項目を垂直方向に中央揃え */
+    margin: 5px 0; /* 各行の間に少しスペースを作る */
+}
+/*商品名、色、値段の幅*/
+.left{
+    display: flex;
+    min-width: 70px;
+}
+/*数量の選択*/
+input{
+    padding: 5px 10px;
+    box-sizing: border-box;
+}
+/*値段のサイズ*/
+#merchandise_price{
+    font-size: 1.35rem;
+}
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
 

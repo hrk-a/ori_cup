@@ -9,6 +9,7 @@ function changeImage(cupType) {
     selectedCupType = cupType; // グローバル変数を更新
     const displayImage = document.getElementById("display_image");
     const colorSection = document.getElementById('color');
+    const cupElements = document.querySelectorAll('.cup img'); // 全てのコップ画像を取得    
 
     if (!displayImage) {
         console.error("display_image 要素が見つかりません");
@@ -17,7 +18,6 @@ function changeImage(cupType) {
 
     // 画像パスを設定
     const imagePath = `img/cup/${cupType}.png`;
-
     displayImage.src = imagePath; // カップ画像を変更
     console.log("画像が変更されました: " + imagePath);
 
@@ -37,27 +37,38 @@ function changeImage(cupType) {
             colorSection.style.backgroundColor = '#ffffff'; // 背景色を元に戻す
         }
     }
+
+    // 既存の選択状態をリセット
+    cupElements.forEach((cup) => {
+        cup.classList.remove('selected');
+    });
+
+    // 選択された画像に 'selected' クラスを付与
+    const selectedCup = document.querySelector(`.cup img[onclick="changeImage('${cupType}')"]`);
+    if (selectedCup) {
+        selectedCup.classList.add('selected');
+    }
+
+    // カップ種類と日本語の名前をマッピング
+        const cupNameMap = {
+            mug: 'マグカップ',
+            tumbler: 'タンブラー',
+            glass: 'グラス',
+            jug: 'ジョッキ',
+            wine: 'ワイングラス'
+    };
+    
+    // 日本語のカップ名を取得
+    const selectedCupName = cupNameMap[cupType] || '未選択'; // デフォルト値として'未選択'を設定
+
+    //日本語名をローカルストレージに保存
+    localStorage.setItem('selectedCupName', selectedCupName); // 日本語名を保存    
 }
-
- // フォントを変更する関数
- const inputValue = document.getElementById('input_value');
- const inputValueBox = document.getElementById('input_value_box');
- const fontSelector = document.getElementById('fontSelector');
-
- // 入力内容の反映
- inputValue.addEventListener('input', () => {
-     inputValueBox.textContent = inputValue.value;
- });
-
- // フォントを変更する
- fontSelector.addEventListener('change', function() {
-     const selectedFont = this.value;
-     inputValueBox.style.fontFamily = selectedFont;
- });
 
 // 色を変更する関数
 function changeColor(color) {
     const displayImage = document.getElementById("display_image");
+    const colorElements = document.querySelectorAll('.color_img img'); // 全ての色画像を取得
 
     if (!displayImage) {
         console.error("display_image 要素が見つかりません");
@@ -72,11 +83,28 @@ function changeColor(color) {
         colorImage = `img/cup/${color}_tumbler.png`; // タンブラー
     } else {
         console.warn("色変更はサポートされていないカップタイプです:", selectedCupType);
-        return; // 色変更を無効化
+        return;
     }
 
     displayImage.src = colorImage; // 色変更後の画像を反映
     console.log("画像が変更されました: " + colorImage);
+
+    // 既存の選択状態をリセット
+    colorElements.forEach((colorEl) => {
+        colorEl.classList.remove('selected');
+    });
+
+    // 選択された色画像に 'selected' クラスを付与
+    const selectedColorElement = document.querySelector(`.color_img img[src="img/cup/${color}.png"]`);
+    if (selectedColorElement) {
+        selectedColorElement.classList.add('selected');
+    }
+
+    // 日本語の色名を取得
+    const selectedColorName = event.target.getAttribute("data-color");
+
+    // 日本語の色名をローカルストレージに保存
+    localStorage.setItem('selectedColor', selectedColorName);
 }
 
 // 現在選択されているカップの種類を取得する関数
@@ -139,60 +167,131 @@ document.addEventListener("DOMContentLoaded", () => {
         firstLink.dispatchEvent(new MouseEvent("mouseover"));  // 最初のリンクにマウスオーバーイベントを手動で発火
     }
 
-    // ナビゲーションの画像更新 (PC/SP切り替え)
+// ナビゲーションの画像更新 (PC/Tablet/SP切り替え)
+    // 画像の更新とホバー処理を行う関数
     const updateNavImages = () => {
-        const isSP = window.innerWidth <= 520;
+        const isSPorTablet = window.innerWidth <= 832;  // スマートフォンまたはタブレット
+        const isPC = window.innerWidth > 832;           // PCサイズ
         const images = document.querySelectorAll('.nav-image');
-
+    
         images.forEach(img => {
-            const pcDefaultSrc = img.getAttribute('data-pc');
-            const pcHoverSrc = img.getAttribute('data-hover') || pcDefaultSrc;
-            const spDefaultSrc = img.getAttribute('data-sp');
-            const spHoverSrc = img.getAttribute('data-hover') || spDefaultSrc;
-
-            img.setAttribute('data-default', isSP ? spDefaultSrc : pcDefaultSrc);
-            img.setAttribute('data-hover', isSP ? spHoverSrc : pcHoverSrc);
-            img.src = isSP ? spDefaultSrc : pcDefaultSrc;
+            const pcDefaultSrc = img.getAttribute('data-pc');  // PC用デフォルト画像
+            const pcHoverSrc = img.getAttribute('data-hover') || pcDefaultSrc;  // PC用hover画像
+            const spTabletDefaultSrc = img.getAttribute('data-sp');  // スマホとタブレット共通のデフォルト画像
+            const spTabletHoverSrc = img.getAttribute('data-hover') || spTabletDefaultSrc;  // スマホ・タブレット用hover画像
+    
+            // スマホまたはタブレットサイズの場合
+            if (isSPorTablet) {
+                img.setAttribute('data-default', spTabletDefaultSrc);
+                img.setAttribute('data-hover', spTabletHoverSrc);
+                img.src = spTabletDefaultSrc;
+    
+                // クリックでホバー画像に切り替え
+                img.addEventListener('click', () => {
+                    img.src = spTabletHoverSrc;
+                });
+    
+                // マウスアウトで元のデフォルト画像に戻す
+                img.addEventListener('mouseout', () => {
+                    img.src = spTabletDefaultSrc;
+                });
+            } 
+            // PCサイズの場合
+            else if (isPC) {
+                img.setAttribute('data-default', pcDefaultSrc);
+                img.setAttribute('data-hover', pcHoverSrc);
+                img.src = pcDefaultSrc;
+    
+                // クリックでホバー画像に切り替え
+                img.addEventListener('click', () => {
+                    img.src = pcHoverSrc;
+                });
+    
+                // マウスアウトで元のデフォルト画像に戻す
+                img.addEventListener('mouseout', () => {
+                    img.src = pcDefaultSrc;
+                });
+            }
         });
     };
-
-    // 画面サイズ変更時に画像を更新
-    window.addEventListener('resize', updateNavImages);
-    updateNavImages(); // 初期状態で画像を更新
-
-
-    // ページ読み込み時、リサイズ時に画像更新
+    
+    // 初期状態で画像を更新
     updateNavImages();
+    
+    // 画面リサイズ時に画像を更新
     window.addEventListener('resize', updateNavImages);
+    
+// ページが読み込まれたときにも画像更新
+document.addEventListener('DOMContentLoaded', updateNavImages);
 
 
-    // 入力内容の反映
-    const formTestInputValue = document.getElementById('input_value');
-    const inputValueBox = document.getElementById('input_value_box'); //ここが文字が反映される場所
+// ページが読み込まれたときにも画像更新
+document.addEventListener('DOMContentLoaded', updateNavImages);
 
-    formTestInputValue.addEventListener('input', () => {
-        inputValueBox.textContent = formTestInputValue.value;
-    });
+/* テキスト入力 */
+const inputValue = document.getElementById('input_value');
+const fontSelector = document.getElementById('fontSelector');
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
 
-    // カラーパレットの作成
-    const colorPalette = document.getElementById('color_palette');
-    const grayscaleColumn = document.getElementById('grayscale_column');
+// 初期の文字内容
+let textContent = "";
 
-    const hues = Array.from({ length: 22 }, (_, i) => i * 16.36);
-    const colors = [];
-    const rows = 10;
-    const columns = 22;
+// 入力内容の反映
+inputValue.addEventListener('input', () => {
+    textContent = inputValue.value;  // 入力された文字を保存
+    console.log("入力された文字:", textContent);  // コンソールに文字を表示    
+    redrawCanvas();  // キャンバスを再描画
+});
 
-    // 色相と明度を組み合わせた色を作成
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < columns; col++) {
-            const hue = hues[col % hues.length];
-            const lightness = 90 - (row * 7);
-            const adjustedLightness = Math.max(lightness, 20);
-            const color = `hsl(${hue}, 100%, ${adjustedLightness}%)`;
-            colors.push(color);
-        }
+// デバイスの解像度に合わせてキャンバスの解像度を設定
+const dpr = window.devicePixelRatio || 1;  // デバイスのピクセル比
+canvas.width = canvas.offsetWidth * dpr;
+canvas.height = canvas.offsetHeight * dpr;
+ctx.scale(dpr, dpr);  // コンテキストのスケールをデバイスに合わせる
+
+// キャンバスの再描画関数
+function redrawCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+
+    // テキスト内容があればキャンバスに描画
+    if (textContent) {
+        ctx.font = `18px ${fontSelector.value}`;  // フォントの設定
+        ctx.fillStyle = "black";  // 文字の色
+        ctx.fillText(textContent, 10, 20);  // (left10, top20)の位置に描画
     }
+}
+
+// フォント選択時にキャンバスを再描画
+fontSelector.addEventListener('change', redrawCanvas);
+
+// 文字の反映先の要素を取得
+const inputValueBox = document.getElementById('input_value_box'); // ここが文字が反映される場所
+
+// 入力内容の反映
+inputValue.addEventListener('input', () => {
+    inputValueBox.textContent = inputValue.value;  // 入力された文字を反映
+});
+
+// カラーパレットの作成
+const colorPalette = document.getElementById('color_palette');
+const grayscaleColumn = document.getElementById('grayscale_column');
+
+const hues = Array.from({ length: 22 }, (_, i) => i * 16.36);
+const colors = [];
+const rows = 10;
+const columns = 22;
+
+// 色相と明度を組み合わせた色を作成
+for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < columns; col++) {
+        const hue = hues[col % hues.length];
+        const lightness = 90 - (row * 7);
+        const adjustedLightness = Math.max(lightness, 20);
+        const color = `hsl(${hue}, 100%, ${adjustedLightness}%)`;
+        colors.push(color);
+    }
+}
 
     // 白黒グラデーション
     const grayscaleColors = [];
@@ -242,54 +341,63 @@ document.addEventListener("DOMContentLoaded", () => {
     inputValueBox.style.color = '#000000';
 });
 
-// 入力内容を反映
-const inputArea = document.getElementById('input_value');
-const displayBox = document.getElementById('input_value_box');
-const fontSizeInput = document.getElementById('font_size_input');
-const fontSizeValueCurrent = document.getElementById('font_size_value_current');
-const rotationSlider = document.getElementById('rotation');
-const rotationValue = document.getElementById('rotation_value');
-const rotationValueCurrent = document.getElementById('rotation_value_current');
-const textDesignSelect = document.getElementById('text_design');
-
+// 文字の反映
 document.addEventListener("DOMContentLoaded", function () {
     const fontSizeInput = document.getElementById("font_size_input");
     const decreaseButton = document.getElementById("decrease_font_size");
     const increaseButton = document.getElementById("increase_font_size");
-    const inputValueBox = document.getElementById("input_value_box");
+    const inputValueBox = document.getElementById("input_value");
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    
+    let textX = 10; // テキストの初期X位置
+    let textY = 20; // テキストの初期Y位置
+    let isDragging = false; // ドラッグ中かどうかのフラグ
+    let offsetX = 0; // マウスのクリック位置からテキスト位置までのオフセット
+    let offsetY = 0; // マウスのクリック位置からテキスト位置までのオフセット
 
     // 初期のフォントサイズ
-    let fontSize = parseInt(fontSizeInput.value);
-
+    let fontSize = parseInt(fontSizeInput.value) || 18;
+    
     // フォントサイズを更新する関数
     function updateFontSize() {
-        inputValueBox.style.fontSize = `${fontSize}px`;
+        ctx.font = `${fontSize}px sans-serif`;  // フォントサイズの変更
+        redrawCanvas();  // キャンバスを再描画
     }
-
+    
+    // キャンバスの再描画関数
+    function redrawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+    
+        const textContent = inputValueBox.value;  // 入力されたテキスト
+        if (textContent) {
+            ctx.fillStyle = "black";  // 文字色
+            ctx.fillText(textContent, textX, textY);  // テキストの描画位置
+        }
+    }
+    
     // フォントサイズを小さくする
     decreaseButton.addEventListener("click", function () {
-        if (fontSize > 0) {
-            fontSize -= 1;
-            fontSizeInput.value = fontSize;
-            updateFontSize();
-        }
+        fontSize = Math.max(12, fontSize - 1); 
+        fontSizeInput.value = fontSize;
+        updateFontSize();        
     });
-
+    
     // フォントサイズを大きくする
     increaseButton.addEventListener("click", function () {
-        fontSize += 1;
+        fontSize = Math.min(72, fontSize + 1); 
         fontSizeInput.value = fontSize;
         updateFontSize();
     });
-
+    
     // ユーザーが入力フィールドに直接値を入力した場合
     fontSizeInput.addEventListener("input", function () {
-        fontSize = parseInt(fontSizeInput.value);
-        updateFontSize();
+        fontSize = parseInt(fontSizeInput.value) || 18;  // 数値以外の場合は18に設定
+        updateFontSize();  // フォントサイズを更新
     });
-
+    
     // ページ読み込み時に初期フォントサイズを適用
-    updateFontSize();
+    updateFontSize();  // キャンバスを再描画 フォントサイズ変わらない
 });
 
 // 角度調整用スライダー
@@ -299,50 +407,22 @@ rotationSlider.addEventListener('input', () => {
     rotationValueCurrent.textContent = rotationSlider.value;
 });
 
-// 入力されたテキストをリアルタイムで表示
+/*// 入力されたテキストをリアルタイムで表示
 inputArea.addEventListener('input', () => {
     displayBox.textContent = inputArea.value;
-});
+});*/
 
-// ドラッグで移動
-let isDragging = false;
-let offsetX, offsetY;
-
-// displayBoxをクリックしたときにドラッグを開始
-displayBox.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    // クリック位置からのオフセットを計算
-    offsetX = e.clientX - displayBox.offsetLeft;
-    offsetY = e.clientY - displayBox.offsetTop;
-    // マウスカーソルを移動中に変える場合（任意）
-    displayBox.style.cursor = 'move';
-});
-
-// マウスを動かしたときに、ドラッグ状態なら位置を更新
-document.addEventListener('mousemove', (e) => {
-    if (isDragging) {
-        displayBox.style.left = e.clientX - offsetX + 'px';
-        displayBox.style.top = e.clientY - offsetY + 'px';
-    }
-});
-
-// マウスを離したときにドラッグを終了
-document.addEventListener('mouseup', () => {
-    isDragging = false;
-    displayBox.style.cursor = 'default';
-});
 
 // 文字デザインの変更（プルダウンメニュー）
 document.addEventListener("DOMContentLoaded", () => {
-    const textInput = document.getElementById("input_value"); // 入力フィールド
-    const inputValueBox = document.getElementById("input_value_box"); // 表示エリア
+    const inputValueBox = document.getElementById("myCanvas"); // 表示エリア
     const verticalButton = document.getElementById("verticalButton"); // 縦書きボタン
     const normalButton = document.getElementById("normalButton"); // 横書きボタン
 
-    // 入力フィールドの内容をリアルタイムで反映
+   /* // 入力フィールドの内容をリアルタイムで反映
     textInput.addEventListener("input", () => {
         inputValueBox.textContent = textInput.value; // 入力値を反映
-    });
+    });*/
 
     // 縦書きボタンのクリックイベント
     verticalButton.addEventListener("click", () => {
@@ -356,7 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // キャンバスとコンテキストの取得
-const canvas = document.getElementById('mugCanvas');
+/*const canvas = document.getElementById('mugCanvas');
 const ctx = canvas.getContext('2d');
 
 // コップ画像を読み込む
@@ -365,88 +445,76 @@ const mugImage = new Image();
 mugImage.onload = function () {
     // コップ画像が読み込まれたら、キャンバスに描画
     ctx.drawImage(mugImage, 0, 0, canvas.width, canvas.height);
-};
+};*/
 
 // アップロードされた画像を保持する配列
-let uploadedImages = [];
 let isDragging_picture = false;  // ドラッグフラグ
 let draggingIndex = -1;  // 現在ドラッグ中の画像インデックス
 let offsetX_picture, offsetY_picture;  // ドラッグ時のオフセット
-let selectedImageIndex = -1;  // 現在選択中の画像インデックス
 
-// アップロードされた画像のイベントリスナー
-const uploadInput = document.getElementById('upload');
-uploadInput.addEventListener('change', function (event) {
-    const files = event.target.files;
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+
+let uploadedImages = [];  // アップロードされた画像のデータを格納する配列
+let selectedImageIndex = -1;  // 現在選択されている画像のインデックス
+let selectedText = null;  // 現在選択されている文字のオブジェクト
+let isImageDragging = false;  // 画像がドラッグ中かどうか
+let isTextDragging = false;  // 文字がドラッグ中かどうか
+let offsetX = 0, offsetY = 0;  // ドラッグ時のオフセット
+
+let text = { content: "", x: 50, y: 50 };  // 文字のデータ（位置と内容）
+
+// 画像選択のイベントリスナー
+document.getElementById("imageInput").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
         const reader = new FileReader();
-        reader.onload = function (e) {
-            const uploadedImage = new Image();
-            uploadedImage.crossOrigin = 'anonymous';  // CORS対応の画像を読み込むために設定
-            uploadedImage.src = e.target.result;
-
-            uploadedImage.onload = function () {
-                // 画像の初期位置をキャンバス中央に設定
-                const imgWidth = uploadedImage.width;
-                const imgHeight = uploadedImage.height;
-                const imgX = (canvas.width - imgWidth) / 2;
-                const imgY = (canvas.height - imgHeight) / 2;
-
-                // 配列に新しい画像を追加
-                uploadedImages.push({
-                    image: uploadedImage,
-                    x: imgX,
-                    y: imgY,
-                    width: imgWidth,
-                    height: imgHeight
-                });
-
-                redrawCanvas(); // 再描画
+        reader.onload = function(e) {
+            const img = new Image();
+            img.onload = function() {
+                const imgData = {
+                    image: img,
+                    x: 0, 
+                    y: 0, 
+                    width: img.width,
+                    height: img.height
+                };
+                uploadedImages.push(imgData);  // 画像データを配列に追加
+                redrawCanvas();  // キャンバスを再描画
             };
+            img.src = e.target.result;
         };
-        reader.readAsDataURL(file); // アップロード画像を読み込む
+        reader.readAsDataURL(file);
     }
 });
 
+
 // キャンバスの再描画
-function redrawCanvas() {
+/*function redrawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // キャンバスをクリア
     ctx.drawImage(mugImage, 0, 0, canvas.width, canvas.height); // コップの画像を再描画
     uploadedImages.forEach((imgData, index) => {
         ctx.drawImage(imgData.image, imgData.x, imgData.y, imgData.width, imgData.height); // 各画像を描画
-        /*if (selectedImageIndex === index) {
+        if (selectedImageIndex === index) {
           // 選択されている画像に枠線を表示
-          ctx.lineWidth = 1.5;
-          ctx.strokeStyle = 'nono';
-          ctx.strokeRect(imgData.x, imgData.y, imgData.width, imgData.height);
-        }*/
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = 'nono';
+        ctx.strokeRect(imgData.x, imgData.y, imgData.width, imgData.height);
+        }
     });
-}
+}*/
 
-// ダウンロードボタンの設定
-const downloadButton = document.getElementById('download');
-downloadButton.addEventListener('click', function () {
-    // 画像がすべて読み込まれているかを確認
-    let allImagesLoaded = uploadedImages.every(imgData => imgData.image.complete);
-
-    if (allImagesLoaded) {
-        // アップロードされた画像だけを扱うため、再描画を強制
-        redrawCanvas();
-
-        // キャンバスからPNGデータURLを取得
-        const dataURL = canvas.toDataURL('img/png');
-
-        // ダウンロード用のリンクを作成
-        const link = document.createElement('a');
-        link.href = dataURL; // 画像のURLをリンクに設定
-        link.download = 'mug-design.png'; // ダウンロードするファイル名
-        // リンクをクリックしてダウンロードを開始
-        link.click();
-    } else {
-        alert("画像の読み込みが完了していません。再度お試しください。");
-    }
-});
+    // ダウンロードボタン
+    document.getElementById('download').addEventListener('click', function() {
+        if (uploadedImages.length > 0 || text.content) {
+            // キャンバスからPNGデータURLを取得
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = dataURL;
+            link.download = 'mug-design.png';
+            link.click();
+        } else {
+            alert("画像や文字がありません。画像をアップロードしてください。");
+        }
+    });
 
 // 画像のサイズ変更
 const increaseSizeButton = document.getElementById('increaseSize');
@@ -538,4 +606,106 @@ canvas.addEventListener('wheel', function (e) {
     }
 });
 
+    // 画像と文字をキャンバスに描画
+    function redrawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+
+        // 画像を描画
+        uploadedImages.forEach(function(imgData) {
+            ctx.drawImage(imgData.image, imgData.x, imgData.y, imgData.width, imgData.height);
+        });
+
+        // 文字を描画
+        if (text.content) {
+            ctx.fillText(text.content, text.x, text.y);  // 文字を指定位置に描画
+        }
+    }
+      // 画像と文字のドラッグオフセットを個別に管理
+      let imageOffsetX = 0, imageOffsetY = 0;  // 画像のオフセット
+        let textOffsetX = 0, textOffsetY = 0;    // 文字のオフセット
+
+    canvas.addEventListener('mousedown', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // 文字を選択
+        if (mouseX >= text.x && mouseX <= text.x + ctx.measureText(text.content).width &&
+            mouseY >= text.y - 30 && mouseY <= text.y) {
+            selectedText = text;
+            isTextDragging = true;
+            textOffsetX = mouseX - text.x;  // 文字用オフセット
+            textOffsetY = mouseY - text.y;
+            selectedImageIndex = -1;  // 文字が選択されているので画像選択解除
+            return;  // 文字が選択された場合、これ以降の処理を終了
+        }
+
+        // 画像を選択（文字が選ばれなかった場合のみ）
+        for (let i = 0; i < uploadedImages.length; i++) {
+            const imgData = uploadedImages[i];
+            if (mouseX >= imgData.x && mouseX <= imgData.x + imgData.width &&
+                mouseY >= imgData.y && mouseY <= imgData.y + imgData.height) {
+                selectedImageIndex = i;
+                isImageDragging = true;
+                imageOffsetX = mouseX - imgData.x;  // 画像用オフセット
+                imageOffsetY = mouseY - imgData.y;
+                break;
+            }
+        }
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // 画像をドラッグ
+        if (isImageDragging && selectedImageIndex >= 0) {
+            const imgData = uploadedImages[selectedImageIndex];
+            imgData.x = mouseX - imageOffsetX;  // 画像用オフセットを使用
+            imgData.y = mouseY - imageOffsetY;
+            redrawCanvas();
+        }
+
+        // 文字をドラッグ
+        if (isTextDragging && selectedText) {
+            selectedText.x = mouseX - textOffsetX;  // 文字用オフセットを使用
+            selectedText.y = mouseY - textOffsetY;
+            redrawCanvas();
+        }
+    });
+
+    canvas.addEventListener('mouseup', function() {
+        isImageDragging = false;
+        isTextDragging = false;
+        selectedText = null;  // 文字の選択を解除
+    });
     
+
+ // コップを選んだ時の処理
+ const cupButtons = document.querySelectorAll(".cup-button");
+        
+cupButtons.forEach(button => {
+    button.addEventListener("click", function () {
+        const type = this.getAttribute("data-type");
+        const color = this.getAttribute("data-color");
+
+         // 選んだアイテムをローカルストレージに保存
+        let cartData = JSON.parse(localStorage.getItem("cartItems")) || [];
+        cartData.push({ type, color });
+        localStorage.setItem("cartItems", JSON.stringify(cartData));
+
+        alert(`${type} (${color}) がカートに追加されました`);
+    });
+});
+
+ // カートリンクにアイテム数を表示
+ document.addEventListener("DOMContentLoaded", function () {
+     let cartData = JSON.parse(localStorage.getItem("cartItems")) || [];
+     let cartCount = cartData.length;
+     let cartLink = document.getElementById("create_cart");
+     
+     if (cartCount > 0) {
+         cartLink.innerHTML += `<span class="cart-count">(${cartCount}点)</span>`;
+     }
+ });
