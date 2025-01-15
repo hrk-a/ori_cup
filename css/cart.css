@@ -109,6 +109,7 @@ button a{
 input{
     padding: 5px 10px;
     box-sizing: border-box;
+    width: 100px;
 }
 /*値段のサイズ*/
 #merchandise_price{
@@ -116,17 +117,30 @@ input{
 }
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
-
+    #cart_box{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+    
+        padding: 15px 10px;
+        border-top: 1px solid #cacaca;
+        border-bottom: 1px solid #cacaca;
+        box-sizing: border-box;
+    }   
 }
 
 /*スマホ*/
 @media (max-width: 520px){
+    #ori_logo img{
+        height: 35px;
+    }
     #cart_box{
         width: 100%;
         flex-direction: column;
     }    
-    #merchandise_img{
-        width: 70%;
+    #merchandise_img,#merchandise_cont,#number_cont,#price_cont{
+        width: 80%;
         margin: 0 auto;
     }
     #merchandise_img img{
@@ -136,5 +150,12 @@ input{
         width: 110px;
         font-size: 0.55rem;
         padding: 10px 0;
+    }
+    /*ボタン*/
+    #cart_but{
+        margin: 20px 0 100px;
+        display: flex;
+        justify-content: center;
+        text-align: center;
     }
 }

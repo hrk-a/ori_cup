@@ -39,13 +39,13 @@
     text-align: right;
     position: absolute;
     right: 1vw;
-    bottom: -2vh;
+    bottom: -1vh;
 }
 #click_btn:active{
     transform:scale(1.13);
 }
 #click_btn img{
-    width: 9vw;
+    width: 5.5vw;
     transition: transform 0.3s ease-in-out; /* スムーズに変化 */
 }
 @media (max-width: 2000px) and (min-width: 834px) {
