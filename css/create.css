@@ -670,4 +670,7 @@ textarea {
         margin: 0 5px;
     }
     /* ---------- 文字選択 ---------- */
+    .content_text{
+        height: auto;
+    }
 }
