@@ -59,96 +59,6 @@ body{
     text-align: right;
 }
 
-/* ---------- Details1 (１ページ目) ---------- */
-/*グループ１*/
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-table th{
-background-color: #d8e0f2;
-}
-table th, table td {
-    border: solid 1px black;
-}
-
-.deta_img{
-    text-align: center;
-    width: 200px;
-}
-.Details_main_img{
-    width: 200px;
-    vertical-align: middle;
-}
-.lapping label{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.lapping input{
-    margin: 10px 0;
-}
-.accented{
-    accent-color: #f357a0;
-}
-
-/* ---------- Details2 (２ページ目) ---------- */
-#Details2_table input{
-    padding: 2px 10px;
-    height: 28px;
-    width: 100%;
-}
-.Details_main_p{
-    margin: 20px auto 80px;
-    width: 60%;
-    text-align: left;
-}
-td{
-    padding: 5px 13px;
-}
-.Details2_tr_th{
-    width: 30%;
-    height: 50px;
-    text-align: left;
-    padding: 11px 15px;
-}
-.red-text {
-    color: red;
-}
-select{
-    width: 70%;
-}
-
-/* ---------- Details3 (３ページ目) ---------- */
-.Details3_Information{
-    text-align: left;
-    margin-bottom: 0px;
-}
-
-.Details3_text{
-    color: red;
-}
-
-.Details3_tr_th{
-    width: 30%;
-    height: 50px;
-}
-
-.Details3_button{
-    justify-content:flex-end;
-    display: flex;
-}
-.Details_contact_button{
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    line-height: 0;
-    letter-spacing: 2px; /* スキーニング（文字間の調整） */
-    border-radius: 50px;
-    padding: 22px 0;
-    margin-bottom: 20px;
-}
 
 /* 送信ボタン */
 .contact_button {
@@ -194,25 +104,6 @@ button::after {
 /* 狭いブラウザとタブレット */
 @media (max-width: 832px) and (min-width: 521px) {
 
-    .Details_log img{
-        height: 60px;
-    }    
-
-    .Details_log_ img{
-        height: 50px;
-    }
-
-    .contact_button {
-        width: 200px;
-        box-shadow: 2px 5px #7e99d4;
-        padding: 15.5px;
-        font-size: 1rem;
-    }
-
-    .button span {
-        font-size: 12px;
-    }
-
     /* 右向きの矢印を追加 */
     button::after {
         right: 18px; /* ボタンの右端からの距離 */
@@ -232,17 +123,6 @@ button::after {
     #ori_logo img{
         height: 35px;
     }
-    .Details_bg{
-        margin-top: 50px;
-    }
-    .Details_log img{
-        height: 50px;
-    }    
-
-    .Details_log_ img{
-        height: 30px;
-    }
-
     .contact_button {
         width: 165px;
         box-shadow: 2px 5px #7e99d4;
@@ -267,34 +147,6 @@ button::after {
         border-bottom: 4px solid transparent; /* 下側を透明にして */
         border-left: 7px solid #fff; /* 左側を白にして三角形を作成 */
     }
-    /* ---------- Details1 (１ページ目)* ---------- */
-    .Details_main_top_title{
-        display: flex;
-        flex-direction:column;
-    }
-
-    /*Details2*/
-    .Details_main_p{
-        white-space: normal; /* 自動的に改行する */
-        word-wrap: break-word; /* 長い単語が折り返される */
-        margin: 10px auto;
-        width: 100%;
-    }
-    .Details2_tr_th{
-        height: 30px;
-    }
-    .Details_main{
-        margin: 0 auto;
-        width: 100%;
-    }
-    /*Details3*/
-    .Details_contact_button{
-        width: 165px;
-        padding: 13.5px;
-        font-size: 10px;
-        margin-top: 10px;
-    }
-    table th{
-        display: block;
-    }
 }
+
+

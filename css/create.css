@@ -212,7 +212,7 @@ canvas{
     width: 45%;
     background-color: #f0f0f0;
     border: 3px solid #fff; /* 内側の白線 */
-    filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.7));
+    filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.6));
     border-radius: 10px;
     padding: 4px;
     margin: 13px 0;
@@ -593,15 +593,15 @@ textarea {
     #create_nav{
         flex-direction: row;
         width: 100%;
-        box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
+        overflow-x: auto;
     }
     #create_nav a{
         height: auto;
-        width: 25%;
     }
     #create_nav img{
-        width: 100%;
+        width: 165px;
         height: auto;
+        margin: 0 5px 0 0;
     }
     #sntaku{
         width: 100%;
