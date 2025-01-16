@@ -115,6 +115,13 @@ input{
 #merchandise_price{
     font-size: 1.35rem;
 }
+/*消費税*/
+#syouhizei{
+    width: 70%;
+    margin: 0 auto;
+    text-align: right;
+    margin-top: 10px;
+}
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
     #cart_box{

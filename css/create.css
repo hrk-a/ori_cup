@@ -61,9 +61,9 @@ body {
 #display_image {
     position: absolute; /* 絶対配置 */
     top: 50%; /* 親要素の中央に配置 */
-    left: 100%; /* 親要素の右端に配置 */
+    left: 101%; /* 親要素の右端に配置 */
     transform: translate(-85%, -50%); /* 水平方向: 右端から中央へ, 垂直方向: 中央揃え */
-    width: 380px; /* 画像の幅を親要素に合わせる */
+    width: 380px;
     height: auto; /* 高さは自動調整 */
 }
 
@@ -102,9 +102,9 @@ canvas{
 /*キャンバス*/
 canvas{
     width: 100%;
-    height: 350px;
+    height: 360px;
     position: absolute; /* 絶対配置 */
-    top: 26%; /* 親要素の中央に配置 */
+    top: 24.5%; /* 親要素の中央に配置 */
     left: 8%; /* 親要素の中心に配置 */
 
 }
@@ -209,7 +209,7 @@ canvas{
 }
 
 .cup img {
-    width: 40%;
+    width: 45%;
     background-color: #f0f0f0;
     border: 3px solid #fff; /* 内側の白線 */
     filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.7));
@@ -400,12 +400,12 @@ textarea {
     display: flex; /* フレックスボックスで横並びにする */
     justify-content: center;
     margin-top: 10px;
-    overflow: hidden; /* ボーダーが隠れないようにする */
 }
 
 #color_palette {
     display: grid;
     grid-template-columns: repeat(22, 11px); /* 22列 */
+    max-width: 100%;
 }
 
 .color_option {
@@ -572,17 +572,19 @@ textarea {
     /*マグカップの写真*/
     #display_image {
         transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
-        left: 65%;    
-        width: 60%; /* 画像の幅を親要素に合わせる */
+        left: 69%;    
+        width: 55%; 
         height: auto; /* 高さは自動調整 */
     }
+    /* ---------- コップ表示エリア ---------- */
     #picture_cont{
-        min-height: 70%;
+        min-height: 60%;
     }
+    /* ---------- 選択エリア ---------- */
     #choice_cont {
         display: flex;
         justify-content: flex-start;
-        min-height: 30%;
+        min-height: 40%;
         padding: 10px;
         padding-top: 0;
         box-sizing: border-box;
@@ -592,7 +594,6 @@ textarea {
         flex-direction: row;
         width: 100%;
         box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
-
     }
     #create_nav a{
         height: auto;
@@ -612,18 +613,23 @@ textarea {
     }
     canvas{
         width: 94%;
-        height: 250px;
-        top: 30%;
+        height: 190px;
+        top: 27%;
         left: 3%;
     }
     /*ご注文カート*/
     .create_cart{
+        bottom: 20px;
         font-size: 0.8rem;
         padding: 8px 18px 8px 15px;
     }
     /*カートのアイコン*/
     .create_cart img {
         width: 23px !important;
+    }
+    /* ---------- 各選択エリア ---------- */
+    .content{
+        padding: 3% 2%;
     }
     /* ---------- コップ選択 ---------- */
     .cup{
@@ -635,5 +641,15 @@ textarea {
         width: 37%;
     }
     /* ---------- 色選択 ---------- */
-
+    .color1,.color2{
+        flex-direction: row;
+        height: auto;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .color1 img,.color2 img{
+        width: 37%;
+        height: auto;
+        margin: 0 5px;
+    }
 }

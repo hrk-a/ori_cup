@@ -216,7 +216,7 @@ button {
 
 #top_nav {
     display: flex;
-    width: 100%;
+    max-width: 100%;
     z-index: 0;
 }
 
@@ -332,93 +332,6 @@ h2 {
 span{
     font-family: "M PLUS Rounded 1c", sans-serif !important;
 }
-/* ハンバーガー */
-.hamburger_img {
-    width: 7%;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* ハンバーガーメニューのスタイル */
-.hamburger {
-    position: fixed;
-    /*上部に固定*/
-    top: 20px;
-    right: 20px;
-    width: 30px;
-    height: 25px;
-    cursor: pointer;
-    display: none;
-    /* デフォルトでは非表示 */
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 10;
-    /* 最前面に表示 */
-}
-
-.line {
-    width: 100%;
-    height: 5px;
-    background-color: #675;
-}
-
-/* ナビゲーションメニューのスタイル */
-.nav-menu {
-    background-color: #fff;
-    /* 背景色を暗く */
-    position: fixed;
-    bottom: 0;
-    /* 初期位置は下に配置 */
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 100px;
-    z-index: 999;
-    /* ハンバーガーアイコンより下に表示 */
-    transform: translateY(100%);
-    /* メニューは画面外（下）に配置 */
-    transition: transform 0.5s ease-in-out;
-    /* 下から上へスライドイン */
-}
-
-.nav-menu.active {
-    transform: translateY(0);
-    /* メニューを画面内にスライドイン */
-}
-
-.nav-menu ul {
-    list-style: none;
-    text-align: center;
-}
-
-.nav-menu ul li {
-    margin: 20px 0;
-}
-
-.nav-menu ul li a {
-    color: #333;
-    text-decoration: none;
-    font-size: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 110px;
-}
-
-/* ×ボタンのスタイル */
-.close-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-    color: #333;
-    cursor: pointer;
-}
-
 
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
@@ -463,17 +376,6 @@ span{
     .small {
         font-size: 0.85rem;
     }
-    /* スマホサイズ以上ではハンバーガーメニューを非表示 */
-    .hamburger {
-        display: none;
-        /* デスクトップやタブレットではハンバーガーメニューを非表示 */
-    }
-
-    .nav-menu {
-        display: block;
-        /* デスクトップやタブレットではナビゲーションメニューを表示 */
-    }
-    
 }
 
 /*スマホ*/
@@ -503,7 +405,13 @@ span{
         display: none;
     }
 
-    #top_nav a {
+    /*navはスクロールする*/
+    #top_nav{
+        overflow-x: auto;
+    }
+    #top_nav a img {
+        width: 140px;
+        object-fit: cover;
         margin: 0;
     }
 
@@ -524,20 +432,6 @@ span{
         font-size: 0.65rem;
     }
 
-    /* スマホサイズ以下（最大600px）でハンバーガーメニューを表示 */
-    /* 後で消す　いったんスマホサイズでもナビ表示できるようにしとくね
-    #top_nav {
-        display: none;
-    }*/
-
-    .hamburger {
-        display: flex;
-        /* スマホサイズではハンバーガーメニューを表示 */
-    }
-
-    .nav-menu {
-        display: block;
-        /* 初期状態ではナビゲーションメニューを非表示 */
-    }
-
 }
+
+

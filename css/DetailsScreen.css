@@ -54,6 +54,11 @@ body{
     margin-bottom: 50px;
 }
 
+/*数字右寄せ*/
+.right{
+    text-align: right;
+}
+
 /* ---------- Details1 (１ページ目) ---------- */
 /*グループ１*/
 table {
@@ -66,44 +71,56 @@ background-color: #d8e0f2;
 }
 table th, table td {
     border: solid 1px black;
- }
+}
 
- .deta_img{
+.deta_img{
     text-align: center;
- }
+    width: 200px;
+}
 .Details_main_img{
     width: 200px;
     vertical-align: middle;
 }
+.lapping label{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lapping input{
+    margin: 10px 0;
+}
+.accented{
+    accent-color: #f357a0;
+}
 
-/*Details2*/
+/* ---------- Details2 (２ページ目) ---------- */
+#Details2_table input{
+    padding: 2px 10px;
+    height: 28px;
+    width: 100%;
+}
 .Details_main_p{
     margin: 20px auto 80px;
     width: 60%;
     text-align: left;
 }
-
 td{
     padding: 5px 13px;
 }
-
-
 .Details2_tr_th{
     width: 30%;
     height: 50px;
     text-align: left;
     padding: 11px 15px;
 }
-
 .red-text {
     color: red;
 }
-
 select{
     width: 70%;
 }
 
-/*Details3*/
+/* ---------- Details3 (３ページ目) ---------- */
 .Details3_Information{
     text-align: left;
     margin-bottom: 0px;
