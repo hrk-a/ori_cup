@@ -81,6 +81,57 @@ button {
     z-index: 100;
 }
 
+/* ---------- カート・会員登録・はじめる ---------- */
+#cart_user_id {
+    z-index: 10;
+    position: fixed;
+    right: 10px;
+    top: 15%;
+}
+
+#cart_user_id img {
+    width: 28px;
+    height: auto;
+    margin-bottom: 8px;
+    margin-right: -4px;
+}
+
+#cart_user_id a {
+    color: #fff;
+    text-decoration: none;
+}
+/*カート・会員登録*/
+#cart,
+#user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0187d;
+    border: #fff solid 3px;
+    border-right: none;
+    box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
+    text-orientation: upright;
+    margin-bottom: 15px;
+    padding: 13px 0;
+    text-align: center;
+    border-radius: 13px 0 0 13px;
+    color: #fff;
+    letter-spacing: 0.05em;
+    transform-origin: center right;
+    letter-spacing: 1.6px;
+}
+.vertical-rl{
+    writing-mode: vertical-rl;
+    margin: 0 10px;
+}
+
+#cart:hover,
+#user:hover {
+    transform: scale(1.06);
+    transition: transform 0.2s ease;
+}
+/*はじめる*/
 #make_but {
     display: flex;
     align-items: center;
@@ -92,7 +143,6 @@ button {
 
 #make_but span {
     display: flex;
-    writing-mode: vertical-rl;
     text-orientation: upright;
     justify-content: center;
     align-items: center;
@@ -115,7 +165,7 @@ button {
     box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
     text-orientation: upright;
     margin-bottom: 15px;
-    padding: 25px 10px;
+    padding: 25px 0;
     text-align: center;
     border-radius: 13px 0 0 13px;
     color: black;
@@ -125,53 +175,6 @@ button {
 }
 
 .make_but:hover {
-    transform: scale(1.06);
-    transition: transform 0.2s ease;
-}
-
-#cart_user_id {
-    z-index: 10;
-    position: fixed;
-    right: 10px;
-    top: 15%;
-}
-
-#cart_user_id img {
-    width: 28px;
-    height: auto;
-    margin-bottom: 8px;
-    margin-right: -4px;
-}
-
-#cart_user_id a {
-    color: #fff;
-    text-decoration: none;
-}
-
-#cart,
-#user {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #e0187d;
-    writing-mode: vertical-rl;
-    border: #fff solid 3px;
-    border-right: none;
-    box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
-    text-orientation: upright;
-    margin-bottom: 15px;
-    padding: 13px 12px;
-    text-align: center;
-    border-radius: 13px 0 0 13px;
-    color: #fff;
-    letter-spacing: 0.05em;
-    transform-origin: center right;
-    letter-spacing: 1.6px;
-}
-
-#cart:hover,
-#user:hover {
     transform: scale(1.06);
     transition: transform 0.2s ease;
 }
@@ -201,7 +204,6 @@ button {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 .top_h3 {
     margin-top: 50px;
@@ -347,7 +349,6 @@ span{
     #cart,
     #user {
         font-size: 0.75rem;
-        padding: 13px 7px;
     }
 
     #cart_user_id img {
@@ -388,12 +389,15 @@ span{
 
     #cart,
     #user {
-        padding: 13px 6px;
         letter-spacing: 1px;
     }
-
+    .vertical-rl{
+        writing-mode: vertical-rl;
+        margin: 0 7px;
+    }
+    
     .make_but {
-        padding: 25px 5px;
+        padding: 25px 0;
         letter-spacing: 1.5px;
     }
 
