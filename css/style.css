@@ -151,6 +151,7 @@ button {
 #cart,
 #user {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     background-color: #e0187d;
