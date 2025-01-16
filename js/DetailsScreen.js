@@ -13,6 +13,7 @@ window.onload = function() {
     } else {
         document.getElementById('selectedColor').innerText = selectedColor; // それ以外は通常通り表示
     }
+    
     // 日本語名と価格をマッピング
     const price = {
         'マグカップ': 1100,
@@ -31,4 +32,18 @@ window.onload = function() {
     // 価格表示用の要素を取得
     const priceElement = document.getElementById('price');
     priceElement.innerText = formattedPrice + '円'; // 価格のみ表示
+
+    // コップの数
+    const selectedQuantity = localStorage.getItem('selectedQuantity');
+    document.getElementById('selectedQuantity').innerText = selectedQuantity + '個';
+    
+    // 消費税率を設定（例：10%）
+    const taxRate = 0.1;
+
+    // 消費税込みの合計金額を計算
+    const totalPrice = selectedCupPrice * selectedQuantity * (1 + taxRate);  // 合計金額（税込み）
+
+    // 合計金額の表示
+    const totalPriceElement = document.getElementById('totalPrice');
+    totalPriceElement.innerText ='(税込) ' + totalPrice.toLocaleString() + '円';
 };

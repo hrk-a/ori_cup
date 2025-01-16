@@ -13,6 +13,7 @@ window.onload = function() {
     } else {
         document.getElementById('selectedColor').innerText = selectedColor; // それ以外は通常通り表示
     }
+    
     // 日本語名と価格をマッピング
     const price = {
         'マグカップ': 1100,
@@ -32,25 +33,39 @@ window.onload = function() {
     const priceElement = document.getElementById('price');
     priceElement.innerText = formattedPrice + '円'; // 価格表示
 
-  // 個数の取得とローカルストレージに保存
+    // 消費税率を設定（例：10%）
+    const taxRate = 0.1;
+
+    // 個数の取得とローカルストレージに保存
     const quantityInput = document.getElementById('quantity');
     const savedQuantity = localStorage.getItem('selectedQuantity') || 1; // 初期値は1に設定
     quantityInput.value = savedQuantity;
 
-    quantityInput.addEventListener('input', function() {
+    // 合計金額の計算と消費税を加算
+    function updateTotalPrice() {
         const selectedQuantity = quantityInput.value;
-        localStorage.setItem('selectedQuantity', selectedQuantity);
+        const totalPrice = selectedCupPrice * selectedQuantity;
+        const taxAmount = totalPrice * taxRate; // 消費税額
+        const totalWithTax = totalPrice + taxAmount; // 消費税込みの合計金額
+
+        const totalPriceFormatted = totalPrice.toLocaleString();
+        const totalWithTaxFormatted = totalWithTax.toLocaleString();
 
         // 合計金額の更新
-        const totalPrice = selectedCupPrice * selectedQuantity;
-        const totalPriceFormatted = totalPrice.toLocaleString();
         const merchandisePriceElement = document.getElementById('merchandise_price');
-        merchandisePriceElement.innerText =totalPriceFormatted + '円';
+        merchandisePriceElement.innerText = totalPriceFormatted + '円';
+
+        // 消費税込みの価格の更新
+        const syouhizeiElement = document.getElementById('syouhizei');
+        syouhizeiElement.innerHTML = '(税込) ' + '<span id="merchandise_price">' + totalWithTaxFormatted + '<span>' + '円';
+    }
+
+    // 個数の変更があった場合に合計金額を更新
+    quantityInput.addEventListener('input', function() {
+        localStorage.setItem('selectedQuantity', quantityInput.value);
+        updateTotalPrice();
     });
 
-    // 初期表示時に合計金額を表示
-    const totalPrice = selectedCupPrice * savedQuantity;
-    const totalPriceFormatted = totalPrice.toLocaleString();
-    const merchandisePriceElement = document.getElementById('merchandise_price');
-    merchandisePriceElement.innerText =totalPriceFormatted + '円';
+    // 初期表示時に合計金額と消費税込みの価格を表示
+    updateTotalPrice();
 };

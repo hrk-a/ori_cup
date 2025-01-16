@@ -4,7 +4,7 @@
 // カップの色選択
 let selectedCupType = 'mug'; // デフォルトはマグカップ
 
-// カップの種類を変更する関数
+// ---------- カップの種類を変更する関数
 function changeImage(cupType) {
     selectedCupType = cupType; // グローバル変数を更新
     const displayImage = document.getElementById("display_image");
@@ -65,7 +65,7 @@ function changeImage(cupType) {
     localStorage.setItem('selectedCupName', selectedCupName); // 日本語名を保存    
 }
 
-// 色を変更する関数
+// ---------- 色を変更する関数
 function changeColor(color) {
     const displayImage = document.getElementById("display_image");
     const colorElements = document.querySelectorAll('.color_img img'); // 全ての色画像を取得
@@ -112,17 +112,21 @@ function getSelectedCupType() {
     return selectedCupType;
 }
 
+// ---------- ナビゲーション
 document.addEventListener("DOMContentLoaded", () => {
     // ナビゲーションとコンテンツ要素を取得
     const navLinks = document.querySelectorAll("#create_nav a");
     const contents = document.querySelectorAll(".content");
 
     // 画像切り替え処理
-    const updateImage = (link, isActive) => {
+    const updateImage = (link, isHover) => {
         const img = link.querySelector("img");
         if (img) {
-            const defaultSrc = isActive ? img.getAttribute("data-hover") : img.getAttribute("data-default");
-            img.src = defaultSrc;
+            if (isHover) {
+                img.src = img.getAttribute("data-hover");
+            } else {
+                img.src = img.getAttribute("data-default");
+            }
         }
     };
 
@@ -146,51 +150,57 @@ document.addEventListener("DOMContentLoaded", () => {
                 content.classList.remove("active");
                 if (content.id === targetId) {
                     content.classList.add("active");
+
+                    // コップ選択のコンテンツの場合、リンクの画像をホバー画像にする
+                    updateImage(link, true); // コンテンツが表示されたときにホバー画像に切り替え
                 }
             });
         });
 
         // マウスオーバー・マウスアウトイベントで画像切り替え
         link.addEventListener("mouseover", () => {
-            if (!link.classList.contains("active")) updateImage(link, true);
+            if (!link.classList.contains("active")) {
+                updateImage(link, true); // オーバー時にホバー画像に切り替え
+            }
         });
+
         link.addEventListener("mouseout", () => {
-            if (!link.classList.contains("active")) updateImage(link, false);
+            if (!link.classList.contains("active")) {
+                updateImage(link, false); // マウスアウト時にデフォルト画像に戻す
+            }
         });
     });
 
-    // 初期状態で一番最初のリンクをマウスオーバー画像に設定
+    // 初期状態で一番最初のリンクをアクティブにし、ホバー画像に切り替え
     const firstLink = navLinks[0]; // 最初のリンクを取得
     if (firstLink) {
         firstLink.classList.add("active");  // activeクラスを追加
-        updateImage(firstLink, true);       // 初期状態でマウスオーバー画像に切り替え
-        firstLink.dispatchEvent(new MouseEvent("mouseover"));  // 最初のリンクにマウスオーバーイベントを手動で発火
+        updateImage(firstLink, true);       // 初期状態でホバー画像に切り替え
     }
 
-// ナビゲーションの画像更新 (PC/Tablet/SP切り替え)
-    // 画像の更新とホバー処理を行う関数
+    // ナビゲーションの画像更新 (PC/Tablet/SP切り替え)
     const updateNavImages = () => {
         const isSPorTablet = window.innerWidth <= 832;  // スマートフォンまたはタブレット
         const isPC = window.innerWidth > 832;           // PCサイズ
         const images = document.querySelectorAll('.nav-image');
-    
+
         images.forEach(img => {
             const pcDefaultSrc = img.getAttribute('data-pc');  // PC用デフォルト画像
             const pcHoverSrc = img.getAttribute('data-hover') || pcDefaultSrc;  // PC用hover画像
             const spTabletDefaultSrc = img.getAttribute('data-sp');  // スマホとタブレット共通のデフォルト画像
             const spTabletHoverSrc = img.getAttribute('data-hover') || spTabletDefaultSrc;  // スマホ・タブレット用hover画像
-    
+
             // スマホまたはタブレットサイズの場合
             if (isSPorTablet) {
                 img.setAttribute('data-default', spTabletDefaultSrc);
                 img.setAttribute('data-hover', spTabletHoverSrc);
                 img.src = spTabletDefaultSrc;
-    
+
                 // クリックでホバー画像に切り替え
                 img.addEventListener('click', () => {
                     img.src = spTabletHoverSrc;
                 });
-    
+
                 // マウスアウトで元のデフォルト画像に戻す
                 img.addEventListener('mouseout', () => {
                     img.src = spTabletDefaultSrc;
@@ -201,12 +211,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 img.setAttribute('data-default', pcDefaultSrc);
                 img.setAttribute('data-hover', pcHoverSrc);
                 img.src = pcDefaultSrc;
-    
+
                 // クリックでホバー画像に切り替え
                 img.addEventListener('click', () => {
                     img.src = pcHoverSrc;
                 });
-    
+
                 // マウスアウトで元のデフォルト画像に戻す
                 img.addEventListener('mouseout', () => {
                     img.src = pcDefaultSrc;
@@ -214,19 +224,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     };
-    
+
     // 初期状態で画像を更新
     updateNavImages();
-    
+
     // 画面リサイズ時に画像を更新
     window.addEventListener('resize', updateNavImages);
     
-// ページが読み込まれたときにも画像更新
-document.addEventListener('DOMContentLoaded', updateNavImages);
-
-
-// ページが読み込まれたときにも画像更新
-document.addEventListener('DOMContentLoaded', updateNavImages);
+    // ページが読み込まれたときにも画像更新
+    document.addEventListener('DOMContentLoaded', updateNavImages);
+});
 
 /* テキスト入力 */
 const inputValue = document.getElementById('input_value');
@@ -263,17 +270,18 @@ function redrawCanvas() {
 }
 
 // フォント選択時にキャンバスを再描画
-fontSelector.addEventListener('change', redrawCanvas);
+fontSelector.addEventListener('change',redrawCanvas);
+
 
 // 文字の反映先の要素を取得
-const inputValueBox = document.getElementById('input_value_box'); // ここが文字が反映される場所
+const inputValueBox = document.getElementById('myCanvas'); // ここが文字が反映される場所
 
-// 入力内容の反映
+/*// 入力内容の反映 
 inputValue.addEventListener('input', () => {
     inputValueBox.textContent = inputValue.value;  // 入力された文字を反映
-});
+});*/
 
-// カラーパレットの作成
+// ---------- カラーパレットの作成
 const colorPalette = document.getElementById('color_palette');
 const grayscaleColumn = document.getElementById('grayscale_column');
 
@@ -339,10 +347,12 @@ for (let row = 0; row < rows; row++) {
 
     // 初期文字色設定
     inputValueBox.style.color = '#000000';
-});
+    
 
-// 文字の反映
+
+//　---------- 文字の反映
 document.addEventListener("DOMContentLoaded", function () {
+    const fontSelector = document.getElementById('fontSelector');
     const fontSizeInput = document.getElementById("font_size_input");
     const decreaseButton = document.getElementById("decrease_font_size");
     const increaseButton = document.getElementById("increase_font_size");
@@ -358,10 +368,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 初期のフォントサイズ
     let fontSize = parseInt(fontSizeInput.value) || 18;
-    
+    let selectedFont = fontSelector.value || "sans-serif";  // 初期フォント
+
     // フォントサイズを更新する関数
     function updateFontSize() {
-        ctx.font = `${fontSize}px sans-serif`;  // フォントサイズの変更
+        ctx.font = `${fontSize}px ${selectedFont}`;  // フォントサイズの変更
         redrawCanvas();  // キャンバスを再描画
     }
     
@@ -396,16 +407,51 @@ document.addEventListener("DOMContentLoaded", function () {
         updateFontSize();  // フォントサイズを更新
     });
     
-    // ページ読み込み時に初期フォントサイズを適用
-    updateFontSize();  // キャンバスを再描画 フォントサイズ変わらない
+   // フォント選択時の処理
+   fontSelector.addEventListener('change', function () {
+       selectedFont = fontSelector.value;  // 選択したフォントを設定
+       updateFontSize();  // フォントを適用して再描画
+   });
+
+   // ページ読み込み時に初期フォントサイズとフォントを適用
+   updateFontSize();  // 初期状態でキャンバスを再描画
 });
 
-// 角度調整用スライダー
+const rotationSlider = document.getElementById('rotation');
+const rotationValue = document.getElementById('rotation_value');
+let rotationAngle = 0;
+// キャンバスの再描画関数
+function redrawCanvas() {
+    drawText(rotationAngle);  // 回転角度を反映して文字を描画
+}
+
+// 文字を描画する関数
+function drawText(rotation) {
+    // canvasの初期化
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 文字の位置とスタイル設定
+    const text = textContent;  // 入力された文字を使用
+    const x = canvas.width / 2;
+    const y = canvas.height / 2;
+
+    // 回転を設定
+    ctx.save(); // 現在の状態を保存
+    //ctx.translate(x, y); // 回転の中心をcanvasの中心に設定
+    ctx.rotate(rotation * Math.PI / 180); // 度数法からラジアンに変換
+    ctx.fillText(text, -ctx.measureText(text).width / 2, 0); // 文字を描画
+    ctx.restore(); // 状態を元に戻す
+}
+
+// スライダーの変更イベント
 rotationSlider.addEventListener('input', () => {
-    displayBox.style.transform = `translateX(-50%) rotate(${rotationSlider.value}deg)`;
+    rotationAngle = rotationSlider.value;
     rotationValue.textContent = rotationSlider.value;
-    rotationValueCurrent.textContent = rotationSlider.value;
+    drawText(rotationAngle);  // 新しい角度で文字を描画
 });
+
+// 初回の描画
+drawText(rotationAngle);
 
 /*// 入力されたテキストをリアルタイムで表示
 inputArea.addEventListener('input', () => {
@@ -413,7 +459,7 @@ inputArea.addEventListener('input', () => {
 });*/
 
 
-// 文字デザインの変更（プルダウンメニュー）
+//　---------- 文字デザインの変更（プルダウンメニュー）
 document.addEventListener("DOMContentLoaded", () => {
     const inputValueBox = document.getElementById("myCanvas"); // 表示エリア
     const verticalButton = document.getElementById("verticalButton"); // 縦書きボタン
@@ -435,23 +481,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// キャンバスとコンテキストの取得
-/*const canvas = document.getElementById('mugCanvas');
-const ctx = canvas.getContext('2d');
-
 // コップ画像を読み込む
 const mugImage = new Image();
 //mugImage.src = '../img/mug.png';  // 画像のパスが正しいことを確認してください
 mugImage.onload = function () {
     // コップ画像が読み込まれたら、キャンバスに描画
     ctx.drawImage(mugImage, 0, 0, canvas.width, canvas.height);
-};*/
+};
 
 // アップロードされた画像を保持する配列
 let isDragging_picture = false;  // ドラッグフラグ
 let draggingIndex = -1;  // 現在ドラッグ中の画像インデックス
 let offsetX_picture, offsetY_picture;  // ドラッグ時のオフセット
-
 
 let uploadedImages = [];  // アップロードされた画像のデータを格納する配列
 let selectedImageIndex = -1;  // 現在選択されている画像のインデックス
@@ -502,19 +543,19 @@ document.getElementById("imageInput").addEventListener("change", function(event)
     });
 }*/
 
-    // ダウンロードボタン
-    document.getElementById('download').addEventListener('click', function() {
-        if (uploadedImages.length > 0 || text.content) {
-            // キャンバスからPNGデータURLを取得
-            const dataURL = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.href = dataURL;
-            link.download = 'mug-design.png';
-            link.click();
-        } else {
-            alert("画像や文字がありません。画像をアップロードしてください。");
-        }
-    });
+// ダウンロードボタン
+document.getElementById('download').addEventListener('click', function() {
+    if (uploadedImages.length > 0 || text.content) {
+        // キャンバスからPNGデータURLを取得
+        const dataURL = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = dataURL;
+        link.download = 'mug-design.png';
+        link.click();
+    } else {
+        alert("画像や文字がありません。画像をアップロードしてください。");
+    }
+});
 
 // 画像のサイズ変更
 const increaseSizeButton = document.getElementById('increaseSize');
@@ -606,84 +647,83 @@ canvas.addEventListener('wheel', function (e) {
     }
 });
 
-    // 画像と文字をキャンバスに描画
-    function redrawCanvas() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+// 画像と文字をキャンバスに描画
+function redrawCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
 
-        // 画像を描画
-        uploadedImages.forEach(function(imgData) {
-            ctx.drawImage(imgData.image, imgData.x, imgData.y, imgData.width, imgData.height);
-        });
+    // 画像を描画
+    uploadedImages.forEach(function(imgData) {
+        ctx.drawImage(imgData.image, imgData.x, imgData.y, imgData.width, imgData.height);
+    });
 
-        // 文字を描画
-        if (text.content) {
-            ctx.fillText(text.content, text.x, text.y);  // 文字を指定位置に描画
+    // 文字を描画
+    if (text.content) {
+        ctx.fillText(text.content, text.x, text.y);  // 文字を指定位置に描画
+    }
+}
+    // 画像と文字のドラッグオフセットを個別に管理
+    let imageOffsetX = 0, imageOffsetY = 0;  // 画像のオフセット
+    let textOffsetX = 0, textOffsetY = 0;    // 文字のオフセット
+
+canvas.addEventListener('mousedown', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+
+    // 文字を選択
+    if (mouseX >= text.x && mouseX <= text.x + ctx.measureText(text.content).width &&
+        mouseY >= text.y - 30 && mouseY <= text.y) {
+        selectedText = text;
+        isTextDragging = true;
+        textOffsetX = mouseX - text.x;  // 文字用オフセット
+        textOffsetY = mouseY - text.y;
+        selectedImageIndex = -1;  // 文字が選択されているので画像選択解除
+        return;  // 文字が選択された場合、これ以降の処理を終了
+    }
+
+    // 画像を選択（文字が選ばれなかった場合のみ）
+    for (let i = 0; i < uploadedImages.length; i++) {
+        const imgData = uploadedImages[i];
+        if (mouseX >= imgData.x && mouseX <= imgData.x + imgData.width &&
+            mouseY >= imgData.y && mouseY <= imgData.y + imgData.height) {
+            selectedImageIndex = i;
+            isImageDragging = true;
+            imageOffsetX = mouseX - imgData.x;  // 画像用オフセット
+            imageOffsetY = mouseY - imgData.y;
+            break;
         }
     }
-      // 画像と文字のドラッグオフセットを個別に管理
-      let imageOffsetX = 0, imageOffsetY = 0;  // 画像のオフセット
-        let textOffsetX = 0, textOffsetY = 0;    // 文字のオフセット
+});
 
-    canvas.addEventListener('mousedown', function(e) {
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+canvas.addEventListener('mousemove', function(e) {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
 
-        // 文字を選択
-        if (mouseX >= text.x && mouseX <= text.x + ctx.measureText(text.content).width &&
-            mouseY >= text.y - 30 && mouseY <= text.y) {
-            selectedText = text;
-            isTextDragging = true;
-            textOffsetX = mouseX - text.x;  // 文字用オフセット
-            textOffsetY = mouseY - text.y;
-            selectedImageIndex = -1;  // 文字が選択されているので画像選択解除
-            return;  // 文字が選択された場合、これ以降の処理を終了
-        }
+    // 画像をドラッグ
+    if (isImageDragging && selectedImageIndex >= 0) {
+        const imgData = uploadedImages[selectedImageIndex];
+        imgData.x = mouseX - imageOffsetX;  // 画像用オフセットを使用
+        imgData.y = mouseY - imageOffsetY;
+        redrawCanvas();
+    }
 
-        // 画像を選択（文字が選ばれなかった場合のみ）
-        for (let i = 0; i < uploadedImages.length; i++) {
-            const imgData = uploadedImages[i];
-            if (mouseX >= imgData.x && mouseX <= imgData.x + imgData.width &&
-                mouseY >= imgData.y && mouseY <= imgData.y + imgData.height) {
-                selectedImageIndex = i;
-                isImageDragging = true;
-                imageOffsetX = mouseX - imgData.x;  // 画像用オフセット
-                imageOffsetY = mouseY - imgData.y;
-                break;
-            }
-        }
-    });
+    // 文字をドラッグ
+    if (isTextDragging && selectedText) {
+        selectedText.x = mouseX - textOffsetX;  // 文字用オフセットを使用
+        selectedText.y = mouseY - textOffsetY;
+        redrawCanvas();
+    }
+});
 
-    canvas.addEventListener('mousemove', function(e) {
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
+canvas.addEventListener('mouseup', function() {
+    isImageDragging = false;
+    isTextDragging = false;
+    selectedText = null;  // 文字の選択を解除
+});  
 
-        // 画像をドラッグ
-        if (isImageDragging && selectedImageIndex >= 0) {
-            const imgData = uploadedImages[selectedImageIndex];
-            imgData.x = mouseX - imageOffsetX;  // 画像用オフセットを使用
-            imgData.y = mouseY - imageOffsetY;
-            redrawCanvas();
-        }
-
-        // 文字をドラッグ
-        if (isTextDragging && selectedText) {
-            selectedText.x = mouseX - textOffsetX;  // 文字用オフセットを使用
-            selectedText.y = mouseY - textOffsetY;
-            redrawCanvas();
-        }
-    });
-
-    canvas.addEventListener('mouseup', function() {
-        isImageDragging = false;
-        isTextDragging = false;
-        selectedText = null;  // 文字の選択を解除
-    });
-    
-
- // コップを選んだ時の処理
- const cupButtons = document.querySelectorAll(".cup-button");
+// コップを選んだ時の処理
+const cupButtons = document.querySelectorAll(".cup-button");
         
 cupButtons.forEach(button => {
     button.addEventListener("click", function () {
@@ -699,13 +739,13 @@ cupButtons.forEach(button => {
     });
 });
 
- // カートリンクにアイテム数を表示
- document.addEventListener("DOMContentLoaded", function () {
-     let cartData = JSON.parse(localStorage.getItem("cartItems")) || [];
-     let cartCount = cartData.length;
-     let cartLink = document.getElementById("create_cart");
-     
-     if (cartCount > 0) {
-         cartLink.innerHTML += `<span class="cart-count">(${cartCount}点)</span>`;
-     }
- });
+// カートリンクにアイテム数を表示
+document.addEventListener("DOMContentLoaded", function () {
+    let cartData = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let cartCount = cartData.length;
+    let cartLink = document.getElementById("create_cart");
+    
+    if (cartCount > 0) {
+        cartLink.innerHTML += `<span class="cart-count">(${cartCount}点)</span>`;
+    }
+});
