@@ -300,13 +300,17 @@ button::after {
 }
 
 /* 全てのdivタグに線を追加 */
-.details-print,.details-item,.details-money,.details-price,.details-quantity,.details-row{
+.details-print,.details-item,.details-money,.details-price,.details-quantity,.details-row,.details-wrapping{
     border: 1px solid #000; /* 線の色と太さ */
 }
 
-.details-row,details-print_al,.details-item.details-wrapping,.Details_main_wrapping{
+.details-row,details-print_al,.details-item.details-wrapping,.Details_main_wrapping,.details-item{
     display: flex;
     width: 100%;
+}
+
+.details-wrapping_label{
+    display: flex;
 }
 
 .details-item_sub{
@@ -314,6 +318,5 @@ button::after {
 }
 
 .details-cell{
-    background-color: #7e99d4;
     text-align: center;
 }

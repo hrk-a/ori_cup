@@ -536,7 +536,8 @@ textarea {
     }
     .cup img{
         margin: 0 10px;
-        width: 18%;
+        width: 115px;
+        height: auto;
     }
     /* ---------- 色選択 ---------- */
     .color1,.color2{
@@ -546,7 +547,7 @@ textarea {
         align-items: center;
     }
     .color1 img,.color2 img{
-        width: 37%;
+        width: 115px;
         height: auto;
         margin: 0 5px;
     }
@@ -618,7 +619,7 @@ textarea {
         height: auto;
     }
     #create_nav img{
-        width: 165px;
+        width: 200px;
         height: auto;
         margin: 0 5px 0 0;
     }
@@ -650,12 +651,12 @@ textarea {
     }
     /* ---------- コップ選択 ---------- */
     .cup{
-        flex-wrap: nowrap;
-        justify-content: space-between;
+        justify-content: flex-start;
     }
     .cup img{
         margin: 0 10px;
-        width: 37%;
+        width: 90px;
+        height: auto;
     }
     /* ---------- 色選択 ---------- */
     .color1,.color2{
@@ -665,7 +666,7 @@ textarea {
         align-items: center;
     }
     .color1 img,.color2 img{
-        width: 37%;
+        width: 90px;
         height: auto;
         margin: 0 5px;
     }

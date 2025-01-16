@@ -56,78 +56,90 @@
 
                 <div class="Details_main">
 
-                    <!----グループ１---->
-                    <table>
-                        <tr>
-                            <th>プリント</th>
-                            <th colspan="2">アイテム</th>
-                            <th class="Details_main_top_title">本体価格</th>
-                            <th class="Details_main_top_title">数量</th>
-                        </tr>
-                        <tr>
-                            <td rowspan="3" class="deta_img">
-                                <img src="img/cup/gray.png" class="Details_main_img">
-                            </td>
-                            <td>コップの種類</td>
-                            <td><p id="selectedCupName"></p></td>
-                            <td rowspan="3"  class="right"><p id="price">本体価格</p></td>
-                            <td rowspan="3"  class="right"><p id="selectedQuantity">数量</p></td>
-                        </tr>
-                        <tr>
-                            <td>カラー</td>
-                            <td><p id="selectedColor"></p></td>
-                        </tr>
-                        <tr>
-                            <td>ラッピング</td>
-                            <td><p id="nameDisplay"></p></td>
-                        </tr>
-                        <!----グループ２---->
-                        <tr>
-                            <th><p class="Details_main_top_title">送料</p></th>
-                            <td colspan="4" class="right">450円</td>
-                        </tr>
-                        <tr>
-                            <th><p class="Details_main_top_title">合計金額</p></th>
-                            <td colspan="4"  class="right"><p id="totalPrice">合計金額</p></td>
-                        </tr>
-                    </table>
+                    <!-- グループ１ -->
+                    <div class="details-row">
 
-                    <!----ラッピング---->
+                        <div id="details-print_al"><!-- プリント -->
+                            <div class="details-print">プリント</div>
+                            <div class="details-print"><img src="img/cup/gray.png" class="Details_main_img"></div>    
+                        </div>
+
+                        <div id="details-item_al"><!-- アイテム -->
+                            <div class="details-item">アイテム</div>
+                            <div class="details-item_al">
+                                <div class="details-item">
+                                    <div class="details-item_sub">コップの種類</div>
+                                    <div class="details-cell">
+                                        <p id="selectedColor">ああ</p>
+                                    </div>
+                                </div>
+                                <div class="details-item">
+                                    <div class="details-item_sub">カラー</div>
+                                    <div class="details-cell">
+                                        <p id="selectedColor">ああああ</p>
+                                    </div>
+                                </div>
+                                <div class="details-item">
+                                    <div class="details-item_sub">ラッピング</div>
+                                    <div class="details-cell">
+                                        <p id="nameDisplay">ああああ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="details-price">本体価格</div>
+                        <div class="details-quantity">数量</div>
+                    </div>
+
+
+                    <!-- グループ２ -->
+                    <div class="details-money">
+                        <div class="details-cell Details_main_top_title">送料</div>
+                        <div class="details-cell right">450円</div>
+                    </div>
+                    <div class="details-money">
+                        <div class="details-cell Details_main_top_title">合計金額</div>
+                        <div class="details-cell right">
+                            <p id="totalPrice">(税込) 0円</p>
+                        </div>
+                    </div>
+
+                    <!-- ラッピング -->
                     <div class="Details_log">
                         <img src="./img/wrapping.png" id="title">
                     </div>
 
                     <form class="Details_main_wrapping">
-                        <table>
-                            <tr>
-                                <th><p class="Details_main_top_title">カラーボックス</p></th>
-                                <th><p class="Details_main_top_title">クリアケース</p></th>
-                                <th><p class="Details_main_top_title">ラッピング袋＆リボン</p></th>
-                            </tr>
-                            <tr class="lapping">
-                                <td>
-                                    <label>
-                                        <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
-                                            onclick="showName('カラーボックス')" style="cursor: pointer;">
-                                        <input type="radio" name="name" class="accented" value="カラーボックス" onclick="showName()">
-                                    </label>
-                                </td>
-                                <td>
-                                    <label>
-                                        <img src="img/inose_.webp" class="Details_main_img" alt="クリアケース"
-                                            onclick="showName('クリアケース')" style="cursor: pointer;">
-                                        <input type="radio" name="name" class="accented" value="クリアケース" onclick="showName()">
-                                    </label>
-                                </td>
-                                <td>
-                                    <label>
-                                        <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
-                                            onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;">
-                                        <input type="radio" name="name" class="accented" value="ラッピング袋＆リボン" onclick="showName()">
-                                    </label>
-                                </td>
-                            </tr>
-                        </table>
+                        <div class="details-wrapping">
+                            <div class="details-cell Details_main_top_title">カラーボックス</div>
+                            <label class="details-wrapping_label">
+                                <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
+                                    onclick="showName('カラーボックス')" style="cursor: pointer;">
+                                <input type="radio" name="name" class="accented" value="カラーボックス"
+                                    onclick="showName()">
+                            </label>
+                        </div>
+
+                        <div class="details-wrapping">
+                            <div class="details-cell Details_main_top_title">クリアケース</div>
+                            <label class="details-wrapping_label">
+                                <img src="img/inose_.webp" class="Details_main_img" alt="クリアケース"
+                                    onclick="showName('クリアケース')" style="cursor: pointer;">
+                                <input type="radio" name="name" class="accented" value="クリアケース"
+                                    onclick="showName()">
+                            </label>
+                        </div>
+                        <div class="details-wrapping">
+                            <div class="details-cell Details_main_top_title">ラッピング袋＆リボン</div>
+                            <label class="details-wrapping_label">
+                                <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
+                                    onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;">
+                                <input type="radio" name="name" class="accented" value="ラッピング袋＆リボン"
+                                    onclick="showName()">
+                            </label>
+
+                        </div>
                     </form>
 
                 </div>
@@ -141,7 +153,6 @@
                             document.getElementById("nameDisplay").innerHTML = selectedRadio.value;
                         }
                     }
-
                 </script>
 
                 <div class="button">
