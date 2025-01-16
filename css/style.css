@@ -143,6 +143,7 @@ button {
 
 #make_but span {
     display: flex;
+    writing-mode: vertical-rl;
     text-orientation: upright;
     justify-content: center;
     align-items: center;
@@ -165,7 +166,7 @@ button {
     box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
     text-orientation: upright;
     margin-bottom: 15px;
-    padding: 25px 0;
+    padding: 25px 10px;
     text-align: center;
     border-radius: 13px 0 0 13px;
     color: black;
@@ -397,7 +398,7 @@ span{
     }
     
     .make_but {
-        padding: 25px 0;
+        padding: 25px 7px;
         letter-spacing: 1.5px;
     }
 
