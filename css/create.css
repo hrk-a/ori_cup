@@ -28,7 +28,7 @@ body {
 #picture_cont {
     position: relative; /* 親要素に対して相対位置を設定 */
     text-align: center;
-    width: 100%; /* 左右半分の幅 */
+    width: 78%; /* 左右半分の幅 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,7 +38,7 @@ body {
 }
 /* 右エリア (選択肢エリア) */
 #choice_cont {
-    width: 100vh; /* 左右半分の幅 */
+    width: 22%; /* 左右半分の幅 */
     box-sizing: border-box;
     display: flex;
     justify-content: flex-start;
@@ -46,22 +46,17 @@ body {
     margin: 0; /* 隙間をなくす */
     padding: 0; /* 隙間をなくす */
 }
-/* 親要素にflexboxを使用して、左右中央に配置 */
 /*コップの写真*/
 #picture_cont02 {
-    position: relative; /* 親要素を相対的に配置 */
+    position: absolute; 
     width: 100%; /* 必要に応じて幅を調整 */
-    height: 100%; /* 必要に応じて高さを調整 */
-    display: flex; /* フレックスボックスで並べる */
-    justify-content: center; /* 水平方向に中央配置 */
-    align-items: center; /* 垂直方向に中央配置 */
 }
 
 /* 左のコップの写真 */
 #display_image {
     position: absolute; /* 絶対配置 */
     top: 50%; /* 親要素の中央に配置 */
-    left: 101%; /* 親要素の右端に配置 */
+    left: 90%; /* 親要素の右端に配置 */
     transform: translate(-85%, -50%); /* 水平方向: 右端から中央へ, 垂直方向: 中央揃え */
     width: 380px;
     height: auto; /* 高さは自動調整 */
@@ -78,10 +73,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-canvas{
-    border: 1px solid #333;
 }
 
 /* ふわっと表示アニメーション */
@@ -101,12 +92,11 @@ canvas{
 }
 /*キャンバス*/
 canvas{
-    width: 100%;
+    border: 1px solid #333;
+    vertical-align: middle;
+    width: 90%;
     height: 360px;
-    position: absolute; /* 絶対配置 */
-    top: 24.5%; /* 親要素の中央に配置 */
-    left: 8%; /* 親要素の中心に配置 */
-
+    margin: 0 auto;
 }
 /* ----- ナビ ----- */
 #create_nav {
@@ -117,7 +107,6 @@ canvas{
     box-sizing: border-box;
     background: none;
     background: linear-gradient(to bottom, #fff 10%, #d4d4d4); /* 背景グラデーション */
-    width: 60%; /* 幅を100%に設定 */
     padding: 0; /* パディングなし */
     margin-right: -1px;
 }
@@ -275,21 +264,11 @@ input {
     white-space: nowrap;
 }
 
-.font-size-control, .slider-container, .text_design, #form_test{
-    text-align: center;
-}
 /* フォントサイズ調整のスタイル */
 .fontsize, .henkei, .text-design {
     margin-top: 20px;
 }
 
-/* フォントサイズコントロール（+と-ボタン） */
-.font-size-control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
 /* ---------- フォント選択 ---------- */
     /* プルダウンそれぞれのフォントを適用 */
     option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
@@ -484,6 +463,9 @@ textarea {
     body{
         background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
     }
+    #picture_cont, #create_nav{
+        background: none;
+    }
     /* スマホサイズ */
     #main,#choice_cont{
         flex-direction: column;
@@ -492,33 +474,41 @@ textarea {
     #main{
         padding: 0;
     }
-    #picture_cont02{
-        display: block;
-    }
     /*マグカップの写真*/
     #display_image {
         transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
-        left: 50%;    
-        width: 80%; /* 画像の幅を親要素に合わせる */
+        left: 75%;    
+        width: 40%; 
         height: auto; /* 高さは自動調整 */
     }
+    /* ---------- コップ表示エリア ---------- */
+    #picture_cont{
+        width: 100%;
+        min-height: 65%;
+    }
+    #picture_cont02{
+        width: 100%;
+        height: auto;
+        display: block
+    }
+    /* ---------- 選択エリア ---------- */
     #choice_cont {
+        width: 100%;
         display: flex;
         justify-content: flex-start;
-        min-height: 45%;
+        min-height: 35%;
         padding: 10px;
         padding-top: 0;
         box-sizing: border-box;
+        overflow: auto;
     }
     #create_nav{
         flex-direction: row;
         width: 100%;
-        box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
-
+        overflow-x: auto;
     }
     #create_nav a{
         height: auto;
-        width: 25%;
     }
     #create_nav img{
         width: 100%;
@@ -528,21 +518,46 @@ textarea {
         width: 100%;
         height: 100%;
     }
-    /*コップ部分*/
-    .cup{
-        justify-content: space-between;
-    }
-    .cup img{
-        margin: 0 10px;
-        width: 25%;
-    }
     /*挿入する画像*/
     #picture_cont01{
         position: static;
     }
     canvas{
-        width: 100vh;
-        width: 30vh;
+        width: 90%;
+        height: 300px;
+    }
+    /* ---------- 各選択エリア ---------- */
+    .content{
+        padding: 3% 2%;
+    }
+    /* ---------- コップ選択 ---------- */
+    .cup{
+        justify-content: space-between;
+    }
+    .cup img{
+        margin: 0 10px;
+        width: 18%;
+    }
+    /* ---------- 色選択 ---------- */
+    .color1,.color2{
+        flex-direction: row;
+        height: auto;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .color1 img,.color2 img{
+        width: 37%;
+        height: auto;
+        margin: 0 5px;
+    }
+    /* ---------- 文字選択 ---------- */
+    .sp_flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #color_palette_container{
+        justify-content: flex-start;
     }
 }
 /*スマホサイズ*/
@@ -566,22 +581,26 @@ textarea {
     #main{
         padding: 0;
     }
-    #picture_cont02{
-        display: block;
-    }
     /*マグカップの写真*/
     #display_image {
         transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
-        left: 69%;    
-        width: 55%; 
+        left: 75%;    
+        width: 40%; 
         height: auto; /* 高さは自動調整 */
     }
     /* ---------- コップ表示エリア ---------- */
     #picture_cont{
+        width: 100%;
         min-height: 60%;
+    }
+    #picture_cont02{
+        width: 100%;
+        height: auto;
+        display: block
     }
     /* ---------- 選択エリア ---------- */
     #choice_cont {
+        width: 100%;
         display: flex;
         justify-content: flex-start;
         min-height: 40%;
@@ -612,10 +631,8 @@ textarea {
         position: static;
     }
     canvas{
-        width: 94%;
-        height: 190px;
-        top: 27%;
-        left: 3%;
+        width: 90%;
+        height: 155px;
     }
     /*ご注文カート*/
     .create_cart{
@@ -652,4 +669,5 @@ textarea {
         height: auto;
         margin: 0 5px;
     }
+    /* ---------- 文字選択 ---------- */
 }
