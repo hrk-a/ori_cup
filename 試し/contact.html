@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コンタクト</title>
+
+    <style>
+        /* モーダルのスタイル */
+        .modal {
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%); /* 左右と上下の中央に配置 */
+            width: 600px; /* 固定の幅を指定 */
+            height: 400px; /* 固定の高さを指定 */
+            background-color: rgba(0, 0, 0, 0.4); /* 背景の半透明効果 */
+        }
+
+        /* モーダルコンテンツ */
+        .modal-content {
+            background: #fff;
+            border: 3px solid #2fc1ed;
+            border-radius: 20px;
+            padding: 3% 6%;
+            box-shadow: 0 0 0 7px #fff;
+            height: 100%;  /* モーダルの高さに合わせて全体の高さを埋める */
+            overflow-y: auto; /* コンテンツが溢れた場合にスクロール */
+        }
+
+        /* モーダルメッセージ部分 */
+        #modal-message {
+            max-height: 100%;
+            overflow-y: auto;
+            word-wrap: break-word; /* 長い単語が改行されるようにする */
+        }
+
+        /* 内容確認テーブルエリア */
+        .form_cont {
+            max-height: 50vh; /* 最大高さを指定 */
+            overflow-y: auto; /* 内容が溢れた場合にスクロール */
+            background-color: rgb(252, 252, 186);
+        }
+
+        /* スクロールバーのスタイル */
+        .form_cont::-webkit-scrollbar {
+            width: 8px; /* スクロールバーの幅 */
+        }
+
+        .form_cont::-webkit-scrollbar-thumb {
+            background-color: #f357a0; /* スクロールバーの色 */
+            border-radius: 10px; /* 角を丸くする */
+        }
+
+        .form_cont::-webkit-scrollbar-track {
+            background-color: #f1f1f1; /* スクロールバーのトラックの色 */
+        }
+
+        /* 送信ボタン */
+        .contact_button {
+            font-family: "M PLUS Rounded 1c", sans-serif;
+            font-weight: 600;
+            font-size: 23px;
+            line-height: 1;
+            letter-spacing: 2px; /* スキーニング（文字間の調整） */
+            
+            color: #fff;
+            background-color: #2fc1ed;
+            border: 3px solid #fff;
+            border-radius: 50px;
+            width: 280px;
+            box-shadow: 2px 6px #2fc1ed;
+            padding: 22px 0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* アニメーションのスムーズさを追加 */
+            position: relative; /* 疑似要素を位置させるために相対位置に設定 */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        /* お問い合わせ内容エリア */
+        .naiyou {
+            background-color: yellow;
+            max-height: 30vh; /* 最大高さを指定 */
+            overflow-y: auto; /* コンテンツが溢れた場合にスクロール */
+            padding-right: 10px; /* スクロールバーのために右側に余白を追加 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- モーダルウィンドウ -->
+    <div class="modal_overlay">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span id="close-modal" class="close">&times;</span>
+                <h2>内容確認</h2>
+                <form id="check_contents">
+                    <div class="form_cont">
+                        <table>
+                            <tr>
+                                <td class="modal_left">お問い合わせ項目</td>
+                                <td id="modal-kindsSelect" class="modal_text"></td>
+                            </tr>
+                            <tr>
+                                <td class="modal_left">お名前</td>
+                                <td id="modal-name" class="modal_text"></td>
+                            </tr>
+                            <tr>
+                                <td class="modal_left">メールアドレス</td>
+                                <td id="modal-email" class="modal_text"></td>
+                            </tr>
+                            <tr>
+                                <td class="modal_left">お問い合わせ内容</td>
+                                <td id="modal-inquiry" class="modal_text">
+                                    あああああ<br>
+                                    あああああ<br>
+                                    あああああ<br>
+                                    あああああ<br>
+                                    あああああ<br>
+                                    あああああ<br>
+                                    あああああ<br>
+                                    あああああ
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="naiyou">
+                        <div id="modal-message"></div>
+                    </div>
+                    <br>
+                    <div class="button">
+                        <button class="contact_button" type="submit" class="btn">送信</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

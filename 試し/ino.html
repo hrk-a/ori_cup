@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作り方とデザイン例の切り替え</title>
+    <style>
+        /* タブのスタイル */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .tab-button.active {
+            background-color: #f1f1f1;  /* アクティブタブの背景 */
+        }
+
+        .tab-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* コンテンツのスタイル */
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .content_logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .howto_step img {
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 10px;
+            transition: opacity 1s ease-in-out;
+            opacity: 0;
+        }
+
+        .howto_step img.visible {
+            opacity: 1;
+        }
+
+        .button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button a {
+            text-decoration: none;
+        }
+
+        .howto_button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .design_cont {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .mug_design_img img {
+            width: 80px;
+            height: 80px;
+            margin: 5px;
+        }
+
+        .cup_name {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .cup_name span {
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* ハンバーガーメニュー */
+        #hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        #hamburger div {
+            width: 30px;
+            height: 4px;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        #navMenu {
+            display: none;
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            transition: bottom 0.3s ease-in-out;
+        }
+
+        #navMenu.active {
+            display: block;
+            bottom: 0;
+        }
+
+        #navMenu .nav-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        #navMenu .nav-menu a {
+            font-size: 24px;
+            color: #fff;
+            text-decoration: none;
+            margin: 20px 0;
+        }
+
+        #closeBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* スマホサイズでのみハンバーガー表示 */
+        @media (max-width: 768px) {
+            #hamburger {
+                display: flex;
+            }
+            .tabs {
+                display: none;  /* スマホ時にタブ非表示 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ハンバーガーアイコン -->
+    <div id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- ハンバーガーメニュー -->
+    <div id="navMenu">
+        <div id="closeBtn">×</div>
+        <div class="nav-menu">
+            <a href="#" data-target="howto">作り方</a>
+            <a href="#" data-target="design">デザイン例</a>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <button id="howto-tab" class="tab-button active">作り方</button>
+        <button id="design-tab" class="tab-button">デザイン例</button>
+    </div>
+
+    <!-- 作り方のコンテンツ -->
+    <div id="howto" class="content active">
+        <div class="content_logo">
+            <img src="img/howto_logo.png" alt="作り方">
+        </div>
+        <div class="howto_step">
+            <!-- PC用画像 -->
+            <img src="img/STEP1.png" alt="STEP1" class="pc-img">
+            <img src="img/STEP2.png" alt="STEP2" class="pc-img">
+            <img src="img/STEP3.png" alt="STEP3" class="pc-img">
+
+            <!-- SP用画像 -->
+            <img src="img/STEP1_SP.png" alt="STEP1" class="sp-img">
+            <img src="img/STEP2_SP.png" alt="STEP2" class="sp-img">
+            <img src="img/STEP3_SP.png" alt="STEP3" class="sp-img">
+        </div>
+        <div class="button">
+            <a href="create.html" target="_blank"><button class="howto_button">
+                はじめる<br><span>START</span></button></a>
+        </div>
+    </div>
+
+    <!-- デザイン例のコンテンツ -->
+    <div id="design" class="content">
+        <div class="content_logo">
+            <img src="img/design_logo.png" alt="デザイン例">
+        </div>
+
+        <!-- マグカップ -->
+        <div class="design_cont">
+            <div class="mug_design_img">
+                <img src="img/cup/pink_cup.png" alt="">
+                <img src="img/cup/mandarin_cup.png" alt="">
+                <img src="img/cup/turquoise_cup.png" alt="">
+                <img src="img/cup/lime_cup.png" alt="">
+            </div>
+            <p class="cup_name">① マグカップ<span>1,100円</span></p>
+        </div>
+
+        <div class="design_cont">
+            <div class="mug_design_img">
+                <img src="img/cup/black_tumbler.png" alt="">
+                <img src="img/cup/purple_tumbler.png" alt="">
+                <img src="img/cup/gray_tumbler.png" alt="">
+                <img src="img/cup/red_tumbler.png" alt="">
+            </div>
+            <p class="cup_name">② タンブラー<span>1,500円</span></p>
+        </div>
+
+        <div class="design_cont">
+            <div class="mug_design_img">
+                <img src="img/cup/glass.png" alt="">
+                <img src="img/cup/glass.png" alt="">
+                <img src="img/cup/glass.png" alt="">
+                <img src="img/cup/glass.png" alt="">
+            </div>
+            <p class="cup_name">③ グラス<span>800円</span></p>
+        </div>
+
+        <div class="design_cont">
+            <div class="mug_design_img">
+                <img src="img/cup/jug.png" alt="">
+                <img src="img/cup/jug.png" alt="">
+                <img src="img/cup/jug.png" alt="">
+                <img src="img/cup/jug.png" alt="">
+            </div>
+            <p class="cup_name">④ ジョッキ<span>1,100円</span></p>
+        </div>
+
+        <div class="design_cont">
+            <div class="mug_design_img">
+                <img src="img/cup/wine.png" alt="">
+                <img src="img/cup/wine.png" alt="">
+                <img src="img/cup/wine.png" alt="">
+                <img src="img/cup/wine.png" alt="">
+            </div>
+            <p class="cup_name">⑤ ワイングラス<span>2,000円</span></p>
+        </div>
+    </div>
+
+    <script>
+        // タブの切り替え処理
+        document.addEventListener("DOMContentLoaded", () => {
+            const howtoTab = document.getElementById('howto-tab');
+            const designTab = document.getElementById('design-tab');
+            const howtoContent = document.getElementById('howto');
+            const designContent = document.getElementById('design');
+
+            // 作り方タブのクリックイベント
+            howtoTab.addEventListener('click', () => {
+                // タブの状態を切り替え
+                howtoTab.classList.add('active');
+                designTab.classList.remove('active');
+                
+                // コンテンツの表示を切り替え
+                howtoContent.classList.add('active');
+                designContent.classList.remove('active');
+            });
+
+            // デザイン例タブのクリックイベント
+            designTab.addEventListener('click', () => {
+                // タブの状態を切り替え
+                designTab.classList.add('active');
+                howtoTab.classList.remove('active');
+                
+                // コンテンツの表示を切り替え
+                designContent.classList.add('active');
+                howtoContent.classList.remove('active');
+            });
+        });
+
+        // ハンバーガーメニュー
+        window.onload = function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const closeBtn = document.getElementById('closeBtn');
+            
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.add('active');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', function () {
+                    const target = link.getAttribute('data-target');
+                    document.querySelectorAll('.content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    if (target) {
+                        document.getElementById(target)?.classList.add('active');
+                    }
+                    navMenu.classList.remove('active');
+                });
+            });
+        };
+    </script>
+</body>
+</html>

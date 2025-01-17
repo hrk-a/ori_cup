@@ -1,0 +1,92 @@
+@charset 'utf-8';
+
+/* メンバー紹介 */
+#member {
+    background-image: url(../img/member_stripe.jpg); /* 背景画像を設定 */
+    position: relative; /* 相対位置を指定 */
+    background-size: cover; /* 背景画像をエリアに合わせて調整 */
+    overflow: hidden; /* 子要素がはみ出さないように */
+}
+
+/* スクロール時に位置を固定 */
+.member_bg.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+#all_member{
+    position: relative;
+    width: 75%;
+    margin: 0 auto;
+}
+
+/* メンバー紹介のプロフィール部分 */
+#profile {
+    border-radius: 1.5rem;
+    border: 4px solid #fff;
+    box-shadow: 3px 4px 6px rgba(180, 180, 180, 0.35);
+    overflow-y: auto; /* コンテンツが超えた分、スクロール */
+    max-height: 100vh; /* 最大高さを画面の高さに設定 */
+}
+#profile img {
+    width: 100%;
+    vertical-align: middle;
+}
+/*クリックぼたん*/
+#click_btn{
+    text-align: right;
+    position: absolute;
+    right: 1vw;
+    bottom: -1vh;
+}
+#click_btn:active{
+    transform:scale(1.13);
+}
+#click_btn img{
+    width: 5.5vw;
+    transition: transform 0.3s ease-in-out; /* スムーズに変化 */
+}
+@media (max-width: 2000px) and (min-width: 834px) {
+}
+
+/* 狭いブラウザとタブレット */
+@media (max-width: 832px) and (min-width: 521px) {
+    #all_member{
+        width: 90%;
+    }
+    #profile {
+        border: 3px solid #fff;
+    }
+    #click_btn{
+        text-align: right;
+        position: absolute;
+        right: 2vw;
+        bottom: -1vh;
+    }
+    #click_btn img{
+        width: 10vw;
+    }
+}
+
+/* スマホ */
+@media (max-width: 520px) {
+    #all_member{
+        width: 100%;
+    }
+    #profile {
+        border-radius: 1rem;
+        border: 3px solid #fff;
+    }
+    /*クリックぼたん*/
+    #click_btn{
+        text-align: right;
+        position: absolute;
+        right: 2vw;
+        bottom: -1vh;
+    }
+    #click_btn img{
+        width: 11vw;
+    }
+}

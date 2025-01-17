@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吹き出し付きスライドショー</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* 吹き出し */
+    .bubble {
+      margin-top: 20px;
+      width: 325px;
+      position: absolute;
+      top: 4%;
+      right: 34%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 1;  /* 初期状態で透明 */
+      transition: opacity 1s ease-in-out, transform 1.5s ease-in-out; /* フェードインとズームインの組み合わせ */
+      transform: scale(0.9); /* 初期サイズを少し小さく */
+    }
+
+    .bubble.show {
+      opacity: 1; /* 表示状態 */
+      transform: scale(1); /* 正常なサイズに */
+    }
+
+    .bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    /* スライダー */
+    .slider {
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+    }
+
+    /* 各スライド */
+    .slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; /* 初期状態で非表示 */
+    transition: opacity 1s ease-in-out; /* フェードイン・アウトのアニメーション */
+  }
+
+    .slide.active {
+      opacity: 1; /* スライドを表示 */
+    }
+
+    /* 背景画像 */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out; /* 背景画像もなめらかに切り替える */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background"></div> <!-- 背景画像 -->
+
+  <div class="slider-container">
+    <div class="bubble">
+      <img src="../img/profile/natumi/name.png" alt="吹き出し"> <!-- 初期の吹き出し画像 -->
+    </div>
+
+    <div class="slider">
+      <img src="../img/profile/natumi/natumi.png" alt="Image 1" class="slide active">
+      <img src="../img/profile/konatu/konatu.png" alt="Image 2" class="slide">
+      <img src="../img/profile/chika/chika.png" alt="Image 3" class="slide">
+      <img src="../img/profile/haruka/haruka.png" alt="Image 4" class="slide">
+    </div>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const bubble = document.querySelector('.bubble img');
+    const background = document.querySelector('.background');
+    let currentIndex = 0;
+
+    const bubbleImages = [
+      '../img/profile/natumi/name.png',
+      '../img/profile/konatu/name.png',
+      '../img/profile/chika/name.png',
+      '../img/profile/haruka/name.png'
+    ];
+
+    const backgrounds = [
+      '../img/profile/natumi/background1.jpg',
+      '../img/profile/konatu/background2.jpg',
+      '../img/profile/chika/background3.jpg',
+      '../img/profile/haruka/background4.jpg'
+    ];
+
+    background.style.backgroundImage = `url(${backgrounds[currentIndex]})`;
+
+    // スライド切り替え関数
+    function changeSlide(direction) {
+      slides[currentIndex].classList.remove('active');
+
+      if (direction === 'next') {
+        currentIndex = (currentIndex + 1) % slides.length;
+      } else {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      }
+
+      slides[currentIndex].classList.add('active'); // 新しいスライドをフェードイン
+      fadeBubbleImage(bubbleImages[currentIndex]); // 吹き出し画像を変更
+      fadeBackgroundImage(backgrounds[currentIndex]); // 背景画像を変更
+    }
+
+    // 吹き出し画像をフェードアウト・インさせる関数
+    function fadeBubbleImage(newSrc) {
+      bubble.classList.remove('show'); // 既存のフェードイン状態をリセット
+      setTimeout(() => {
+        bubble.src = newSrc; // 新しい画像を設定
+        bubble.classList.add('show'); // フェードインアニメーションを適用
+      }, 600); // フェードアウトが完了するタイミングで切り替える
+    }
+
+
+    // 背景画像の切り替え
+    function fadeBackgroundImage(newSrc) {
+      background.style.backgroundImage = `url(${newSrc})`;
+    }
+
+    // ホイールイベントでスライドと背景を切り替える
+    let isThrottling = false;
+    document.addEventListener('wheel', function (event) {
+      if (isThrottling) return;
+
+      if (event.deltaY < 0) {
+        changeSlide('prev');
+      } else {
+        changeSlide('next');
+      }
+
+      isThrottling = true;
+      setTimeout(() => isThrottling = false, 1000); // スライド切り替えの間隔を長めに設定
+      event.preventDefault();
+    }, { passive: false });
+  </script>
+</body>
+</html>

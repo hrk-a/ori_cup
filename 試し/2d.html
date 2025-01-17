@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvasに画像を描画・追加</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 20px;
+    }
+    #upload {
+      margin-top: 20px;
+    }
+    #download {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #download:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Canvas内に画像を表示し、追加画像をアップロード</h1>
+
+  <!-- Canvas -->
+  <canvas id="myCanvas" width="800" height="800"></canvas>
+
+  <!-- 画像アップロード -->
+  <input type="file" id="upload" accept="image/*">
+
+  <!-- ダウンロードボタン -->
+  <br>
+  <button id="download">デザインを保存</button>
+
+  <script>
+    // キャンバスとそのコンテキストの取得
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // 1つ目の画像（元の画像）の作成
+    const img1 = new Image();  // 新しい画像オブジェクトを作成
+    img1.src = 'img/cup/mug.png';  // 画像のソースを指定（適切なパスに変更してください）
+
+    // 2つ目の画像（ユーザーがアップロードした画像）
+    let img2 = null;
+
+    // 画像がロードされた後にキャンバスに描画
+    img1.onload = function() {
+      ctx.drawImage(img1, 50, 50, 550, 550); // 元画像を(50,50)の位置に550x550pxのサイズで描画
+    };
+
+    // アップロードされた画像の読み込み
+    const uploadInput = document.getElementById('upload');
+    uploadInput.addEventListener('change', function(event) {
+      const file = event.target.files[0]; // 最初のファイルを取得
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          img2 = new Image();
+          img2.src = e.target.result;  // アップロードされた画像のソースを設定
+
+          // 画像が読み込まれたらキャンバスに描画
+          img2.onload = function() {
+            // 再描画（元画像とアップロード画像を両方描画）
+            ctx.clearRect(0, 0, canvas.width, canvas.height);  // 既存の描画内容をクリア
+            ctx.drawImage(img1, 50, 50, 550, 550);  // 元画像を再描画
+            ctx.drawImage(img2, 100, 100, 200, 200);  // アップロード画像を上に追加
+          };
+        };
+        reader.readAsDataURL(file);  // 画像をデータURLとして読み込む
+      }
+    });
+
+    // ダウンロードボタンの設定
+    const downloadButton = document.getElementById('download');
+    downloadButton.addEventListener('click', function() {
+      // キャンバスの内容を画像として保存
+      const dataURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = dataURL;
+      link.download = 'canvas-design.png';  // 保存するファイル名
+      link.click();  // ダウンロード開始
+    });
+  </script>
+</body>
+</html>

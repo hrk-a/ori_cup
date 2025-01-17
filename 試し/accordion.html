@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&A アコーディオン</title>
+
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .accordion {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd; /* 初期状態の細い下線 */
+        }
+
+        .accordion-header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            justify-content: space-between;
+        }
+
+        .accordion-header:hover {
+            background-color: #f1f1f1;
+        }
+
+        .accordion-title {
+            margin-left: 30px;
+            flex-grow: 1; /* タイトルを左に寄せる */
+        }
+
+        .accordion-icon {
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 10px; /* アイコンとタイトルの間隔 */
+        }
+
+        .accordion-content {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 15px;
+        }
+
+        .adon {
+            display: flex; /* 横並びにする */
+            align-items: center; /* 垂直方向にセンタリング */
+        }
+
+        .adon img {
+            margin-right: 10px; /* 画像とテキストの間隔 */
+            margin-left: 10px; /* 画像とテキストの間隔 */
+        }
+
+        .adon p {
+            margin-left: 30px;
+        }
+
+        .accordion-header img ,.accordion-content img{
+            width: 40px; /* アイコン画像の幅 */
+            height: 40px; /* アイコン画像の高さ */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <img src="../img/icon/Q.png" alt="Q" class="accordion-icon">
+                <div class="accordion-title">質問 1: アコーディオンとは？</div>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="adon">
+                    <img src="../img/icon/A.png" alt="A">
+                    <p>アコーディオンは、複数の項目を折りたたんで表示するUIコンポーネントです。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <img src="../img/icon/Q.png" alt="Q" class="accordion-icon">
+                <div class="accordion-title">質問 2: どうやって実装しますか？</div>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="adon">
+                    <img src="../img/icon/A.png" alt="A">
+                    <p>HTML、CSS、JavaScriptを使って簡単に実装できます。</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <div class="accordion-header">
+                <img src="../img/icon/Q.png" alt="Q" class="accordion-icon">
+                <div class="accordion-title">質問 3: JavaScriptは必須ですか？</div>
+                <span class="accordion-icon">+</span>
+            </div>
+            <div class="accordion-content">
+                <div class="adon">
+                    <img src="../img/icon/A.png" alt="A">
+                    <p>はい、コンテンツの表示/非表示を制御するためにはJavaScriptが必要です。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // script.js
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+
+                // 現在のアコーディオンの状態を確認して開閉
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    icon.textContent = '+'; // アイコンを「+」に戻す
+                    // 下線を消さず、アコーディオンが閉じた状態を維持
+                } else {
+                    content.style.display = 'block';
+                    icon.textContent = '-'; // アイコンを「-」に変更
+                    // 下線を表示
+                }
+            });
+        });
+    </script>
+</body>
+</html>

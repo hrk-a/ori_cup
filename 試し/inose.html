@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>かわいい青いラジオボタン</title>
+    <style>
+        /* ベースのラジオボタンのスタイルをリセット */
+        input[type="radio"] {
+            display: none; /* デフォルトのラジオボタンを非表示 */
+        }
+
+        /* ラジオボタンのラベルにスタイルを適用 */
+        label {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4fa3f7; /* 青色 */
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        /* ラジオボタンの丸い部分 */
+        label::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: white;
+            border: 2px solid #4fa3f7;
+            transition: background-color 0.3s ease;
+        }
+
+        /* ラジオボタンが選択された時のスタイル */
+        input[type="radio"]:checked + label {
+            background-color: #3c8ec5; /* 選択時の青色 */
+        }
+
+        /* ラジオボタンが選択されているときの丸い部分 */
+        input[type="radio"]:checked + label::before {
+            background-color: #4fa3f7;
+            border-color: white;
+        }
+
+        /* ラベルにホバー時の効果 */
+        label:hover {
+            background-color: #5da8df; /* ホバー時の色 */
+        }
+    </style>
+    <script>
+        function showName() {
+            const selectedRadio = document.querySelector('input[name="name"]:checked');
+            if (selectedRadio) {
+                document.getElementById("nameDisplay").innerHTML = "選ばれた名前は: " + selectedRadio.value;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <label>
+            <input type="radio" name="name" value="田中" onclick="showName()"> 田中
+        </label>
+        <label>
+            <input type="radio" name="name" value="佐藤" onclick="showName()"> 佐藤
+        </label>
+        <label>
+            <input type="radio" name="name" value="鈴木" onclick="showName()"> 鈴木
+        </label>
+    </form>
+
+    <p id="nameDisplay">ここに名前が表示されます。</p>
+</body>
+</html>

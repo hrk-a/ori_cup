@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オリコップ | デザインツール</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+
+        canvas {
+            border: 1px solid #000;
+        }
+
+        input[type="file"] {
+            margin: 10px;
+        }
+
+        #text-input {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>オリコップ デザインツール</h1>
+    <canvas id="mugCanvas" width="300" height="300"></canvas>
+    <input type="file" id="imageUploader" accept="image/*">
+    <input type="text" id="text-input" placeholder="テキストを入力">
+    <button id="addTextButton">テキストを追加</button>
+
+    <script>
+        const canvas = document.getElementById('mugCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // コップ画像を読み込んで描画
+        const mugImage = new Image();
+        mugImage.src = 'img/cup/mug.png'; // コップ画像のパス
+        mugImage.onload = () => {
+            ctx.drawImage(mugImage, 0, 0, canvas.width, canvas.height);
+            createClipPath();
+        };
+
+        // コップの形状に沿ったクリッピングパスを作成
+        function createClipPath() {
+            ctx.beginPath();
+            ctx.arc(150, 150, 100, 0, Math.PI * 2); // コップの円形パスを定義
+            ctx.closePath();
+            ctx.clip(); // クリッピングを適用
+        }
+
+        // 画像を追加する機能
+        document.getElementById('imageUploader').addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const uploadedImage = new Image();
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.onload = () => {
+                        ctx.drawImage(uploadedImage, 50, 50, 200, 200); // 画像をコップ内に描画
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // テキストを追加する機能
+        document.getElementById('addTextButton').addEventListener('click', () => {
+            const text = document.getElementById('text-input').value;
+            ctx.font = '20px Roboto';
+            ctx.fillStyle = 'black';
+            ctx.fillText(text, 100, 150); // テキストをコップ内に描画
+        });
+    </script>
+</body>
+
+</html>

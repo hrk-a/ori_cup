@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オリコップ | 詳細画面</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/DetailsScreen.css">
+    <link rel="icon" href="img/fav.png">
+</head>
+
+<body>
+    <div class="border"></div>
+
+    <div id="svg">
+        <!-- 四隅にSVGを配置 -->
+        <svg class="corner" id="top-left" width="50" height="50" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M10,0H0v10S.05,0,10,0Z" />
+        </svg>
+
+        <svg class="corner" id="top-right" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M0,.02l10-.02.02,10S9.95,0,0,.02Z" />
+        </svg>
+
+        <svg class="corner" id="bottom-left" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M10.02,9.98l-10,.02-.02-10s.07,10,10.02,9.98Z" />
+        </svg>
+
+        <svg class="corner" id="bottom-right" width="50" height="50" viewBox="0 0 10.02 10"
+            xmlns="http://www.w3.org/2000/svg">
+            <path class="corner-path" d="M0,9.98l10,.02.02-10s-.07,10-10.02,9.98Z" />
+        </svg>
+    </div>
+    <div id="main">
+        <a href="index.html">
+            <div id="ori_logo">
+                <img src="img/logo_only.png" alt="">
+            </div>
+        </a>
+
+        <div class="container">
+            <div class="Details_bg">
+                <div class="Details_log">
+                    <img src="./img/Details_title.png" id="title">
+                </div>
+                
+                <!-- ステップバー -->
+                <div class="Details_log_">
+                    <img src="./img/Details_progress2.png" id="title">
+                </div>
+
+                <div class="Details_main">
+                    <p class="Details_main_p">
+                        以下の項目をご入力・ご選択のうえ「入力内容のご確認」ボタンを押してください。
+                        会員の方はログインしていただくとお客様情報が自動で入力されます。
+                        「<span class="red-text">*</span>」マークは必須項目です。
+                    </p>
+                    <h2 class="Details_main_user">注文フォーム</h2>
+
+                    <table id="Details2_table">
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th">お名前</th>
+                                <td><span id="user-name-text">お名前</span></td>
+                            </tr>
+                        </div>
+
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th">フリガナ</th>
+                                <td><span id="furigana">フリガナ</span></td>
+                            </tr>
+                        </div>
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th">メールアドレス</th>
+                                <td><span id="mail">メールアドレス</span></td>
+                            </tr>
+                        </div>
+
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th"><span class="red-text">*</span>郵便番号</th>
+                                <td><input type="text" id="postal-code" name="postal-code"></td>
+                            </tr>
+                        </div>
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th"><span class="red-text">*</span>都道府県</th>
+                                <td><input type="text" id="city_" name="city"></td>
+                            </tr>
+                        </div>
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th"><span class="red-text">*</span>市区郡町村</th>
+                                <td><input type="text" id="city" name="city"></td>
+                            </tr>
+                        </div>
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th"><span class="red-text">*</span>番地・番号</th>
+                                <td><input type="text" id="address" name="address"></td>
+                            </tr>
+                        </div>
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th"><span class="red-text">*</span>電話番号</th>
+                                <td><input type="tel" id="phone" name="phone"></td>
+                            </tr>
+                        </div>
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th"><span class="red-text">*</span>お支払方法</th>
+                                <td>
+                                    <select id="payment-method" name="payment-method">
+                                        <option value="credit">クレジットカード</option>
+                                        <option value="paypal">PayPay</option>
+                                        <option value="paypal">電子マネー決済</option>
+                                        <option value="paypal">コンビニ決済（コンビニ払い）</option>
+                                        <option value="paypal">銀行ネット決済（ネットバンキング）</option>
+                                        <option value="paypal">代金引換（着払い）</option>
+                                        <option value="paypal">プリペイド決済</option>
+
+                                        <!-- Add other payment methods here -->
+                                    </select>
+                                </td>
+                            </tr>
+                        </div>
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th"><span class="red-text">*</span>配送方法</th>
+                                <td>
+                                    <select id="shipping-method" name="shipping-method">
+                                        <option value="standard">標準配送</option>
+                                        <option value="express">速達配送</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </div>
+                        <div class="Details2_tr">
+                            <tr>
+                                <th class="Details2_tr_th">お届け日</th>
+                                <td><input type="date" id="delivery-date" name="delivery-date"></td>
+                            </tr>
+                        </div>
+                    </table>
+
+                    <!-- 利用規約 -->
+                    <div class="check">
+                        <p><a href="termsofuse.html" target="_blank">利用規約 </a>および <a href="privacypolicy.html"
+                                target="_blank">プライバシーポリシー </a>をご確認の上、送信してください。</p>
+                    </div>
+
+                    <div class="button">
+                        <a href="DetailsScreen3.html">
+                            <button class="contact_button" type="submit">入力内容のご確認</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!----- フッター ----->
+        <div id="footer">
+            <img src="img/footer.svg" class="footer_bg">
+            <div id="footer_content">
+                <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
+                <ul>
+                    <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
+                    <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
+                    <li><a href="asct.html" target="_blank">特定商取引法</a></li>
+                </ul>
+                <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
+            </div>
+        </div>
+
+        <!-- 外部ファイルのJavaScript -->
+        <script src="./js/signup.js"></script>
+        <script src="js/script.js"></script>
+
+
+</body>
+
+</html>

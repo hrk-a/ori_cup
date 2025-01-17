@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像と文字表示</title>
+    <style>
+        body {
+            font-family: "M PLUS Rounded 1c", sans-serif;
+            font-weight: 600;
+        }
+        #input_value_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 100%;
+            min-height: 50px;
+            margin-top: 10px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        select {
+            padding: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+       
+    </style>
+
+</head>
+<body>
+    
+    <!-- サイズ変更ボタン -->
+    <div class="resize-buttons">
+        <button id="increaseSize">+</button>
+        <button id="decreaseSize">-</button>
+    </div>
+
+    <!-- ダウンロードボタン -->
+    <br>
+    <button id="download">デザインをダウンロード</button>
+
+    <!-- 画像削除ボタン -->
+    <br>
+    <button id="delete">選択した画像を削除</button>
+    
+        <!-- Canvas -->
+        <canvas id="myCanvas" class="upper-canvas" width="833" height="346"></canvas>
+    
+        <!-- 画像選択のためのファイル入力 -->
+        <input type="file" id="imageInput" accept="image/*">
+    
+    <!-- 文字入力フィールド -->
+    <br>
+
+    <textarea type="text" id="textInput" placeholder="キャンバスに表示する文字を入力"></textarea>
+    <select id="fontSelector">
+        <option value="'Cherry Bomb One', cursive">Cherry Bomb One</option>
+        <option value="'Dela Gothic One', sans-serif">Dela Gothic One</option>
+        <option value="'DotGothic16', sans-serif">DotGothic16</option>
+        <option value="'Kaisei Opti', serif">Kaisei Opti</option>
+        <option value="'Kiwi Maru', serif">Kiwi Maru</option>
+        <option value="'M PLUS Rounded 1c', sans-serif">M PLUS Rounded 1c</option>
+        <option value="'Noto Serif JP', serif">Noto Serif JP</option>
+        <option value="'Sawarabi Gothic', sans-serif">Sawarabi Gothic</option>
+        <option value="'Shippori Mincho B1', serif">Shippori Mincho B1</option>
+        <option value="'Yuji Syuku', serif">Yuji Syuku</option>
+        <option value="'Yusei Magic', sans-serif">Yusei Magic</option>
+    </select>
+
+    <script>
+        const inputValueBox = document.getElementById('myCanvas');
+        const fontSelector = document.getElementById('fontSelector');
+
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let uploadedImages = [];  // アップロードされた画像のデータを格納する配列
+        let selectedImageIndex = -1;  // 現在選択されている画像のインデックス
+        let selectedText = null;  // 現在選択されている文字のオブジェクト
+        let isImageDragging = false;  // 画像がドラッグ中かどうか
+        let isTextDragging = false;  // 文字がドラッグ中かどうか
+        let offsetX = 0, offsetY = 0;  // ドラッグ時のオフセット
+
+        let text = { content: "", x: 50, y: 50 };  // 文字のデータ（位置と内容）
+
+        // 画像選択のイベントリスナー
+        document.getElementById("imageInput").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const imgData = {
+                            image: img,
+                            x: 0, 
+                            y: 0, 
+                            width: img.width,
+                            height: img.height
+                        };
+                        uploadedImages.push(imgData);  // 画像データを配列に追加
+                        redrawCanvas();  // キャンバスを再描画
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // ダウンロードボタン
+        document.getElementById('download').addEventListener('click', function() {
+            if (uploadedImages.length > 0 || text.content) {
+                // キャンバスからPNGデータURLを取得
+                const dataURL = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = dataURL;
+                link.download = 'mug-design.png';
+                link.click();
+            } else {
+                alert("画像や文字がありません。画像をアップロードしてください。");
+            }
+        });
+
+        // サイズ変更
+        document.getElementById('increaseSize').addEventListener('click', function() {
+            if (selectedImageIndex >= 0) {
+                const imgData = uploadedImages[selectedImageIndex];
+                const scaleFactor = 0.1;
+                imgData.width *= (1 + scaleFactor);
+                imgData.height *= (1 + scaleFactor);
+                redrawCanvas();
+            }
+        });
+
+        document.getElementById('decreaseSize').addEventListener('click', function() {
+            if (selectedImageIndex >= 0) {
+                const imgData = uploadedImages[selectedImageIndex];
+                const scaleFactor = 0.1;
+                imgData.width *= (1 - scaleFactor);
+                imgData.height *= (1 - scaleFactor);
+                redrawCanvas();
+            }
+        });
+
+        // 画像削除ボタン
+        document.getElementById('delete').addEventListener('click', function() {
+            if (selectedImageIndex >= 0) {
+                uploadedImages.splice(selectedImageIndex, 1);
+                selectedImageIndex = -1;
+                redrawCanvas();
+            }
+        });
+
+        // 文字の入力が変更されたときにキャンバスを再描画
+        document.getElementById('textInput').addEventListener('input', function() {
+            text.content = this.value;  // テキストエリアの内容を文字データに反映
+            redrawCanvas();  // キャンバスを再描画
+        });
+
+                // 初期の文字内容
+                let textContent = "";
+
+    // キャンバスの再描画関数
+    function redrawCanvas() {
+        // キャンバスをクリア
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // フォントの設定
+            ctx.font = '30px ' + fontSelector.value;
+            ctx.fillStyle = 'black';
+
+
+        // テキスト内容があればキャンバスに描画
+        if (textContent) {
+            ctx.fillText(textContent, 50, 100); // (50, 100)の位置に描画
+        }
+    }
+
+            // フォント選択時にキャンバスを再描画
+            fontSelector.addEventListener('change', function() {
+            redrawCanvas();  // キャンバスを再描画
+        });
+
+
+        // 画像と文字をキャンバスに描画
+        function redrawCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+
+            // 画像を描画
+            uploadedImages.forEach(function(imgData) {
+                ctx.drawImage(imgData.image, imgData.x, imgData.y, imgData.width, imgData.height);
+            });
+
+            // 文字を描画
+            if (text.content) {
+                ctx.font = "30px Arial";  // フォントの設定
+                ctx.fillStyle = "black";  // 文字の色
+                ctx.fillText(text.content, text.x, text.y);  // 文字を指定位置に描画
+            }
+        }
+
+        // 画像と文字のドラッグオフセットを個別に管理
+        let imageOffsetX = 0, imageOffsetY = 0;  // 画像のオフセット
+        let textOffsetX = 0, textOffsetY = 0;    // 文字のオフセット
+
+        canvas.addEventListener('mousedown', function(e) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            // 文字を選択
+            if (mouseX >= text.x && mouseX <= text.x + ctx.measureText(text.content).width &&
+                mouseY >= text.y - 30 && mouseY <= text.y) {
+                selectedText = text;
+                isTextDragging = true;
+                textOffsetX = mouseX - text.x;  // 文字用オフセット
+                textOffsetY = mouseY - text.y;
+                selectedImageIndex = -1;  // 文字が選択されているので画像選択解除
+                return;  // 文字が選択された場合、これ以降の処理を終了
+            }
+
+            // 画像を選択（文字が選ばれなかった場合のみ）
+            for (let i = 0; i < uploadedImages.length; i++) {
+                const imgData = uploadedImages[i];
+                if (mouseX >= imgData.x && mouseX <= imgData.x + imgData.width &&
+                    mouseY >= imgData.y && mouseY <= imgData.y + imgData.height) {
+                    selectedImageIndex = i;
+                    isImageDragging = true;
+                    imageOffsetX = mouseX - imgData.x;  // 画像用オフセット
+                    imageOffsetY = mouseY - imgData.y;
+                    break;
+                }
+            }
+        });
+
+        canvas.addEventListener('mousemove', function(e) {
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            // 画像をドラッグ
+            if (isImageDragging && selectedImageIndex >= 0) {
+                const imgData = uploadedImages[selectedImageIndex];
+                imgData.x = mouseX - imageOffsetX;  // 画像用オフセットを使用
+                imgData.y = mouseY - imageOffsetY;
+                redrawCanvas();
+            }
+
+            // 文字をドラッグ
+            if (isTextDragging && selectedText) {
+                selectedText.x = mouseX - textOffsetX;  // 文字用オフセットを使用
+                selectedText.y = mouseY - textOffsetY;
+                redrawCanvas();
+            }
+        });
+
+        canvas.addEventListener('mouseup', function() {
+            isImageDragging = false;
+            isTextDragging = false;
+            selectedText = null;  // 文字の選択を解除
+        });
+
+        // スクロールで拡大縮小
+        canvas.addEventListener('wheel', function (e) {
+            e.preventDefault(); // ページのスクロールを防止
+            if (selectedImageIndex >= 0) {
+                const imgData = uploadedImages[selectedImageIndex];
+                const scaleFactor = 0.1;  // サイズ変更の倍率
+                if (e.deltaY < 0) {  // 上にスクロール → 拡大
+                    imgData.width *= (1 + scaleFactor);
+                    imgData.height *= (1 + scaleFactor);
+                } else if (e.deltaY > 0) {  // 下にスクロール → 縮小
+                    imgData.width *= (1 - scaleFactor);
+                    imgData.height *= (1 - scaleFactor);
+                }
+                redrawCanvas();  // 再描画
+            }
+        });
+    </script>
+</body>
+</html>

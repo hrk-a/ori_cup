@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問</title>
+    <style>
+        /* コンテンツの表示・非表示のスタイル */
+        .content_question {
+            display: none;
+        }
+        .active-content {
+            display: block;
+        }
+        #question_nav {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            margin-bottom: 20px;
+        }
+
+        .question_design {
+            padding: 10px 15px;
+            text-decoration: none;
+            background-color: white; /* デフォルトは白 */
+            color: black; /* テキストの色は黒 */
+            border-radius: 25px;
+            border: 1px solid #ddd;
+        }
+        /* アクティブなナビゲーションリンクのスタイル */
+        .active-content-nav {
+            background-color: #fccf00;
+        }
+
+        .accordion {
+            width: 70%;
+            margin: auto;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+            /* 初期状態の細い下線 */
+        }
+
+        .accordion-header {
+            letter-spacing: 0.5px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            padding: 23px 0;
+            cursor: pointer;
+            justify-content: space-between;
+        }
+
+        /* activeクラスが付いたときに背景色を変更 */
+        .accordion-item.active .accordion-header {
+            background-color: #f9eaff;
+            /* Aと同じ背景色 */
+            /*border-radius: 10px 10px 0 0;*/
+        }
+
+        .accordion-header:hover {
+            background-color: #eeeeee;
+        }
+
+        .accordion-title {
+            margin-left: 30px;
+            flex-grow: 1;
+            /* タイトルを左に寄せる */
+        }
+
+        /*AとQのアイコン*/
+        .accordion-icon {
+            margin-left: 20px;
+            /* アイコンとタイトルの間隔 */
+            width: 39px;
+        }
+
+        .accordion-content {
+            display: block;
+            overflow: hidden;
+            max-height: 0;
+            /* 初期状態では閉じている */
+            transition: max-height 0.4s ease-out;
+            /* 高さのアニメーションを設定 */
+        }
+
+        /*A*/
+        .adon {
+            display: flex;
+            /* 横並びにする */
+            cursor: pointer;
+            padding: 20px 0 20px;
+            background-color: #f9eaff;
+            /*border-radius: 0 0 10px 10px;*/
+        }
+
+        /*Aのテキスト*/
+        .adon p {
+            margin: 5px 35px 5px 30px;
+        }
+
+        .a_text {
+            display: block;
+        }
+
+        .accordion-content img {
+            width: 39px;
+            /* アイコン画像の幅 */
+            height: 39px;
+            /* アイコン画像の高さ */
+        }
+
+        /*+-のアイコンサイズ*/
+        .toggle-icon {
+            margin-right: 15px;
+            width: 15px;
+            /* アイコンの幅 */
+            margin-left: 10px;
+            /* タイトルとの間隔 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="question" class="content">
+        <div id="question_bg">
+            <div class="content_logo">
+                <img src="img/question_logo.png" alt="よくある質問">
+            </div>
+
+            <!-- ナビゲーション -->
+            <nav id="question_nav">
+                <div class="question_about active-nav-link question_design" data-target="question_about" data-color="#fccf00"
+                    style="background-color: #fccf00;">当社について</div>
+                <div class="question_goods question_design" data-target="question_goods" data-color="#fccf00">商品について</div>
+                <div class="question_payment question_design" data-target="question_payment" data-color="#fccf00">料金・支払いについて</div>
+                <div class="question_shipping question_design" data-target="question_shipping" data-color="#fccf00">配送・発送について</div>
+                <div class="question_change question_design" data-target="question_change" data-color="#fccf00">注文内容の変更・キャンセルについて</div>
+            </nav>
+                
+            <!-- コンテンツ -->
+            <!--当社について-->
+            <div id="question_about" class="content_question active-content">
+                <h1>当社について</h1>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">営業時間と営業日を教えてください。</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>10時～17時、平日（月～金　※祝日除く）営業となっております。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">電話で質問したいです</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>10時～17時まで電話対応受け付けております。<br>
+                                        090-1256-8599
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--商品について-->
+            <div id="question_goods" class="content_question">
+                <h1>商品について</h1>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">マグカップは洗剤で洗えますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>陶器素材なので洗っても大丈夫です<br>
+                                    <ul>
+                                        <li>電子レンジ、オーブン、食器洗浄機、フリーザー：使用可</li>
+                                        <li>直火：使用不可</li>
+                                    </ul>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">商品の保証期間はありますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>商品到着後はお客様ご自身での検品もお願いします。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">商品は日本製ですか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>すべて日本製となります。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">フルカラー印刷（写真や多色でグラデーションの柄）もできますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>はい、可能です。イラストはもちろん写真やグラデーションも綺麗に再現できる昇華転写を使用しています。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--送料・料金について-->
+            <div id="question_payment" class="content_question">
+                <h1>料金・支払いについて</h1>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">料金はいくらしますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>商品ページをご参照ください。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">支払い方法なにがありますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>電子マネー決済・PayPay・コンビニ決済(コンビニ払い)・電子マネー決済
+                                        口座振替(自動引き落とし)・銀行ネット決済(ネットバンキング)・
+                                        代金引換(着払い)・プリペイド決済があります。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">お支払い方法の変更はできますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>誠に申し訳ございませんが、ご注文完了後はお支払い方法の変更ができません。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">領収書は発行してもらえますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>誠に申し訳ございませんが、領収書の発行は承っておりません。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">プレゼント用にラッピングできますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>オプションでカラーボックスやクリアケースなどのギフトボックスに変更することができます。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--配送・発送について-->
+            <div id="question_shipping" class="content_question">
+                <h1>配送・発送について</h1>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">最短で何日で届きますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>最短２日で届きます。お届け日のご指定がない場合は基本最短で発送をしております。
+                                        通常ご注文確定日より１～７営業日以内に発送いたします。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">配送業者はどこですか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>運送会社は みーぽ運送業者となります。ご指定はできませんのであらかじめご了承ください。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">配送料はいくらかかりますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>一律450円です。<br>
+                                        ※離島及び一部地域において別途送料が発生する場合がございます。その場合は事前にご連絡いたします。<br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">商品は何日くらいで届きますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>1週間～2週間くらいで届きます。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">どのような包装で届きますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>透明のPPを熱圧着する簡易包装で梱包いたします。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">配送希望日を変更したいのですが</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>メール又はお電話で当店までご連絡下さい。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">お届け先の変更はできますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>ご注文完了後のお届け先のご変更は承っておりません。<br>
+                                        「商品発送のご連絡」メールをご確認いただき、みーぽ運輸へお問い合わせください。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">日時の指定はできますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>カート画面にて配送日時指定が可能です。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">運送会社は指定できますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>ご指定はできませんのであらかじめご了承ください。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--注文内容の変更について-->
+            <div id="question_change" class="content_question">
+                <h1>注文内容の変更・キャンセルについて</h1>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">一度に何個まで作れますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>一度に10個まで可能です。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">注文できているか確認したいです。</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>ご注文完了後に、メールをお送りいたしますので、そちらからご確認ください。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">プレゼント用にラッピングできますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>オプションでカラーボックスやクリアケースなどのギフトボックスに変更することができます。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">注文した商品と違う商品が届いたのですが</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>大変申し訳ございません。注文内容をご確認のうえ、受注番号とお名前をご連絡ください。速やかに交換させて頂きます。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <img src="img/icon/Q.png" alt="Q" class="accordion-icon">
+                            <div class="accordion-title">間違えて注文しました。キャンセル出来ますか？</div>
+                            <img src="img/icon/plus.png" alt="Toggle Icon" class="toggle-icon">
+                        </div>
+                        <div class="accordion-content">
+                            <div class="adon">
+                                <img src="img/icon/A.png" alt="A" class="accordion-icon">
+                                <div class="a_text">
+                                    <p>出荷準備前（注文後約30分以内）のご注文でしたらキャンセル可能です。お早めにご連絡下さい。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- JavaScriptでコンテンツと色の切り替え -->
+    <script>
+//よくある質問のコンテンツと色の切り替え
+document.querySelectorAll('#question_nav div').forEach(link => {
+    link.addEventListener('click', function() {
+        // すべてのコンテンツを非表示にする
+        document.querySelectorAll('.content_question').forEach(content => {
+            content.classList.remove('active-content');
+        });
+
+        // すべてのナビゲーションからアクティブスタイルを削除し、白に戻す
+        document.querySelectorAll('#question_nav div').forEach(nav => {
+            nav.classList.remove('active-nav-link');
+            nav.style.backgroundColor = 'white';  // デフォルトは白
+            nav.style.color = 'black';  // テキストの色も元に戻す
+        });
+
+        // クリックされたリンクに対応するコンテンツを表示する
+        const target = this.getAttribute('data-target');
+        document.getElementById(target).classList.add('active-content');  // "content_active" → "active-content"
+
+        // クリックされたリンクにアクティブスタイルを追加する
+        this.classList.add('active-nav-link');  // "content_active-nav" → "active-nav-link"
+
+        // クリックされたリンクの色を変更する
+        const color = this.getAttribute('data-color');
+        this.style.backgroundColor = color;
+        this.style.color = 'black';
+    });
+});
+
+        // アコーディオン
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = item.querySelector('.accordion-content');
+                const toggleIcon = header.querySelector('.toggle-icon'); // +- アイコンを取得
+
+                // 他のアコーディオンをすべて閉じる
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                        otherItem.querySelector('.toggle-icon').setAttribute('src', 'img/icon/plus.png'); // 他の項目を閉じると+に戻す
+                    }
+                });
+
+                // クリックしたアコーディオンを開閉する
+                item.classList.toggle('active');
+                if (item.classList.contains('active')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    toggleIcon.setAttribute('src', 'img/icon/minus.png'); // 開いたときは-にする
+                } else {
+                    content.style.maxHeight = null;
+                    toggleIcon.setAttribute('src', 'img/icon/plus.png'); // 閉じたときは+に戻す
+                }
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

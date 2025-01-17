@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カラーパレット調整</title>
+    <style>
+        #input_value_box {
+            background-color: yellow; /* 背景色は黄色に固定 */
+            padding: 15px 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+        }
+
+        input {
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        /* カラーパレットと白黒グラデーションを並べる親要素 */
+        #color_palette_container {
+            display: flex; /* フレックスボックスで横並びにする */
+            margin-top: 10px;
+            width: calc(100% - 40px); /* 幅を調整（親要素の余白を考慮） */
+            overflow: hidden; /* ボーダーが隠れないようにする */
+        }
+
+        #color_palette {
+            display: grid;
+            grid-template-columns: repeat(22, 20px); /* 22列 */
+        }
+
+        .color_option {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            box-sizing: border-box; /* ボーダーを含めたサイズ指定 */
+            margin: 0; /* 余分なマージンを排除 */
+            padding: 0; /* 余分なパディングを排除 */
+        }
+
+        /* 選択した色にボーダーと白い縁取りを追加 */
+        .color_option.selected {
+            border: 2px solid #f357a0; /* 黒いボーダー */
+            outline: none; /* フォーカス時のアウトラインを消す（ボーダーを優先） */
+        }
+        /* 白黒グラデーション用のカラム */
+        .grayscale_column {
+            display: grid;
+            grid-template-rows: repeat(10, 20px); /* 縦方向に10行 */
+        }
+
+
+        /* Sitemap styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.sitemap {
+  margin: 50px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.top-level > li {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.sub-level {
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.sub-level > li {
+  margin: 5px 0;
+}
+
+.title {
+  font-size: 1.2em;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.title:hover {
+  color: #e74c3c;
+}
+
+.sub-level > li {
+  font-size: 1em;
+  color: #34495e;
+}
+
+.sub-level > li:hover {
+  background-color: #ecf0f1;
+  cursor: pointer;
+}
+
+    </style>
+</head>
+
+<body>
+    <h2>文字の反映と色選択</h2>
+    <form id="form_test">
+        <label for="input_value">入力：</label>
+        <input type="text" id="input_value" name="input_value" value="">
+        <br>
+        <label for="color_picker">色選択：</label>
+        <!-- カラーパレットと白黒グラデーションを並べる親要素 -->
+        <div id="color_palette_container">
+            <!-- カラーパレットを表示するdiv -->
+            <div id="color_palette"></div>
+            <!-- 白黒グラデーションを表示するdiv -->
+            <div id="grayscale_column"></div>
+        </div>
+    </form>
+
+    <div id="input_value_box"></div> <!-- 入力された情報が入る場所 -->
+
+    <script>
+        const formTestInputValue = document.getElementById('input_value');
+        const inputValueBox = document.getElementById('input_value_box');
+        const colorPalette = document.getElementById('color_palette');
+        const grayscaleColumn = document.getElementById('grayscale_column');
+
+        // 入力内容が変更された時に反映
+        formTestInputValue.addEventListener('input', () => {
+            inputValueBox.textContent = formTestInputValue.value;
+        });
+
+        // 色相（赤、オレンジ、黄色、緑、青、紫など）を横方向に変化
+        const hues = Array.from({ length: 22 }, (_, i) => i * 16.36); // 22列、色相は0度から360度まで
+
+        const colors = [];
+        const rows = 10; // 10行
+        const columns = 22; // 22列
+
+        // 縦方向に明るさや暗さを調整（上が明るく下が暗くなるように） 
+        for (let row = 0; row < rows; row++) {
+            for (let col = 0; col < columns; col++) {
+                const hue = hues[col % hues.length]; // 列ごとに色相を設定
+                // 上が明るく、下が暗くなるように（明度を調整）
+                const lightness = 90 - (row * 7); // 最上部を90%、下は明度が少し暗くなる
+                const adjustedLightness = lightness < 20 ? 20 : lightness; // 最小でも20%に設定
+
+                const color = `hsl(${hue}, 100%, ${adjustedLightness}%)`; // 彩度は100%、明度を調整
+
+                colors.push(color);
+            }
+        }
+
+        // 白黒グラデーションを追加（上が完全な白、下が暗く） 
+        const grayscaleColors = [];
+        for (let row = 0; row < rows; row++) {
+            const lightness = 100 - (row * 10); // 上が白、下が暗くなるように調整
+            const grayscale = `hsl(0, 0%, ${lightness}%)`; // 彩度0%で白黒
+            grayscaleColors.push(grayscale);
+        }
+
+        // カラーパレットに色を追加
+        colors.forEach(color => {
+            const colorOption = document.createElement('div');
+            colorOption.classList.add('color_option');
+            colorOption.style.backgroundColor = color;
+            colorOption.setAttribute('data-color', color);
+            colorPalette.appendChild(colorOption);
+        });
+
+        // 白黒グラデーションを縦に配置
+        grayscaleColors.forEach(grayscale => {
+            const grayscaleOption = document.createElement('div');
+            grayscaleOption.classList.add('color_option');
+            grayscaleOption.style.backgroundColor = grayscale;
+            grayscaleOption.setAttribute('data-color', grayscale);
+            grayscaleColumn.appendChild(grayscaleOption);
+        });
+
+        // カラーパレットの色が選ばれたときに文字色を変更
+        function handleColorSelect(event) {
+            if (event.target.classList.contains('color_option')) {
+                const selectedColor = event.target.getAttribute('data-color');
+                inputValueBox.style.color = selectedColor; // 文字色変更
+                
+                // すべての色オプションから選択状態を外す
+                const allColorOptions = document.querySelectorAll('.color_option');
+                allColorOptions.forEach(option => {
+                    option.classList.remove('selected');
+                });
+
+                // 選択された色にボーダーをつける
+                event.target.classList.add('selected');
+            }
+        }
+
+        // カラーパレットと白黒グラデーション両方にクリックイベントを適用
+        colorPalette.addEventListener('click', handleColorSelect);
+        grayscaleColumn.addEventListener('click', handleColorSelect);
+
+        // 初期カラー設定
+        inputValueBox.style.color = '#000000'; // デフォルトは黒
+    </script>
+
+<div class="sitemap">
+    <ul class="top-level">
+      <li>
+        <span class="title">トップページ</span>
+        <ul class="sub-level">
+          <li><span class="title">ヘッダー</span>
+            <ul class="sub-level">
+              <li>ロゴ</li>
+              <li>ナビゲーション</li>
+            </ul>
+          </li>
+          <li><span class="title">メインビジュアル</span>
+            <ul class="sub-level">
+              <li>キャッチコピー</li>
+              <li>開始ボタン</li>
+            </ul>
+          </li>
+          <li><span class="title">作り方</span>
+            <ul class="sub-level">
+              <li>手順</li>
+              <li>開始ボタン(作り方)</li>
+            </ul>
+          </li>
+          <li><span class="title">デザイン例</span>
+            <ul class="sub-level">
+              <li>サンプル画像</li>
+            </ul>
+          </li>
+          <li><span class="title">よくある質問</span>
+            <ul class="sub-level">
+              <li>カテゴリ
+                <ul class="sub-level">
+                  <li>オリコップについて</li>
+                  <li>商品について</li>
+                  <li>注文・変更</li>
+                  <li>料金・支払い</li>
+                  <li>配送・発送</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><span class="title">お問い合わせ</span>
+            <ul class="sub-level">
+              <li>フォーム</li>
+              <li>規約リンク</li>
+            </ul>
+          </li>
+          <li><span class="title">メンバー紹介</span>
+            <ul class="sub-level">
+              <li>プロフィール</li>
+            </ul>
+          </li>
+          <li><span class="title">フッター</span>
+            <ul class="sub-level">
+              <li>フッターロゴ</li>
+              <li>プライバシーポリシー</li>
+              <li>利用規約</li>
+              <li>特定商取引法</li>
+              <li>著作権表示</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+
+</body>
+
+</html>
+
