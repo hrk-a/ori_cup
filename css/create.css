@@ -102,7 +102,7 @@ canvas{
 #create_nav {
     display: flex; /* 横並びにする */
     flex-direction: column; /* 縦並び */
-    align-items: flex-end; /* 中央揃え */
+    align-items: center;
     justify-content: space-between; /* 上下の間隔を均等に */
     box-sizing: border-box;
     background: none;
@@ -457,14 +457,11 @@ textarea {
         left: 15px;
         height: 30px;
     }
-    #picture_cont, #create_nav{
-        background: none;
-    }
     body{
         background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
     }
     #picture_cont, #create_nav{
-        background: none;
+        background: transparent;
     }
     /* スマホサイズ */
     #main,#choice_cont{
@@ -571,8 +568,13 @@ textarea {
         left: 15px;
         height: 30px;
     }
+    /* グラデーション消す */
     #picture_cont, #create_nav{
-        background: none;
+        background: transparent;
+    }
+    /* navの影消す */
+    #create_nav img {
+        filter: none; /* 影を消す */
     }
     /* スマホサイズ */
     #main,#choice_cont{
@@ -620,7 +622,7 @@ textarea {
     }
     #create_nav img{
         width: 200px;
-        height: auto;
+        height: 33px;
         margin: 0 5px 0 0;
     }
     #sntaku{

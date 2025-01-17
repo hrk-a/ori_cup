@@ -47,7 +47,6 @@
 /*デザイン例の画像*/
 .design_cont{
     width: 100%;
-    box-sizing: border-box;
 }
 .design_cont img{
     height: 70px;
