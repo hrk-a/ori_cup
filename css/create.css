@@ -178,6 +178,7 @@ canvas{
 
 .content.active {
     display: block; /* アクティブ状態のとき表示 */
+    height: 100%;
 }
 
 #sntaku{
@@ -621,7 +622,6 @@ textarea {
     }
     #create_nav img{
         width: 200px;
-        height: 33px;
         margin: 0 5px 0 0;
     }
     #sntaku{
