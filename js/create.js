@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const pcDefaultSrc = img.getAttribute('data-pc');  // PC用デフォルト画像
             const pcHoverSrc = img.getAttribute('data-hover') || pcDefaultSrc;  // PC用hover画像
             const spTabletDefaultSrc = img.getAttribute('data-sp');  // スマホとタブレット共通のデフォルト画像
-            const spTabletHoverSrc = img.getAttribute('data-hover') || spTabletDefaultSrc;  // スマホ・タブレット用hover画像
+            const spTabletHoverSrc = img.getAttribute('data-sp-hover') || spTabletDefaultSrc;  // スマホ・タブレット用hover画像
 
             // スマホまたはタブレットサイズの場合
             if (isSPorTablet) {
@@ -274,23 +274,24 @@ fontSelector.addEventListener('change',redrawCanvas);
 
 
 // 文字の反映先の要素を取得
-const inputValueBox = document.getElementById('myCanvas'); // ここが文字が反映される場所
+//const inputValueBox = document.getElementById('myCanvas'); // ここが文字が反映される場所
 
 /*// 入力内容の反映 
 inputValue.addEventListener('input', () => {
     inputValueBox.textContent = inputValue.value;  // 入力された文字を反映
 });*/
 
-// ---------- カラーパレットの作成
+// カラーパレットから色を選択する
 const colorPalette = document.getElementById('color_palette');
 const grayscaleColumn = document.getElementById('grayscale_column');
 
+// 色相と明度を組み合わせた色を作成
 const hues = Array.from({ length: 22 }, (_, i) => i * 16.36);
 const colors = [];
 const rows = 10;
 const columns = 22;
 
-// 色相と明度を組み合わせた色を作成
+// 色を作成
 for (let row = 0; row < rows; row++) {
     for (let col = 0; col < columns; col++) {
         const hue = hues[col % hues.length];
@@ -301,53 +302,49 @@ for (let row = 0; row < rows; row++) {
     }
 }
 
-    // 白黒グラデーション
-    const grayscaleColors = [];
-    for (let row = 0; row < rows; row++) {
-        const lightness = 100 - (row * 10);
-        const grayscale = `hsl(0, 0%, ${lightness}%)`;
-        grayscaleColors.push(grayscale);
-    }
+// 白黒グラデーション
+const grayscaleColors = [];
+for (let row = 0; row < rows; row++) {
+    const lightness = 100 - (row * 10);
+    const grayscale = `hsl(0, 0%, ${lightness}%)`;
+    grayscaleColors.push(grayscale);
+}
 
-    // 色オプションを作成してカラーパレットに追加
-    colors.forEach(color => {
-        const colorOption = document.createElement('div');
-        colorOption.classList.add('color_option');
-        colorOption.style.backgroundColor = color;
-        colorOption.setAttribute('data-color', color);
-        colorPalette.appendChild(colorOption);
+// 色オプションを作成してカラーパレットに追加
+colors.forEach(color => {
+    const colorOption = document.createElement('div');
+    colorOption.classList.add('color_option');
+    colorOption.style.backgroundColor = color;
+    colorOption.setAttribute('data-color', color);
+    colorOption.addEventListener('click', () => {
+        textColor = color;  // 選択された色をtextColorに設定
+        redrawCanvas();  // キャンバスを再描画
     });
+    colorPalette.appendChild(colorOption);
+});
 
-    // 白黒グラデーションをカラムに追加
-    grayscaleColors.forEach(grayscale => {
-        const grayscaleOption = document.createElement('div');
-        grayscaleOption.classList.add('color_option');
-        grayscaleOption.style.backgroundColor = grayscale;
-        grayscaleOption.setAttribute('data-color', grayscale);
-        grayscaleColumn.appendChild(grayscaleOption);
+// 白黒グラデーションをカラムに追加
+grayscaleColors.forEach(grayscale => {
+    const grayscaleOption = document.createElement('div');
+    grayscaleOption.classList.add('color_option');
+    grayscaleOption.style.backgroundColor = grayscale;
+    grayscaleOption.setAttribute('data-color', grayscale);
+    grayscaleOption.addEventListener('click', () => {
+        textColor = grayscale;  // 選択された色をtextColorに設定
+        redrawCanvas();  // キャンバスを再描画
     });
+    grayscaleColumn.appendChild(grayscaleOption);
+});
 
-    // 色選択時の処理
-    function handleColorSelect(event) {
-        if (event.target.classList.contains('color_option')) {
-            const selectedColor = event.target.getAttribute('data-color');
-            inputValueBox.style.color = selectedColor;
-
-            document.querySelectorAll('.color_option').forEach(option => {
-                option.classList.remove('selected');
-            });
-
-            event.target.classList.add('selected');
-        }
-    }
-
-    // カラーパレットのクリックイベントを設定
-    colorPalette.addEventListener('click', handleColorSelect);
-    grayscaleColumn.addEventListener('click', handleColorSelect);
-
-    // 初期文字色設定
-    inputValueBox.style.color = '#000000';
-    
+// キャンバスに文字を描画する関数
+function redrawCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+    ctx.fillStyle = textColor;  // 文字の色を選択された色に設定
+    ctx.font = '30px Arial';  // フォント設定
+    ctx.textAlign = 'center';  // 文字をキャンバスの中央に配置
+    ctx.textBaseline = 'middle';  // 文字のベースラインを中央に設定
+    ctx.fillText(textContent, canvas.width / 2, canvas.height / 2);  // 文字をキャンバスに描画
+} 
 
 
 //　---------- 文字の反映
