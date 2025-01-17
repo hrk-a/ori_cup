@@ -178,7 +178,6 @@ canvas{
 
 .content.active {
     display: block; /* アクティブ状態のとき表示 */
-    height: 100%;
 }
 
 #sntaku{
@@ -650,6 +649,7 @@ textarea {
     /* ---------- 各選択エリア ---------- */
     .content{
         padding: 3% 2%;
+        height: auto;
     }
     /* ---------- コップ選択 ---------- */
     .cup{
