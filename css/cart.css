@@ -115,11 +115,14 @@ input{
 #merchandise_price{
     font-size: 1.35rem;
 }
-/*消費税*/
-#syouhizei{
+/*合計料金*/
+#price_cont{
+    text-align: right;
     width: 70%;
     margin: 0 auto;
-    text-align: right;
+}
+/*消費税*/
+#syouhizei{
     margin-top: 10px;
 }
 /*狭いブラウザとタブレット*/
@@ -146,7 +149,7 @@ input{
         width: 100%;
         flex-direction: column;
     }    
-    #merchandise_img,#merchandise_cont,#number_cont,#price_cont{
+    #merchandise_img,#merchandise_cont,#number_cont{
         width: 80%;
         margin: 0 auto;
     }
