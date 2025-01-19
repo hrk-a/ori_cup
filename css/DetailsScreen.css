@@ -54,6 +54,7 @@ body{
 .left{
     display: inline-block;
     min-width: 100px;
+    text-align: left;
 }
 
 /* 送信ボタン */

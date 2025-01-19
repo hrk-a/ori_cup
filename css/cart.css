@@ -11,11 +11,13 @@
     z-index: 100;
     height: 50px;
 }
-/*ショッピングカート テキスト*/
-.syop_text{
+/*ショッピングカート ロゴ*/
+#shoppingcart_title{
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 70px;
+    margin: 80px 0 30px;
+}
+#shoppingcart_title img{
+    height: 70px;
 }
 /*ボタン*/
 #cart_but{
@@ -63,7 +65,9 @@ button a{
 {
     background-color: #e6e6e6;
 }
-
+#clear {
+    display: none;
+}
 /*現在カートに商品はありません。*/
 .no_cart{
     text-align: center;
@@ -111,6 +115,19 @@ input{
     box-sizing: border-box;
     width: 100px;
 }
+/*削除ボタン*/
+#deleteButton{
+    width: 100px;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 2px solid #fff;
+    color: rgb(89, 156, 232);
+    box-sizing: border-box;
+}
+#deleteButton:hover{
+    background-color: #e2f1f5;
+    border: 2px solid rgb(89, 156, 232);
+}
 /*値段のサイズ*/
 #merchandise_price{
     font-size: 1.35rem;
@@ -124,6 +141,10 @@ input{
 /*消費税*/
 #syouhizei{
     margin-top: 10px;
+}
+/*※カートが空です。商品を選択してください。*/
+#cart_message{
+    text-align: center;
 }
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
@@ -145,6 +166,14 @@ input{
     #ori_logo img{
         height: 35px;
     }
+    /*ショッピングカート ロゴ*/
+    #shoppingcart_title{
+        text-align: center;
+        margin: 80px 0 10px;
+    }
+    #shoppingcart_title img{
+        height: 30px;
+    }
     #cart_box{
         width: 100%;
         flex-direction: column;
@@ -152,6 +181,18 @@ input{
     #merchandise_img,#merchandise_cont,#number_cont{
         width: 80%;
         margin: 0 auto;
+    }
+    /*個数*/
+    #number_cont{
+        display: flex;
+    }
+    #number_cont input{
+        margin-left: 20px;
+    }
+    /*削除ボタン*/
+    #delete{
+        margin-top: 30px;
+        text-align: center;
     }
     #merchandise_img img{
         width: 100%;

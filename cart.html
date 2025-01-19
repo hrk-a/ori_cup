@@ -45,37 +45,41 @@
                 <img src="img/logo_only.png" alt="">
             </div>
         </a>
-
-        <h2 class="syop_text">ショッピングカート</h2>
-
+        <div id="shoppingcart_title">
+            <img src="img/shoppingcart.png" alt="ショッピングカート">
+        </div>
         <div id="ProductList">
             <p class="no_cart">現在カートに商品はありません。</p>
         </div>
 
-        <div id="cart_box">
-            <div id="merchandise_img"><img src="img/cup/gray.png" alt=""></div>
-            <div id="merchandise_cont">
-                <p><span class="left">商品名</span><span id="selectedCupName"></span></p>
-                <p><span class="left">色</span><span id="selectedColor"></span></p>
-                <p><span class="left">本体価格</span><span id="price"></span></p>
+        <div id="clear" style="display: none;">
+            <div id="cart_box">
+                <div id="merchandise_img"><img src="img/cup/gray.png" alt=""></div>
+                <div id="merchandise_cont">
+                    <p><span class="left">商品名</span><span id="selectedCupName"></span></p>
+                    <p><span class="left">色</span><span id="selectedColor"></span></p>
+                    <p><span class="left">本体価格</span><span id="price"></span></p>
+                </div>
+                <div id="number_cont">
+                    <label for="quantity">個数</label><br>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1">
+                </div>
+                <div id="delete">
+                    <button id="deleteButton">削除</button>
+                </div>
             </div>
-            <div id="number_cont">
-                <label for="quantity">個数</label><br>
-                <input type="number" id="quantity" name="quantity" min="1" value="1">
-            </div>
-            <div id="delete">
-                <button id="deleteButton">削除</button>
+            <div id="price_cont">
+                <div id="total">
+                    <p>合計
+                        <span id="merchandise_price"></span>
+                    </p>
+                </div>
+                <div id="syouhizei">
+                    <p id="syouhizei"></p>
+                </div>
             </div>
         </div>
-        <div id="price_cont">
-            <div id="total">
-                <p>合計
-                <span id="merchandise_price"></span></p>
-            </div>
-            <div id="syouhizei">
-                <p id="syouhizei"></p>
-            </div>
-        </div>
+        <p id="cart_message"></p>
         <div id="cart_but">
             <div>
                 <a href="index.html"><button class="top">トップに戻る</button></a>

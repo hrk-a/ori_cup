@@ -1,4 +1,11 @@
 window.onload = function() {
+
+    // 初期状態でカートを非表示
+    const cartBox = document.getElementById('clear');
+    if (cartBox) {
+         cartBox.style.display = 'none'; // 非表示に設定
+    }
+    
     // コップの種類
     const selectedCupName = localStorage.getItem('selectedCupName');
     document.getElementById('selectedCupName').innerText = selectedCupName;
@@ -80,6 +87,22 @@ window.onload = function() {
         localStorage.setItem('selectedQuantity', quantityInput.value);
         updateTotalPrice();
     });
+    // カートが空でない場合は表示
+    if (selectedCupName && selectedColor) {
+        if (cartBox) {
+            cartBox.style.display = 'block'; // カートを表示
+        }
+    }
+
+    // UIの更新
+    document.getElementById('selectedCupName').innerText = selectedCupName || '選択なし';
+    document.getElementById('selectedColor').innerText = selectedColor || '選択なし';
+    document.getElementById('quantity').value = savedQuantity;
+
+    // カップの種類が透明の場合の処理
+    if (selectedCupName === 'グラス' || selectedCupName === 'ジョッキ' || selectedCupName === 'ワイングラス') {
+        document.getElementById('selectedColor').innerText = '透明';
+    }
 
     // 初期表示時に合計金額と消費税込みの価格を表示
     updateTotalPrice();
@@ -109,34 +132,58 @@ window.onload = function() {
     }
 
     // 購入ボタンのクリック処理
-    if (buyButton) {
-        buyButton.addEventListener('click', function(event) {
-            // カートが空であればエラーメッセージを表示して遷移を防止
-            if (!selectedCupName || !selectedColor || !savedQuantity) {
-                // エラーメッセージを表示
-                errorMessageElement.innerText = 'カートに商品がありません。購入できません。';
-                document.getElementById('cart_but').appendChild(errorMessageElement); // メッセージをDOMに追加
-
-                event.preventDefault(); // ページ遷移を防止
+    if (deleteButton) {
+        deleteButton.addEventListener('click', function() {
+            // ローカルストレージの情報を削除
+            localStorage.removeItem('selectedColor');
+            localStorage.removeItem('selectedCupName');
+            localStorage.removeItem('selectedQuantity');
+    
+            // UIを更新（削除後に表示をリセット）
+            document.getElementById('selectedCupName').innerText = '';
+            document.getElementById('selectedColor').innerText = '';
+            document.getElementById('quantity').value = 1;
+    
+            // 商品がカートに無い場合のメッセージ表示
+            noCartMessage.style.display = 'block'; // カートが空になったのでメッセージを再表示
+    
+            // カートボックスを非表示にする
+            const cartBox = document.getElementById('clear');
+            if (cartBox) {
+                cartBox.style.display = 'none';
             }
         });
     }
-
     // カートが空かどうかを確認して購入ボタンの有効/無効を設定
     function checkCartStatus() {
-        if (!selectedCupName || !selectedColor || !savedQuantity) {
+        // カートが空の時のメッセージ表示用要素
+        const cartMessageElement = document.getElementById('cart_message');
+        // カートが空の場合のエラーメッセージ
+        const emptyCartMessage = '※カートが空です。商品を選択してください。';
+
+        if (!selectedCupName || !selectedColor) {
             // カートが空なら購入ボタンを無効化
             buyButton.disabled = true;
-            buyButton.style.backgroundColor = '#ccc'; // 無効化スタイル
-            noCartMessage.style.display = 'block'; // カートが空の場合のメッセージ表示
+            cartMessageElement.innerText = emptyCartMessage; // エラーメッセージを表示
+            cartMessageElement.style.color = 'red';
         } else {
             // カートにアイテムがあれば購入ボタンを有効化
             buyButton.disabled = false;
             buyButton.style.backgroundColor = ''; // 通常のスタイルに戻す
-            noCartMessage.style.display = 'none'; // カートが空のメッセージを非表示
+            cartMessageElement.innerText = ''; // メッセージを非表示
         }
     }
 
+    // 購入ボタンのクリック処理
+    if (buyButton) {
+        buyButton.addEventListener('click', function() {
+            if (!selectedCupName || !selectedColor) {
+                // カートが空の場合はエラーメッセージを表示
+                cartMessageElement.innerText = emptyCartMessage;
+                cartMessageElement.style.color = 'red';
+            }
+        });
+    }
     // 初期ロード時にカートの状態をチェック
     checkCartStatus();
 };

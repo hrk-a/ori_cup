@@ -25,6 +25,9 @@ function changeImage(cupType) {
             colorSection.style.opacity = '0.5';
             colorSection.style.backgroundColor = '#d3d3d3'; // 薄いグレーに変更
         }
+
+        // 「透明」という色情報をローカルストレージに保存
+        localStorage.setItem('selectedColor', '透明');
     } else {
         // カラーパレットを有効化し、元の見た目に戻す
         if (colorSection) {
@@ -46,18 +49,18 @@ function changeImage(cupType) {
     }
 
     // カップ種類と日本語の名前をマッピング
-        const cupNameMap = {
-            mug: 'マグカップ',
-            tumbler: 'タンブラー',
-            glass: 'グラス',
-            jug: 'ジョッキ',
-            wine: 'ワイングラス'
+    const cupNameMap = {
+        mug: 'マグカップ',
+        tumbler: 'タンブラー',
+        glass: 'グラス',
+        jug: 'ジョッキ',
+        wine: 'ワイングラス'
     };
-    
+
     // 日本語のカップ名を取得
     const selectedCupName = cupNameMap[cupType] || '未選択'; // デフォルト値として'未選択'を設定
 
-    //日本語名をローカルストレージに保存
+    // 日本語名をローカルストレージに保存
     localStorage.setItem('selectedCupName', selectedCupName); // 日本語名を保存    
 }
 
@@ -83,7 +86,6 @@ function changeColor(color) {
     }
 
     displayImage.src = colorImage; // 色変更後の画像を反映
-    console.log("画像が変更されました: " + colorImage);
 
     // 既存の選択状態をリセット
     colorElements.forEach((colorEl) => {

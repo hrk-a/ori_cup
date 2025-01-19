@@ -51,9 +51,6 @@ inputValue.addEventListener('input', () => {
     inputValueBox.textContent = inputValue.value;  // 入力された文字を反映
 });*/
 
-    
-
-
 document.addEventListener("DOMContentLoaded", function () {
     const fontSelector = document.getElementById('fontSelector');
     const fontSizeInput = document.getElementById("font_size_input");
