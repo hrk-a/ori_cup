@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/DetailsScreen.css">
+    <link rel="stylesheet" href="試し/ino.css">
     <link rel="icon" href="img/fav.png">
 </head>
 
@@ -56,90 +56,79 @@
                 <div class="Details_main_al">
 
                     <div class="Details_main">
+
                         <!----プリント---->
-                        <div class="print_al print_img">
+                        <div class="print_al">
+                            <p>プリント</p>
                             <img src="img/cup/gray.png" class="Details_main_img">
                         </div>
                         <!----アイテム---->
                         <div class="print_al">
+                            <p>アイテム</p>
                             <div class="details-item_al">
                                 <div class="details-item">
-                                    <p><span class="left">商品名</span>
-                                        <span id="selectedCupName"></span>
-                                    </p>
+                                    <p>コップの種類</p>
+                                    <p id="selectedColor">ああ</p>
                                 </div>
                                 <div class="details-item">
-                                    <p><span class="left">カラー</span>
-                                        <span id="selectedColor"></span>
-                                    </p>
+                                    <p>カラー</p>
+                                    <p id="selectedColor">ああああ</p>
                                 </div>
                                 <div class="details-item">
-                                    <p><span class="left">ラッピング</span>
-                                        <span id="nameDisplay"></span>
-                                    </p>
+                                    <p>ラッピング</p>
+                                    <p id="nameDisplay">ああああ</p>
                                 </div>
                             </div>
                         </div>
                         <!----本体価格---->
                         <div class="print_al">
-                            <p>本体価格
-                                <span id="price">本体価格</span>
-                            </p>
+                            <p id="price">本体価格</p>
                         </div>
                         <!----数量---->
                         <div class="print_al">
-                            <p>数量
-                                <span id="selectedQuantity">数量</span>
-                            </p>
+                            <p id="selectedQuantity">数量</p>
                         </div>
+                    </div>
+
+
+                    <!----グループ２---->
+                    <div class="Details_sub">
+                        <div class="postage">
+                            <p>送料</p>
+                            <p>４５０円</p>
+                        </div>
+
+                        <div class="totalPrice">合計金額</div>
                     </div>
 
                     <!----ラッピング---->
                     <div class="Details_log">
                         <img src="./img/wrapping.png" id="title">
                     </div>
+
                     <form class="Details_main_wrapping">
                         <div class="Details_main_wrapping_">
                             <div class="Details_main_wrapping_sub">
-                                <label>
-                                    <input type="radio" name="name" class="accented" value="カラーボックス"
-                                    onclick="showName(this)">
-                                    <span class="Details_main_top_title">カラーボックス</span>
-                                    <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
-                                        onclick="showName('カラーボックス')" style="cursor: pointer;">
-                                </label>
+                                <p class="Details_main_top_title">カラーボックス</p>
+                                <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
+                                    onclick="showName('カラーボックス')" style="cursor: pointer;">
+                                <input type="radio" name="name" class="accented" value="カラーボックス" onclick="showName()">
                             </div>
                             <div class="Details_main_wrapping_sub">
-                                <label>
-                                    <input type="radio" name="name" class="accented" value="クリアケース"
-                                    onclick="showName(this)">
-                                    <span class="Details_main_top_title">クリアケース</span>
-                                    <img src="img/inose_.webp" class="Details_main_img" alt="クリアケース"
-                                        onclick="showName('クリアケース')" style="cursor: pointer;">
-                                </label>
+                                <p class="Details_main_top_title">クリアケース</p>
+                                <img src="img/inose_.webp" class="Details_main_img" alt="クリアケース"
+                                    onclick="showName('クリアケース')" style="cursor: pointer;">
+                                <input type="radio" name="name" class="accented" value="クリアケース" onclick="showName()">
                             </div>
                             <div class="Details_main_wrapping_sub">
-                                <label>
-                                    <input type="radio" name="name" class="accented" value="ラッピング袋＆リボン"
-                                    onclick="showName(this)">
-                                    <span class="Details_main_top_title">ラッピング袋＆リボン</span>
-                                    <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
-                                        onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;">
-                                </label>
+                                <p class="Details_main_top_title">ラッピング袋＆リボン</p>
+                                <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
+                                    onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;">
+                                <input type="radio" name="name" class="accented" value="ラッピング袋＆リボン"
+                                    onclick="showName()">
                             </div>
                         </div>
                     </form>
-
-                    <!----合計金額---->
-                    <div class="postage">
-                        <p>送料　450円</p>
-                    </div>
-                    <div class="total">
-                        <p>合計金額
-                            <span id="totalPrice">                                
-                        </p>
-                    </div>
-
                 </div>
 
                 <script>
@@ -150,7 +139,6 @@
                         if (selectedRadio) {
                             document.getElementById("nameDisplay").innerHTML = selectedRadio.value;
                         }
-
                     }
 
                 </script>
