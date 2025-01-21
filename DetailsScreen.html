@@ -48,138 +48,132 @@
 
         <div class="container">
             <div class="Details_bg">
-                <div class="Details_log">
+                <div class="syousai_log">
                     <img src="./img/Details_title.png" id="title">
                 </div>
 
-
                 <div class="Details_main_al">
-
                     <div class="Details_main">
-                        <!----プリント---->
-                        <div class="print_al print_img">
-                            <img src="img/cup/gray.png" class="Details_main_img">
-                        </div>
-                        <!----アイテム---->
-                        <div class="print_al">
-                            <div class="details-item_al">
-                                <div class="details-item">
-                                    <p><span class="left">商品名</span>
-                                        <span id="selectedCupName"></span>
-                                    </p>
-                                </div>
-                                <div class="details-item">
-                                    <p><span class="left">カラー</span>
-                                        <span id="selectedColor"></span>
-                                    </p>
-                                </div>
-                                <div class="details-item">
-                                    <p><span class="left">ラッピング</span>
-                                        <span id="nameDisplay"></span>
-                                    </p>
+
+                        <!-- 商品詳細 -->
+                        <div id="syousai">
+                            <!----商品画像---->
+                            <div class="print_al print_img">
+                                <img src="img/cup/gray.png" class="Details_main_img">
+                            </div>
+                            <!----アイテム---->
+                            <div class="print_al">
+                                <div class="details-item_al">
+                                    <div class="details-item">
+                                        <p><span class="left">商品名</span>
+                                            <span id="selectedCupName"></span>
+                                        </p>
+                                    </div>
+                                    <div class="details-item">
+                                        <p><span class="left">カラー</span>
+                                            <span id="selectedColor"></span>
+                                        </p>
+                                    </div>
+                                    <div class="details-item">
+                                        <p><span class="left">ラッピング</span>
+                                            <span id="nameDisplay"></span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
+                            <!----本体価格---->
+                            <div class="print_al">
+                                <p>本体価格
+                                    <span id="price">本体価格</span>
+                                </p>
+                            </div>
+                            <!----数量---->
+                            <div class="print_al">
+                                <p>数量
+                                    <span id="selectedQuantity">数量</span>
+                                </p>
+                            </div>
                         </div>
-                        <!----本体価格---->
-                        <div class="print_al">
-                            <p>本体価格
-                                <span id="price">本体価格</span>
+
+                        <!----ラッピング---->
+                        <div id="lapping">
+                            <div class="lapping_log">
+                                <img src="./img/wrapping.png" id="title">
+                            </div>
+                            <p style="text-align: left;">ラッピングを選択してください</p>
+                            <form class="Details_main_wrapping">
+                                <div class="Details_main_wrapping_">
+
+                                    <div class="Lapping_cont">
+                                        <label>
+                                            <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
+                                                onclick="showName('カラーボックス')" style="cursor: pointer;"><br>
+                                            <input type="radio" name="name" class="accented" value="カラーボックス"
+                                                onclick="showName(this)">
+                                            <span class="Details_main_top_title">カラーボックス</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="Lapping_cont">
+                                        <label>
+                                            <img src="img/inose_.webp" class="Details_main_img img2" alt="クリアケース"
+                                                onclick="showName('クリアケース')" style="cursor: pointer;"><br>
+                                            <input type="radio" name="name" class="accented" value="クリアケース"
+                                                onclick="showName(this)">
+                                            <span class="Details_main_top_title">クリアケース</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="Lapping_cont">
+                                        <label>
+                                            <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
+                                                onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;"><br>
+                                            <input type="radio" name="name" class="accented" value="ラッピング袋＆リボン"
+                                                onclick="showName(this)">
+                                            <span class="Details_main_top_title">ラッピング袋＆リボン</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!----合計金額---->
+                        <div class="postage">
+                            <p>送料　450円</p>
+                        </div>
+                        <div class="total">
+                            <p>合計　
+                                <span id="totalPrice">
                             </p>
                         </div>
-                        <!----数量---->
-                        <div class="print_al">
-                            <p>数量
-                                <span id="selectedQuantity">数量</span>
-                            </p>
-                        </div>
+
                     </div>
 
-                    <!----ラッピング---->
-                    <div class="Details_log">
-                        <img src="./img/wrapping.png" id="title">
+                    <div class="button">
+                        <a href="DetailsScreen4.html">
+                            <button class="contact_button" type="submit">ご注文手続きへ進む</button>
+                        </a>
                     </div>
-                    <form class="Details_main_wrapping">
-                        <div class="Details_main_wrapping_">
-                            <div class="Details_main_wrapping_sub">
-                                <label>
-                                    <input type="radio" name="name" class="accented" value="カラーボックス"
-                                    onclick="showName(this)">
-                                    <span class="Details_main_top_title">カラーボックス</span>
-                                    <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
-                                        onclick="showName('カラーボックス')" style="cursor: pointer;">
-                                </label>
-                            </div>
-                            <div class="Details_main_wrapping_sub">
-                                <label>
-                                    <input type="radio" name="name" class="accented" value="クリアケース"
-                                    onclick="showName(this)">
-                                    <span class="Details_main_top_title">クリアケース</span>
-                                    <img src="img/inose_.webp" class="Details_main_img" alt="クリアケース"
-                                        onclick="showName('クリアケース')" style="cursor: pointer;">
-                                </label>
-                            </div>
-                            <div class="Details_main_wrapping_sub">
-                                <label>
-                                    <input type="radio" name="name" class="accented" value="ラッピング袋＆リボン"
-                                    onclick="showName(this)">
-                                    <span class="Details_main_top_title">ラッピング袋＆リボン</span>
-                                    <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
-                                        onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;">
-                                </label>
-                            </div>
-                        </div>
-                    </form>
 
-                    <!----合計金額---->
-                    <div class="postage">
-                        <p>送料　450円</p>
-                    </div>
-                    <div class="total">
-                        <p>合計金額
-                            <span id="totalPrice">                                
-                        </p>
-                    </div>
 
                 </div>
-
-                <script>
-                    function showName() {
-                        // 選択されているラジオボタンを取得
-                        const selectedRadio = document.querySelector('input[name="name"]:checked');
-                        // 選ばれている場合、その値を表示
-                        if (selectedRadio) {
-                            document.getElementById("nameDisplay").innerHTML = selectedRadio.value;
-                        }
-
-                    }
-
-                </script>
-
-                <div class="button">
-                    <a href="DetailsScreen4.html">
-                        <button class="contact_button" type="submit">ご注文手続きへ進む</button>
-                    </a>
+            </div>
+            <!----- フッター ----->
+            <div id="footer">
+                <img src="img/footer.svg" class="footer_bg">
+                <div id="footer_content">
+                    <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
+                    <ul>
+                        <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
+                        <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
+                        <li><a href="asct.html" target="_blank">特定商取引法</a></li>
+                    </ul>
+                    <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
                 </div>
-
-
             </div>
         </div>
-        <!----- フッター ----->
-        <div id="footer">
-            <img src="img/footer.svg" class="footer_bg">
-            <div id="footer_content">
-                <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
-                <ul>
-                    <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
-                    <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
-                    <li><a href="asct.html" target="_blank">特定商取引法</a></li>
-                </ul>
-                <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
-            </div>
-        </div>
-    </div>
-    <script src="./js/signup.js"></script>
-    <script src="./js/DetailsScreen.js"></script>
+        <script src="./js/signup.js"></script>
+        <script src="./js/DetailsScreen.js"></script>
 </body>
 
 </html>

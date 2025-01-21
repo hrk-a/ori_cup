@@ -26,24 +26,35 @@ body{
 }
 
 /*詳細画面*/
+#syousai{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #cacaca;
+}
 .container{
     padding: 4% 4.5%;
     box-sizing: border-box;
 }
+.Details_main{
+    padding-bottom: 40px;
+}
 
 /*詳細画面ロゴ*/
-.Details_log{
+.syousai_log{
     margin: 20px 0 40px;
     text-align: center;
 }
 
-.Details_log img{
+.syousai_log img, .lapping_log img{
     height: 70px;
 }
-
+.lapping_log{
+    margin: 20px 0 10px;
+    text-align: center;
+}
 .print_al{
     display: flex;
-    flex-direction: column;
 }
 /*プリント画像表示*/
 .print_img img{
@@ -52,9 +63,9 @@ body{
 }
 /*アイテム*/
 .left{
+    text-align: left;
     display: inline-block;
     min-width: 100px;
-    text-align: left;
 }
 
 /* 送信ボタン */
@@ -104,12 +115,6 @@ button::after {
     margin-bottom: 50px;
     text-align: center;
 }
-.Details_main{
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #cacaca;
-    padding-bottom: 40px;
-}
 .details-item{
     display: flex;
     justify-content: space-between;
@@ -118,24 +123,38 @@ button::after {
 .Details_main_wrapping_{
     display: flex;
     text-align: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
 }
 
-.Details_main_wrapping_sub{
+.Lapping_cont{
     display: flex;
-    padding: 20px 0;
-}
-.Details_main_wrapping_sub img{
+    padding: 10px 0;
     box-sizing: border-box;
-    width: 80%;
 }
-
+.Lapping_cont:active{
+    border: 2px dashed #f357a0;
+    background-color: #ffecf5;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+/*ラッピングの画像*/
+.Lapping_cont img{
+    box-sizing: border-box;
+    width: 90%;
+}
+/*ラジオボタン*/
 .accented{
     accent-color: #f357a0;
- }
+}
 
 /*合計金額*/
 .total{
     text-align: right;
+}
+#totalPrice{
+    font-size: 1.2rem;
+    color: red;
 }
 .postage{
     border-top: 1px solid #cacaca;
@@ -186,6 +205,9 @@ button::after {
 
 /* スマホ */
 @media (max-width: 520px) {
+    .Details_main_al{
+        width: 90%;
+    }
     .Details_log img{
         height: 30px;
     }    
@@ -200,9 +222,19 @@ button::after {
     .Details_log img{
         height: 30px;
     }    
-
     .Details_log_ img{
         height: 35px;
+    }
+    .syousai_log img, .lapping_log img {
+        height: 40px;
+    }
+    #syousai{
+        flex-direction: column;
+    }
+    /*商品画像表示*/
+    .print_img img{
+        width: 100%;
+        height: auto;
     }
 
     .contact_button {
@@ -231,7 +263,6 @@ button::after {
         border-left: 7px solid #fff; /* 左側を白にして三角形を作成 */
     }
 
-
     /**/
     .Details_main_wrapping_{
         display: block;
@@ -241,7 +272,7 @@ button::after {
         display: block;
     }
     
-    .Details_main_wrapping_sub{
+    .Lapping_cont{
         text-align: center;
     }
 
