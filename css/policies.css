@@ -140,5 +140,13 @@ th, td {
     .left {
         width: 100%; /* ラベルも100%幅に */
         text-align: center; /* ラベルも中央揃え */
-    }    
+    }
+    /* ----- プライバシーポリシー　利用規約 ----- */
+    .privacypolicy p, .termsofuse p{
+        padding-left: 10px;
+    }
+    ul{
+        padding-left: 0;
+        margin-left: 25px;
+    }
 }
