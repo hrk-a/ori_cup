@@ -563,6 +563,10 @@ textarea {
     body{
         background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
     }
+    main{
+        height: 100vh;
+        overflow: hidden; /* 全体のスクロールを無効化 */
+    }
     .logo{
         top: 15;
         left: 15px;
