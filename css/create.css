@@ -651,7 +651,11 @@ textarea {
         padding: 3% 2%;
         height: auto;
     }
+    .content.active{
+        height: auto;
+    }
     /* ---------- コップ選択 ---------- */
+    
     .cup{
         justify-content: flex-start;
     }
@@ -661,6 +665,7 @@ textarea {
         height: auto;
     }
     /* ---------- 色選択 ---------- */
+    
     .color1,.color2{
         flex-direction: row;
         height: auto;
@@ -673,7 +678,4 @@ textarea {
         margin: 0 5px;
     }
     /* ---------- 文字選択 ---------- */
-    .content_text{
-        height: auto;
-    }
 }
