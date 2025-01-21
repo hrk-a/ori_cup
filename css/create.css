@@ -563,6 +563,10 @@ textarea {
     body{
         background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
     }
+    main{
+        height: 100vh;
+        overflow: hidden; /* 全体のスクロールを無効化 */
+    }
     .logo{
         top: 15;
         left: 15px;
@@ -594,7 +598,7 @@ textarea {
     /* ---------- コップ表示エリア ---------- */
     #picture_cont{
         width: 100%;
-        min-height: 60%;
+        min-height: 50%;
     }
     #picture_cont02{
         width: 100%;
@@ -606,7 +610,7 @@ textarea {
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        min-height: 40%;
+        min-height: 50%;
         padding: 10px;
         padding-top: 0;
         box-sizing: border-box;
@@ -651,7 +655,11 @@ textarea {
         padding: 3% 2%;
         height: auto;
     }
+    .content.active{
+        height: auto;
+    }
     /* ---------- コップ選択 ---------- */
+    
     .cup{
         justify-content: flex-start;
     }
@@ -661,6 +669,7 @@ textarea {
         height: auto;
     }
     /* ---------- 色選択 ---------- */
+    
     .color1,.color2{
         flex-direction: row;
         height: auto;
@@ -673,7 +682,4 @@ textarea {
         margin: 0 5px;
     }
     /* ---------- 文字選択 ---------- */
-    .content_text{
-        height: auto;
-    }
 }

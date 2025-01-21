@@ -47,3 +47,35 @@ window.onload = function() {
     const totalPriceElement = document.getElementById('totalPrice');
     totalPriceElement.innerText ='(税込) ' + totalPrice.toLocaleString() + '円';
 };
+
+function showName() {
+    // 選択されているラジオボタンを取得
+    const selectedRadio = document.querySelector('input[name="name"]:checked');
+    // 選ばれている場合、その値を表示
+    if (selectedRadio) {
+        document.getElementById("nameDisplay").innerHTML = selectedRadio.value;
+    }
+
+    // 全てのラジオボタンを取得
+    document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+        radio.addEventListener('change', (e) => {
+            // 全てのラジオボタンの親要素から active 状態を削除
+            document.querySelectorAll('.Lapping_cont').forEach((cont) => {
+                cont.style.border = '';
+                cont.style.backgroundColor = '';
+            });
+            
+            // 選択されたラジオボタンの親要素にスタイルを適用
+            const parent = e.target.closest('.Lapping_cont');
+            if (parent) {
+                parent.style.border = '2px dashed #f357a0';
+                parent.style.backgroundColor = '#ffecf5';
+                parent.style.borderRadius = '8px';
+            }
+        });
+});
+}
+
+// 名前
+const name = localStorage.getItem('name');
+document.getElementById('name').innerText = name + 'さん';
