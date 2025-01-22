@@ -436,13 +436,20 @@ textarea {
 #dw_dt_btn button img{
     width: 100%;
 }
+/*+-ボタン*/
+.resize-buttons{
+    margin-top: 10px;
+    text-align: center;
+}
 /*ダウンロードボタン*/
 #download{
+    margin-top: 40px;
     filter: drop-shadow(0 5px 0 #ebd41f);
     transition: transform 0.2s ease, filter 0.2s ease;
 }
 /*削除ボタン*/
 #delete{
+    margin-top: 10px;
     filter: drop-shadow(0 5px 0 #7c89a3);
     transition: transform 0.2s ease, filter 0.2s ease;
 }
@@ -563,10 +570,6 @@ textarea {
     body{
         background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
     }
-    main{
-        height: 100vh;
-        overflow: hidden; /* 全体のスクロールを無効化 */
-    }
     .logo{
         top: 15;
         left: 15px;
@@ -598,7 +601,7 @@ textarea {
     /* ---------- コップ表示エリア ---------- */
     #picture_cont{
         width: 100%;
-        min-height: 50%;
+        min-height: 60%;
     }
     #picture_cont02{
         width: 100%;
@@ -610,7 +613,7 @@ textarea {
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        min-height: 50%;
+        min-height: 40%;
         padding: 10px;
         padding-top: 0;
         box-sizing: border-box;
@@ -655,11 +658,12 @@ textarea {
         padding: 3% 2%;
         height: auto;
     }
-    .content.active{
-        height: auto;
-    }
+    /* 各共通コンテンツ */
+    .content.active {
+        display: block; /* アクティブ状態のとき表示 */
+}
+
     /* ---------- コップ選択 ---------- */
-    
     .cup{
         justify-content: flex-start;
     }
@@ -669,7 +673,6 @@ textarea {
         height: auto;
     }
     /* ---------- 色選択 ---------- */
-    
     .color1,.color2{
         flex-direction: row;
         height: auto;
@@ -682,4 +685,16 @@ textarea {
         margin: 0 5px;
     }
     /* ---------- 文字選択 ---------- */
+    .content_text{
+        height: auto;
+    }
+    #text{
+        height: auto;
+        padding-bottom: 10px;
+    }
+    /* ---------- 写真選択 ---------- */
+    #dw_dt_btn{
+        width: 50%;
+    }
+
 }

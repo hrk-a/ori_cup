@@ -5,9 +5,6 @@ body{
     position: relative;
     background-size: 100%;    
 }
-main{
-    position: absolute;
-}
 
 #ori_logo{
     position: absolute;
@@ -132,7 +129,6 @@ button::after {
 
 .Lapping_cont{
     display: flex;
-    justify-content: center;
     padding: 10px 0;
     box-sizing: border-box;
 }
@@ -169,14 +165,6 @@ button::after {
 .Details3_text{
     text-align: center;
 }
-/*フッター*/
-.DS4_footer {
-    position: fixed;
-    color: #fff;
-    bottom: 0;
-    width: 100%;
-}
-
 /* 狭いブラウザとタブレット */
 @media (max-width: 832px) and (min-width: 521px) {
 
@@ -207,6 +195,7 @@ button::after {
         border-left: 9px solid #fff; /* 左側を白にして三角形を作成 */
     }
 
+
     .button{
         width: 200px;
         margin: auto auto;
@@ -236,32 +225,29 @@ button::after {
     .Details_log_ img{
         height: 35px;
     }
-    .syousai_log img, .lapping_log img {
-        height: 40px;
-    }
-    #syousai{
-        flex-direction: column;
-    }
     /*商品画像表示*/
     .print_img img{
         width: 100%;
         height: auto;
     }
-    .button{
-        width: 200px;
-        margin: auto auto;
-    }
+
     .contact_button {
-        width: 100%;
+        width: 165px;
         box-shadow: 2px 5px #7e99d4;
         padding: 13.5px;
         font-size: 0.8rem;
         border: 2px solid #fff;
-        letter-spacing: 1px;
     }
+
     .button span {
         font-size: 8.5px;
     }
+
+    .button{
+        width: 165px;
+        margin: auto auto;
+    }
+    
     
     /* 右向きの矢印を追加 */
     button::after {
@@ -283,4 +269,5 @@ button::after {
     .Lapping_cont{
         text-align: center;
     }
+
 }

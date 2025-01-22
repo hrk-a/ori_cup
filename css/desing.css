@@ -39,17 +39,24 @@
     .design_cont img{
         height: 100px;
     }
-    
 }
 
 /*スマホ*/
 @media (max-width: 520px){
+#desing{
+    width: 90%;
+    margin: 0 auto;
+}
 /*デザイン例の画像*/
 .design_cont{
     width: 100%;
+    box-sizing: border-box;
+}
+.design_cont{
+    padding: 5% 3% 0% 3%;
 }
 .design_cont img{
-    height: 70px;
+    height: 65px;
 }
 
 }
