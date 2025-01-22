@@ -60,19 +60,7 @@ body {
     transform: translate(-85%, -50%); /* 水平方向: 右端から中央へ, 垂直方向: 中央揃え */
     width: 380px;
     height: auto; /* 高さは自動調整 */
-}
-
-/* コップの写真のエリア（キャンバス部分） 古*/
-#mugCanvas {
-    position: absolute; /* 絶対配置 */
-    top: 53%; /* 親要素の中央に配置 */
-    left: 45.5%; /* 親要素の中心に配置 */
-    transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
-    width: 31%; /* キャンバスの幅を親要素に合わせる */
-    height: 40%; /* 高さは自動調整 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    z-index: 10;
 }
 
 /* ふわっと表示アニメーション */
@@ -92,11 +80,13 @@ body {
 }
 /*キャンバス*/
 canvas{
+    position: relative;
     border: 1px solid #333;
     vertical-align: middle;
     width: 90%;
     height: 360px;
     margin: 0 auto;
+    z-index: 15;
 }
 /* ----- ナビ ----- */
 #create_nav {
@@ -178,7 +168,6 @@ canvas{
 
 .content.active {
     display: block; /* アクティブ状態のとき表示 */
-    height: 100%;
 }
 
 #sntaku{
@@ -189,6 +178,9 @@ canvas{
 }
 
 /* ---------- コップ選択 ---------- */
+#cup{
+    height: 100%;
+}
 .cup {
     height: 100%;
     display: flex;
@@ -214,13 +206,16 @@ canvas{
 }
 
 /* ---------- 色選択 ---------- */
+#color{
+    height: 100%;
+}
 .color{
     height: 100%;
 }
 .color_img{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
     height: 100%;
 }
 .color1, .color2{
@@ -262,6 +257,9 @@ input {
     font-size: 30px;
     font-family: Arial, sans-serif;
     white-space: nowrap;
+}
+::selection {
+    border: 1px solid #333;  /* 枠線を追加 */
 }
 
 /* フォントサイズ調整のスタイル */
@@ -420,6 +418,12 @@ textarea {
     padding: 5px; /* 内側の余白を調整 */
     box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
     width: 100%; /* 横幅を調整（必要に応じて） */
+}
+#displayText {
+    white-space: pre-wrap; /* 改行をそのまま反映 */
+    word-wrap: break-word;
+    padding: 10px;
+    border: 2px solid black !important;
 }
 
 /* ---------- 写真選択 ---------- */
@@ -673,6 +677,13 @@ textarea {
         height: auto;
     }
     /* ---------- 色選択 ---------- */
+    .color_img{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        height: 100%;
+    }
+    
     .color1,.color2{
         flex-direction: row;
         height: auto;

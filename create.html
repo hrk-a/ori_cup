@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -57,7 +56,8 @@
                 <!--挿入する画像-->
                 <div id="picture_cont01">
                     <canvas id="myCanvas" class="upper-canvas">
-                        <div id="textimg"></div>
+                        <div id="displayText"></div>
+                        <div id="displayimg"></div>
                     </canvas>
                 </div>
             </div>
@@ -76,31 +76,40 @@
             <nav id="create_nav">
                 <a href="#" class="active" data-target="cup">
                     <img class="nav-image" src="img/pc_cup_nav.png" alt="コップ選択" data-pc="img/pc_cup_nav.png"
-                        data-sp="img/sp_cup_nav.png" data-hover="img/pc_cup_nav_over.png" data-sp-hover="img/sp_cup_nav_over.png">
+                        data-sp="img/sp_cup_nav.png" data-hover="img/pc_cup_nav_over.png"
+                        data-sp-hover="img/sp_cup_nav_over.png">
                 </a>
                 <a href="#" data-target="color">
                     <img class="nav-image" src="img/pc_color_nav.png" alt="色選択" data-pc="img/pc_color_nav.png"
-                        data-sp="img/sp_color_nav.png" data-hover="img/pc_color_nav_over.png" data-sp-hover="img/sp_color_nav_over.png">
+                        data-sp="img/sp_color_nav.png" data-hover="img/pc_color_nav_over.png"
+                        data-sp-hover="img/sp_color_nav_over.png">
                 </a>
                 <a href="#" data-target="text">
                     <img class="nav-image" src="img/pc_text_nav.png" alt="文字選択" data-pc="img/pc_text_nav.png"
-                        data-sp="img/sp_text_nav.png" data-hover="img/pc_text_nav_over.png" data-sp-hover="img/sp_text_nav_over.png">
+                        data-sp="img/sp_text_nav.png" data-hover="img/pc_text_nav_over.png"
+                        data-sp-hover="img/sp_text_nav_over.png">
                 </a>
                 <a href="#" data-target="picture">
                     <img class="nav-image" src="img/pc_picture_nav.png" alt="写真選択" data-pc="img/pc_picture_nav.png"
-                        data-sp="img/sp_picture_nav.png" data-hover="img/pc_picture_nav_over.png" data-sp-hover="img/sp_picture_nav_over.png">
+                        data-sp="img/sp_picture_nav.png" data-hover="img/pc_picture_nav_over.png"
+                        data-sp-hover="img/sp_picture_nav_over.png">
                 </a>
             </nav>
-            
+
             <div id="sntaku">
                 <!----- コップ選択 ------>
                 <div id="cup" class="content active allcont">
                     <div class="cup">
-                        <img class="cup-option" src="img/cup/mug.png" alt="マグカップ" onclick="changeImage('mug')" data-type="マグカップ">
-                        <img class="cup-option" src="img/cup/tumbler.png" alt="タンブラー" onclick="changeImage('tumbler')" data-type="タンブラー">
-                        <img class="cup-option" src="img/cup/glass.png" alt="グラス" onclick="changeImage('glass')" data-type="グラス">
-                        <img class="cup-option" src="img/cup/jug.png" alt="ジョッキ" onclick="changeImage('jug')" data-type="ジョッキ">
-                        <img class="cup-option" src="img/cup/wine.png" alt="ワイングラス" onclick="changeImage('wine')" data-type="ワイングラス">
+                        <img class="cup-option" src="img/cup/mug.png" alt="マグカップ" onclick="changeImage('mug')"
+                            data-type="マグカップ">
+                        <img class="cup-option" src="img/cup/tumbler.png" alt="タンブラー" onclick="changeImage('tumbler')"
+                            data-type="タンブラー">
+                        <img class="cup-option" src="img/cup/glass.png" alt="グラス" onclick="changeImage('glass')"
+                            data-type="グラス">
+                        <img class="cup-option" src="img/cup/jug.png" alt="ジョッキ" onclick="changeImage('jug')"
+                            data-type="ジョッキ">
+                        <img class="cup-option" src="img/cup/wine.png" alt="ワイングラス" onclick="changeImage('wine')"
+                            data-type="ワイングラス">
                     </div>
                 </div>
 
@@ -154,50 +163,38 @@
                         </div>
 
                         <div class="sp_flex">
-                        <!-- フォント選択 -->
-                        <div class="fontosentaku">
-                            <p class="text_heading">フォント選択</p>
-                            <select id="fontSelector">
-                                <option value="'M PLUS Rounded 1c', sans-serif">M PLUS Rounded 1c</option>
-                                <option value="'Cherry Bomb One', cursive">Cherry Bomb One</option>
-                                <option value="'Dela Gothic One', sans-serif">Dela Gothic One</option>
-                                <option value="'DotGothic16', sans-serif">DotGothic16</option>
-                                <option value="'Kaisei Opti', serif">Kaisei Opti</option>
-                                <option value="'Kiwi Maru', serif">Kiwi Maru</option>
-                                <option value="'Noto Serif JP', serif">Noto Serif JP</option>
-                                <option value="'Sawarabi Gothic', sans-serif">Sawarabi Gothic</option>
-                                <option value="'Shippori Mincho B1', serif">Shippori Mincho B1</option>
-                                <option value="'Yuji Syuku', serif">Yuji Syuku</option>
-                                <option value="'Yusei Magic', sans-serif">Yusei Magic</option>
-                                <option value="Bungee Inline">Bungee Inline</option>
-                            </select>
-                        </div>
-
-                        <!-- フォントサイズ -->
-                        <div class="fontsize">
-                            <label for="font_size">
-                                <p class="text_heading">フォントサイズ</p>
-                            </label>
-                            <div class="font-size-control">
-                                <button id="decrease_font_size">-</button>
-                                <input type="number" id="font_size_input" value="18" min="0" max="200">
-                                <button id="increase_font_size">+</button>
-                                <span>px</span>
+                            <!-- フォント選択 -->
+                            <div class="fontosentaku">
+                                <p class="text_heading">フォント選択</p>
+                                <select id="fontSelector">
+                                    <option value="'M PLUS Rounded 1c', sans-serif">M PLUS Rounded 1c</option>
+                                    <option value="'Cherry Bomb One', cursive">Cherry Bomb One</option>
+                                    <option value="'Dela Gothic One', sans-serif">Dela Gothic One</option>
+                                    <option value="'DotGothic16', sans-serif">DotGothic16</option>
+                                    <option value="'Kaisei Opti', serif">Kaisei Opti</option>
+                                    <option value="'Kiwi Maru', serif">Kiwi Maru</option>
+                                    <option value="'Noto Serif JP', serif">Noto Serif JP</option>
+                                    <option value="'Sawarabi Gothic', sans-serif">Sawarabi Gothic</option>
+                                    <option value="'Shippori Mincho B1', serif">Shippori Mincho B1</option>
+                                    <option value="'Yuji Syuku', serif">Yuji Syuku</option>
+                                    <option value="'Yusei Magic', sans-serif">Yusei Magic</option>
+                                    <option value="Bungee Inline">Bungee Inline</option>
+                                </select>
                             </div>
-                        </div>
-                        <!-- テキスト変形 -->
-                        <div class="henkei">
-                            
-                            <!-- 角度調整のスライダー -->
-                            <label for="rotation">
-                                <p class="text_heading">テキスト変形</p>
-                            </label>
-                            <div class="slider-container">
-                                <input type="range" id="rotation" min="0" max="360" value="0">
-                                <span id="rotation_value">0</span>°
-                            </div>
-                        </div>
 
+                            <!-- フォントサイズ -->
+                            <div class="fontsize">
+                                <label for="font_size">
+                                    <p class="text_heading">フォントサイズ</p>
+                                </label>
+                                <div class="font-size-control">
+                                    <button id="decrease_font_size">-</button>
+                                    <input type="number" id="font_size_input" value="18" min="0" max="200">
+                                    <button id="increase_font_size">+</button>
+                                    <span>px</span>
+                                </div>
+                            </div>
+                            <!-- テキスト変形 -->
                             <!-- 文字デザイン変更（プルダウンメニュー） -->
                             <div class="text-design">
                                 <p class="text_heading">文字デザイン</p>
@@ -226,7 +223,6 @@
 
                 <!----- 写真選択 ------>
                 <div id="picture" class="content allcont">
-                    <p>写真選択</p>
                     <div class="picture">
                         <input type="file" id="imageInput" accept="image/*" multiple>
                     </div>
