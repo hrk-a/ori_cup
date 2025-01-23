@@ -474,7 +474,6 @@ textarea {
     #picture_cont, #create_nav{
         background: transparent;
     }
-    /* スマホサイズ */
     #main,#choice_cont{
         flex-direction: column;
         width: 100vw;
@@ -552,7 +551,7 @@ textarea {
     .color1,.color2{
         flex-direction: row;
         height: auto;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         align-items: center;
     }
     .color1 img,.color2 img{
@@ -593,6 +592,9 @@ textarea {
     /* navの影消す */
     #create_nav img {
         filter: none; /* 影を消す */
+    }
+    #main{
+        padding: 0;
     }
     /* スマホサイズ */
     #main,#choice_cont{
