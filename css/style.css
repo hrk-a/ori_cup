@@ -123,7 +123,7 @@ button {
 }
 .vertical-rl{
     writing-mode: vertical-rl;
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 #cart:hover,
@@ -394,11 +394,10 @@ span{
     }
     .vertical-rl{
         writing-mode: vertical-rl;
-        margin: 0 7px;
     }
     
     .make_but {
-        padding: 25px 7px;
+        padding: 25px 5px;
         letter-spacing: 1.5px;
     }
 
