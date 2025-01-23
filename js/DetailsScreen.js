@@ -119,13 +119,27 @@ function showName() {
             // 選択されたラジオボタンの親要素にスタイルを適用
             const parent = e.target.closest('.Lapping_cont');
             if (parent) {
-                parent.style.border = '2px dashed #f357a0';
-                parent.style.backgroundColor = '#ffecf5';
+                parent.style.border = '2px dashed #7e99d4';
+                parent.style.backgroundColor = '#e5f0fe';
                 parent.style.borderRadius = '8px';
             }
         });
     });
 }
+
+// ---------- 支払い方法　---------- 
+// 支払い方法の変更イベントをリッスン
+document.getElementById('payment-method').addEventListener('change', function() {
+    var paymentMethod = this.value;
+
+    // すべての詳細情報を非表示
+    document.getElementById('cod_details').style.display = 'none';
+
+    // 支払い方法に応じて詳細を表示
+    if (paymentMethod === 'cod') {
+        document.getElementById('cod_details').style.display = 'block';
+    }
+});
 
 // ---------- 名前 -----------
 const name = localStorage.getItem('name');

@@ -4,6 +4,10 @@
 body{
     font-weight: 400;
 }
+html {
+    font-size: 100%;
+}
+
 /*メイン*/
 #mainsub{
     padding: 0 4%;
@@ -32,7 +36,7 @@ li>span{
     vertical-align: middle;
 }
 ul{
-    margin-left: 40px;
+    margin-left: 20px;
 }
 /*パンくずリスト*/
 .pankuzu{
@@ -52,7 +56,7 @@ ul{
 
 /* ----- プライバシーポリシー　利用規約 ----- */
 .privacypolicy p, .termsofuse p{
-    padding-left: 20px;
+    padding: 10px 15px;
 }
 
 /*はじめに・個人情報の取扱について*/
@@ -73,6 +77,7 @@ table {
     background-color: #fff;
 }
 .left{
+    vertical-align: top;
     width: 230px;
     text-align: center;
     background-color: #eeeeee;

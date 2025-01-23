@@ -133,8 +133,9 @@ button::after {
     }
 
     .howto_button {
+        font-weight: 400;
         width: 165px;
-        padding: 9px 0 5px;
+        padding: 10px 0 7px;
         font-size: 0.8rem;
         border: 2px solid #fff;
     }

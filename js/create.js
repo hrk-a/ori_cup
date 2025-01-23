@@ -63,31 +63,13 @@ function redrawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
 
     // フォント設定
+    let fontSize = 18;  // 初期フォントサイズを18に設定（グローバルに定義）
+    let selectedFont = "Arial";  // selectedFontを定義
     ctx.font = `${fontSize}px ${selectedFont}`;
     ctx.fillStyle = "black";  // 文字の色
 
-    // テキスト内容が改行を含む場合、行ごとに描画
-    const lines = textContent.split('\n');  // 改行でテキストを分割
-    let currentY = textY;  // 現在のY座標を保持
-
-    // 横書きの場合
-    if (writingMode === "horizontal") {
-        lines.forEach(line => {
-            ctx.fillText(line, textX, currentY);  // 行ごとにテキストを描画
-            currentY += fontSize + 5;  // 次の行は縦に少しスペースを空けて描画
-        });
-    } else if (writingMode === "vertical") {
-        // 縦書きの場合
-        const x = 50; // 縦書きの開始位置（X座標）
-        let y = 50; // 縦書きの開始位置（Y座標）
-        lines.forEach(line => {
-            for (let i = 0; i < line.length; i++) {
-                ctx.fillText(line[i], x, y);  // 縦書きテキスト
-                y += fontSize + 5; // 次の文字は縦にフォントサイズ＋5px下に描画
-            }
-        });
     }
-}
+
 
 // フォント選択時にキャンバスを再描画
 fontSelector.addEventListener('change',redrawCanvas);
@@ -118,29 +100,32 @@ document.addEventListener("DOMContentLoaded", function () {
         // フォント設定
         ctx.font = `${fontSize}px ${selectedFont}`;
 
- // テキスト内容が改行を含む場合、行ごとに描画
- const lines = textContent.split('\n');  // 改行でテキストを分割
- let currentY = textY;  // 現在のY座標を保持
-
-
-   // 横書きの場合
-   if (writingMode === "horizontal") {
-    lines.forEach(line => {
-        ctx.fillText(line, textX, currentY);  // 行ごとにテキストを描画
-        currentY += fontSize + 5;  // 次の行は縦に少しスペースを空けて描画
-    });
-} else if (writingMode === "vertical") {
-    // 縦書きの場合
-    const x = 50; // 縦書きの開始位置（X座標）
-    let y = 50; // 縦書きの開始位置（Y座標）
-    lines.forEach(line => {
-        for (let i = 0; i < line.length; i++) {
-            ctx.fillText(line[i], x, y);  // 縦書きテキスト
-            y += fontSize + 5; // 次の文字は縦にフォントサイズ＋5px下に描画
+        const lines = textContent.split('\n');  // 改行でテキストを分割
+        let currentY = textY;  // 現在のY座標を保持
+        
+        // 横書きの場合
+        if (writingMode === "horizontal") {
+            lines.forEach(line => {
+                ctx.fillText(line, textX, currentY);  // 行ごとにテキストを描画
+                currentY += fontSize + 5;  // 次の行は縦に少しスペースを空けて描画
+            });
+        } else if (writingMode === "vertical") {
+            // 縦書きの場合
+            let x = 50; // 縦書きの開始位置（X座標）
+            let y = 50; // 縦書きの開始位置（Y座標）
+        
+            lines.forEach(line => {
+                // 各行のテキストを1文字ずつ描画
+                for (let i = 0; i < line.length; i++) {
+                    ctx.fillText(line[i], x, y);  // 縦書きテキスト
+                    y += fontSize + 5; // 次の文字は縦にフォントサイズ＋5px下に描画
+                }
+                // 行が終わったらy座標をリセットして、次の行へ
+                y = 50; // 初期位置に戻す
+                x += fontSize + 5; // 次の行は右に少し移動（縦書きのため）
+            });
         }
-    });
-}
-}
+        }
 
     // フォントサイズを小さくする
     decreaseButton.addEventListener("click", function () {

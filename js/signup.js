@@ -72,8 +72,8 @@ document.getElementById("container").addEventListener("submit", function(event) 
 });
 
 // エラーメッセージを表示
-function displayError(field, message) {
-    const errorElement = document.getElementById(`${field}-error`);
+function displayError(fieldId, message) {
+    const errorElement = document.getElementById(`${fieldId}-error`);
     if (errorElement) {
         errorElement.textContent = message;
     }
