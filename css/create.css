@@ -175,6 +175,7 @@ canvas{
     overflow-y: auto; /* 縦スクロールを許可 */
     z-index: 50;
     background-color: #fff;
+    box-sizing: border-box;
 }
 
 /* ---------- コップ選択 ---------- */
@@ -474,12 +475,9 @@ textarea {
     #picture_cont, #create_nav{
         background: transparent;
     }
-    #main,#choice_cont{
+    #main,#choice_cont,#picture_cont{
         flex-direction: column;
         width: 100vw;
-    }
-    #main{
-        padding: 0;
     }
     /*マグカップの写真*/
     #display_image {
@@ -593,11 +591,7 @@ textarea {
     #create_nav img {
         filter: none; /* 影を消す */
     }
-    #main{
-        padding: 0;
-    }
-    /* スマホサイズ */
-    #main,#choice_cont{
+    #main,#choice_cont,#picture_cont{
         flex-direction: column;
         width: 100vw;
     }
