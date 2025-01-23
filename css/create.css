@@ -514,6 +514,7 @@ textarea {
         flex-direction: row;
         width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
     }
     #create_nav a{
         height: auto;
@@ -582,6 +583,12 @@ textarea {
     /* グラデーション消す */
     #picture_cont, #create_nav{
         background: transparent;
+    }
+    #create_nav{
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
     }
     /* navの影消す */
     #create_nav img {
