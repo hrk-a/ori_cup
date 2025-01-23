@@ -288,22 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.drawImage(mugImage, 0, 0, canvas.width, canvas.height);
     };
 
-    // スクロールで拡大縮小
-    canvas.addEventListener('wheel', function (e) {
-        e.preventDefault(); // ページのスクロールを防止
-        if (selectedImageIndex >= 0) {
-            const imgData = uploadedImages[selectedImageIndex];
-            const scaleFactor = 0.1;  // サイズ変更の倍率
-            if (e.deltaY < 0) {  // 上にスクロール → 拡大
-                imgData.width *= (1 + scaleFactor);
-                imgData.height *= (1 + scaleFactor);
-            } else if (e.deltaY > 0) {  // 下にスクロール → 縮小
-                imgData.width *= (1 - scaleFactor);
-                imgData.height *= (1 - scaleFactor);
-            }
-            redrawCanvas();  // 再描画
-        }
-    });
+
 
     // 画像と文字をキャンバスに描画
     function redrawCanvas() {
@@ -397,33 +382,147 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedText = null;  // 文字の選択を解除
     });
 
-    //　---------- 画像のアップロード ---------- 
-    document.getElementById('imageInput').addEventListener('change', function(event) {
-        const files = event.target.files; // 選ばれたファイルを取得
-        const displayDiv = document.getElementById('displayimg'); // 表示するdivを取得
-    
-        // まずはdivをクリア（前回選択された画像を削除）
-        displayDiv.innerHTML = '';
-    
-        // 複数選択されていた場合はループ処理
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            
-            // FileReaderを使って画像を読み込む
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                // 読み込んだ画像をimg要素として表示
-                const img = document.createElement('img');
-                img.src = e.target.result; // 読み込んだ画像のURLを設定
-                img.style.maxWidth = '200px'; // 画像の最大幅を設定（任意）
-                displayDiv.appendChild(img); // divに画像を追加
-            };
-    
-            // ファイルを読み込む
-            reader.readAsDataURL(file);
+});
+
+//　---------- 画像選択 ---------- 
+
+let image = null;  // 画像の変数
+let imageWidth = 200;  // 初期画像幅
+let imageHeight = 200; // 初期画像高さ
+let imageX = 0;  // 画像のX座標
+let imageY = 0;  // 画像のY座標
+let isDragging2 = false; // ドラッグ中かどうか
+
+// 画像選択時の処理
+document.getElementById('imageInput').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+        const img = new Image();
+        img.onload = function() {
+        image = img;  // 画像の保存
+        imageX = (canvas.width - imageWidth) / 2; // 初期位置をキャンバスの中央に設定
+        imageY = (canvas.height - imageHeight) / 2; // 初期位置をキャンバスの中央に設定
+        drawImage();  // 画像描画
+        };
+        img.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+    }
+});
+
+// 画像をキャンバスに描画する関数
+function drawImage() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+    if (image) {
+    ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);
+    }
+}
+
+// サイズを大きくする
+document.getElementById('increaseSize').addEventListener('click', () => {
+    imageWidth += 50;
+    imageHeight += 50;
+    drawImage();
+});
+
+// サイズを小さくする
+document.getElementById('decreaseSize').addEventListener('click', () => {
+    if (imageWidth > 50 && imageHeight > 50) {
+        imageWidth -= 50;
+        imageHeight -= 50;
+        drawImage();
+    }
+});
+
+// スクロールで拡大縮小
+canvas.addEventListener('wheel', function (e) {
+  e.preventDefault(); // ページのスクロールを防止
+
+  // サイズ変更の倍率
+    const scaleFactor = 0.1;  
+
+    if (image) {
+        if (e.deltaY < 0) {  // 上にスクロール → 拡大
+        imageWidth *= (1 + scaleFactor);
+        imageHeight *= (1 + scaleFactor);
+        } else if (e.deltaY > 0) {  // 下にスクロール → 縮小
+        imageWidth *= (1 - scaleFactor);
+        imageHeight *= (1 - scaleFactor);
         }
-    });
+        drawImage();  // 画像を描画し直す
+    }
+});
+
+// 画像削除ボタン
+document.getElementById('delete').addEventListener('click', () => {
+  image = null;  // 画像を削除
+  ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+});
+
+// 画像ダウンロードボタン
+document.getElementById('download').addEventListener('click', () => {
+  if (image) {
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL();  // キャンバスの内容を画像データURLに変換
+    link.download = 'downloaded-image.png';  // ダウンロードするファイル名
+    link.click();
+  } else {
+    alert('画像がありません！');
+  }
+});
+
+// ドラッグ機能の追加
+canvas.addEventListener('mousedown', (e) => {
+  if (image && e.offsetX >= imageX && e.offsetX <= imageX + imageWidth &&
+      e.offsetY >= imageY && e.offsetY <= imageY + imageHeight) {
+        isDragging2 = true;  // 画像がクリックされたらドラッグ開始
+  }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+  if (isDragging2) {
+    imageX = e.offsetX - imageWidth / 2;  // 画像をマウスに追従させる
+    imageY = e.offsetY - imageHeight / 2;
+    drawImage();  // 画像を描画し直す
+  }
+});
+
+canvas.addEventListener('mouseup', () => {
+    isDragging2 = false;  // ドラッグを終了
+});
+
+canvas.addEventListener('mouseout', () => {
+    isDragging2 = false;  // キャンバス外に出た時もドラッグを終了
+});
+
+// これあるとテキストが潰れない。。。
+document.getElementById('imageInput').addEventListener('change', function(event) {
+    const files = event.target.files; // 選ばれたファイルを取得
+    const displayDiv = document.getElementById('displayimg'); // 表示するdivを取得
+    
+    // まずはdivをクリア（前回選択された画像を削除）
+    displayDiv.innerHTML = '';
+    
+    // 複数選択されていた場合はループ処理
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        
+        // FileReaderを使って画像を読み込む
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // 読み込んだ画像をimg要素として表示
+            const img = document.createElement('img');
+            img.src = e.target.result; // 読み込んだ画像のURLを設定
+            img.style.maxWidth = '200px'; // 画像の最大幅を設定（任意）
+            displayDiv.appendChild(img); // divに画像を追加
+        };
+
+        // ファイルを読み込む
+        reader.readAsDataURL(file);
+    }
 });
 
 

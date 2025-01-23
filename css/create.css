@@ -277,23 +277,26 @@ input {
 .nyuuryoku, .fontosentaku, .fontsize, .text-design, .font_color{
     margin-bottom: 25px;
 }
-    /* プルダウンそれぞれのフォントを適用 */
-    option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
-    option[value*="Dela Gothic One"] { font-family: 'Dela Gothic One', sans-serif; }
-    option[value*="DotGothic16"] { font-family: 'DotGothic16', sans-serif; }
-    option[value*="Kaisei Opti"] { font-family: 'Kaisei Opti', serif; }
-    option[value*="Kiwi Maru"] { font-family: 'Kiwi Maru', serif; }
-    option[value*="M PLUS Rounded 1c"] { font-family: 'M PLUS Rounded 1c', sans-serif; }
-    option[value*="Noto Serif JP"] { font-family: 'Noto Serif JP', serif; }
-    option[value*="Sawarabi Gothic"] { font-family: 'Sawarabi Gothic', sans-serif; }
-    option[value*="Shippori Mincho B1"] { font-family: 'Shippori Mincho B1', serif; }
-    option[value*="Yuji Syuku"] { font-family: 'Yuji Syuku', serif; }
-    option[value*="Yusei Magic"] { font-family: 'Yusei Magic', sans-serif; }
-    option[value*="Bungee Inline"] { font-family: 'Bungee Inline', cursive; }
+/* プルダウンそれぞれのフォントを適用 */
+option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
+option[value*="Dela Gothic One"] { font-family: 'Dela Gothic One', sans-serif; }
+option[value*="DotGothic16"] { font-family: 'DotGothic16', sans-serif; }
+option[value*="Kaisei Opti"] { font-family: 'Kaisei Opti', serif; }
+option[value*="Kiwi Maru"] { font-family: 'Kiwi Maru', serif; }
+option[value*="M PLUS Rounded 1c"] { font-family: 'M PLUS Rounded 1c', sans-serif; }
+option[value*="Noto Serif JP"] { font-family: 'Noto Serif JP', serif; }
+option[value*="Sawarabi Gothic"] { font-family: 'Sawarabi Gothic', sans-serif; }
+option[value*="Shippori Mincho B1"] { font-family: 'Shippori Mincho B1', serif; }
+option[value*="Yuji Syuku"] { font-family: 'Yuji Syuku', serif; }
+option[value*="Yusei Magic"] { font-family: 'Yusei Magic', sans-serif; }
+option[value*="Bungee Inline"] { font-family: 'Bungee Inline', cursive; }
     
 #fontSelector{
-    padding: 3px 5px;
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 8px 5px ;
 }
+
 /* スライダーとその値を横並びに */
 .slider-container {
     display: flex;
@@ -309,6 +312,9 @@ input[type="number"] {
     width: 60px;
     font-size: 16px;
     padding: 5px;
+}
+.font-size-control{
+    display: flex;
 }
 /*フォントサイズのボタン*/
 button {
