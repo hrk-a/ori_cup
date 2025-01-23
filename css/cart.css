@@ -192,7 +192,7 @@ input{
     /*削除ボタン*/
     #delete{
         margin-top: 30px;
-        text-align: center;
+        text-align: right;
     }
     #merchandise_img img{
         width: 100%;

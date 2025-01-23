@@ -308,6 +308,10 @@ select{
         width: 100%;
         height: auto;
     }
+    .henkou a{
+        width: 70px;
+        border-bottom: 1px solid #7e99d4;
+    }
     .button{
         width: 200px;
         margin: auto auto;
