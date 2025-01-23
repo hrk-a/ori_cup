@@ -12,7 +12,7 @@ body {
 
 #main {
     display: flex;
-    min-height: 100%; /* これで高さを確保 */
+    min-height: 100vh; /* これで高さを確保 */
 }
 #logo{
     position: absolute;
@@ -268,6 +268,15 @@ input {
 }
 
 /* ---------- フォント選択 ---------- */
+.text_cont{
+    height: 100%;
+}
+#text{
+    height: 100%;
+}
+.nyuuryoku, .fontosentaku, .fontsize, .text-design, .font_color{
+    margin-bottom: 25px;
+}
     /* プルダウンそれぞれのフォントを適用 */
     option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
     option[value*="Dela Gothic One"] { font-family: 'Dela Gothic One', sans-serif; }
@@ -328,7 +337,6 @@ button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
-
 .text-content {
     transition: all 0.3s ease-in-out;
 }
@@ -341,6 +349,10 @@ button:disabled {
 #normalButton,#verticalButton{
     background-color: #fff;
     border: none;
+}
+/*縦横書きアイコン*/
+.text_design img{
+    width: 40px;
 }
 #normalButton:hover,#verticalButton:hover{
     background-color: #ececec;
@@ -404,7 +416,6 @@ textarea {
     display: grid;
     grid-template-rows: repeat(10, 20px); /* 縦方向に10行 */
 }
-
 /*タイトル*/
 .text_heading{
     margin-bottom: 0;
@@ -491,7 +502,7 @@ textarea {
     /* ---------- コップ表示エリア ---------- */
     #picture_cont{
         width: 100%;
-        height: 65vh;
+        min-height: 65%;
     }
     #picture_cont02{
         width: 100%;
@@ -503,8 +514,7 @@ textarea {
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        height: 35vh;
-        padding: 10px;
+        min-height: 35%;
         padding-top: 0;
         box-sizing: border-box;
         overflow: auto;
@@ -544,22 +554,32 @@ textarea {
     }
     .cup img{
         margin: 0 10px;
-        width: 115px;
+        width: 90px;
         height: auto;
     }
     /* ---------- 色選択 ---------- */
+    .color_img {
+        display: flex;
+        justify-content: space-evenly;
+        align-content: space-between;
+        height: 100%;
+        flex-wrap: wrap;
+    }
     .color1,.color2{
         flex-direction: row;
         height: auto;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         align-items: center;
     }
     .color1 img,.color2 img{
-        width: 115px;
+        width: 90px;
         height: auto;
         margin: 0 5px;
     }
     /* ---------- 文字選択 ---------- */
+    #text {
+        height: auto;
+    }
     .sp_flex{
         display: flex;
         justify-content: space-between;
@@ -611,7 +631,7 @@ textarea {
     /* ---------- コップ表示エリア ---------- */
     #picture_cont{
         width: 100%;
-        height: 55vh;
+        min-height: 55%;
     }
     #picture_cont02{
         width: 100%;
@@ -622,8 +642,8 @@ textarea {
     #choice_cont {
         width: 100%;
         display: flex;
-        justify-content: flex-start;
-        height: 45vh;
+        justify-content: flex-end;
+        min-height: 45%;
         padding-top: 0;
         box-sizing: border-box;
         overflow: auto;
@@ -707,6 +727,11 @@ textarea {
     #text{
         height: auto;
         padding-bottom: 10px;
+    }
+    #color_palette_container {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 10px;
     }
     /* ---------- 写真選択 ---------- */
     #dw_dt_btn{
