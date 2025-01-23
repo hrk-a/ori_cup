@@ -225,9 +225,6 @@ select{
 
 /* 狭いブラウザとタブレット */
 @media (max-width: 832px) and (min-width: 521px) {
-    html, body {
-        height: 100%;  /* 全体の高さを100%に設定 */
-    }    
     .Details_log img{
         height: 60px;
     }    
@@ -271,9 +268,9 @@ select{
 
 /* スマホ */
 @media (max-width: 520px) {
-    html, body {
-        height: 100%;  /* 全体の高さを100%に設定 */
-    }    
+    .Details_bg{
+        padding: 3% 0;
+    }
     .Details_main_al{
         width: 90%;
     }
@@ -293,6 +290,8 @@ select{
     }    
     .Details_log_ img{
         height: 35px;
+    }.syousai_log {
+        margin: 20px 0 30px;
     }
     .syousai_log img{
         height: 40px;
@@ -348,6 +347,9 @@ select{
         text-align: center;
     }
     /*支払方法*/
+    .paymentmethod {
+        padding: 10px 0px 40px;
+    }
     select{
         width: 80%;
     }

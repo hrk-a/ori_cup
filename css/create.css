@@ -463,6 +463,9 @@ textarea {
 }
 /* タブレットサイズ */
 @media (max-width: 832px) and (min-width: 521px) {
+    html, body {
+        height: 100%;  /* 全体の高さを100%に設定 */
+    }
     .logo{
         top: 15;
         left: 15px;
@@ -569,6 +572,9 @@ textarea {
 
 /*スマホサイズ*/
 @media (max-width: 520px) {
+    html, body {
+        height: 100%;  /* 全体の高さを100%に設定 */
+    }
     body{
         background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
     }
