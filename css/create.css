@@ -12,7 +12,7 @@ body {
 
 #main {
     display: flex;
-    height: 100vh; /* 画面全体の高さを占める */
+    min-height: 100%; /* これで高さを確保 */
 }
 #logo{
     position: absolute;
@@ -162,7 +162,6 @@ canvas{
     width: 100%;
     padding: 5% 7%; /* コンテンツの余白 */
     z-index: 10;
-    box-sizing: border-box;
 }
 /* 各共通コンテンツ */
 
@@ -489,7 +488,7 @@ textarea {
     /* ---------- コップ表示エリア ---------- */
     #picture_cont{
         width: 100%;
-        min-height: 65%;
+        height: 65vh;
     }
     #picture_cont02{
         width: 100%;
@@ -501,7 +500,7 @@ textarea {
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        min-height: 35%;
+        height: 35vh;
         padding: 10px;
         padding-top: 0;
         box-sizing: border-box;
@@ -567,6 +566,7 @@ textarea {
         justify-content: flex-start;
     }
 }
+
 /*スマホサイズ*/
 @media (max-width: 520px) {
     body{
@@ -605,7 +605,7 @@ textarea {
     /* ---------- コップ表示エリア ---------- */
     #picture_cont{
         width: 100%;
-        max-height: 55%;
+        height: 55vh;
     }
     #picture_cont02{
         width: 100%;
@@ -617,7 +617,7 @@ textarea {
         width: 100%;
         display: flex;
         justify-content: flex-start;
-        min-height: 45%;
+        height: 45vh;
         padding-top: 0;
         box-sizing: border-box;
         overflow: auto;

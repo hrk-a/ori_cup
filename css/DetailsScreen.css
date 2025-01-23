@@ -292,7 +292,7 @@ select{
     .syousai_log img{
         height: 40px;
     }
-    #syousai, ##lapping,.paymentmethod,#price_cont{
+    #syousai, #lapping,.paymentmethod,#price_cont{
         margin-bottom: 0;
     }
     /*注文内容*/
