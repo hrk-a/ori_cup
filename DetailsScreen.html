@@ -54,7 +54,7 @@
 
                 <div class="Details_main_al">
                     <div class="Details_main">
-
+                        <h2 class="h2">ご注文内容</h2>
                         <!-- 商品詳細 -->
                         <div id="syousai">
                             <!----商品画像---->
@@ -83,23 +83,23 @@
                             </div>
                             <!----本体価格---->
                             <div class="print_al">
-                                <p>本体価格
+                                <p>本体価格 
                                     <span id="price">本体価格</span>
                                 </p>
                             </div>
                             <!----数量---->
                             <div class="print_al">
-                                <p>数量
+                                <p>数量 
                                     <span id="selectedQuantity">数量</span>
                                 </p>
                             </div>
                         </div>
+                        <p class="henkou"><a href="cart.html">変更する</a></p>
 
                         <!----ラッピング---->
                         <div id="lapping">
-                            <div class="lapping_log">
-                                <img src="./img/wrapping.png" id="title">
-                            </div>
+                            <h2 class="h2">ラッピング</h2>
+
                             <p style="text-align: left;">ラッピングを選択してください</p>
                             <form class="Details_main_wrapping">
                                 <div class="Details_main_wrapping_">
@@ -136,6 +136,38 @@
                                 </div>
                             </form>
                         </div>
+                        <!---- 支払い方法 ---->
+                        <div id="paymentmethod">
+                            <h2 class="h2">支払い方法</h2>
+                            <form class="paymentmethod" action="your_checkout_page.php" method="POST">
+                                <label for="payment-method">支払い方法：</label>
+                                <select id="payment-method" name="payment_method">
+                                    <option value="prepaid">先払い（プリペイド決済）</option>
+                                    <option value="paypay">PayPay（電子マネー決済）</option>
+                                    <option value="convenience_store">コンビニ決済（コンビニ払い）</option>
+                                    <option value="cod">現地払い（代金引換）</option>
+                                </select>
+                        
+                                <!-- 現地払いの詳細情報 -->
+                                <div id="cod_details" style="display:none;">
+                                    <p>現地払い（代金引換）の場合、商品受け取り時にお支払いください。</p>
+                                </div>
+                            </form>
+                        </div>
+                        
+                        <!---- ご注文金額 ---->
+                        <div id="price_cont">
+                            <h2 class="h2">ご注文金額</h2>
+                            <!----合計金額---->
+                            <div class="postage">
+                                <p>手数料　450円</p>
+                            </div>
+                            <div class="total">
+                                <p>合計　
+                                    <span id="totalPrice">
+                                </p>
+                            </div>
+                        </div>
 
                         <!----受取り日---->
                         <div class="date">
@@ -143,17 +175,7 @@
                                 <span id="date"></span>
                             </p>
                         </div>
-
-                        <!----合計金額---->
-                        <div class="postage">
-                            <p>手数料　450円</p>
-                        </div>
-                        <div class="total">
-                            <p>合計　
-                                <span id="totalPrice">
-                            </p>
-                        </div>
-
+                        
                     </div>
 
                     <div class="button">
