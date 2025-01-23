@@ -225,7 +225,9 @@ select{
 
 /* 狭いブラウザとタブレット */
 @media (max-width: 832px) and (min-width: 521px) {
-
+    html, body {
+        height: 100%;  /* 全体の高さを100%に設定 */
+    }    
     .Details_log img{
         height: 60px;
     }    
@@ -269,6 +271,9 @@ select{
 
 /* スマホ */
 @media (max-width: 520px) {
+    html, body {
+        height: 100%;  /* 全体の高さを100%に設定 */
+    }    
     .Details_main_al{
         width: 90%;
     }
