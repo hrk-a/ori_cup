@@ -1,4 +1,4 @@
-document.getElementById("container").addEventListener("submit", function(event) { 
+document.getElementById("container").addEventListener("submit", function(event) {
     event.preventDefault(); // フォームの送信を一時的に防止
 
     // フィールドのエラーメッセージをリセット
@@ -24,12 +24,9 @@ document.getElementById("container").addEventListener("submit", function(event) 
         isValid = false;
     }
 
-    // メールドレスのバリデーション
+    // メールアドレスのバリデーション
     const mail = document.getElementById("mail").value;
     const mailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+\.[a-zA-Z]{2,7}$/;
-    if (mail === ""){
-        displayError("mail", "メールを入力してください")
-    }
     if (mail === "" || !mailRegex.test(mail)) {
         displayError("mail", "有効なメールアドレスを入力してください");
         isValid = false;
@@ -37,9 +34,6 @@ document.getElementById("container").addEventListener("submit", function(event) 
 
     // パスワードのバリデーション
     const password = document.getElementById("password").value;
-    if (mail === ""){
-        displayError("password", "パスワードを入力してください")
-    }
     if (password === "" || password.length < 8) {
         displayError("password", "パスワードは8文字以上で入力してください");
         isValid = false;
@@ -47,9 +41,6 @@ document.getElementById("container").addEventListener("submit", function(event) 
 
     // 確認パスワードのバリデーション
     const confirmPassword = document.getElementById("confirm_password").value;
-    if (mail === ""){
-        displayError("password", "パスワードを入力してください")
-    }
     if (confirmPassword !== password) {
         displayError("confirm_password", "パスワードが一致しません");
         isValid = false;
@@ -63,11 +54,12 @@ document.getElementById("container").addEventListener("submit", function(event) 
         localStorage.setItem("mail", mail);
         localStorage.setItem("password", password);
 
-        // フォームをリセットして、保存したメッセージを表示
+        // 登録完了メッセージとホームへ戻るボタンを表示
         document.getElementById("container").innerHTML = "<p>会員登録が完了しました。</p>";
         document.getElementById("after").innerHTML = "<div class='button'><a href='index.html'><button class='contact_button home'>ホームに戻る</button></a></div>";
 
-        // 必要に応じて、サーバーへの送信処理をここに追加
+        // 会員登録が完了したため、送信ボタンを非表示にする
+        document.getElementById("submitButton").style.display = "none";
     }
 });
 
@@ -102,5 +94,30 @@ window.addEventListener('DOMContentLoaded', function () {
     // ローカルストレージから取得したメールアドレスをフォームに設定
     if (localStorage.getItem("mail")) {
         document.getElementById("mail").value = localStorage.getItem("mail");
+    }
+
+    // 会員登録が完了している場合、ログアウトボタンを表示
+    const logoutButton = document.getElementById("deleteAccountButton");
+    const submitButton = document.getElementById("submitButton");
+
+    if (localStorage.getItem("name")) {
+        // 会員登録済みの場合、送信ボタンを非表示にし、ログアウトボタンを表示
+        submitButton.style.display = "none";
+        logoutButton.style.display = "block";
+
+        logoutButton.addEventListener("click", function(event) {
+            event.preventDefault(); // ログアウト時にページリダイレクトを防ぐ
+            localStorage.removeItem("name");
+            localStorage.removeItem("furigana");
+            localStorage.removeItem("mail");
+            localStorage.removeItem("password");
+
+            // ログアウト後にページをリロードして送信ボタンをリセット
+            window.location.reload();
+        });
+    } else {
+        // 会員登録されていない場合、送信ボタンを表示
+        submitButton.style.display = "block";
+        logoutButton.style.display = "none";
     }
 });

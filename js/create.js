@@ -274,7 +274,7 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas.addEventListener('mouseout', function () {
         isDragging = false;  // マウスが外に出たらドラッグを終了
     });
-});
+    });
 });
 
 //　---------- 文字デザインの変更（プルダウンメニュー） ---------- 
@@ -392,23 +392,34 @@ let imageHeight = 200; // 初期画像高さ
 let imageX = 0;  // 画像のX座標
 let imageY = 0;  // 画像のY座標
 let isDragging2 = false; // ドラッグ中かどうか
+let aspectRatio = 1; // アスペクト比（初期設定）
 
 // 画像選択時の処理
 document.getElementById('imageInput').addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
-    const reader = new FileReader();
-    reader.onload = function (event) {
-        const img = new Image();
-        img.onload = function() {
-        image = img;  // 画像の保存
-        imageX = (canvas.width - imageWidth) / 2; // 初期位置をキャンバスの中央に設定
-        imageY = (canvas.height - imageHeight) / 2; // 初期位置をキャンバスの中央に設定
-        drawImage();  // 画像描画
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const img = new Image();
+            img.onload = function() {
+                image = img;  // 画像の保存
+                
+                // 画像の元の幅と高さを設定
+                imageWidth = img.width;
+                imageHeight = img.height;
+
+                // アスペクト比を保存
+                aspectRatio = img.width / img.height;
+                
+                // 初期位置をキャンバスの中央に設定
+                imageX = (canvas.width - imageWidth) / 2;
+                imageY = (canvas.height - imageHeight) / 2;
+                
+                drawImage();  // 画像描画
+            };
+            img.src = event.target.result;
         };
-        img.src = event.target.result;
-    };
-    reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
     }
 });
 
@@ -416,22 +427,22 @@ document.getElementById('imageInput').addEventListener('change', (e) => {
 function drawImage() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
     if (image) {
-    ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);
+        ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);
     }
 }
 
-// サイズを大きくする
+// サイズを大きくする（アスペクト比を維持）
 document.getElementById('increaseSize').addEventListener('click', () => {
     imageWidth += 50;
-    imageHeight += 50;
+    imageHeight = imageWidth / aspectRatio; // アスペクト比に基づいて高さを調整
     drawImage();
 });
 
-// サイズを小さくする
+// サイズを小さくする（アスペクト比を維持）
 document.getElementById('decreaseSize').addEventListener('click', () => {
     if (imageWidth > 50 && imageHeight > 50) {
         imageWidth -= 50;
-        imageHeight -= 50;
+        imageHeight = imageWidth / aspectRatio; // アスペクト比に基づいて高さを調整
         drawImage();
     }
 });
@@ -516,7 +527,7 @@ document.getElementById('imageInput').addEventListener('change', function(event)
             // 読み込んだ画像をimg要素として表示
             const img = document.createElement('img');
             img.src = e.target.result; // 読み込んだ画像のURLを設定
-            img.style.maxWidth = '200px'; // 画像の最大幅を設定（任意）
+            img.style.maxWidth = ''; // 画像の最大幅を設定（任意）
             displayDiv.appendChild(img); // divに画像を追加
         };
 

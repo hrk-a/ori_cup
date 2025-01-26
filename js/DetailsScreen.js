@@ -96,6 +96,12 @@ window.onload = function () {
 
     const pickupDateRange = getPickupDateRange();
     document.getElementById("date").textContent = `${pickupDateRange.minDate} ～ ${pickupDateRange.maxDate}`;
+
+  // 名前を取得
+    let name = localStorage.getItem('name');
+
+    // 名前が存在する場合のみ表示
+        document.getElementById('name').textContent = name;
 };
 
 // ---------- ラッピング -----------
@@ -141,7 +147,54 @@ document.getElementById('payment-method').addEventListener('change', function() 
     }
 });
 
-// ---------- 名前 -----------
-const name = localStorage.getItem('name');
-document.getElementById('name').innerText = name + 'さん';
+document.querySelector('.contact_button').addEventListener('click', function (event) {
+    event.preventDefault();
 
+    // ローカルストレージからデータを取得
+    const name = localStorage.getItem('name');
+    const mail = localStorage.getItem('mail');
+
+    console.log('name:', name); // デバッグ用
+    console.log('mail:', mail); // デバッグ用
+
+    const errorMessageElement = document.getElementById('error-message');
+
+    if (!name || !mail) {
+        errorMessageElement.innerHTML = `
+            購入を確定するには、会員登録が必要です。
+            <a href="signup.html" class="error_kaiintourokuhakotira">会員登録はこちら</a>
+        `;
+    } else {
+        errorMessageElement.innerHTML = '';
+        window.location.href = "DetailsScreen4.html";
+    }
+});
+
+
+// ローカルストレージからメールを取得
+let email = localStorage.getItem('email');
+
+// ボタンがクリックされたとき
+document.getElementById('sendButton').addEventListener('click', function() {
+    let email = localStorage.getItem('email');
+
+    // メール送信処理をサーバーにリクエスト
+    fetch('/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('メールが送信されました');
+        } else {
+            alert('メール送信に失敗しました');
+        }
+    })
+    .catch(error => {
+        console.error('エラー:', error);
+    });
+});
