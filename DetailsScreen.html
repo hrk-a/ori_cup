@@ -51,7 +51,7 @@
                 <div class="syousai_log">
                     <img src="./img/Details_title.png" id="title">
                 </div>
-
+        
                 <div class="Details_main_al">
                     <div class="Details_main">
                         <h2 class="h2">ご注文内容</h2>
@@ -66,17 +66,17 @@
                                 <div class="details-item_al">
                                     <div class="details-item">
                                         <p><span class="left">商品名</span>
-                                            <span id="selectedCupName"></span>
+                                            <span id="selectedCupName"><input type="text" name="selectedCupName" required></span>
                                         </p>
                                     </div>
                                     <div class="details-item">
                                         <p><span class="left">カラー</span>
-                                            <span id="selectedColor"></span>
+                                            <span id="selectedColor"><input type="text" name="selectedColor" required></span>
                                         </p>
                                     </div>
                                     <div class="details-item">
                                         <p><span class="left">ラッピング</span>
-                                            <span id="nameDisplay"></span>
+                                            <span id="nameDisplay"><input type="text" name="nameDisplay" required></span>
                                         </p>
                                     </div>
                                 </div>
@@ -84,52 +84,48 @@
                             <!----本体価格---->
                             <div class="print_al">
                                 <p>本体価格 
-                                    <span id="price">本体価格</span>
+                                    <span id="price"><input type="text" name="price" required></span>
                                 </p>
                             </div>
                             <!----数量---->
                             <div class="print_al">
                                 <p>数量 
-                                    <span id="selectedQuantity">数量</span>
+                                    <span id="selectedQuantity"><input type="number" name="selectedQuantity" required></span>
                                 </p>
                             </div>
                         </div>
                         <p class="henkou"><a href="cart.html">変更する</a></p>
-
+        
                         <!----ラッピング---->
                         <div id="lapping">
                             <h2 class="h2">ラッピング</h2>
-
+        
                             <p style="text-align: left;">ラッピングを選択してください</p>
                             <form class="Details_main_wrapping">
                                 <div class="Details_main_wrapping_">
-
                                     <div class="Lapping_cont">
                                         <label>
                                             <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
                                                 onclick="showName('カラーボックス')" style="cursor: pointer;"><br>
-                                            <input type="radio" name="name" class="accented" value="カラーボックス"
-                                                onclick="showName(this)">
+                                            <input type="radio" name="name" value="カラーボックス">
                                             <span class="Details_main_top_title">カラーボックス</span>
                                         </label>
                                     </div>
-
+        
                                     <div class="Lapping_cont">
                                         <label>
                                             <img src="img/inose_.webp" class="Details_main_img img2" alt="クリアケース"
                                                 onclick="showName('クリアケース')" style="cursor: pointer;"><br>
-                                            <input type="radio" name="name" class="accented" value="クリアケース"
-                                                onclick="showName(this)">
+                                            <input type="radio" name="name" value="クリアケース">
                                             <span class="Details_main_top_title">クリアケース</span>
                                         </label>
                                     </div>
-
+        
                                     <div class="Lapping_cont">
                                         <label>
                                             <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
                                                 onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;"><br>
-                                            <input type="radio" name="name" class="accented" value="ラッピング袋＆リボン"
-                                                onclick="showName(this)">
+                                            <input type="radio" name="name" value="ラッピング袋＆リボン">
                                             <span class="Details_main_top_title">ラッピング袋＆リボン</span>
                                         </label>
                                     </div>
@@ -164,28 +160,27 @@
                             </div>
                             <div class="total">
                                 <p>合計　
-                                    <span id="totalPrice">
+                                    <span id="totalPrice"><input type="text" name="totalPrice" required></span>
                                 </p>
                             </div>
                         </div>
-
+        
                         <!----受取り日---->
                         <div class="date">
                             <p>受取り日　
-                                <span id="date"></span>
+                                <span id="date"><input type="date" name="date" required></span>
                             </p>
                         </div>
                         
                     </div>
-
+                    <p id="error-message"></p>
                     <div class="button">
-                        <a href="DetailsScreen4.html">
-                            <button class="contact_button" type="submit">注文確定</button>
-                        </a>
+                        <button id="confirmOrderButton" class="contact_button" type="submit">注文確定</button>
                     </div>
                 </div>
             </div>
         </div>
+
         <!----- フッター ----->
         <div id="footer">
             <img src="img/footer.svg" class="footer_bg">
@@ -201,6 +196,7 @@
         </div>
         <script src="./js/signup.js"></script>
         <script src="./js/DetailsScreen.js"></script>
+
 </body>
 
 </html>
