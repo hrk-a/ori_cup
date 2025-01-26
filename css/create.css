@@ -437,8 +437,11 @@ textarea {
     width: 100%; /* 横幅を調整（必要に応じて） */
 }
 #displayText {
+<<<<<<< HEAD
     position: absolute; /* 必須：absoluteで移動させる */
     text-align: center;
+=======
+>>>>>>> 3cfa1c9123c3b700f56ff5e920398cb83cfcc20e
     white-space: pre-wrap; /* 改行をそのまま反映 */
     word-wrap: break-word;
     padding: 10px;

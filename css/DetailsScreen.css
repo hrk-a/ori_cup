@@ -204,6 +204,15 @@ select{
     color: red;
 }
 .postage{
+<<<<<<< HEAD
+=======
+    text-align: right;
+}
+/*受取り日*/
+.date{
+    margin-top: 10px;
+    margin-bottom: 50px;
+>>>>>>> 3cfa1c9123c3b700f56ff5e920398cb83cfcc20e
     text-align: right;
 }
 /*受取り日*/
