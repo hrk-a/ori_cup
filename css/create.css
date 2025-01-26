@@ -12,7 +12,7 @@ body {
 
 #main {
     display: flex;
-    height: 100vh; /* 画面全体の高さを占める */
+    min-height: 100vh; /* これで高さを確保 */
 }
 #logo{
     position: absolute;
@@ -60,19 +60,7 @@ body {
     transform: translate(-85%, -50%); /* 水平方向: 右端から中央へ, 垂直方向: 中央揃え */
     width: 380px;
     height: auto; /* 高さは自動調整 */
-}
-
-/* コップの写真のエリア（キャンバス部分） 古*/
-#mugCanvas {
-    position: absolute; /* 絶対配置 */
-    top: 53%; /* 親要素の中央に配置 */
-    left: 45.5%; /* 親要素の中心に配置 */
-    transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
-    width: 31%; /* キャンバスの幅を親要素に合わせる */
-    height: 40%; /* 高さは自動調整 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    z-index: 10;
 }
 
 /* ふわっと表示アニメーション */
@@ -92,11 +80,13 @@ body {
 }
 /*キャンバス*/
 canvas{
+    position: relative;
     border: 1px solid #333;
     vertical-align: middle;
     width: 90%;
     height: 360px;
     margin: 0 auto;
+    z-index: 15;
 }
 /* ----- ナビ ----- */
 #create_nav {
@@ -172,13 +162,11 @@ canvas{
     width: 100%;
     padding: 5% 7%; /* コンテンツの余白 */
     z-index: 10;
-    box-sizing: border-box;
 }
 /* 各共通コンテンツ */
 
 .content.active {
     display: block; /* アクティブ状態のとき表示 */
-    height: 100%;
 }
 
 #sntaku{
@@ -186,9 +174,13 @@ canvas{
     overflow-y: auto; /* 縦スクロールを許可 */
     z-index: 50;
     background-color: #fff;
+    box-sizing: border-box;
 }
 
 /* ---------- コップ選択 ---------- */
+#cup{
+    height: 100%;
+}
 .cup {
     height: 100%;
     display: flex;
@@ -214,13 +206,16 @@ canvas{
 }
 
 /* ---------- 色選択 ---------- */
+#color{
+    height: 100%;
+}
 .color{
     height: 100%;
 }
 .color_img{
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
     height: 100%;
 }
 .color1, .color2{
@@ -263,6 +258,9 @@ input {
     font-family: Arial, sans-serif;
     white-space: nowrap;
 }
+::selection {
+    border: 1px solid #333;  /* 枠線を追加 */
+}
 
 /* フォントサイズ調整のスタイル */
 .fontsize, .henkei, .text-design {
@@ -270,23 +268,35 @@ input {
 }
 
 /* ---------- フォント選択 ---------- */
-    /* プルダウンそれぞれのフォントを適用 */
-    option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
-    option[value*="Dela Gothic One"] { font-family: 'Dela Gothic One', sans-serif; }
-    option[value*="DotGothic16"] { font-family: 'DotGothic16', sans-serif; }
-    option[value*="Kaisei Opti"] { font-family: 'Kaisei Opti', serif; }
-    option[value*="Kiwi Maru"] { font-family: 'Kiwi Maru', serif; }
-    option[value*="M PLUS Rounded 1c"] { font-family: 'M PLUS Rounded 1c', sans-serif; }
-    option[value*="Noto Serif JP"] { font-family: 'Noto Serif JP', serif; }
-    option[value*="Sawarabi Gothic"] { font-family: 'Sawarabi Gothic', sans-serif; }
-    option[value*="Shippori Mincho B1"] { font-family: 'Shippori Mincho B1', serif; }
-    option[value*="Yuji Syuku"] { font-family: 'Yuji Syuku', serif; }
-    option[value*="Yusei Magic"] { font-family: 'Yusei Magic', sans-serif; }
-    option[value*="Bungee Inline"] { font-family: 'Bungee Inline', cursive; }
+.text_cont{
+    height: 100%;
+}
+#text{
+    height: 100%;
+}
+.nyuuryoku, .fontosentaku, .fontsize, .text-design, .font_color{
+    margin-bottom: 25px;
+}
+/* プルダウンそれぞれのフォントを適用 */
+option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
+option[value*="Dela Gothic One"] { font-family: 'Dela Gothic One', sans-serif; }
+option[value*="DotGothic16"] { font-family: 'DotGothic16', sans-serif; }
+option[value*="Kaisei Opti"] { font-family: 'Kaisei Opti', serif; }
+option[value*="Kiwi Maru"] { font-family: 'Kiwi Maru', serif; }
+option[value*="M PLUS Rounded 1c"] { font-family: 'M PLUS Rounded 1c', sans-serif; }
+option[value*="Noto Serif JP"] { font-family: 'Noto Serif JP', serif; }
+option[value*="Sawarabi Gothic"] { font-family: 'Sawarabi Gothic', sans-serif; }
+option[value*="Shippori Mincho B1"] { font-family: 'Shippori Mincho B1', serif; }
+option[value*="Yuji Syuku"] { font-family: 'Yuji Syuku', serif; }
+option[value*="Yusei Magic"] { font-family: 'Yusei Magic', sans-serif; }
+option[value*="Bungee Inline"] { font-family: 'Bungee Inline', cursive; }
     
 #fontSelector{
-    padding: 3px 5px;
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 8px 5px ;
 }
+
 /* スライダーとその値を横並びに */
 .slider-container {
     display: flex;
@@ -302,6 +312,9 @@ input[type="number"] {
     width: 60px;
     font-size: 16px;
     padding: 5px;
+}
+.font-size-control{
+    display: flex;
 }
 /*フォントサイズのボタン*/
 button {
@@ -330,7 +343,6 @@ button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
-
 .text-content {
     transition: all 0.3s ease-in-out;
 }
@@ -343,6 +355,10 @@ button:disabled {
 #normalButton,#verticalButton{
     background-color: #fff;
     border: none;
+}
+/*縦横書きアイコン*/
+.text_design img{
+    width: 40px;
 }
 #normalButton:hover,#verticalButton:hover{
     background-color: #ececec;
@@ -406,7 +422,6 @@ textarea {
     display: grid;
     grid-template-rows: repeat(10, 20px); /* 縦方向に10行 */
 }
-
 /*タイトル*/
 .text_heading{
     margin-bottom: 0;
@@ -420,6 +435,14 @@ textarea {
     padding: 5px; /* 内側の余白を調整 */
     box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
     width: 100%; /* 横幅を調整（必要に応じて） */
+}
+#displayText {
+    position: absolute; /* 必須：absoluteで移動させる */
+    text-align: center;
+    white-space: pre-wrap; /* 改行をそのまま反映 */
+    word-wrap: break-word;
+    padding: 10px;
+    border: 2px solid black !important;
 }
 
 /* ---------- 写真選択 ---------- */
@@ -436,13 +459,20 @@ textarea {
 #dw_dt_btn button img{
     width: 100%;
 }
+/*+-ボタン*/
+.resize-buttons{
+    margin-top: 10px;
+    text-align: center;
+}
 /*ダウンロードボタン*/
 #download{
+    margin-top: 40px;
     filter: drop-shadow(0 5px 0 #ebd41f);
     transition: transform 0.2s ease, filter 0.2s ease;
 }
 /*削除ボタン*/
 #delete{
+    margin-top: 10px;
     filter: drop-shadow(0 5px 0 #7c89a3);
     transition: transform 0.2s ease, filter 0.2s ease;
 }
@@ -452,6 +482,9 @@ textarea {
 }
 /* タブレットサイズ */
 @media (max-width: 832px) and (min-width: 521px) {
+    html, body {
+        height: 100%;  /* 全体の高さを100%に設定 */
+    }
     .logo{
         top: 15;
         left: 15px;
@@ -463,13 +496,9 @@ textarea {
     #picture_cont, #create_nav{
         background: transparent;
     }
-    /* スマホサイズ */
-    #main,#choice_cont{
+    #main,#choice_cont,#picture_cont{
         flex-direction: column;
         width: 100vw;
-    }
-    #main{
-        padding: 0;
     }
     /*マグカップの写真*/
     #display_image {
@@ -494,7 +523,6 @@ textarea {
         display: flex;
         justify-content: flex-start;
         min-height: 35%;
-        padding: 10px;
         padding-top: 0;
         box-sizing: border-box;
         overflow: auto;
@@ -503,6 +531,7 @@ textarea {
         flex-direction: row;
         width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
     }
     #create_nav a{
         height: auto;
@@ -515,10 +544,7 @@ textarea {
         width: 100%;
         height: 100%;
     }
-    /*挿入する画像*/
-    #picture_cont01{
-        position: static;
-    }
+
     canvas{
         width: 90%;
         height: 300px;
@@ -533,10 +559,17 @@ textarea {
     }
     .cup img{
         margin: 0 10px;
-        width: 115px;
+        width: 90px;
         height: auto;
     }
     /* ---------- 色選択 ---------- */
+    .color_img {
+        display: flex;
+        justify-content: space-evenly;
+        align-content: space-between;
+        height: 100%;
+        flex-wrap: wrap;
+    }
     .color1,.color2{
         flex-direction: row;
         height: auto;
@@ -544,11 +577,14 @@ textarea {
         align-items: center;
     }
     .color1 img,.color2 img{
-        width: 115px;
+        width: 90px;
         height: auto;
         margin: 0 5px;
     }
     /* ---------- 文字選択 ---------- */
+    #text {
+        height: auto;
+    }
     .sp_flex{
         display: flex;
         justify-content: space-between;
@@ -558,14 +594,14 @@ textarea {
         justify-content: flex-start;
     }
 }
+
 /*スマホサイズ*/
 @media (max-width: 520px) {
+    html, body {
+        height: 100%;  /* 全体の高さを100%に設定 */
+    }
     body{
         background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
-    }
-    main{
-        height: 100vh;
-        overflow: hidden; /* 全体のスクロールを無効化 */
     }
     .logo{
         top: 15;
@@ -576,17 +612,19 @@ textarea {
     #picture_cont, #create_nav{
         background: transparent;
     }
+    #create_nav{
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
     /* navの影消す */
     #create_nav img {
         filter: none; /* 影を消す */
     }
-    /* スマホサイズ */
-    #main,#choice_cont{
+    #main,#choice_cont,#picture_cont{
         flex-direction: column;
         width: 100vw;
-    }
-    #main{
-        padding: 0;
     }
     /*マグカップの写真*/
     #display_image {
@@ -598,7 +636,7 @@ textarea {
     /* ---------- コップ表示エリア ---------- */
     #picture_cont{
         width: 100%;
-        min-height: 50%;
+        min-height: 55%;
     }
     #picture_cont02{
         width: 100%;
@@ -609,9 +647,8 @@ textarea {
     #choice_cont {
         width: 100%;
         display: flex;
-        justify-content: flex-start;
-        min-height: 50%;
-        padding: 10px;
+        justify-content: flex-end;
+        min-height: 45%;
         padding-top: 0;
         box-sizing: border-box;
         overflow: auto;
@@ -633,8 +670,8 @@ textarea {
         height: 100%;
     }
     /*挿入する画像*/
-    #picture_cont01{
-        position: static;
+    #displayimg img{
+        width: 100%; 
     }
     canvas{
         width: 90%;
@@ -655,11 +692,12 @@ textarea {
         padding: 3% 2%;
         height: auto;
     }
-    .content.active{
-        height: auto;
-    }
+    /* 各共通コンテンツ */
+    .content.active {
+        display: block; /* アクティブ状態のとき表示 */
+}
+
     /* ---------- コップ選択 ---------- */
-    
     .cup{
         justify-content: flex-start;
     }
@@ -669,6 +707,12 @@ textarea {
         height: auto;
     }
     /* ---------- 色選択 ---------- */
+    .color_img{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        height: 100%;
+    }
     
     .color1,.color2{
         flex-direction: row;
@@ -682,4 +726,21 @@ textarea {
         margin: 0 5px;
     }
     /* ---------- 文字選択 ---------- */
+    .content_text{
+        height: auto;
+    }
+    #text{
+        height: auto;
+        padding-bottom: 10px;
+    }
+    #color_palette_container {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+    /* ---------- 写真選択 ---------- */
+    #dw_dt_btn{
+        width: 50%;
+    }
+
 }

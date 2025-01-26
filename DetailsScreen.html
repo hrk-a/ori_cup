@@ -51,10 +51,10 @@
                 <div class="syousai_log">
                     <img src="./img/Details_title.png" id="title">
                 </div>
-
+        
                 <div class="Details_main_al">
                     <div class="Details_main">
-
+                        <h2 class="h2">ご注文内容</h2>
                         <!-- 商品詳細 -->
                         <div id="syousai">
                             <!----商品画像---->
@@ -66,114 +66,137 @@
                                 <div class="details-item_al">
                                     <div class="details-item">
                                         <p><span class="left">商品名</span>
-                                            <span id="selectedCupName"></span>
+                                            <span id="selectedCupName"><input type="text" name="selectedCupName" required></span>
                                         </p>
                                     </div>
                                     <div class="details-item">
                                         <p><span class="left">カラー</span>
-                                            <span id="selectedColor"></span>
+                                            <span id="selectedColor"><input type="text" name="selectedColor" required></span>
                                         </p>
                                     </div>
                                     <div class="details-item">
                                         <p><span class="left">ラッピング</span>
-                                            <span id="nameDisplay"></span>
+                                            <span id="nameDisplay"><input type="text" name="nameDisplay" required></span>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                             <!----本体価格---->
                             <div class="print_al">
-                                <p>本体価格
-                                    <span id="price">本体価格</span>
+                                <p>本体価格 
+                                    <span id="price"><input type="text" name="price" required></span>
                                 </p>
                             </div>
                             <!----数量---->
                             <div class="print_al">
-                                <p>数量
-                                    <span id="selectedQuantity">数量</span>
+                                <p>数量 
+                                    <span id="selectedQuantity"><input type="number" name="selectedQuantity" required></span>
                                 </p>
                             </div>
                         </div>
-
+                        <p class="henkou"><a href="cart.html">変更する</a></p>
+        
                         <!----ラッピング---->
                         <div id="lapping">
-                            <div class="lapping_log">
-                                <img src="./img/wrapping.png" id="title">
-                            </div>
+                            <h2 class="h2">ラッピング</h2>
+        
                             <p style="text-align: left;">ラッピングを選択してください</p>
                             <form class="Details_main_wrapping">
                                 <div class="Details_main_wrapping_">
-
                                     <div class="Lapping_cont">
                                         <label>
                                             <img src="img/ino_se.webp" class="Details_main_img" alt="カラーボックス"
                                                 onclick="showName('カラーボックス')" style="cursor: pointer;"><br>
-                                            <input type="radio" name="name" class="accented" value="カラーボックス"
-                                                onclick="showName(this)">
+                                            <input type="radio" name="name" value="カラーボックス">
                                             <span class="Details_main_top_title">カラーボックス</span>
                                         </label>
                                     </div>
-
+        
                                     <div class="Lapping_cont">
                                         <label>
                                             <img src="img/inose_.webp" class="Details_main_img img2" alt="クリアケース"
                                                 onclick="showName('クリアケース')" style="cursor: pointer;"><br>
-                                            <input type="radio" name="name" class="accented" value="クリアケース"
-                                                onclick="showName(this)">
+                                            <input type="radio" name="name" value="クリアケース">
                                             <span class="Details_main_top_title">クリアケース</span>
                                         </label>
                                     </div>
-
+        
                                     <div class="Lapping_cont">
                                         <label>
                                             <img src="img/ino.webp" class="Details_main_img" alt="ラッピング袋＆リボン"
                                                 onclick="showName('ラッピング袋＆リボン')" style="cursor: pointer;"><br>
-                                            <input type="radio" name="name" class="accented" value="ラッピング袋＆リボン"
-                                                onclick="showName(this)">
+                                            <input type="radio" name="name" value="ラッピング袋＆リボン">
                                             <span class="Details_main_top_title">ラッピング袋＆リボン</span>
                                         </label>
                                     </div>
                                 </div>
                             </form>
                         </div>
-
-                        <!----合計金額---->
-                        <div class="postage">
-                            <p>送料　450円</p>
+                        <!---- 支払い方法 ---->
+                        <div id="paymentmethod">
+                            <h2 class="h2">支払い方法</h2>
+                            <form class="paymentmethod" action="your_checkout_page.php" method="POST">
+                                <label for="payment-method">支払い方法：</label>
+                                <select id="payment-method" name="payment_method">
+                                    <option value="prepaid">先払い（プリペイド決済）</option>
+                                    <option value="paypay">PayPay（電子マネー決済）</option>
+                                    <option value="convenience_store">コンビニ決済（コンビニ払い）</option>
+                                    <option value="cod">現地払い（代金引換）</option>
+                                </select>
+                        
+                                <!-- 現地払いの詳細情報 -->
+                                <div id="cod_details" style="display:none;">
+                                    <p>現地払い（代金引換）の場合、商品受け取り時にお支払いください。</p>
+                                </div>
+                            </form>
                         </div>
-                        <div class="total">
-                            <p>合計　
-                                <span id="totalPrice">
+                        
+                        <!---- ご注文金額 ---->
+                        <div id="price_cont">
+                            <h2 class="h2">ご注文金額</h2>
+                            <!----合計金額---->
+                            <div class="postage">
+                                <p>手数料　450円</p>
+                            </div>
+                            <div class="total">
+                                <p>合計　
+                                    <span id="totalPrice"><input type="text" name="totalPrice" required></span>
+                                </p>
+                            </div>
+                        </div>
+        
+                        <!----受取り日---->
+                        <div class="date">
+                            <p>受取り日　
+                                <span id="date"><input type="date" name="date" required></span>
                             </p>
                         </div>
-
+                        
                     </div>
-
+                    <p id="error-message"></p>
                     <div class="button">
-                        <a href="DetailsScreen4.html">
-                            <button class="contact_button" type="submit">ご注文手続きへ進む</button>
-                        </a>
+                        <button id="confirmOrderButton" class="contact_button" type="submit">注文確定</button>
                     </div>
-
-
                 </div>
             </div>
-            <!----- フッター ----->
-            <div id="footer">
-                <img src="img/footer.svg" class="footer_bg">
-                <div id="footer_content">
-                    <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
-                    <ul>
-                        <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
-                        <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
-                        <li><a href="asct.html" target="_blank">特定商取引法</a></li>
-                    </ul>
-                    <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
-                </div>
+        </div>
+
+        <!----- フッター ----->
+        <div id="footer">
+            <img src="img/footer.svg" class="footer_bg">
+            <div id="footer_content">
+                <a href="index.html"><img src="img/logo.png" alt="ロゴ" class="footer_logo"></a>
+                <ul>
+                    <li><a href="privacypolicy.html" target="_blank">プライバシーポリシー</a></li>
+                    <li><a href="termsofuse.html" target="_blank">利用規約</a></li>
+                    <li><a href="asct.html" target="_blank">特定商取引法</a></li>
+                </ul>
+                <p class="small"><small>&copy;2024 ORICUP All Rights Reserved</small></p>
             </div>
         </div>
         <script src="./js/signup.js"></script>
         <script src="./js/DetailsScreen.js"></script>
+
 </body>
 
 </html>

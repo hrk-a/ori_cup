@@ -101,8 +101,7 @@ button {
     text-decoration: none;
 }
 /*カート・会員登録*/
-#cart,
-#user {
+#cart,#user {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,10 +119,11 @@ button {
     letter-spacing: 0.05em;
     transform-origin: center right;
     letter-spacing: 1.6px;
+    width: 50px;
 }
 .vertical-rl{
     writing-mode: vertical-rl;
-    margin: 0 10px;
+    margin: 0;
 }
 
 #cart:hover,
@@ -166,13 +166,14 @@ button {
     box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
     text-orientation: upright;
     margin-bottom: 15px;
-    padding: 25px 10px;
+    padding: 25px 0;
     text-align: center;
     border-radius: 13px 0 0 13px;
     color: black;
     letter-spacing: 0.05em;
     transform-origin: center right;
     letter-spacing: 1.5px;
+    width: 50px;
 }
 
 .make_but:hover {
@@ -388,18 +389,15 @@ span{
         font-weight: 400;
     }
 
-    #cart,
-    #user {
+    #cart, #user {
         letter-spacing: 1px;
-    }
-    .vertical-rl{
-        writing-mode: vertical-rl;
-        margin: 0 7px;
+        width: 40px;
     }
     
     .make_but {
-        padding: 25px 7px;
+        padding: 25px 0;
         letter-spacing: 1.5px;
+        width: 40px;
     }
 
     #cart_user_id img {

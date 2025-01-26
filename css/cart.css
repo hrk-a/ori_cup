@@ -119,7 +119,7 @@ input{
 #deleteButton{
     width: 100px;
     padding: 8px 0;
-    background-color: #fff;
+    background-color: #e5f0fe;
     border: 2px solid #fff;
     color: rgb(89, 156, 232);
     box-sizing: border-box;
@@ -192,7 +192,7 @@ input{
     /*削除ボタン*/
     #delete{
         margin-top: 30px;
-        text-align: center;
+        text-align: right;
     }
     #merchandise_img img{
         width: 100%;

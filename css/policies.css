@@ -4,6 +4,10 @@
 body{
     font-weight: 400;
 }
+html {
+    font-size: 100%;
+}
+
 /*メイン*/
 #mainsub{
     padding: 0 4%;
@@ -32,7 +36,7 @@ li>span{
     vertical-align: middle;
 }
 ul{
-    margin-left: 40px;
+    margin-left: 20px;
 }
 /*パンくずリスト*/
 .pankuzu{
@@ -52,7 +56,7 @@ ul{
 
 /* ----- プライバシーポリシー　利用規約 ----- */
 .privacypolicy p, .termsofuse p{
-    padding-left: 20px;
+    padding: 10px 15px;
 }
 
 /*はじめに・個人情報の取扱について*/
@@ -73,17 +77,17 @@ table {
     background-color: #fff;
 }
 .left{
+    vertical-align: top;
     width: 230px;
     text-align: center;
     background-color: #eeeeee;
 }
 th, td {
-    border: 0.5px solid #dddddd;
+    border: 0.5px solid #8b8b8b;
     padding: 11px 15px;
     text-align: left;
     box-sizing: border-box; /* 内側の余白を含めて幅計算 */
 }
-
 
 /*狭いブラウザとタブレット*/
 @media (max-width: 832px) and (min-width: 521px) {
@@ -104,7 +108,6 @@ th, td {
         text-align: center;
         background-color: #eeeeee;
     }
-    
 
 }
 
@@ -140,5 +143,17 @@ th, td {
     .left {
         width: 100%; /* ラベルも100%幅に */
         text-align: center; /* ラベルも中央揃え */
-    }    
+    }
+    .Content{
+        padding: 12px 10px;
+    }
+    
+    /* ----- プライバシーポリシー　利用規約 ----- */
+    .privacypolicy p, .termsofuse p{
+        padding-left: 10px;
+    }
+    ul{
+        padding-left: 0;
+        margin-left: 25px;
+    }
 }

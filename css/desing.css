@@ -14,6 +14,7 @@
 /*デザイン例の画像*/
 .design_cont img{
     height: 220px;
+    filter: drop-shadow(2px 4px 5px rgba(180, 180, 180, 0.7));
 }
 .design_cont{
     width: 73%;
@@ -38,18 +39,27 @@
 @media (max-width: 832px) and (min-width: 521px) {
     .design_cont img{
         height: 100px;
+        width: auto;
     }
     
 }
-
 /*スマホ*/
 @media (max-width: 520px){
 /*デザイン例の画像*/
 .design_cont{
-    width: 100%;
+    width: 90%;
+    box-sizing: border-box;
+}
+.mug_design_img {
+    text-align: center;
+    display: flex
+;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .design_cont img{
-    height: 70px;
+    height: 130px;
+    width: auto;
 }
 
 }

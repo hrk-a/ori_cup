@@ -1,11 +1,10 @@
 //作成画面
 
-// 画像を変更する関数
-// カップの色選択
 let selectedCupType = 'mug'; // デフォルトはマグカップ
+let isTextDragging = false;
 
 
-/* テキスト入力 */
+//  ----------  テキスト入力  ---------- 
 const inputValue = document.getElementById('input_value');
 const fontSelector = document.getElementById('fontSelector');
 const canvas = document.getElementById('myCanvas');
@@ -13,13 +12,45 @@ const ctx = canvas.getContext('2d');
 
 // 初期の文字内容
 let textContent = "";
+let textX = 10;  // 初期X位置
+let textY = 20;  // 初期Y位置
+let isDragging = false;  // ドラッグ中かどうかのフラグ
+let offsetX, offsetY;  // ドラッグ開始時のオフセット
 
-// 入力内容の反映
-inputValue.addEventListener('input', () => {
-    textContent = inputValue.value;  // 入力された文字を保存
-    console.log("入力された文字:", textContent);  // コンソールに文字を表示    
-    redrawCanvas();  // キャンバスを再描画
-});
+// 初期設定
+canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+
+// ---------- 入力内容の反映 ----------
+
+// 入力した内容をdisplayTextに表示する関数
+function updateDisplayText() {
+    var inputText = document.getElementById("input_value").value; // テキストエリアから入力内容を取得
+
+    // 改行を<br>タグに変換
+    const formattedText = inputText.replace(/\n/g, "<br>");
+    
+    // テキストをdisplayTextに表示
+    document.getElementById("displayText").innerHTML = formattedText;
+    
+    // displayTextの参照を取得してボーダーを追加
+    const displayText = document.getElementById("displayText");
+
+    // テキストが入力されたらボーダーを追加
+    if (inputText.trim() !== "") {
+      displayText.style.border = "2px solid black";  // ボーダーを追加
+    } else {
+      displayText.style.border = "none";  // テキストが空ならボーダーを削除
+    }
+
+    if (displayText) {
+        displayText.style.border = "2px solid black";
+    }
+}
+
+// 入力内容が変更された時に呼ばれるようにイベントリスナーを追加
+document.getElementById("input_value").addEventListener("input", updateDisplayText);
 
 // デバイスの解像度に合わせてキャンバスの解像度を設定
 const dpr = window.devicePixelRatio || 1;  // デバイスのピクセル比
@@ -31,13 +62,14 @@ ctx.scale(dpr, dpr);  // コンテキストのスケールをデバイスに合�
 function redrawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
 
-    // テキスト内容があればキャンバスに描画
-    if (textContent) {
-        ctx.font = `18px ${fontSelector.value}`;  // フォントの設定
-        ctx.fillStyle = "black";  // 文字の色
-        ctx.fillText(textContent, 10, 20);  // (left10, top20)の位置に描画
+    // フォント設定
+    let fontSize = 18;  // 初期フォントサイズを18に設定（グローバルに定義）
+    let selectedFont = "Arial";  // selectedFontを定義
+    ctx.font = `${fontSize}px ${selectedFont}`;
+    ctx.fillStyle = "black";  // 文字の色
+
     }
-}
+
 
 // フォント選択時にキャンバスを再描画
 fontSelector.addEventListener('change',redrawCanvas);
@@ -53,18 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const verticalButton = document.getElementById("verticalButton"); // 縦書きボタン
     const normalButton = document.getElementById("normalButton"); // 横書きボタン
 
-    let textX = 10; // テキストの初期X位置
-    let textY = 20; // テキストの初期Y位置
 
-    // 初期のフォントサイズ
-    let fontSize = parseInt(fontSizeInput.value) || 18;
     let selectedFont = fontSelector.value || "sans-serif";  // 初期フォント
-
-    // テキスト内容
-    let textContent = inputValueBox.value;
+    let textContent = inputValueBox.value;// テキスト内容
 
     // グローバルスコープで writingMode を宣言
     let writingMode = "horizontal";  // デフォルトは横書き
+    let fontSize = 18;  // 初期フォントサイズを18に設定（グローバルに定義）
 
     // キャンバスの再描画関数
     function redrawCanvas() {
@@ -73,19 +100,32 @@ document.addEventListener("DOMContentLoaded", function () {
         // フォント設定
         ctx.font = `${fontSize}px ${selectedFont}`;
 
+        const lines = textContent.split('\n');  // 改行でテキストを分割
+        let currentY = textY;  // 現在のY座標を保持
+        
+        // 横書きの場合
         if (writingMode === "horizontal") {
-            // 横書きの場合
-            ctx.fillText(textContent, textX, textY);  // 横書きテキスト
+            lines.forEach(line => {
+                ctx.fillText(line, textX, currentY);  // 行ごとにテキストを描画
+                currentY += fontSize + 5;  // 次の行は縦に少しスペースを空けて描画
+            });
         } else if (writingMode === "vertical") {
             // 縦書きの場合
-            const x = 50; // 縦書きの開始位置（X座標）
+            let x = 50; // 縦書きの開始位置（X座標）
             let y = 50; // 縦書きの開始位置（Y座標）
-            for (let i = 0; i < textContent.length; i++) {
-                ctx.fillText(textContent[i], x, y);  // 縦書きテキスト
-                y += fontSize + 5; // 次の文字は縦にフォントサイズ＋5px下に描画
-            }
+        
+            lines.forEach(line => {
+                // 各行のテキストを1文字ずつ描画
+                for (let i = 0; i < line.length; i++) {
+                    ctx.fillText(line[i], x, y);  // 縦書きテキスト
+                    y += fontSize + 5; // 次の文字は縦にフォントサイズ＋5px下に描画
+                }
+                // 行が終わったらy座標をリセットして、次の行へ
+                y = 50; // 初期位置に戻す
+                x += fontSize + 5; // 次の行は右に少し移動（縦書きのため）
+            });
         }
-    }
+        }
 
     // フォントサイズを小さくする
     decreaseButton.addEventListener("click", function () {
@@ -210,203 +250,290 @@ document.addEventListener("DOMContentLoaded", function () {
     // カラーパレットのクリックイベントを設定
     colorPalette.addEventListener('click', handleColorSelect);
     grayscaleColumn.addEventListener('click', handleColorSelect);
+
+    // ドラッグ機能の追加
+    canvas.addEventListener('mousedown', function (event) {
+        if (event.offsetX >= textX && event.offsetX <= textX + ctx.measureText(textContent).width &&
+            event.offsetY >= textY - fontSize && event.offsetY <= textY) {
+            isDragging = true;  // ドラッグ開始
+            offsetX = event.offsetX - textX;
+            offsetY = event.offsetY - textY;
+    }
+    canvas.addEventListener('mousemove', function (event) {
+        if (isDragging) {
+            textX = event.offsetX - offsetX;
+            textY = event.offsetY - offsetY;
+            redrawCanvas();  // テキスト位置を更新して再描画
+        }
+    });
+
+    canvas.addEventListener('mouseup', function () {
+        isDragging = false;  // ドラッグ終了
+    });
+
+    canvas.addEventListener('mouseout', function () {
+        isDragging = false;  // マウスが外に出たらドラッグを終了
+    });
+    });
 });
 
-
-const rotationSlider = document.getElementById('rotation');
-const rotationValue = document.getElementById('rotation_value');
-let rotationAngle = 0;
-
-// 回転と描画
-function drawText(rotation) {
-    // キャンバスの初期化
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const text = textContent;  // 入力された文字を使用
-    const x = canvas.width / 2;
-    const y = canvas.height / 2;
-
-    // 回転を設定
-    ctx.save(); // 現在の状態を保存
-    ctx.translate(x, y); // 回転の中心をcanvasの中心に設定
-    ctx.rotate(rotation * Math.PI / 180); // 度数法からラジアンに変換
-    ctx.fillText(text, -ctx.measureText(text).width / 2, 0); // 文字を描画
-    ctx.restore(); // 状態を元に戻す
-}
-
-// スライダーの変更イベント
-rotationSlider.addEventListener('input', () => {
-    rotationAngle = rotationSlider.value;
-    rotationValue.textContent = rotationSlider.value;
-    drawText(rotationAngle);  // 新しい角度で文字を描画
-    
-// 初回の描画
-drawText(rotationAngle);
-
-});
-
-
-//　---------- 文字デザインの変更（プルダウンメニュー）
+//　---------- 文字デザインの変更（プルダウンメニュー） ---------- 
 document.addEventListener("DOMContentLoaded", () => {
-    //const inputValueBox = document.getElementById("myCanvas"); // 表示エリア
 
-// コップ画像を読み込む
-const mugImage = new Image();
-//mugImage.src = '../img/mug.png';  // 画像のパスが正しいことを確認してください
-mugImage.onload = function () {
-    // コップ画像が読み込まれたら、キャンバスに描画
-    ctx.drawImage(mugImage, 0, 0, canvas.width, canvas.height);
-};
-
-// アップロードされた画像を保持する配列
-let uploadedImages = [];  // アップロードされた画像のデータを格納する配列
-let selectedImageIndex = -1;  // 現在選択されている画像のインデックス
-let selectedText = null;  // 現在選択されている文字のオブジェクト
-let isImageDragging = false;  // 画像がドラッグ中かどうか
-let isTextDragging = false;  // 文字がドラッグ中かどうか
-let text = { content: "", x: 50, y: 50 };  // 文字のデータ（位置と内容）
+    // コップ画像を読み込む
+    const mugImage = new Image();
+    //mugImage.src = '../img/mug.png';  // 画像のパスが正しいことを確認してください
+    mugImage.onload = function () {
+        // コップ画像が読み込まれたら、キャンバスに描画
+        ctx.drawImage(mugImage, 0, 0, canvas.width, canvas.height);
+    };
 
 
 
-// 画像選択のイベントリスナー
-document.getElementById("imageInput").addEventListener("change", function(event) {
-    const file = event.target.files[0];
+    // 画像と文字をキャンバスに描画
+    function redrawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+    }
+    let dragStartX = 0;  // ドラッグ開始時のX座標
+    let dragStartY = 0;  // ドラッグ開始時のY座標
+    
+    // テキストをクリックしたときにドラッグを開始
+    canvas.addEventListener('mousedown', (e) => {
+        const mouseX = e.offsetX;
+        const mouseY = e.offsetY;
+    
+        // テキストがクリックされた場合、ドラッグを開始
+        if (mouseX >= textX && mouseX <= textX + ctx.measureText(textContent).width &&
+            mouseY >= textY - fontSize && mouseY <= textY) {
+            isTextDragging = true;
+            dragStartX = mouseX - textX;
+            dragStartY = mouseY - textY;
+        }
+    });
+    
+    // テキストをドラッグしている間、位置を更新
+    canvas.addEventListener('mousemove', (e) => {
+        if (isTextDragging) {
+            const mouseX = e.offsetX;
+            const mouseY = e.offsetY;
+    
+            // ドラッグされた分だけテキストの位置を更新
+            textX = mouseX - dragStartX;
+            textY = mouseY - dragStartY;
+    
+            redrawCanvas();  // キャンバスを再描画
+        }
+    });
+    
+    // ドラッグを終了
+    canvas.addEventListener('mouseup', () => {
+        isTextDragging = false;
+    });
+    
+    // キャンバスの再描画関数
+    function redrawCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+    
+        if (textContent) {
+            ctx.font = `${fontSize}px ${selectedFont}`;
+            ctx.fillStyle = selectedColor;  // 現在選択されている色
+            ctx.fillText(textContent, textX, textY);
+        }
+    }
+    
+    // 画像と文字のドラッグオフセットを個別に管理
+    let textOffsetX = 0, textOffsetY = 0;    // 文字のオフセット
+
+    canvas.addEventListener('mousedown', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        // 文字を選択
+        if (mouseX >= text.x && mouseX <= text.x + ctx.measureText(text.content).width &&
+            mouseY >= text.y - 30 && mouseY <= text.y) {
+            selectedText = text;
+            isTextDragging = true;
+            textOffsetX = mouseX - text.x;  // 文字用オフセット
+            textOffsetY = mouseY - text.y;
+            selectedImageIndex = -1;  // 文字が選択されているので画像選択解除
+            return;  // 文字が選択された場合、これ以降の処理を終了
+        }
+
+    });
+
+    canvas.addEventListener('mousemove', function(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+
+        // 文字をドラッグ
+        if (isTextDragging && selectedText) {
+            selectedText.x = mouseX - textOffsetX;  // 文字用オフセットを使用
+            selectedText.y = mouseY - textOffsetY;
+            redrawCanvas();
+        }
+    });
+
+    canvas.addEventListener('mouseup', function() {
+        isImageDragging = false;
+        isTextDragging = false;
+        selectedText = null;  // 文字の選択を解除
+    });
+
+});
+
+//　---------- 画像選択 ---------- 
+
+let image = null;  // 画像の変数
+let imageWidth = 200;  // 初期画像幅
+let imageHeight = 200; // 初期画像高さ
+let imageX = 0;  // 画像のX座標
+let imageY = 0;  // 画像のY座標
+let isDragging2 = false; // ドラッグ中かどうか
+let aspectRatio = 1; // アスペクト比（初期設定）
+
+// 画像選択時の処理
+document.getElementById('imageInput').addEventListener('change', (e) => {
+    const file = e.target.files[0];
     if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (event) {
             const img = new Image();
             img.onload = function() {
-                const imgData = {
-                    image: img,
-                    x: 0, 
-                    y: 0, 
-                    width: img.width,
-                    height: img.height
-                };
-                uploadedImages.push(imgData);  // 画像データを配列に追加
-                redrawCanvas();  // キャンバスを再描画
+                image = img;  // 画像の保存
+                
+                // 画像の元の幅と高さを設定
+                imageWidth = img.width;
+                imageHeight = img.height;
+
+                // アスペクト比を保存
+                aspectRatio = img.width / img.height;
+                
+                // 初期位置をキャンバスの中央に設定
+                imageX = (canvas.width - imageWidth) / 2;
+                imageY = (canvas.height - imageHeight) / 2;
+                
+                drawImage();  // 画像描画
             };
-            img.src = e.target.result;
+            img.src = event.target.result;
         };
         reader.readAsDataURL(file);
     }
 });
 
-// ダウンロードボタン
-document.getElementById('download').addEventListener('click', function() {
-    if (uploadedImages.length > 0 || text.content) {
-        // キャンバスからPNGデータURLを取得
-        const dataURL = canvas.toDataURL('image/png');
-        const link = document.createElement('a');
-        link.href = dataURL;
-        link.download = 'mug-design.png';
-        link.click();
-    } else {
-        alert("画像や文字がありません。画像をアップロードしてください。");
+// 画像をキャンバスに描画する関数
+function drawImage() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+    if (image) {
+        ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);
     }
+}
+
+// サイズを大きくする（アスペクト比を維持）
+document.getElementById('increaseSize').addEventListener('click', () => {
+    imageWidth += 50;
+    imageHeight = imageWidth / aspectRatio; // アスペクト比に基づいて高さを調整
+    drawImage();
 });
 
-// 画像のサイズ変更
-const increaseSizeButton = document.getElementById('increaseSize');
-const decreaseSizeButton = document.getElementById('decreaseSize');
-
-increaseSizeButton.addEventListener('click', function () {
-    if (selectedImageIndex >= 0) {
-        const imgData = uploadedImages[selectedImageIndex];
-        const scaleFactor = 0.1; // サイズ変更の倍率
-        imgData.width *= (1 + scaleFactor); // 幅を拡大
-        imgData.height *= (1 + scaleFactor); // 高さを拡大
-        redrawCanvas(); // 再描画
-    }
-});
-
-decreaseSizeButton.addEventListener('click', function () {
-    if (selectedImageIndex >= 0) {
-        const imgData = uploadedImages[selectedImageIndex];
-        const scaleFactor = 0.1; // サイズ変更の倍率
-        imgData.width *= (1 - scaleFactor); // 幅を縮小
-        imgData.height *= (1 - scaleFactor); // 高さを縮小
-        redrawCanvas(); // 再描画
-    }
-});
-
-// 画像削除ボタン
-const deleteButton = document.getElementById('delete');
-deleteButton.addEventListener('click', function () {
-    if (selectedImageIndex >= 0) {
-        uploadedImages.splice(selectedImageIndex, 1); // 配列から画像を削除
-        selectedImageIndex = -1; // 選択状態を解除
-        redrawCanvas(); // 再描画
+// サイズを小さくする（アスペクト比を維持）
+document.getElementById('decreaseSize').addEventListener('click', () => {
+    if (imageWidth > 50 && imageHeight > 50) {
+        imageWidth -= 50;
+        imageHeight = imageWidth / aspectRatio; // アスペクト比に基づいて高さを調整
+        drawImage();
     }
 });
 
 // スクロールで拡大縮小
 canvas.addEventListener('wheel', function (e) {
-    e.preventDefault(); // ページのスクロールを防止
-    if (selectedImageIndex >= 0) {
-        const imgData = uploadedImages[selectedImageIndex];
-        const scaleFactor = 0.1;  // サイズ変更の倍率
+  e.preventDefault(); // ページのスクロールを防止
+
+  // サイズ変更の倍率
+    const scaleFactor = 0.1;  
+
+    if (image) {
         if (e.deltaY < 0) {  // 上にスクロール → 拡大
-            imgData.width *= (1 + scaleFactor);
-            imgData.height *= (1 + scaleFactor);
+        imageWidth *= (1 + scaleFactor);
+        imageHeight *= (1 + scaleFactor);
         } else if (e.deltaY > 0) {  // 下にスクロール → 縮小
-            imgData.width *= (1 - scaleFactor);
-            imgData.height *= (1 - scaleFactor);
+        imageWidth *= (1 - scaleFactor);
+        imageHeight *= (1 - scaleFactor);
         }
-        redrawCanvas();  // 再描画
+        drawImage();  // 画像を描画し直す
+    }
+});
+
+// 画像削除ボタン
+document.getElementById('delete').addEventListener('click', () => {
+  image = null;  // 画像を削除
+  ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
+});
+
+// 画像ダウンロードボタン
+document.getElementById('download').addEventListener('click', () => {
+  if (image) {
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL();  // キャンバスの内容を画像データURLに変換
+    link.download = 'downloaded-image.png';  // ダウンロードするファイル名
+    link.click();
+  } else {
+    alert('画像がありません！');
+  }
+});
+
+// ドラッグ機能の追加
+canvas.addEventListener('mousedown', (e) => {
+  if (image && e.offsetX >= imageX && e.offsetX <= imageX + imageWidth &&
+      e.offsetY >= imageY && e.offsetY <= imageY + imageHeight) {
+        isDragging2 = true;  // 画像がクリックされたらドラッグ開始
+  }
+});
+
+canvas.addEventListener('mousemove', (e) => {
+  if (isDragging2) {
+    imageX = e.offsetX - imageWidth / 2;  // 画像をマウスに追従させる
+    imageY = e.offsetY - imageHeight / 2;
+    drawImage();  // 画像を描画し直す
+  }
+});
+
+canvas.addEventListener('mouseup', () => {
+    isDragging2 = false;  // ドラッグを終了
+});
+
+canvas.addEventListener('mouseout', () => {
+    isDragging2 = false;  // キャンバス外に出た時もドラッグを終了
+});
+
+// これあるとテキストが潰れない。。。
+document.getElementById('imageInput').addEventListener('change', function(event) {
+    const files = event.target.files; // 選ばれたファイルを取得
+    const displayDiv = document.getElementById('displayimg'); // 表示するdivを取得
+    
+    // まずはdivをクリア（前回選択された画像を削除）
+    displayDiv.innerHTML = '';
+    
+    // 複数選択されていた場合はループ処理
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        
+        // FileReaderを使って画像を読み込む
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            // 読み込んだ画像をimg要素として表示
+            const img = document.createElement('img');
+            img.src = e.target.result; // 読み込んだ画像のURLを設定
+            img.style.maxWidth = ''; // 画像の最大幅を設定（任意）
+            displayDiv.appendChild(img); // divに画像を追加
+        };
+
+        // ファイルを読み込む
+        reader.readAsDataURL(file);
     }
 });
 
 
-
-        // 画像と文字をキャンバスに描画
-        function redrawCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
-
-            // 画像を描画
-            uploadedImages.forEach(function(imgData) {
-                ctx.drawImage(imgData.image, imgData.x, imgData.y, imgData.width, imgData.height);
-            });
-        
-        }
-
-        // 画像と文字のドラッグオフセットを個別に管理
-        let imageOffsetX = 0, imageOffsetY = 0;  // 画像のオフセット
-
-        canvas.addEventListener('mousedown', function(e) {
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-
-
-            // 画像を選択（文字が選ばれなかった場合のみ）
-            for (let i = 0; i < uploadedImages.length; i++) {
-                const imgData = uploadedImages[i];
-                if (mouseX >= imgData.x && mouseX <= imgData.x + imgData.width &&
-                    mouseY >= imgData.y && mouseY <= imgData.y + imgData.height) {
-                    selectedImageIndex = i;
-                    isImageDragging = true;
-                    imageOffsetX = mouseX - imgData.x;  // 画像用オフセット
-                    imageOffsetY = mouseY - imgData.y;
-                    break;
-                }
-            }
-        });
-
-        canvas.addEventListener('mousemove', function(e) {
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-
-            // 画像をドラッグ
-            if (isImageDragging && selectedImageIndex >= 0) {
-                const imgData = uploadedImages[selectedImageIndex];
-                imgData.x = mouseX - imageOffsetX;  // 画像用オフセットを使用
-                imgData.y = mouseY - imageOffsetY;
-                redrawCanvas();
-            }
-
-      
-        });
-
- });
