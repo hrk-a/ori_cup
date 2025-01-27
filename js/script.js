@@ -1,3 +1,79 @@
+// ---------- スライドショー ----------
+document.addEventListener("DOMContentLoaded", function () {
+    const slideshows = document.querySelectorAll('.slideshow');  // クラスで複数のスライドショーを選択
+    
+    slideshows.forEach(slideshow => {
+        // 画像の配列
+        const images = [
+            "img/cup/mag1.png",
+            "img/cup/mag2.png",
+            "img/cup/mag3.png",
+            "img/cup/mag4.png",
+            "img/cup/tumbler1.png",
+            "img/cup/tumbler2.png",
+            "img/cup/tumbler3.png",
+            "img/cup/tumbler4.png",
+            "img/cup/glass1.png",
+            "img/cup/glass2.png",
+            "img/cup/glass3.png",
+            "img/cup/glass4.png",
+            "img/cup/jug1.png",
+            "img/cup/jug2.png",
+            "img/cup/jug3.png",
+            "img/cup/jug4.png",
+            "img/cup/wine1.png",
+            "img/cup/wine2.png",
+            "img/cup/wine3.png",
+            "img/cup/wine4.png",
+            "img/cup/green_tumbler.png",
+            "img/cup/green_cup.png",
+            "img/cup/lime_cup.png",
+            "img/cup/mandarin_cup.png",
+            "img/cup/lime_tumbler.png",
+            "img/cup/mandarin_tumbler.png",
+            "img/cup/pink_cup.png",
+            "img/cup/pink_tumbler.png",
+            "img/cup/purple_cup.png",
+            "img/cup/purple_tumbler.png",
+            "img/cup/red_cup.png",
+            "img/cup/red_tumbler.png",
+            "img/cup/tumbler.png",
+            "img/cup/turquoise_cup.png",
+            "img/cup/turquoise_tumbler.png",
+            "img/cup/white_cup.png"
+        ];
+
+        // シャッフル関数
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];  // 配列の要素を交換
+            }
+        }
+
+        // 画像をシャッフル
+        shuffleArray(images);
+
+        // 画像をスライドショーに追加
+        images.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = 'スライド画像';
+            slideshow.appendChild(img);
+        });
+
+        // 画像を複製して無限ループする
+        const cloneImages = [...images];
+        cloneImages.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = 'スライド画像';
+            slideshow.appendChild(img);  // 複製された画像を追加
+        });
+    });
+});
+
+
 //ホーム画面のjs
 document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll("nav a");
@@ -179,119 +255,3 @@ document.querySelectorAll('.accordion-header').forEach(header => {
         mainImage.src = images[currentIndex]; // 新しい画像に切り替え
     }
     
-
-// ハンバーガー
-
-document.addEventListener('DOMContentLoaded', () => {
-    // ハンバーガーメニューの動作
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    const closeBtn = document.getElementById('closeBtn');
-
-    // ハンバーガーアイコンがクリックされたとき
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.add('active');  // メニューを表示
-        hamburger.style.display = 'none';  // ハンバーガーアイコンを隠す
-    });
-
-    // ×ボタンがクリックされたとき
-    closeBtn.addEventListener('click', () => {
-        navMenu.classList.remove('active');  // メニューを閉じる
-        hamburger.style.display = 'flex';  // ハンバーガーアイコンを再表示
-    });
-
-    // ハンバーガーメニュー内のリンククリック時の動作
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault(); // デフォルトのリンク動作をキャンセル
-
-            // スムーズスクロールの処理
-            const targetId = this.getAttribute('href').substring(1);  // hrefの#を除いたIDを取得
-            const targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',  // スムーズスクロール
-                    block: 'start'       // 上部にスクロール
-                });
-            }
-
-            // メニューを閉じる
-            navMenu.classList.remove('active');
-            hamburger.style.display = 'flex';  // ハンバーガーアイコンを再表示
-
-            // リンクのアクティブ状態を更新
-            updateActiveNav(link);
-        });
-    });
-
-    // ナビゲーションリンクのマウスオーバー・クリック処理
-    const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-        const imgElement = link.querySelector('img');
-        const defaultImage = link.getAttribute('data-image');
-        const hoverImage = link.getAttribute('data-hover-image');
-
-        // 初期状態の設定
-        if (link.classList.contains('active-nav')) {
-            imgElement.src = hoverImage;
-        } else {
-            imgElement.src = defaultImage;
-        }
-
-        // クリック時の処理
-        link.addEventListener('click', function(event) {
-            event.preventDefault();  // リンクのデフォルト動作をキャンセル
-
-            // 他のリンクをデフォルト画像に戻す
-            navLinks.forEach(nav => {
-                const navImg = nav.querySelector('img');
-                navImg.src = nav.getAttribute('data-image');
-                nav.classList.remove('active-nav');
-            });
-
-            // クリックされたリンクをアクティブに
-            imgElement.src = hoverImage;
-            link.classList.add('active-nav');
-
-            // 対応するコンテンツを表示
-            const target = link.getAttribute('data-target');
-            document.querySelectorAll('.content').forEach(content => {
-                content.classList.remove('active');
-            });
-            if (target) {
-                document.getElementById(target)?.classList.add('active');
-            }
-        });
-
-        // マウスオーバー・マウスアウト時の画像切り替え
-        link.addEventListener('mouseover', () => {
-            if (!link.classList.contains('active-nav')) {
-                imgElement.src = hoverImage;
-            }
-        });
-
-        link.addEventListener('mouseout', () => {
-            if (!link.classList.contains('active-nav')) {
-                imgElement.src = defaultImage;
-            }
-        });
-    });
-
-    // アクティブリンクを更新する関数
-    function updateActiveNav(link) {
-        // ナビゲーションのリンクをすべてデフォルト状態に戻す
-        navLinks.forEach(nav => {
-            const navImg = nav.querySelector('img');
-            navImg.src = nav.getAttribute('data-image');
-            nav.classList.remove('active-nav');
-        });
-
-        // クリックされたリンクをアクティブに
-        const imgElement = link.querySelector('img');
-        const hoverImage = link.getAttribute('data-hover-image');
-        imgElement.src = hoverImage;
-        link.classList.add('active-nav');
-    }
-
-});

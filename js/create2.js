@@ -250,14 +250,3 @@ cupButtons.forEach(button => {
     });
 });
 
-
-// カートリンクにアイテム数を表示
-document.addEventListener("DOMContentLoaded", function () {
-    let cartData = JSON.parse(localStorage.getItem("cartItems")) || [];
-    let cartCount = cartData.length;
-    let cartLink = document.getElementById("create_cart");
-    
-    if (cartCount > 0) {
-        cartLink.innerHTML += `<span class="cart-count">(${cartCount}点)</span>`;
-    }
-});

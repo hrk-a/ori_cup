@@ -62,12 +62,12 @@ caption {
 }
 
 /* 送信・ログアウトボタンボタン */
-.contact_button, #deleteAccountButton {
+.contact_button{
     font-family: "M PLUS Rounded 1c", sans-serif;
     font-weight: 600;
     font-size: 23px;
     line-height: 1;
-    letter-spacing: 2px; /* スキーニング（文字間の調整） */
+    letter-spacing: 1px; /* スキーニング（文字間の調整） */
     
     color: #fff;
     background-color: #7e99d4;
