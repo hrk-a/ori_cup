@@ -15,7 +15,6 @@ function changeImage(cupType) {
     // 画像パスを設定
     const imagePath = `img/cup/${cupType}.png`;
     displayImage.src = imagePath; // カップ画像を変更
-    console.log("画像が変更されました: " + imagePath);
 
     // カラー選択の有効化/無効化
     if (cupType === 'glass' || cupType === 'jug' || cupType === 'wine') {

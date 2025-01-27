@@ -120,10 +120,10 @@ button {
 /* 右から左に流れるアニメーション */
 @keyframes scrollRight {
     0% {
-        transform: translateX(0);  /* 最初から表示 */
+        transform: translateX(-100%);  /* 最初から表示 */
     }
     100% {
-        transform: translateX(100%);  /* 画像が右にスライドして消える */
+        transform: translateX(0%);  /* 画像が右にスライドして消える */
     }
 }
 

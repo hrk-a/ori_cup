@@ -44,6 +44,12 @@ document.getElementById("input_value").addEventListener("input", updateDisplayTe
 
 // キャンバスの再描画関数
 function redrawCanvas() {
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // 既存の描画内容をクリア
+    ctx.font = `${fontSize}px Arial`; // 新しいフォントサイズを設定
+    ctx.fillText("カスタマイズされたコップ", 50, 50); // テキストを描画
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // キャンバスをクリア
     if (image) {
         ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);  // 画像を描画
@@ -86,6 +92,29 @@ document.getElementById("increase_font_size").addEventListener("click", function
     fontSize = Math.min(72, fontSize + 1);
     document.getElementById("font_size_input").value = fontSize;
     redrawCanvas();
+});
+
+// マウススクロールでフォントサイズを変更
+canvas.addEventListener('wheel', (event) => {
+    const mouseX = event.offsetX;
+    const mouseY = event.offsetY;
+
+    // テキスト領域内でスクロールされた場合
+    if (mouseX >= textX && mouseX <= textX + ctx.measureText(textContent).width &&
+        mouseY >= textY - fontSize && mouseY <= textY) {
+        // フォントサイズ変更
+        if (event.deltaY < 0) {
+            // 上にスクロール → フォントサイズを大きくする
+            fontSize = Math.min(72, fontSize + 1);
+        } else if (event.deltaY > 0) {
+            // 下にスクロール → フォントサイズを小さくする
+            fontSize = Math.max(12, fontSize - 1);
+        }
+        document.getElementById("font_size_input").value = fontSize; // 入力欄に表示
+        redrawCanvas(); // 再描画
+    }
+
+    event.preventDefault(); // ページスクロールを防止
 });
 
 // ユーザーが入力フィールドに直接値を入力した場合
@@ -198,14 +227,17 @@ let isDraggingText = false;
 let offsetX = 0;
 let offsetY = 0;
 
-// テキストのドラッグ機能の更新
+// テキストのドラッグ機能
 canvas.addEventListener('mousedown', (e) => {
     const mouseX = e.offsetX;
     const mouseY = e.offsetY;
 
     // クリックした場所がテキストの範囲内かどうかを判定
-    if (mouseX >= textX && mouseX <= textX + ctx.measureText(textContent).width &&
-        mouseY >= textY && mouseY <= textY + fontSize) {
+    ctx.font = `${fontSize}px Arial`; // フォントサイズを設定
+    const textWidth = ctx.measureText(textContent).width;
+
+    if (mouseX >= textX && mouseX <= textX + textWidth &&
+        mouseY >= textY - fontSize && mouseY <= textY) {
         isDraggingText = true;
         offsetX = mouseX - textX; // クリックした位置からのオフセット
         offsetY = mouseY - textY;
@@ -221,7 +253,7 @@ canvas.addEventListener('mousemove', (e) => {
         // 新しい位置を計算
         textX = mouseX - offsetX;
         textY = mouseY - offsetY;
-        redrawCanvas();
+        redrawCanvas(); // キャンバスを再描画
     }
 });
 
@@ -234,6 +266,10 @@ canvas.addEventListener('mouseleave', () => {
     isDraggingText = false;
     canvas.style.cursor = 'default';
 });
+
+// 初期描画
+redrawCanvas();
+
 // ---------- 画像選択処理 ---------- 
 document.getElementById('imageInput').addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -258,34 +294,44 @@ document.getElementById('imageInput').addEventListener('change', (e) => {
 
 // 画像のサイズ変更
 document.getElementById('increaseSize').addEventListener('click', () => {
-    imageWidth += 50;
+    imageWidth += 10;
     imageHeight = imageWidth / aspectRatio;  // アスペクト比に基づいて高さを調整
     redrawCanvas();
 });
 
 document.getElementById('decreaseSize').addEventListener('click', () => {
-    if (imageWidth > 50 && imageHeight > 50) {
-        imageWidth -= 50;
+    if (imageWidth > 10 && imageHeight > 10) {
+        imageWidth -= 10;
         imageHeight = imageWidth / aspectRatio;  // アスペクト比に基づいて高さを調整
         redrawCanvas();
     }
 });
 // マウスのスクロールで画像のサイズ変更
 canvas.addEventListener('wheel', (event) => {
-    // スクロール方向によってサイズを変更
-    if (event.deltaY < 0) {
-        // 上にスクロール（サイズを大きくする）
-        imageWidth += 50;
-        imageHeight = imageWidth / aspectRatio;  // アスペクト比に基づいて高さを調整
-    } else if (event.deltaY > 0) {
-        // 下にスクロール（サイズを小さくする）
-        if (imageWidth > 50 && imageHeight > 50) {
-            imageWidth -= 50;
-            imageHeight = imageWidth / aspectRatio;  // アスペクト比に基づいて高さを調整
+    const mouseX = event.offsetX;
+    const mouseY = event.offsetY;
+
+    // 画像領域内でスクロールされた場合
+    if (mouseX >= imageX && mouseX <= imageX + imageWidth &&
+        mouseY >= imageY && mouseY <= imageY + imageHeight) {
+        // 画像のサイズ変更
+        if (event.deltaY < 0) {
+            // 上にスクロール → 画像を大きくする
+            imageWidth += 10;
+            imageHeight = imageWidth / aspectRatio; // アスペクト比を保ちながら調整
+        } else if (event.deltaY > 0) {
+            // 下にスクロール → 画像を小さくする
+            if (imageWidth > 10 && imageHeight > 10) {
+                imageWidth -= 10;
+                imageHeight = imageWidth / aspectRatio; // アスペクト比を保ちながら調整
+            }
         }
+        redrawCanvas(); // 再描画
     }
-    redrawCanvas();
+
+    event.preventDefault(); // ページスクロールを防止
 });
+
 
 // 画像のドラッグ機能の追加
 let isDraggingImage = false;
@@ -323,41 +369,95 @@ canvas.addEventListener('mouseup', () => {
     canvas.style.cursor = 'pointer';
 });
 
-// 画像削除
+// ---------- 画像削除 ----------
 document.getElementById('delete').addEventListener('click', () => {
     image = null;
     redrawCanvas();  // キャンバスをクリア
 });
 
-// 画像ダウンロード
+// ---------- 画像のダウンロード ----------
 document.getElementById('download').addEventListener('click', () => {
-    const cupimage = document.getElementById('display_image');  // <img> 要素
-    const cup_img = new Image();  // 新しい HTMLImageElement を作成
-    
-    // 画像が読み込まれた後にキャンバスに描画
-    cup_img.onload = function() {
-        // キャンバスにcupimageの画像を描画
-        ctx.drawImage(cup_img, 0, 0, canvas.width, canvas.height);  // cupimageを描画
-
-        // もしキャンバスに既に他の画像があれば、それも描画
-        if (image) {
-            ctx.drawImage(image, imageX, imageY, imageWidth, imageHeight);  // 画像を描画
-        }
-
-        // キャンバスの内容を画像としてエクスポート
-        const dataURL = canvas.toDataURL('image/jpeg');  // ここでcanvasの内容をJPEG形式に変換
-        const link = document.createElement('a');
-        link.href = dataURL;  // 生成したDataURLをリンクに設定
-        link.download = 'cup_img-download.jpeg';  // ダウンロードするファイル名
-        link.click();  // ダウンロードを開始
-    };
-
-    // cupimageが存在すれば画像を読み込む
-    if (cupimage && cupimage.src) {
-        cup_img.src = cupimage.src;  // cupimageのsrcを新しい画像に設定して読み込む
-    } else {
-        alert('カップの画像が見つかりません！');
+    const canvas = document.getElementById('myCanvas'); // 修正ポイント
+    if (!canvas) {
+        console.error('myCanvas要素が見つかりません');
+        return;
     }
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) {
+        console.error('2Dコンテキストが取得できません');
+        return;
+    }
+
+    // 保存処理
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/jpeg'); // PNG形式で保存
+    link.download = 'canvas-image.png';
+    link.click();
 });
 
 
+// タッチイベントの設定
+canvas.addEventListener('touchstart', (e) => {
+    const touchX = e.touches[0].clientX - canvas.offsetLeft;
+    const touchY = e.touches[0].clientY - canvas.offsetTop;
+ 
+    // テキストがタッチされたかどうかを判定
+    if (touchX >= textX && touchX <= textX + ctx.measureText(textContent).width &&
+        touchY >= textY && touchY <= textY + fontSize) {
+        isDraggingText = true;
+        offsetX = touchX - textX; // タッチ位置からのオフセット
+        offsetY = touchY - textY;
+        canvas.style.cursor = 'grabbing';
+    }
+});
+ 
+canvas.addEventListener('touchmove', (e) => {
+    if (isDraggingText) {
+        const touchX = e.touches[0].clientX - canvas.offsetLeft;
+        const touchY = e.touches[0].clientY - canvas.offsetTop;
+ 
+        // 新しい位置を計算
+        textX = touchX - offsetX;
+        textY = touchY - offsetY;
+        redrawCanvas();
+    }
+});
+ 
+canvas.addEventListener('touchend', () => {
+    isDraggingText = false;
+    canvas.style.cursor = 'pointer';
+});
+ 
+// 画像のタッチドラッグ
+canvas.addEventListener('touchstart', (e) => {
+    const touchX = e.touches[0].clientX - canvas.offsetLeft;
+    const touchY = e.touches[0].clientY - canvas.offsetTop;
+ 
+    // 画像がタッチされたかどうかを判定
+    if (touchX >= imageX && touchX <= imageX + imageWidth &&
+        touchY >= imageY && touchY <= imageY + imageHeight) {
+        isDraggingImage = true;
+        imageOffsetX = touchX - imageX; // タッチ位置からのオフセット
+        imageOffsetY = touchY - imageY;
+        canvas.style.cursor = 'grabbing';
+    }
+});
+ 
+canvas.addEventListener('touchmove', (e) => {
+    if (isDraggingImage) {
+        const touchX = e.touches[0].clientX - canvas.offsetLeft;
+        const touchY = e.touches[0].clientY - canvas.offsetTop;
+ 
+        // 画像の新しい位置を計算
+        imageX = touchX - imageOffsetX;
+        imageY = touchY - imageOffsetY;
+ 
+        redrawCanvas();
+    }
+});
+ 
+canvas.addEventListener('touchend', () => {
+    isDraggingImage = false;
+    canvas.style.cursor = 'pointer';
+});

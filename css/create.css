@@ -745,5 +745,15 @@ textarea {
     #dw_dt_btn{
         width: 50%;
     }
-
+    #dw_dt_btn {
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+    }
+    #dw_dt_btn button img {
+        width: 90%;
+    }
+    #dw_dt_btn button, #dw_dt_btn button{
+        margin: 0;
+    }
 }
