@@ -105,7 +105,7 @@ button {
 
 .slideshow img {
     width: 100%;  /* 画像の幅を親要素の幅に合わせる */
-    height: auto;  /* 高さは自動調整 */
+    height: 100%;
     filter: drop-shadow(2px 4px 8px rgba(180, 180, 180, 0.5));
 }
 /* 左から右に流れるアニメーション */
@@ -464,7 +464,10 @@ span {
     .slideshow {
         height: 18%;
     }
-
+    .slideshow img{
+        width: 100%;
+        height: 100%;
+    }
     .make_but {
         padding: 25px 0;
         letter-spacing: 1.5px;
