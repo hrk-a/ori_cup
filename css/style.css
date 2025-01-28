@@ -457,6 +457,11 @@ span {
         width: 40px;
     }
 
+    /*スライドショー*/
+    .slideshow {
+        height: 18%;
+    }
+
     .make_but {
         padding: 25px 0;
         letter-spacing: 1.5px;
