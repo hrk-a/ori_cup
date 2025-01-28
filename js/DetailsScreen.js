@@ -1,3 +1,15 @@
+// ページ読み込み時にローカルストレージから画像を取得して表示する
+window.addEventListener("load", function() {
+    const savedImage = localStorage.getItem("canvasImage"); // 保存したキーと一致
+
+    if (savedImage) {
+        // 画像を作成して表示
+        const img = new Image();
+        img.src = savedImage;
+        document.querySelector(".print_img").appendChild(img); // .print_img に追加
+    }
+});
+
 window.onload = function () {
     // コップの種類
     const selectedCupName = localStorage.getItem('selectedCupName');
@@ -101,7 +113,7 @@ window.onload = function () {
     let name = localStorage.getItem('name');
 
     // 名前が存在する場合のみ表示
-        document.getElementById('name').textContent = name;
+        document.getElementById('id_name').textContent = name;
 };
 
 // ---------- ラッピング -----------
@@ -170,31 +182,3 @@ document.querySelector('.contact_button').addEventListener('click', function (ev
     }
 });
 
-
-// ローカルストレージからメールを取得
-let email = localStorage.getItem('email');
-
-// ボタンがクリックされたとき
-document.getElementById('sendButton').addEventListener('click', function() {
-    let email = localStorage.getItem('email');
-
-    // メール送信処理をサーバーにリクエスト
-    fetch('/send-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('メールが送信されました');
-        } else {
-            alert('メール送信に失敗しました');
-        }
-    })
-    .catch(error => {
-        console.error('エラー:', error);
-    });
-});

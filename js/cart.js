@@ -1,5 +1,18 @@
+// ページ読み込み時にローカルストレージから画像を取得して表示する
+window.addEventListener("load", function() {
+    const savedImage = localStorage.getItem("canvasImage"); // キーを canvasImage に変更
+
+    if (savedImage) {
+        // 画像を作成して表示
+        const img = new Image();
+        img.src = savedImage;
+        document.getElementById("merchandise_img").appendChild(img); // #merchandise_img に変更
+    }
+});
+
+
 window.onload = function() {
-    
+
     // 初期状態でカートを非表示
     const cartBox = document.getElementById('clear');
     if (cartBox) {
@@ -192,24 +205,6 @@ function checkCartStatus() {
         }
     }
 }
-window.addEventListener('load', () => {
-    const savedImage = localStorage.getItem('savedImage');
-    
-    if (savedImage) {
-        // 画像を表示する <img> タグを作成
-        const img = new Image();
-        img.src = savedImage;
-
-        img.onload = function () {
-            // <div id="merchandise_img">内に画像を追加
-            const merchandiseImgDiv = document.getElementById('merchandise_img');
-            merchandiseImgDiv.innerHTML = ''; // 既存の内容をクリア（必要に応じて）
-            merchandiseImgDiv.appendChild(img);
-        };
-    } else {
-        console.log('保存された画像が見つかりません');
-    }
-});
 
 // 初期ロード時にカートの状態を確認
 checkCartStatus();

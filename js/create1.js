@@ -376,37 +376,17 @@ document.getElementById('delete').addEventListener('click', () => {
     redrawCanvas();  // キャンバスをクリア
 });
 
-document.getElementById('download').addEventListener('click', () => {
-    const canvas = document.getElementById('myCanvas');
-    if (!canvas) {
-        console.error('myCanvas要素が見つかりません');
-        return;
-    }
+//---------- 画像をローカルストレージに保存する ---------- 
+// ボタンがクリックされたときにローカルストレージに保存する
+document.getElementById("create_cart").addEventListener("click", function(event) {
+    // キャンバスの内容を画像データとして取得
+    const canvasData = canvas.toDataURL();
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-        console.error('2Dコンテキストが取得できません');
-        return;
-    }
+    // ローカルストレージに保存
+    localStorage.setItem("canvasImage", canvasData); // キーを canvasImage に変更
 
-    // 画像データを取得
-    const imageData = canvas.toDataURL('image/png'); // PNG形式
-
-    try {
-        // localStorageに画像データを保存
-        localStorage.setItem('savedImage', imageData);
-        console.log('画像データをlocalStorageに保存しました');
-    } catch (error) {
-        console.error('localStorageに保存できません:', error);
-    }
-
-    // 保存処理
-    const link = document.createElement('a');
-    link.href = imageData; // 画像データを直接リンクに設定
-    link.download = 'canvas-image.png'; // ダウンロードするファイル名
-    link.click();
+    console.log("キャンバスの内容がローカルストレージに保存されました！");
 });
-
 
 // タッチイベントの設定
 canvas.addEventListener('touchstart', (e) => {
@@ -426,8 +406,7 @@ canvas.addEventListener('touchstart', (e) => {
         canvas.style.cursor = 'grabbing';
     }
     // 画像がタッチされたかどうかを判定
-    else if (touchX >= imageX && touchX <= imageX + imageWidth &&
-             touchY >= imageY && touchY <= imageY + imageHeight) {
+    else if (touchX >= imageX && touchX <= imageX + imageWidth && touchY >= imageY && touchY <= imageY + imageHeight) {
         isDraggingImage = true;
         imageOffsetX = touchX - imageX; // タッチ位置からのオフセット
         imageOffsetY = touchY - imageY;
