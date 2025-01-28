@@ -272,6 +272,7 @@ redrawCanvas();
 
 // ---------- 画像選択処理 ---------- 
 document.getElementById('imageInput').addEventListener('change', (e) => {
+    
     const file = e.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -401,12 +402,16 @@ document.getElementById('download').addEventListener('click', () => {
 canvas.addEventListener('touchstart', (e) => {
     const touchX = e.touches[0].clientX - canvas.offsetLeft;
     const touchY = e.touches[0].clientY - canvas.offsetTop;
- 
+    
+    // 文字領域の上下に少し余白を追加
+    const textHeight = fontSize;  // 文字の高さ（フォントサイズに等しい）
+    const padding = 10;  // 余白の大きさ
+
     // テキストがタッチされたかどうかを判定
     if (touchX >= textX && touchX <= textX + ctx.measureText(textContent).width &&
-        touchY >= textY && touchY <= textY + fontSize) {
+        touchY >= textY - padding && touchY <= textY + textHeight + padding) {
         isDraggingText = true;
-        offsetX = touchX - textX; // タッチ位置からのオフセット
+        offsetX = touchX - textX;  // タッチ位置からのオフセット
         offsetY = touchY - textY;
         canvas.style.cursor = 'grabbing';
     }
