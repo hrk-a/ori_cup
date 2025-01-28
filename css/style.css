@@ -248,6 +248,11 @@ button {
     align-items: center;
     z-index: 0;
 }
+#bg{
+    margin: 0;
+    background-image: url(../img/haruka_bg.jpg);
+    background-size: cover;
+}
 
 /*オリコップのロゴ*/
 #top_logo {
