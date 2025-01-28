@@ -455,7 +455,9 @@ span {
         font-size: 0.8rem;
         font-weight: 400;
     }
-
+    input{
+        font-weight: 400;
+    }
     #cart,
     #user {
         letter-spacing: 1px;
@@ -488,6 +490,9 @@ span {
         display: none;
     }
 
+    .top_h3{
+        font-weight: 400;
+    }
     /*navはスクロールする*/
     #top_nav {
         overflow-x: auto;
