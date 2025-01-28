@@ -454,7 +454,7 @@ span {
     #cart,
     #user {
         letter-spacing: 1px;
-        width: 40px;
+        width: 35px;
     }
 
     /*スライドショー*/
@@ -468,7 +468,7 @@ span {
     .make_but {
         padding: 25px 0;
         letter-spacing: 1.5px;
-        width: 40px;
+        width: 35px;
     }
 
     #cart_user_id img {
