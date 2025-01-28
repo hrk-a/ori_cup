@@ -405,7 +405,7 @@ canvas.addEventListener('touchstart', (e) => {
     
     // 文字領域の上下に少し余白を追加
     const textHeight = fontSize;  // 文字の高さ（フォントサイズに等しい）
-    const padding = 10;  // 余白の大きさ
+    const padding = 30;  // 余白の大きさ
 
     // テキストがタッチされたかどうかを判定
     if (touchX >= textX && touchX <= textX + ctx.measureText(textContent).width &&
