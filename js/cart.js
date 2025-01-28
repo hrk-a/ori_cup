@@ -192,6 +192,24 @@ function checkCartStatus() {
         }
     }
 }
+window.addEventListener('load', () => {
+    const savedImage = localStorage.getItem('savedImage');
+    
+    if (savedImage) {
+        // 画像を表示する <img> タグを作成
+        const img = new Image();
+        img.src = savedImage;
+
+        img.onload = function () {
+            // <div id="merchandise_img">内に画像を追加
+            const merchandiseImgDiv = document.getElementById('merchandise_img');
+            merchandiseImgDiv.innerHTML = ''; // 既存の内容をクリア（必要に応じて）
+            merchandiseImgDiv.appendChild(img);
+        };
+    } else {
+        console.log('保存された画像が見つかりません');
+    }
+});
 
 // 初期ロード時にカートの状態を確認
 checkCartStatus();

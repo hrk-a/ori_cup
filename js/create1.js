@@ -376,9 +376,8 @@ document.getElementById('delete').addEventListener('click', () => {
     redrawCanvas();  // キャンバスをクリア
 });
 
-// ---------- 画像のダウンロード ----------
 document.getElementById('download').addEventListener('click', () => {
-    const canvas = document.getElementById('myCanvas'); // 修正ポイント
+    const canvas = document.getElementById('myCanvas');
     if (!canvas) {
         console.error('myCanvas要素が見つかりません');
         return;
@@ -390,10 +389,21 @@ document.getElementById('download').addEventListener('click', () => {
         return;
     }
 
+    // 画像データを取得
+    const imageData = canvas.toDataURL('image/png'); // PNG形式
+
+    try {
+        // localStorageに画像データを保存
+        localStorage.setItem('savedImage', imageData);
+        console.log('画像データをlocalStorageに保存しました');
+    } catch (error) {
+        console.error('localStorageに保存できません:', error);
+    }
+
     // 保存処理
     const link = document.createElement('a');
-    link.href = canvas.toDataURL('image/jpeg'); // PNG形式で保存
-    link.download = 'canvas-image.png';
+    link.href = imageData; // 画像データを直接リンクに設定
+    link.download = 'canvas-image.png'; // ダウンロードするファイル名
     link.click();
 });
 
@@ -405,7 +415,7 @@ canvas.addEventListener('touchstart', (e) => {
     
     // 文字領域の上下に少し余白を追加
     const textHeight = fontSize;  // 文字の高さ（フォントサイズに等しい）
-    const padding = 30;  // 余白の大きさ
+    const padding = 60;  // 余白の大きさ
 
     // テキストがタッチされたかどうかを判定
     if (touchX >= textX && touchX <= textX + ctx.measureText(textContent).width &&
