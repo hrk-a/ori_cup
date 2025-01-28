@@ -415,6 +415,14 @@ canvas.addEventListener('touchstart', (e) => {
         offsetY = touchY - textY;
         canvas.style.cursor = 'grabbing';
     }
+    // 画像がタッチされたかどうかを判定
+    else if (touchX >= imageX && touchX <= imageX + imageWidth &&
+             touchY >= imageY && touchY <= imageY + imageHeight) {
+        isDraggingImage = true;
+        imageOffsetX = touchX - imageX; // タッチ位置からのオフセット
+        imageOffsetY = touchY - imageY;
+        canvas.style.cursor = 'grabbing';
+    }
 });
  
 canvas.addEventListener('touchmove', (e) => {
@@ -426,43 +434,20 @@ canvas.addEventListener('touchmove', (e) => {
         textX = touchX - offsetX;
         textY = touchY - offsetY;
         redrawCanvas();
-    }
-});
- 
-canvas.addEventListener('touchend', () => {
-    isDraggingText = false;
-    canvas.style.cursor = 'pointer';
-});
- 
-// 画像のタッチドラッグ
-canvas.addEventListener('touchstart', (e) => {
-    const touchX = e.touches[0].clientX - canvas.offsetLeft;
-    const touchY = e.touches[0].clientY - canvas.offsetTop;
- 
-    // 画像がタッチされたかどうかを判定
-    if (touchX >= imageX && touchX <= imageX + imageWidth &&
-        touchY >= imageY && touchY <= imageY + imageHeight) {
-        isDraggingImage = true;
-        imageOffsetX = touchX - imageX; // タッチ位置からのオフセット
-        imageOffsetY = touchY - imageY;
-        canvas.style.cursor = 'grabbing';
-    }
-});
- 
-canvas.addEventListener('touchmove', (e) => {
-    if (isDraggingImage) {
+    } else if (isDraggingImage) {
         const touchX = e.touches[0].clientX - canvas.offsetLeft;
         const touchY = e.touches[0].clientY - canvas.offsetTop;
  
         // 画像の新しい位置を計算
         imageX = touchX - imageOffsetX;
         imageY = touchY - imageOffsetY;
- 
         redrawCanvas();
     }
 });
  
 canvas.addEventListener('touchend', () => {
+    // タッチが終了した時、ドラッグ状態をリセット
+    isDraggingText = false;
     isDraggingImage = false;
     canvas.style.cursor = 'pointer';
 });
