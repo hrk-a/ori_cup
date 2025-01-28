@@ -54,18 +54,23 @@
 
         <div id="clear" style="display: none;">
             <div id="cart_box">
-                <div id="merchandise_img"><img src="img/cup/gray.png" alt=""></div>
-                <div id="merchandise_cont">
-                    <p><span class="left">商品名</span><span id="selectedCupName"></span></p>
-                    <p><span class="left">色</span><span id="selectedColor"></span></p>
-                    <p><span class="left">本体価格</span><span id="price"></span></p>
-                </div>
-                <div id="number_cont">
-                    <label for="quantity">個数</label><br>
-                    <input type="number" id="quantity" name="quantity" min="1" value="1">
-                </div>
-                <div id="delete">
-                    <button id="deleteButton">削除</button>
+
+                <!--画像表示-->
+                <div id="merchandise_img"></div>
+
+                <div id="cart_box_cont">
+                    <div id="merchandise_cont">
+                        <p><span class="left">商品名</span><span id="selectedCupName"></span></p>
+                        <p><span class="left">色</span><span id="selectedColor"></span></p>
+                        <p><span class="left">本体価格</span><span id="price"></span></p>
+                    </div>
+                    <div id="number_cont">
+                        <label for="quantity">個数</label><br>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1">
+                    </div>
+                    <div id="delete">
+                        <button id="deleteButton">削除</button>
+                    </div>
                 </div>
             </div>
             <div id="price_cont">
