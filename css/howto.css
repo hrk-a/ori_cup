@@ -1,153 +1,756 @@
 @charset 'utf-8';
+/*作成ページ*/
 
-/* 作り方 */
-#howto {
-    background-image: url(../img/howto_stripe.jpg);
+/* ---------- 全体設定 ---------- */
+body {
+    background-attachment: fixed;/*背景小固定*/
+    overflow: hidden; /* 全体のスクロールを無効化 */
+    margin: 0;
+    padding: 0;
+    height: 100%; /* 高さを100%に設定 */
+}
+
+#main {
+    display: flex;
+    min-height: 100vh; /* これで高さを確保 */
+}
+#logo{
+    position: absolute;
+}
+.logo{
     position: relative;
-    background-size: 100%;
+    top: 13px;
+    left: 13px;
+    z-index: 100;
+    height: 50px;
 }
-
-/* 初期設定で全て非表示 */
-.pc-img, .sp-img {
-    display: none;
-}
-
-.howto_step {
+/* 左エリア (画像表示エリア) */
+#picture_cont {
+    position: relative; /* 親要素に対して相対位置を設定 */
+    text-align: center;
+    width: 78%; /* 左右半分の幅 */
     display: flex;
     justify-content: center;
-    width: 100%;
-    margin-bottom: 50px;
+    align-items: center;
+    background: linear-gradient(to bottom, #fff 10%, #d4d4d4); /* 背景グラデーション */
+    height: 100%; /* 親要素に合わせた高さ */
+    padding: 0; /* 隙間をなくす */
+}
+/* 右エリア (選択肢エリア) */
+#choice_cont {
+    width: 22%; /* 左右半分の幅 */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    min-height: 100%; /* 親要素に合わせた高さ */
+    margin: 0; /* 隙間をなくす */
+    padding: 0; /* 隙間をなくす */
+}
+/*コップの写真*/
+#picture_cont02 {
+    position: absolute; 
+    width: 100%; /* 必要に応じて幅を調整 */
 }
 
-.howto_step img {
-    width: 20%;
-    margin: 0 20px;
-    opacity: 0;
-    transform: scale(0.5); /* 小さくする */
-    transition: opacity 0.35s ease, transform 0.35s ease; /* アニメーション */
-    transform-origin: center; /* 拡大の基準点を中央に設定 */
+/* 左のコップの写真 */
+#display_image {
+    position: absolute; /* 絶対配置 */
+    top: 50%; /* 親要素の中央に配置 */
+    left: 90%; /* 親要素の右端に配置 */
+    transform: translate(-85%, -50%); /* 水平方向: 右端から中央へ, 垂直方向: 中央揃え */
+    width: 380px;
+    height: auto; /* 高さは自動調整 */
+    z-index: 10;
 }
 
-/* スクロールで表示 */
-.howto_step img.visible {
-    opacity: 1;
-    transform: translateY(0);
+/* ふわっと表示アニメーション */
+.fade-in {
+    animation: zoomIn 0.3s ease-out;
 }
 
-.howto_button {
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-weight: 600;
-    font-size: 23px;
-    line-height: 1;
-    letter-spacing: 2px;
-    color: #fff;
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.85);  /* 最初は半分のサイズ */
+        opacity: 0;             /* 最初は透明 */
+    }
+    100% {
+        transform: scale(1);    /* 最終的に元のサイズ */
+        opacity: 1;             /* 完全に不透明 */
+    }
+}
+/*キャンバス*/
+canvas{
+    position: relative;
+    border: 1px solid #333;
+    vertical-align: middle;
+    width: 90%;
+    height: 360px;
+    margin: 0 auto;
+    z-index: 15;
+}
+/* ----- ナビ ----- */
+#create_nav {
+    display: flex; /* 横並びにする */
+    flex-direction: column; /* 縦並び */
+    align-items: center;
+    justify-content: space-between; /* 上下の間隔を均等に */
+    box-sizing: border-box;
+    background: none;
+    background: linear-gradient(to bottom, #fff 10%, #d4d4d4); /* 背景グラデーション */
+    padding: 0; /* パディングなし */
+    margin-right: -1px;
+}
+
+#create_nav a {
+    display: flex;
+    justify-content: right;
+    height: 25%; /* 各リンクの高さを画面の25%に設定 */
+}
+
+#create_nav img {
+    height: 100%; /* 高さは自動調整 */
+    object-fit: contain; /* 比率を保ちながら画像を縮小 */
+    object-position: center; /* 画像を中央に配置 */
+    transition: transform 0.3s ease, top 0.3s ease, opacity 0.3s ease; /* アニメーション効果 */
+    filter: drop-shadow(-3px 0 7px rgba(180, 180, 180, 0.5));
+}
+
+.nav-image{
+    margin: 0;
+}
+
+/*ご注文カート*/
+.create_cart_al a{
+    text-decoration: none;
+}
+
+.create_cart {
+    padding: 13px 20px 13px 15px;
+    border-radius: 0px 30px 30px 0px;
     background-color: #89c45c;
     border: 3px solid #fff;
-    border-radius: 50px;
-    width: 280px;
-    box-shadow: 2px 6px #89c45c;
-    padding: 13px 0 8px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
-}
-.howto_button a{
-    text-decoration: none;
     color: #fff;
-}
-button a{
-    display: inline-block;
-}
-
-.button span {
-    font-size: 15px;
-}
-
-button:hover {
-    transform: translateY(4px);
-    box-shadow: none;
-}
-
-/* 右向きの矢印 */
-button::after {
-    content: '';
     position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    border-top: 7px solid transparent;
-    border-bottom: 7px solid transparent;
-    border-left: 10px solid #fff;
+    bottom: 30px;   /* 左下に配置する */
+    left: 0px;     /* 左側にくっつける */
+    z-index: 1000;  /* 必要なら最前面に表示する */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: none;
+    box-shadow: -2px 0 7px rgba(180, 180, 180, 0.4);
+    width: auto;     /* 横書きで内容に合わせて幅を調整 */
+    text-align: center;
+    letter-spacing: 0.05em;
+    transform-origin: center left; /* 右中心を基準に拡大 */
+}
+.create_cart:hover {
+    transform: scale(1.06); /* 要素を1.5倍に拡大 */
+    transition: transform 0.2s ease;
+}
+/*カートのアイコン*/
+.create_cart img {
+    margin-right: 3px;
+    width: 28px !important;
+}
+            
+
+/* コンテンツ表示設定 */
+.content {
+    display: none; /* デフォルトで非表示 */
+    box-sizing: border-box;
+    width: 100%;
+    padding: 5% 7%; /* コンテンツの余白 */
+    z-index: 10;
+}
+/* 各共通コンテンツ */
+
+.content.active {
+    display: block; /* アクティブ状態のとき表示 */
 }
 
-@media (max-width: 2000px) and (min-width: 834px) {
-    /* PC用画像 */
-    .pc-img {
-        display: inline;
-    }
+#sntaku{
+    width: 100%;
+    overflow-y: auto; /* 縦スクロールを許可 */
+    z-index: 50;
+    background-color: #fff;
+    box-sizing: border-box;
 }
 
-/* 狭いブラウザとタブレット */
+/* ---------- コップ選択 ---------- */
+#cup{
+    height: 100%;
+}
+.cup {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cup img {
+    width: 45%;
+    background-color: #f0f0f0;
+    border: 3px solid #fff; /* 内側の白線 */
+    filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.6));
+    border-radius: 10px;
+    padding: 4px;
+    margin: 13px 0;
+    box-sizing: border-box;
+}
+
+.cup img.selected {
+    border-color: #fff;              /* 内側の白線を維持 */
+    box-shadow: 0 0 0 3px #f889a9;  /* 外側にピンク線を追加 */
+}
+
+/* ---------- 色選択 ---------- */
+#color{
+    height: 100%;
+}
+.color{
+    height: 100%;
+}
+.color_img{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    height: 100%;
+}
+.color1, .color2{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.color_img img {
+    border: 3px solid #fff; /* 内側の白線 */
+    border-radius: 14px;
+    filter: drop-shadow(-2px 0 7px rgba(180, 180, 180, 0.7));
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.color_img img.selected {
+    border-color: #fff;              /* 内側の白線を維持 */
+    box-shadow: 0 0 0 3px #f889a9;  /* 外側にピンク線を追加 */
+}
+
+/* ---------- 文字選択 ---------- */
+#input_value_box {
+    position: absolute;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+}
+
+input {
+    padding: 5px;
+    margin-top: 10px;
+}
+/*基本スタイル*/
+.text-display {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    white-space: nowrap;
+}
+::selection {
+    border: 1px solid #333;  /* 枠線を追加 */
+}
+
+/* フォントサイズ調整のスタイル */
+.fontsize, .henkei, .text-design {
+    margin-top: 20px;
+}
+
+/* ---------- フォント選択 ---------- */
+.text_cont{
+    height: 100%;
+}
+#text{
+    height: 100%;
+}
+.nyuuryoku, .fontosentaku, .fontsize, .text-design, .font_color{
+    margin-bottom: 25px;
+}
+/* プルダウンそれぞれのフォントを適用 */
+option[value*="Cherry Bomb One"] { font-family: 'Cherry Bomb One', cursive; }
+option[value*="Dela Gothic One"] { font-family: 'Dela Gothic One', sans-serif; }
+option[value*="DotGothic16"] { font-family: 'DotGothic16', sans-serif; }
+option[value*="Kaisei Opti"] { font-family: 'Kaisei Opti', serif; }
+option[value*="Kiwi Maru"] { font-family: 'Kiwi Maru', serif; }
+option[value*="M PLUS Rounded 1c"] { font-family: 'M PLUS Rounded 1c', sans-serif; }
+option[value*="Noto Serif JP"] { font-family: 'Noto Serif JP', serif; }
+option[value*="Sawarabi Gothic"] { font-family: 'Sawarabi Gothic', sans-serif; }
+option[value*="Shippori Mincho B1"] { font-family: 'Shippori Mincho B1', serif; }
+option[value*="Yuji Syuku"] { font-family: 'Yuji Syuku', serif; }
+option[value*="Yusei Magic"] { font-family: 'Yusei Magic', sans-serif; }
+option[value*="Bungee Inline"] { font-family: 'Bungee Inline', cursive; }
+    
+#fontSelector{
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 8px 5px ;
+}
+
+/* スライダーとその値を横並びに */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+input[type="range"] {
+    width: 200px;
+}
+input[type="number"] {
+    width: 60px;
+    font-size: 16px;
+    padding: 5px;
+}
+.font-size-control{
+    display: flex;
+}
+/*フォントサイズのボタン*/
+button {
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+/* スライダーとその値を横並びに */
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+#current_values {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.text_heading {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.text-content {
+    transition: all 0.3s ease-in-out;
+}
+/* 縦書き・アーチ用のスタイル */
+.vertical-write {
+    writing-mode: vertical-rl; /* 縦書き */
+    text-orientation: upright; /* 文字を縦方向に回転させずに正立 */
+}
+/*縦書き・横書きボタン*/
+#normalButton,#verticalButton{
+    background-color: #fff;
+    border: none;
+}
+/*縦横書きアイコン*/
+.text_design img{
+    width: 40px;
+}
+#normalButton:hover,#verticalButton:hover{
+    background-color: #ececec;
+    border-radius: 3px;
+}
+#normalButton:active,#verticalButton:active{
+    background-color: #dadada;
+}
+
+span {
+    font-size: 16px;
+}
+
+/* 現在のフォントサイズと角度を表示 */
+#current_values {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.text_heading {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ---------- 入力フォームのスタイル ---------- */
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+/* カラーパレットと白黒グラデーションを並べる親要素 */
+#color_palette_container {
+    display: flex; /* フレックスボックスで横並びにする */
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#color_palette {
+    display: grid;
+    grid-template-columns: repeat(22, 11px); /* 22列 */
+    max-width: 100%;
+}
+
+.color_option {
+    width: 11px;
+    height: 11px;
+    cursor: pointer;
+    box-sizing: border-box; /* ボーダーを含めたサイズ指定 */
+    margin: 0; /* 余分なマージンを排除 */
+    padding: 0; /* 余分なパディングを排除 */
+}
+
+/* 選択した色にボーダーと白い縁取りを追加 */
+.color_option.selected {
+    border: 2px solid #f357a0; /* 黒いボーダー */
+    outline: none; /* フォーカス時のアウトラインを消す（ボーダーを優先） */
+}
+/* 白黒グラデーション用のカラム */
+.grayscale_column {
+    display: grid;
+    grid-template-rows: repeat(10, 20px); /* 縦方向に10行 */
+}
+/*タイトル*/
+.text_heading{
+    margin-bottom: 0;
+}
+.text{
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    border-radius: 3px;
+    background-color: #ffddea;
+    border: none;
+    font-size: 120%;
+    padding: 5px; /* 内側の余白を調整 */
+    box-sizing: border-box; /* パディングやボーダーを含めてサイズを計算 */
+    width: 100%; /* 横幅を調整（必要に応じて） */
+}
+#displayText {
+    position: absolute; /* 必須：absoluteで移動させる */
+    text-align: center;
+    white-space: pre-wrap; /* 改行をそのまま反映 */
+    word-wrap: break-word;
+    padding: 10px;
+    border: 2px solid black !important;
+}
+
+/* ---------- 写真選択 ---------- */
+#dw_dt_btn{
+    width: 80%;
+    margin: 0 auto;
+}
+#dw_dt_btn button{
+    border: none;
+    background: none;
+    padding: 0;
+    width: 100%;
+}
+#dw_dt_btn button img{
+    width: 100%;
+}
+/*+-ボタン*/
+.resize-buttons{
+    margin-top: 10px;
+    text-align: center;
+}
+/*ダウンロードボタン*/
+#download{
+    margin-top: 40px;
+    filter: drop-shadow(0 5px 0 #ebd41f);
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+/*削除ボタン*/
+#delete{
+    margin-top: 10px;
+    filter: drop-shadow(0 5px 0 #7c89a3);
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+#download:hover, #delete:hover{
+    transform: translateY(4px);
+    filter: none;
+}
+/* タブレットサイズ */
 @media (max-width: 832px) and (min-width: 521px) {
-    /* PC用画像 */
-    .pc-img {
-        display: inline;
+    html, body {
+        height: 100%;  /* 全体の高さを100%に設定 */
+    }
+    .logo{
+        top: 15;
+        left: 15px;
+        height: 30px;
+    }
+    body{
+        background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
+    }
+    #picture_cont, #create_nav{
+        background: transparent;
+    }
+    #main,#choice_cont,#picture_cont{
+        flex-direction: column;
+        width: 100vw;
+    }
+    /*マグカップの写真*/
+    #display_image {
+        transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
+        left: 75%;    
+        width: 40%; 
+        height: auto; /* 高さは自動調整 */
+    }
+    /* ---------- コップ表示エリア ---------- */
+    #picture_cont{
+        width: 100%;
+        min-height: 65%;
+    }
+    #picture_cont02{
+        width: 100%;
+        height: auto;
+        display: block
+    }
+    /* ---------- 選択エリア ---------- */
+    #choice_cont {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        min-height: 35%;
+        padding-top: 0;
+        box-sizing: border-box;
+        overflow: auto;
+    }
+    #create_nav{
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+    #create_nav a{
+        height: auto;
+    }
+    #create_nav img{
+        width: 100%;
+        height: auto;
+    }
+    #sntaku{
+        width: 100%;
+        height: 100%;
     }
 
-    .howto_button {
-        width: 200px;
-        padding: 15px 0 6px;
-        font-size: 1rem;
+    canvas{
+        width: 90%;
+        height: 300px;
     }
-    .howto_step img{
-        width: 30%;
-        margin: 0 10px;    
+    /* ---------- 各選択エリア ---------- */
+    .content{
+        padding: 3% 2%;
     }
-
-    .button span {
-        font-size: 12px;
+    /* ---------- コップ選択 ---------- */
+    .cup{
+        justify-content: space-between;
     }
-
-    button::after {
-        right: 18px;
-        border-top: 6px solid transparent;
-        border-bottom: 6px solid transparent;
-        border-left: 9px solid #fff;
+    .cup img{
+        margin: 0 10px;
+        width: 90px;
+        height: auto;
+    }
+    /* ---------- 色選択 ---------- */
+    .color_img {
+        display: flex;
+        justify-content: space-evenly;
+        align-content: space-between;
+        height: 100%;
+        flex-wrap: wrap;
+    }
+    .color1,.color2{
+        flex-direction: row;
+        height: auto;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .color1 img,.color2 img{
+        width: 90px;
+        height: auto;
+        margin: 0 5px;
+    }
+    /* ---------- 文字選択 ---------- */
+    #text {
+        height: auto;
+    }
+    .sp_flex{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #color_palette_container{
+        justify-content: flex-start;
     }
 }
 
-/* スマホ */
+/*スマホサイズ*/
 @media (max-width: 520px) {
-    /* SP用画像 */
-    .sp-img {
-        display: inline;
+    html, body {
+        height: 100%;  /* 全体の高さを100%に設定 */
     }
-    .howto_step {
-        display: block;
-        width: 90%;
-        margin: 0 auto 50px;
+    body{
+        background: linear-gradient(to bottom, #fff 0.5%, #d4d4d4); /* 背景グラデーション */
     }
-
-    .howto_step img {
+    .logo{
+        top: 15;
+        left: 15px;
+        height: 30px;
+    }
+    /* グラデーション消す */
+    #picture_cont, #create_nav{
+        background: transparent;
+    }
+    #create_nav{
+        flex-direction: row;
         width: 100%;
-        margin: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
     }
-
-    .howto_button {
-        font-weight: 400;
-        width: 165px;
-        padding: 10px 0 7px;
+    /* navの影消す */
+    #create_nav img {
+        filter: none; /* 影を消す */
+    }
+    #main,#choice_cont,#picture_cont{
+        flex-direction: column;
+        width: 100vw;
+    }
+    /*マグカップの写真*/
+    #display_image {
+        transform: translate(-50%, -50%); /* 水平方向と垂直方向に中央揃え */
+        left: 75%;    
+        width: 40%; 
+        height: auto; /* 高さは自動調整 */
+    }
+    /* ---------- コップ表示エリア ---------- */
+    #picture_cont{
+        width: 100%;
+        min-height: 55%;
+    }
+    #picture_cont02{
+        width: 100%;
+        height: auto;
+        display: block
+    }
+    /* ---------- 選択エリア ---------- */
+    #choice_cont {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        min-height: 45%;
+        padding-top: 0;
+        box-sizing: border-box;
+        overflow: auto;
+    }
+    #create_nav{
+        flex-direction: row;
+        width: 100%;
+        overflow-x: auto;
+    }
+    #create_nav a{
+        height: auto;
+    }
+    #create_nav img{
+        width: 200px;
+        margin: 0 5px 0 0;
+    }
+    #sntaku{
+        width: 100%;
+        height: 100%;
+    }
+    /*挿入する画像*/
+    #displayimg img{
+        width: 100%; 
+    }
+    canvas{
+        width: 90%;
+        height: 155px;
+    }
+    /*ご注文カート*/
+    .create_cart{
+        bottom: 20px;
         font-size: 0.8rem;
-        border: 2px solid #fff;
+        padding: 8px 18px 8px 15px;
     }
-
-    .button span {
-        font-size: 8.5px;
+    /*カートのアイコン*/
+    .create_cart img {
+        width: 23px !important;
     }
+    /* ---------- 各選択エリア ---------- */
+    .content{
+        padding: 3% 2%;
+        height: auto;
+    }
+    /* 各共通コンテンツ */
+    .content.active {
+        display: block; /* アクティブ状態のとき表示 */
+}
 
-    button::after {
-        right: 18px;
-        border-top: 4px solid transparent;
-        border-bottom: 4px solid transparent;
-        border-left: 7px solid #fff;
+    /* ---------- コップ選択 ---------- */
+    .cup{
+        justify-content: flex-start;
+    }
+    .cup img{
+        margin: 0 10px;
+        width: 90px;
+        height: auto;
+    }
+    /* ---------- 色選択 ---------- */
+    .color_img{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        height: 100%;
+    }
+    
+    .color1,.color2{
+        flex-direction: row;
+        height: auto;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+    .color1 img,.color2 img{
+        width: 90px;
+        height: auto;
+        margin: 0 5px;
+    }
+    /* ---------- 文字選択 ---------- */
+    .content_text{
+        height: auto;
+    }
+    #text{
+        height: auto;
+        padding-bottom: 10px;
+    }
+    #color_palette_container {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+    /* ---------- 写真選択 ---------- */
+    #dw_dt_btn{
+        width: 50%;
+    }
+    #dw_dt_btn {
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+    }
+    #dw_dt_btn button img {
+        width: 90%;
+    }
+    #dw_dt_btn button, #dw_dt_btn button{
+        margin: 0;
     }
 }
