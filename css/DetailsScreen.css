@@ -39,9 +39,14 @@ main{
 /*注文内容*/
 #syousai{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     padding-bottom: 20px;
     margin-bottom: 40px;
+}
+#syousai_cont{
+    display: flex;
+    justify-content: space-between;
 }
 .container{
     padding: 4% 4.5%;
@@ -62,10 +67,19 @@ main{
 }
 
 /*プリント画像表示*/
-.print_img img{
-    width: 200px;
+.print_img{
+    width: 100%;
     height: auto;
 }
+.print_img img{
+    width: 100%;
+    height: auto;
+    border: 1px solid #3d3d3d;
+    box-sizing: border-box;
+    padding: 15px;
+
+}
+
 /*アイテム*/
 .left{
     text-align: left;
@@ -204,15 +218,12 @@ select{
     color: red;
 }
 .postage{
-<<<<<<< HEAD
-=======
     text-align: right;
 }
 /*受取り日*/
 .date{
     margin-top: 10px;
     margin-bottom: 50px;
->>>>>>> 3cfa1c9123c3b700f56ff5e920398cb83cfcc20e
     text-align: right;
 }
 /*受取り日*/
@@ -324,6 +335,9 @@ select{
     .print_img img{
         width: 100%;
         height: auto;
+    }
+    #syousai_cont{
+        flex-direction: column;
     }
     .henkou a{
         width: 70px;
