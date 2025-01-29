@@ -753,4 +753,12 @@ textarea {
     #dw_dt_btn button, #dw_dt_btn button{
         margin: 0;
     }
+
+    button{
+        margin: 0 8px;
+        padding: 10px 15px;
+    }
+    #font_size_input{
+        margin: 0;
+    }
 }
